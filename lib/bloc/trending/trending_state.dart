@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
-import 'package:project_movie/data/model/Movie.dart';
+import 'package:project_movie/data/model/movie.dart';
 
 @immutable
 abstract class TrendingState extends Equatable {
@@ -9,7 +9,12 @@ abstract class TrendingState extends Equatable {
 
 class TrendingUninitialized extends TrendingState {}
 
-class TrendingError extends TrendingState {}
+class TrendingError extends TrendingState {
+  final String message;
+
+  TrendingError(this.message);
+
+}
 
 class TrendingLoaded extends TrendingState {
   final List<Movie> movies;

@@ -1,15 +1,15 @@
 import 'dart:async';
+
 import 'package:bloc/bloc.dart';
-import 'package:dio/dio.dart';
 import 'package:meta/meta.dart';
-import 'package:project_movie/data/model/Movie.dart';
-import 'package:project_movie/data/rest_client.dart';
+import 'package:project_movie/data/network/trending_api_service.dart';
+
 import './bloc.dart';
 
 class TrendingBloc extends Bloc<TrendingEvent, TrendingState> {
-  final RestClient restClient;
+  final TrendingApiService service;
 
-  TrendingBloc({@required this.restClient});
+  TrendingBloc({@required this.service});
 
   @override
   TrendingState get initialState => TrendingUninitialized();
@@ -21,37 +21,29 @@ class TrendingBloc extends Bloc<TrendingEvent, TrendingState> {
     if (event is Fetch && !_hasReachedMax(currentState)) {
       try {
         if (currentState is TrendingUninitialized) {
-          final movies = await _fetchMovies();
-          yield TrendingLoaded(movies: movies, hasReachedMax: false);
+          final response = await service.getTrendingMovies();
+          if (response.body.movies.length < 1) {
+            yield TrendingError("No treding movie found");
+          } else
+            yield TrendingLoaded(
+                movies: response.body.movies.toList(), hasReachedMax: false);
           return;
         }
         if (currentState is TrendingLoaded) {
-          final movies = await _fetchMovies();
-          yield movies.isEmpty
+          final response = await service.getTrendingMovies();
+          yield response.body.movies.isEmpty
               ? (currentState as TrendingLoaded).copyWith(hasReachedMax: true)
               : TrendingLoaded(
-              movies: (currentState as TrendingLoaded).movies + movies,
+              movies: (currentState as TrendingLoaded).movies +
+                  response.body.movies.toList(),
                   hasReachedMax: false);
         }
       } catch (e) {
-        print('ERRORR ' + e.toString());
-        yield TrendingError();
+        yield TrendingError(e.toString());
       }
     }
   }
 
   bool _hasReachedMax(TrendingState state) =>
       state is TrendingLoaded && state.hasReachedMax;
-
-  Future<List<Movie>> _fetchMovies() async {
-    Response response = await restClient.getPopularMovies();
-    if (response.statusCode == 200) {
-      final data = (response.data)['results'] as List;
-      return data.map((rawMovie) {
-        return Movie.fromJson(rawMovie);
-      }).toList();
-    } else {
-      throw Exception('Error fetching posts');
-    }
-  }
 }

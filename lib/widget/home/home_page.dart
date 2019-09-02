@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:project_movie/bloc/trending/bloc.dart';
 import 'package:project_movie/widget/common/bottom_loader.dart';
-
-import 'movie_item.dart';
+import 'package:project_movie/widget/common/search_movie_item.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -30,7 +29,7 @@ class _HomePageState extends State<HomePage> {
         builder: (context, state) {
           if (state is TrendingError) {
             return Center(
-              child: Text('failed to fetch movies'),
+              child: Text(state.message),
             );
           }
           if (state is TrendingLoaded) {
@@ -43,7 +42,7 @@ class _HomePageState extends State<HomePage> {
               itemBuilder: (BuildContext context, int index) {
                 return index >= state.movies.length
                     ? BottomLoader()
-                    : MovieItem(movie: state.movies[index]);
+                    : SearchSuggestionItem(movie: state.movies[index]);
               },
               itemCount: state.hasReachedMax
                   ? state.movies.length
