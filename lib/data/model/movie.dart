@@ -2,9 +2,10 @@ import 'dart:convert';
 
 import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
-import 'package:built_value/serializer.dart'
+import 'package:built_value/serializer.dart';
+import 'package:project_movie/data/model/serializers.dart';
 
-dart';
+part 'movie.g.dart';
 
 abstract class Movie implements Built<Movie, MovieBuilder> {
   Movie._();
