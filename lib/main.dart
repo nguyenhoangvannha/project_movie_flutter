@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:logging/logging.dart';
-import 'package:project_movie/data/network/service/trending_api_service.dart';
+import 'package:project_movie/data/network/service/movie_api_service.dart';
 
 import 'bloc/simple_bloc_delegate.dart';
 import 'bloc/trending/bloc.dart';
@@ -15,13 +15,14 @@ void main() {
 
   BlocSupervisor.delegate = SimpleBlocDelegate();
 
-  MovieApiService trendingApiService = TrendingApiService.create();
-  MovieRepository trendingRepository = MovieRepository(trendingApiService);
+  MovieApiService movieApiService = MovieApiService.create();
+  MovieRepository movieRepository = MovieRepository(
+      movieApiService: movieApiService);
 
   runApp(MultiBlocProvider(providers: [
     BlocProvider<TrendingBloc>(
       builder: (BuildContext context) =>
-          TrendingBloc(repository: trendingRepository),
+          TrendingBloc(repository: movieRepository),
     )
   ], child: MyApp()));
 }

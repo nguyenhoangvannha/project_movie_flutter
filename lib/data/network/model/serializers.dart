@@ -4,8 +4,20 @@ import 'package:built_value/standard_json_plugin.dart';
 import 'package:project_movie/data/network/model/movie_model.dart';
 import 'package:project_movie/data/network/model/movie_response_model.dart';
 
+import 'cast_model.dart';
+import 'credits_response_model.dart';
+import 'video_model.dart';
+import 'video_response_model.dart';
+
 part 'serializers.g.dart';
 
-@SerializersFor(const [MovieModel, MovieResponseModel])
+@SerializersFor(const [
+  MovieModel,
+  MovieResponseModel,
+  CastModel,
+  CreditsResponseModel,
+  VideoModel,
+  VideoResponseModel
+])
 final Serializers serializers =
     (_$serializers.toBuilder()..addPlugin(StandardJsonPlugin())).build();
