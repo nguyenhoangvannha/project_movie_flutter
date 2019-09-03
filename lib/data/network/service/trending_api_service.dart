@@ -1,9 +1,9 @@
 import 'package:chopper/chopper.dart';
-import 'package:project_movie/data/model/movie_response.dart';
+import 'package:project_movie/data/network/converter/built_value_converter.dart';
+import 'package:project_movie/data/network/interceptor/network_interceptor.dart';
+import 'package:project_movie/data/network/model/movie_response_model.dart';
 
-import '../../global/config.dart' as Config;
-import 'built_value_converter.dart';
-import 'interceptor/network_interceptor.dart';
+import '../../../global/config.dart' as Config;
 
 part 'trending_api_service.chopper.dart';
 
@@ -13,7 +13,7 @@ abstract class TrendingApiService extends ChopperService {
   // flutter packages pub run build_runner clean
 
   @Get(path: '/movie')
-  Future<Response<MovieResponse>> getTrendingMovies({
+  Future<Response<MovieResponseModel>> getTrendingMovies({
     @Query('api_key') String apiKey = Config.API_KEY,
     @Query('sort_by') String sortBy = 'popularity.desc',
     @Query('page') int page = 1,

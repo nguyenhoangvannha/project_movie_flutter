@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
-import 'package:project_movie/data/model/movie.dart';
+import 'package:project_movie/data/network/model/movie_model.dart';
+import 'package:project_movie/data/respository/entity/movie.dart';
 
 @immutable
 abstract class TrendingState extends Equatable {
@@ -22,7 +23,7 @@ class TrendingLoaded extends TrendingState {
 
   TrendingLoaded({this.movies, this.hasReachedMax}) : super([movies, hasReachedMax]);
 
-  TrendingLoaded copyWith({List<Movie> movies, bool hasReachedMax}) {
+  TrendingLoaded copyWith({List<MovieModel> movies, bool hasReachedMax}) {
     return TrendingLoaded(
         movies: movies ?? this.movies,
         hasReachedMax: hasReachedMax ?? this.hasReachedMax);

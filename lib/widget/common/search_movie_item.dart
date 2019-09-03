@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project_movie/data/model/movie.dart';
+import 'package:project_movie/data/respository/entity/movie.dart';
 
 import 'custom_container.dart';
 import 'custom_text.dart';
@@ -23,7 +23,7 @@ class SearchSuggestionItem extends StatelessWidget {
               contentPadding:
                   EdgeInsets.only(left: 8, top: 4, bottom: 4, right: 4),
               leading: RectangleCachedNetworkImage(
-                imageUrl: 'https://image.tmdb.org/t/p/w342$movie.posterPath',
+                imageUrl: movie.posterPath,
               ),
               title: TextTitle(
                 text: movie.title,

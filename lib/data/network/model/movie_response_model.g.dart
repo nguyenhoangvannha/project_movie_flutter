@@ -1,22 +1,23 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'movie_response.dart';
+part of 'movie_response_model.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
 // **************************************************************************
 
-Serializer<MovieResponse> _$movieResponseSerializer =
-    new _$MovieResponseSerializer();
+Serializer<MovieResponseModel> _$movieResponseModelSerializer =
+new _$MovieResponseModelSerializer();
 
-class _$MovieResponseSerializer implements StructuredSerializer<MovieResponse> {
+class _$MovieResponseModelSerializer
+    implements StructuredSerializer<MovieResponseModel> {
   @override
-  final Iterable<Type> types = const [MovieResponse, _$MovieResponse];
+  final Iterable<Type> types = const [MovieResponseModel, _$MovieResponseModel];
   @override
-  final String wireName = 'MovieResponse';
+  final String wireName = 'MovieResponseModel';
 
   @override
-  Iterable<Object> serialize(Serializers serializers, MovieResponse object,
+  Iterable<Object> serialize(Serializers serializers, MovieResponseModel object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object>[
       'page',
@@ -30,17 +31,17 @@ class _$MovieResponseSerializer implements StructuredSerializer<MovieResponse> {
       'results',
       serializers.serialize(object.movies,
           specifiedType:
-              const FullType(BuiltList, const [const FullType(Movie)])),
+          const FullType(BuiltList, const [const FullType(MovieModel)])),
     ];
 
     return result;
   }
 
   @override
-  MovieResponse deserialize(
+  MovieResponseModel deserialize(
       Serializers serializers, Iterable<Object> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new MovieResponseBuilder();
+    final result = new MovieResponseModelBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -62,8 +63,8 @@ class _$MovieResponseSerializer implements StructuredSerializer<MovieResponse> {
           break;
         case 'results':
           result.movies.replace(serializers.deserialize(value,
-                  specifiedType:
-                      const FullType(BuiltList, const [const FullType(Movie)]))
+              specifiedType: const FullType(
+                  BuiltList, const [const FullType(MovieModel)]))
               as BuiltList<dynamic>);
           break;
       }
@@ -73,7 +74,7 @@ class _$MovieResponseSerializer implements StructuredSerializer<MovieResponse> {
   }
 }
 
-class _$MovieResponse extends MovieResponse {
+class _$MovieResponseModel extends MovieResponseModel {
   @override
   final int page;
   @override
@@ -81,39 +82,44 @@ class _$MovieResponse extends MovieResponse {
   @override
   final int totalPages;
   @override
-  final BuiltList<Movie> movies;
+  final BuiltList<MovieModel> movies;
 
-  factory _$MovieResponse([void Function(MovieResponseBuilder) updates]) =>
-      (new MovieResponseBuilder()..update(updates)).build();
+  factory _$MovieResponseModel(
+      [void Function(MovieResponseModelBuilder) updates]) =>
+      (new MovieResponseModelBuilder()
+        ..update(updates)).build();
 
-  _$MovieResponse._(
+  _$MovieResponseModel._(
       {this.page, this.totalResults, this.totalPages, this.movies})
       : super._() {
     if (page == null) {
-      throw new BuiltValueNullFieldError('MovieResponse', 'page');
+      throw new BuiltValueNullFieldError('MovieResponseModel', 'page');
     }
     if (totalResults == null) {
-      throw new BuiltValueNullFieldError('MovieResponse', 'totalResults');
+      throw new BuiltValueNullFieldError('MovieResponseModel', 'totalResults');
     }
     if (totalPages == null) {
-      throw new BuiltValueNullFieldError('MovieResponse', 'totalPages');
+      throw new BuiltValueNullFieldError('MovieResponseModel', 'totalPages');
     }
     if (movies == null) {
-      throw new BuiltValueNullFieldError('MovieResponse', 'movies');
+      throw new BuiltValueNullFieldError('MovieResponseModel', 'movies');
     }
   }
 
   @override
-  MovieResponse rebuild(void Function(MovieResponseBuilder) updates) =>
+  MovieResponseModel rebuild(
+      void Function(MovieResponseModelBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  MovieResponseBuilder toBuilder() => new MovieResponseBuilder()..replace(this);
+  MovieResponseModelBuilder toBuilder() =>
+      new MovieResponseModelBuilder()
+        ..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is MovieResponse &&
+    return other is MovieResponseModel &&
         page == other.page &&
         totalResults == other.totalResults &&
         totalPages == other.totalPages &&
@@ -130,7 +136,7 @@ class _$MovieResponse extends MovieResponse {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('MovieResponse')
+    return (newBuiltValueToStringHelper('MovieResponseModel')
           ..add('page', page)
           ..add('totalResults', totalResults)
           ..add('totalPages', totalPages)
@@ -139,37 +145,32 @@ class _$MovieResponse extends MovieResponse {
   }
 }
 
-class MovieResponseBuilder
-    implements Builder<MovieResponse, MovieResponseBuilder> {
-  _$MovieResponse _$v;
+class MovieResponseModelBuilder
+    implements Builder<MovieResponseModel, MovieResponseModelBuilder> {
+  _$MovieResponseModel _$v;
 
   int _page;
-
   int get page => _$this._page;
-
   set page(int page) => _$this._page = page;
 
   int _totalResults;
-
   int get totalResults => _$this._totalResults;
-
   set totalResults(int totalResults) => _$this._totalResults = totalResults;
 
   int _totalPages;
-
   int get totalPages => _$this._totalPages;
-
   set totalPages(int totalPages) => _$this._totalPages = totalPages;
 
-  ListBuilder<Movie> _movies;
+  ListBuilder<MovieModel> _movies;
 
-  ListBuilder<Movie> get movies => _$this._movies ??= new ListBuilder<Movie>();
+  ListBuilder<MovieModel> get movies =>
+      _$this._movies ??= new ListBuilder<MovieModel>();
 
-  set movies(ListBuilder<Movie> movies) => _$this._movies = movies;
+  set movies(ListBuilder<MovieModel> movies) => _$this._movies = movies;
 
-  MovieResponseBuilder();
+  MovieResponseModelBuilder();
 
-  MovieResponseBuilder get _$this {
+  MovieResponseModelBuilder get _$this {
     if (_$v != null) {
       _page = _$v.page;
       _totalResults = _$v.totalResults;
@@ -181,24 +182,24 @@ class MovieResponseBuilder
   }
 
   @override
-  void replace(MovieResponse other) {
+  void replace(MovieResponseModel other) {
     if (other == null) {
       throw new ArgumentError.notNull('other');
     }
-    _$v = other as _$MovieResponse;
+    _$v = other as _$MovieResponseModel;
   }
 
   @override
-  void update(void Function(MovieResponseBuilder) updates) {
+  void update(void Function(MovieResponseModelBuilder) updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  _$MovieResponse build() {
-    _$MovieResponse _$result;
+  _$MovieResponseModel build() {
+    _$MovieResponseModel _$result;
     try {
       _$result = _$v ??
-          new _$MovieResponse._(
+          new _$MovieResponseModel._(
               page: page,
               totalResults: totalResults,
               totalPages: totalPages,
@@ -210,7 +211,7 @@ class MovieResponseBuilder
         movies.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            'MovieResponse', _$failedField, e.toString());
+            'MovieResponseModel', _$failedField, e.toString());
       }
       rethrow;
     }

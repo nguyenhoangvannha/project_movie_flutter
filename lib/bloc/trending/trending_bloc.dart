@@ -2,14 +2,14 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:project_movie/data/network/trending_api_service.dart';
+import 'package:project_movie/data/respository/movie_repository.dart';
 
 import './bloc.dart';
 
 class TrendingBloc extends Bloc<TrendingEvent, TrendingState> {
-  final TrendingApiService service;
+  final MovieRepository repository;
 
-  TrendingBloc({@required this.service});
+  TrendingBloc({@required this.repository});
 
   @override
   TrendingState get initialState => TrendingUninitialized();
@@ -21,21 +21,21 @@ class TrendingBloc extends Bloc<TrendingEvent, TrendingState> {
     if (event is Fetch && !_hasReachedMax(currentState)) {
       try {
         if (currentState is TrendingUninitialized) {
-          final response = await service.getTrendingMovies();
-          if (response.body.movies.length < 1) {
+          final movies = await repository.getTrendingMovies();
+          if (movies.length < 1) {
             yield TrendingError("No treding movie found");
           } else
             yield TrendingLoaded(
-                movies: response.body.movies.toList(), hasReachedMax: false);
+                movies: movies, hasReachedMax: false);
           return;
         }
         if (currentState is TrendingLoaded) {
-          final response = await service.getTrendingMovies();
-          yield response.body.movies.isEmpty
+          final movies = await repository.getTrendingMovies();
+          yield movies.isEmpty
               ? (currentState as TrendingLoaded).copyWith(hasReachedMax: true)
               : TrendingLoaded(
               movies: (currentState as TrendingLoaded).movies +
-                  response.body.movies.toList(),
+                  movies.toList(),
                   hasReachedMax: false);
         }
       } catch (e) {

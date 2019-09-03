@@ -3,14 +3,14 @@ import 'dart:convert';
 import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:project_movie/data/model/serializers.dart';
+import 'package:project_movie/data/network/model/serializers.dart';
 
-part 'movie.g.dart';
+part 'movie_model.g.dart';
 
-abstract class Movie implements Built<Movie, MovieBuilder> {
-  Movie._();
+abstract class MovieModel implements Built<MovieModel, MovieModelBuilder> {
+  MovieModel._();
 
-  factory Movie([updates(MovieBuilder b)]) = _$Movie;
+  factory MovieModel([updates(MovieModelBuilder b)]) = _$MovieModel;
 
   @BuiltValueField(wireName: 'popularity')
   double get popularity;
@@ -55,13 +55,13 @@ abstract class Movie implements Built<Movie, MovieBuilder> {
   String get releaseDate;
 
   String toJson() {
-    return json.encode(serializers.serializeWith(Movie.serializer, this));
+    return json.encode(serializers.serializeWith(MovieModel.serializer, this));
   }
 
-  static Movie fromJson(String jsonString) {
+  static MovieModel fromJson(String jsonString) {
     return serializers.deserializeWith(
-        Movie.serializer, json.decode(jsonString));
+        MovieModel.serializer, json.decode(jsonString));
   }
 
-  static Serializer<Movie> get serializer => _$movieSerializer;
+  static Serializer<MovieModel> get serializer => _$movieModelSerializer;
 }

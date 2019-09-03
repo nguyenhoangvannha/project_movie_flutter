@@ -1,21 +1,21 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'movie.dart';
+part of 'movie_model.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
 // **************************************************************************
 
-Serializer<Movie> _$movieSerializer = new _$MovieSerializer();
+Serializer<MovieModel> _$movieModelSerializer = new _$MovieModelSerializer();
 
-class _$MovieSerializer implements StructuredSerializer<Movie> {
+class _$MovieModelSerializer implements StructuredSerializer<MovieModel> {
   @override
-  final Iterable<Type> types = const [Movie, _$Movie];
+  final Iterable<Type> types = const [MovieModel, _$MovieModel];
   @override
-  final String wireName = 'Movie';
+  final String wireName = 'MovieModel';
 
   @override
-  Iterable<Object> serialize(Serializers serializers, Movie object,
+  Iterable<Object> serialize(Serializers serializers, MovieModel object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object>[
       'popularity',
@@ -64,9 +64,9 @@ class _$MovieSerializer implements StructuredSerializer<Movie> {
   }
 
   @override
-  Movie deserialize(Serializers serializers, Iterable<Object> serialized,
+  MovieModel deserialize(Serializers serializers, Iterable<Object> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new MovieBuilder();
+    final result = new MovieModelBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -139,7 +139,7 @@ class _$MovieSerializer implements StructuredSerializer<Movie> {
   }
 }
 
-class _$Movie extends Movie {
+class _$MovieModel extends MovieModel {
   @override
   final double popularity;
   @override
@@ -169,10 +169,11 @@ class _$Movie extends Movie {
   @override
   final String releaseDate;
 
-  factory _$Movie([void Function(MovieBuilder) updates]) =>
-      (new MovieBuilder()..update(updates)).build();
+  factory _$MovieModel([void Function(MovieModelBuilder) updates]) =>
+      (new MovieModelBuilder()
+        ..update(updates)).build();
 
-  _$Movie._(
+  _$MovieModel._(
       {this.popularity,
       this.voteCount,
       this.video,
@@ -189,60 +190,62 @@ class _$Movie extends Movie {
       this.releaseDate})
       : super._() {
     if (popularity == null) {
-      throw new BuiltValueNullFieldError('Movie', 'popularity');
+      throw new BuiltValueNullFieldError('MovieModel', 'popularity');
     }
     if (voteCount == null) {
-      throw new BuiltValueNullFieldError('Movie', 'voteCount');
+      throw new BuiltValueNullFieldError('MovieModel', 'voteCount');
     }
     if (video == null) {
-      throw new BuiltValueNullFieldError('Movie', 'video');
+      throw new BuiltValueNullFieldError('MovieModel', 'video');
     }
     if (posterPath == null) {
-      throw new BuiltValueNullFieldError('Movie', 'posterPath');
+      throw new BuiltValueNullFieldError('MovieModel', 'posterPath');
     }
     if (id == null) {
-      throw new BuiltValueNullFieldError('Movie', 'id');
+      throw new BuiltValueNullFieldError('MovieModel', 'id');
     }
     if (adult == null) {
-      throw new BuiltValueNullFieldError('Movie', 'adult');
+      throw new BuiltValueNullFieldError('MovieModel', 'adult');
     }
     if (backdropPath == null) {
-      throw new BuiltValueNullFieldError('Movie', 'backdropPath');
+      throw new BuiltValueNullFieldError('MovieModel', 'backdropPath');
     }
     if (originalLanguage == null) {
-      throw new BuiltValueNullFieldError('Movie', 'originalLanguage');
+      throw new BuiltValueNullFieldError('MovieModel', 'originalLanguage');
     }
     if (originalTitle == null) {
-      throw new BuiltValueNullFieldError('Movie', 'originalTitle');
+      throw new BuiltValueNullFieldError('MovieModel', 'originalTitle');
     }
     if (genreIds == null) {
-      throw new BuiltValueNullFieldError('Movie', 'genreIds');
+      throw new BuiltValueNullFieldError('MovieModel', 'genreIds');
     }
     if (title == null) {
-      throw new BuiltValueNullFieldError('Movie', 'title');
+      throw new BuiltValueNullFieldError('MovieModel', 'title');
     }
     if (voteAverage == null) {
-      throw new BuiltValueNullFieldError('Movie', 'voteAverage');
+      throw new BuiltValueNullFieldError('MovieModel', 'voteAverage');
     }
     if (overview == null) {
-      throw new BuiltValueNullFieldError('Movie', 'overview');
+      throw new BuiltValueNullFieldError('MovieModel', 'overview');
     }
     if (releaseDate == null) {
-      throw new BuiltValueNullFieldError('Movie', 'releaseDate');
+      throw new BuiltValueNullFieldError('MovieModel', 'releaseDate');
     }
   }
 
   @override
-  Movie rebuild(void Function(MovieBuilder) updates) =>
+  MovieModel rebuild(void Function(MovieModelBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  MovieBuilder toBuilder() => new MovieBuilder()..replace(this);
+  MovieModelBuilder toBuilder() =>
+      new MovieModelBuilder()
+        ..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is Movie &&
+    return other is MovieModel &&
         popularity == other.popularity &&
         voteCount == other.voteCount &&
         video == other.video &&
@@ -295,7 +298,7 @@ class _$Movie extends Movie {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('Movie')
+    return (newBuiltValueToStringHelper('MovieModel')
           ..add('popularity', popularity)
           ..add('voteCount', voteCount)
           ..add('video', video)
@@ -314,98 +317,70 @@ class _$Movie extends Movie {
   }
 }
 
-class MovieBuilder implements Builder<Movie, MovieBuilder> {
-  _$Movie _$v;
+class MovieModelBuilder implements Builder<MovieModel, MovieModelBuilder> {
+  _$MovieModel _$v;
 
   double _popularity;
-
   double get popularity => _$this._popularity;
-
   set popularity(double popularity) => _$this._popularity = popularity;
 
   int _voteCount;
-
   int get voteCount => _$this._voteCount;
-
   set voteCount(int voteCount) => _$this._voteCount = voteCount;
 
   bool _video;
-
   bool get video => _$this._video;
-
   set video(bool video) => _$this._video = video;
 
   String _posterPath;
-
   String get posterPath => _$this._posterPath;
-
   set posterPath(String posterPath) => _$this._posterPath = posterPath;
 
   int _id;
-
   int get id => _$this._id;
-
   set id(int id) => _$this._id = id;
 
   bool _adult;
-
   bool get adult => _$this._adult;
-
   set adult(bool adult) => _$this._adult = adult;
 
   String _backdropPath;
-
   String get backdropPath => _$this._backdropPath;
-
   set backdropPath(String backdropPath) => _$this._backdropPath = backdropPath;
 
   String _originalLanguage;
-
   String get originalLanguage => _$this._originalLanguage;
-
   set originalLanguage(String originalLanguage) =>
       _$this._originalLanguage = originalLanguage;
 
   String _originalTitle;
-
   String get originalTitle => _$this._originalTitle;
-
   set originalTitle(String originalTitle) =>
       _$this._originalTitle = originalTitle;
 
   ListBuilder<int> _genreIds;
-
   ListBuilder<int> get genreIds => _$this._genreIds ??= new ListBuilder<int>();
-
   set genreIds(ListBuilder<int> genreIds) => _$this._genreIds = genreIds;
 
   String _title;
-
   String get title => _$this._title;
-
   set title(String title) => _$this._title = title;
 
   double _voteAverage;
-
   double get voteAverage => _$this._voteAverage;
-
   set voteAverage(double voteAverage) => _$this._voteAverage = voteAverage;
 
   String _overview;
-
   String get overview => _$this._overview;
-
   set overview(String overview) => _$this._overview = overview;
 
   String _releaseDate;
-
   String get releaseDate => _$this._releaseDate;
-
   set releaseDate(String releaseDate) => _$this._releaseDate = releaseDate;
 
-  MovieBuilder();
+  MovieModelBuilder();
 
-  MovieBuilder get _$this {
+  MovieModelBuilder get _$this {
     if (_$v != null) {
       _popularity = _$v.popularity;
       _voteCount = _$v.voteCount;
@@ -427,24 +402,24 @@ class MovieBuilder implements Builder<Movie, MovieBuilder> {
   }
 
   @override
-  void replace(Movie other) {
+  void replace(MovieModel other) {
     if (other == null) {
       throw new ArgumentError.notNull('other');
     }
-    _$v = other as _$Movie;
+    _$v = other as _$MovieModel;
   }
 
   @override
-  void update(void Function(MovieBuilder) updates) {
+  void update(void Function(MovieModelBuilder) updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  _$Movie build() {
-    _$Movie _$result;
+  _$MovieModel build() {
+    _$MovieModel _$result;
     try {
       _$result = _$v ??
-          new _$Movie._(
+          new _$MovieModel._(
               popularity: popularity,
               voteCount: voteCount,
               video: video,
@@ -466,7 +441,7 @@ class MovieBuilder implements Builder<Movie, MovieBuilder> {
         genreIds.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            'Movie', _$failedField, e.toString());
+            'MovieModel', _$failedField, e.toString());
       }
       rethrow;
     }

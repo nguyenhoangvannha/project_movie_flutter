@@ -29,7 +29,7 @@ dependencies:
 
   #network
   chopper: ^3.0.0 #similar to Retrofit
-  connectivity: ^0.4.4
+  connectivity: ^0.4.4 #checking connection
 
   #widget
   cached_network_image: ^1.1.1

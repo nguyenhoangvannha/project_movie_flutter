@@ -14,7 +14,7 @@ class _$TrendingApiService extends TrendingApiService {
 
   final definitionType = TrendingApiService;
 
-  Future<Response<MovieResponse>> getTrendingMovies(
+  Future<Response<MovieResponseModel>> getTrendingMovies(
       {String apiKey = Config.API_KEY,
       String sortBy = 'popularity.desc',
       int page = 1}) {
@@ -25,6 +25,6 @@ class _$TrendingApiService extends TrendingApiService {
       'page': page
     };
     final $request = Request('GET', $url, client.baseUrl, parameters: $params);
-    return client.send<MovieResponse, MovieResponse>($request);
+    return client.send<MovieResponseModel, MovieResponseModel>($request);
   }
 }

@@ -7,11 +7,10 @@ part of 'serializers.dart';
 // **************************************************************************
 
 Serializers _$serializers = (new Serializers().toBuilder()
-      ..add(Movie.serializer)
-      ..add(MovieResponse.serializer)
+  ..add(MovieModel.serializer)..add(MovieResponseModel.serializer)
       ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(Movie)]),
-          () => new ListBuilder<Movie>())
+          const FullType(BuiltList, const [const FullType(MovieModel)]),
+              () => new ListBuilder<MovieModel>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(int)]),
           () => new ListBuilder<int>()))
