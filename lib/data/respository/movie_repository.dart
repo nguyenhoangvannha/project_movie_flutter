@@ -1,15 +1,15 @@
-import 'package:project_movie/data/network/service/trending_api_service.dart';
+import 'package:project_movie/data/network/service/movie_api_service.dart';
 
 import 'entity/movie.dart';
 
 class MovieRepository {
-  final TrendingApiService trendingApiService;
+  final MovieApiService movieApiService;
 
-  MovieRepository(this.trendingApiService);
+  MovieRepository(this.movieApiService);
 
-  Future<List<Movie>> getTrendingMovies() async {
+  Future<List<Movie>> getMovies() async {
     try {
-      final data = await trendingApiService.getTrendingMovies();
+      final data = await movieApiService.getMovies();
       return data.body.movies.map((movieModel) {
         return Movie(
             id: movieModel.id,

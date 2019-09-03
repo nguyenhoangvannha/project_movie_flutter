@@ -27,4 +27,9 @@ class _$TrendingApiService extends TrendingApiService {
     final $request = Request('GET', $url, client.baseUrl, parameters: $params);
     return client.send<MovieResponseModel, MovieResponseModel>($request);
   }
+
+  @override
+  Future<Response<MovieResponseModel>> getMovies() {
+    return getTrendingMovies();
+  }
 }

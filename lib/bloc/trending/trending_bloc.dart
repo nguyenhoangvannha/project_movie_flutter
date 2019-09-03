@@ -21,7 +21,7 @@ class TrendingBloc extends Bloc<TrendingEvent, TrendingState> {
     if (event is Fetch && !_hasReachedMax(currentState)) {
       try {
         if (currentState is TrendingUninitialized) {
-          final movies = await repository.getTrendingMovies();
+          final movies = await repository.getMovies();
           if (movies.length < 1) {
             yield TrendingError("No treding movie found");
           } else
@@ -30,7 +30,7 @@ class TrendingBloc extends Bloc<TrendingEvent, TrendingState> {
           return;
         }
         if (currentState is TrendingLoaded) {
-          final movies = await repository.getTrendingMovies();
+          final movies = await repository.getMovies();
           yield movies.isEmpty
               ? (currentState as TrendingLoaded).copyWith(hasReachedMax: true)
               : TrendingLoaded(

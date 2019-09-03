@@ -162,10 +162,8 @@ class MovieResponseModelBuilder
   set totalPages(int totalPages) => _$this._totalPages = totalPages;
 
   ListBuilder<MovieModel> _movies;
-
   ListBuilder<MovieModel> get movies =>
       _$this._movies ??= new ListBuilder<MovieModel>();
-
   set movies(ListBuilder<MovieModel> movies) => _$this._movies = movies;
 
   MovieResponseModelBuilder();

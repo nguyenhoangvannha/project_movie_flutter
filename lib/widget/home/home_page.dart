@@ -12,17 +12,18 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final _scrollController = ScrollController();
   final _scrollThreshold = 200.0;
-  TrendingBloc _postBloc;
+  TrendingBloc _trendingBloc;
 
   @override
   void initState() {
     super.initState();
     _scrollController.addListener(_onScroll);
-    _postBloc = BlocProvider.of<TrendingBloc>(context);
+    _trendingBloc = BlocProvider.of<TrendingBloc>(context);
   }
 
   @override
   Widget build(BuildContext context) {
+    _trendingBloc.dispatch(Fetch());
     return Scaffold(
       appBar: AppBar(title: Text('Movies'),),
       body: BlocBuilder<TrendingBloc, TrendingState>(
@@ -68,7 +69,7 @@ class _HomePageState extends State<HomePage> {
     final maxScroll = _scrollController.position.maxScrollExtent;
     final currentScroll = _scrollController.position.pixels;
     if (maxScroll - currentScroll <= _scrollThreshold) {
-      _postBloc.dispatch(Fetch());
+      _trendingBloc.dispatch(Fetch());
     }
   }
 }
