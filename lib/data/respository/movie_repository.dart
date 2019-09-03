@@ -6,7 +6,9 @@ import 'package:project_movie/data/network/model/video_model.dart';
 import 'package:project_movie/data/network/service/movie_api_service.dart';
 
 import '../../global/api_config.dart' as ApiConfig;
+import 'entity/cast.dart';
 import 'entity/movie.dart';
+import 'entity/video.dart';
 
 class MovieRepository {
   final MovieApiService movieApiService;
@@ -40,7 +42,7 @@ class MovieRepository {
     }
   }
 
-  Future<List<VideoModel>> getVideoTrailer({@required int movieId}) async {
+  Future<List<Video>> getVideoTrailer({@required int movieId}) async {
     try {
       final data = await movieApiService.getVideoTrailer(movieId: movieId);
       return _mapVideosResponseToList(data.body.videos);
@@ -58,7 +60,7 @@ class MovieRepository {
     }
   }
 
-  Future<List<CastModel>> getMovieCredits({@required int movieId}) async {
+  Future<List<Cast>> getMovieCredits({@required int movieId}) async {
     try {
       final data = await movieApiService.getMovieCredits(movieId: movieId);
       return _mapCreditsResponseToList(data.body.casts);
@@ -100,11 +102,25 @@ class MovieRepository {
     }).toList();
   }
 
-  List<VideoModel> _mapVideosResponseToList(BuiltList<VideoModel> movies) {
-    return movies.toList();
+  List<Video> _mapVideosResponseToList(BuiltList<VideoModel> movies) {
+    return movies.map((m) {
+      return Video(
+          id: m.id,
+          key: m.key,
+          name: m.name,
+          site: m.site,
+          size: m.size,
+          type: m.type);
+    }).toList();
   }
 
-  List<CastModel> _mapCreditsResponseToList(BuiltList<CastModel> casts) {
-    return casts.toList();
+  List<Cast> _mapCreditsResponseToList(BuiltList<CastModel> casts) {
+    return casts.map((castModel) {
+      return Cast(
+          id: castModel.id,
+          castId: castModel.castId,
+          name: castModel.name,
+          profilePath: '${ApiConfig.BASE_POSTER_URL}${castModel.profilePath}');
+    }).toList();
   }
 }

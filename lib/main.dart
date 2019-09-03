@@ -11,7 +11,7 @@ import 'data/respository/movie_repository.dart';
 import 'widget/home/home_page.dart';
 
 void main() {
-  _settupLogging();
+  _setupLogging();
 
   BlocSupervisor.delegate = SimpleBlocDelegate();
 
@@ -27,7 +27,7 @@ void main() {
   ], child: MyApp()));
 }
 
-void _settupLogging() {
+void _setupLogging() {
   Logger.root.level = Level.ALL;
   Logger.root.onRecord.listen((rec) {
     print('${rec.level.name} : ${rec.time}: ${rec.message}');
