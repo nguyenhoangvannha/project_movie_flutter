@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project_movie/data/respository/entity/movie.dart';
-
-import 'custom_container.dart';
-import 'custom_text.dart';
+import 'package:project_movie/widget/common/base/custom_container.dart';
+import 'package:project_movie/widget/common/base/custom_text.dart';
 
 class SearchSuggestionItem extends StatelessWidget {
   final Movie movie;

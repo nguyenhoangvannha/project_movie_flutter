@@ -1,5 +1,6 @@
 import 'package:project_movie/data/network/service/movie_api_service.dart';
 
+import '../../global/api_config.dart' as ApiConfig;
 import 'entity/movie.dart';
 
 class MovieRepository {
@@ -16,7 +17,7 @@ class MovieRepository {
             title: movieModel.title,
             overview: movieModel.overview,
             posterPath:
-                'https://image.tmdb.org/t/p/w342${movieModel.posterPath}',
+            '${ApiConfig.BASE_POSTER_URL}${movieModel.posterPath}',
             voteAverage: movieModel.voteAverage);
       }).toList();
     } catch (ex) {

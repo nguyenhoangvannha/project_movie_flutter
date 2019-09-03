@@ -3,7 +3,7 @@ import 'package:project_movie/data/network/converter/built_value_converter.dart'
 import 'package:project_movie/data/network/interceptor/network_interceptor.dart';
 import 'package:project_movie/data/network/model/movie_response_model.dart';
 
-import '../../../global/config.dart' as Config;
+import '../../../global/api_config.dart' as ApiConfig;
 import 'movie_api_service.dart';
 
 part 'trending_api_service.chopper.dart';
@@ -16,7 +16,7 @@ abstract class TrendingApiService extends ChopperService
 
   @Get(path: '/movie')
   Future<Response<MovieResponseModel>> getTrendingMovies({
-    @Query('api_key') String apiKey = Config.API_KEY,
+    @Query('api_key') String apiKey = ApiConfig.API_KEY,
     @Query('sort_by') String sortBy = 'popularity.desc',
     @Query('page') int page = 1,
   });
@@ -24,7 +24,7 @@ abstract class TrendingApiService extends ChopperService
 
   static TrendingApiService create() {
     final client = ChopperClient(
-        baseUrl: '${Config.BASE_API_URL}',
+        baseUrl: '${ApiConfig.BASE_API_URL}',
         services: [
           _$TrendingApiService(),
         ],

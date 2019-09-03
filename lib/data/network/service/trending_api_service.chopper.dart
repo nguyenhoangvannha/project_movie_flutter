@@ -15,7 +15,7 @@ class _$TrendingApiService extends TrendingApiService {
   final definitionType = TrendingApiService;
 
   Future<Response<MovieResponseModel>> getTrendingMovies(
-      {String apiKey = Config.API_KEY,
+      {String apiKey = ApiConfig.API_KEY,
       String sortBy = 'popularity.desc',
       int page = 1}) {
     final $url = '/discover/movie';

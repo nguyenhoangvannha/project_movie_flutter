@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-
-import 'custom_text.dart';
+import 'package:project_movie/widget/common/base/custom_text.dart';
 
 class RoundedBlurContainer extends StatelessWidget {
   final Widget child;
@@ -22,7 +21,7 @@ class RoundedBlurContainer extends StatelessWidget {
         padding: EdgeInsets.only(left: 8, right: 8, top: 4, bottom: 4),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
-            color: color != null ? color : Colors.black38),
+            color: color ?? Colors.black38),
         child: Row(
           mainAxisAlignment: mainAxisAlignment != null
               ? mainAxisAlignment
@@ -130,8 +129,8 @@ class RoundedRectangle extends StatelessWidget {
                 : BorderRadius.vertical(
                     top: Radius.circular(top), bottom: Radius.circular(0)),
         child: Container(
-          color: color != null ? color : Colors.black38,
-          padding: padding != null ? padding : EdgeInsets.all(0),
+          color: color ?? Colors.black38,
+          padding: padding ?? EdgeInsets.all(0),
           child: child,
         ));
   }

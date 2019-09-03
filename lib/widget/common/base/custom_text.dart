@@ -21,15 +21,15 @@ class TextTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: padding != null ? padding : EdgeInsets.all(0),
+      padding: padding ?? EdgeInsets.all(0),
       child: Text(
         text,
-        textAlign: textAlign != null ? textAlign : TextAlign.start,
+        textAlign: textAlign ?? TextAlign.start,
         style: TextStyle(
-            color: color != null ? color : Colors.black,
-            fontWeight: fontWeight != null ? fontWeight : FontWeight.bold,
-            fontSize: fontSize != null ? fontSize : 20),
-        maxLines: maxLines != null ? maxLines : 1,
+            color: color ?? Colors.black,
+            fontWeight: fontWeight ?? FontWeight.bold,
+            fontSize: fontSize ?? 20),
+        maxLines: maxLines ?? 1,
         overflow: TextOverflow.ellipsis,
       ),
     );
@@ -54,12 +54,12 @@ class TextTitleWhite extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      textAlign: textAlign != null ? textAlign : TextAlign.center,
+      textAlign: textAlign ?? TextAlign.center,
       style: TextStyle(
-          color: color != null ? color : Colors.white,
+          color: color ?? Colors.white,
           fontWeight: FontWeight.bold,
-          fontSize: fontSize != null ? fontSize : 18),
-      maxLines: maxLines != null ? maxLines : 1,
+          fontSize: fontSize ?? 18),
+      maxLines: maxLines ?? 1,
       overflow: TextOverflow.ellipsis,
     );
   }
@@ -85,12 +85,12 @@ class TextSubtitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      textAlign: textAlign != null ? textAlign : TextAlign.start,
+      textAlign: textAlign ?? TextAlign.start,
       style: TextStyle(
-          color: color != null ? color : Colors.black54,
-          fontWeight: fontWeight != null ? fontWeight : FontWeight.bold,
-          fontSize: fontSize != null ? fontSize : 14),
-      maxLines: maxLines != null ? maxLines : 1,
+          color: color ?? Colors.black54,
+          fontWeight: fontWeight ?? FontWeight.bold,
+          fontSize: fontSize ?? 14),
+      maxLines: maxLines ?? 1,
       overflow: TextOverflow.ellipsis,
     );
   }
@@ -106,17 +106,16 @@ class TextContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textAlignVal = textAlign != null ? textAlign : TextAlign.start;
     final style = TextStyle(
-        color: color != null ? color : Colors.black87,
+        color: color ?? Colors.black87,
         fontWeight: FontWeight.normal,
-        fontSize: fontSize != null ? fontSize : 14);
+        fontSize: fontSize ?? 14);
     final overflow = TextOverflow.fade;
     return SingleChildScrollView(
       padding: EdgeInsets.all(4),
       child: Text(
         text,
-        textAlign: textAlignVal,
+        textAlign: textAlign ?? TextAlign.start,
         style: style,
         softWrap: true,
         overflow: overflow,
