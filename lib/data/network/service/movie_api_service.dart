@@ -2,10 +2,10 @@ import 'package:chopper/chopper.dart';
 import 'package:meta/meta.dart';
 
 import '../../../global/api_config.dart' as ApiConfig;
-import '../../respository/entity/movie.dart';
 import '../converter/built_value_converter.dart';
 import '../interceptor/network_interceptor.dart';
 import '../model/credits_response_model.dart';
+import '../model/movie_model.dart';
 import '../model/movie_response_model.dart';
 import '../model/video_response_model.dart';
 
@@ -38,7 +38,7 @@ abstract class MovieApiService extends ChopperService {
         @Query('api_key') String apiKey = ApiConfig.API_KEY});
 
   @Get(path: '/movie/{movieId}')
-  Future<Response<Movie>> getMovieDetail(
+  Future<Response<MovieModel>> getMovieDetail(
       {@Path("movieId") @required int movieId,
         @Query('api_key') String apiKey = ApiConfig.API_KEY});
 
@@ -67,7 +67,7 @@ abstract class MovieApiService extends ChopperService {
         ],
         converter: BuiltValueConverter(),
         interceptors: [
-          HttpLoggingInterceptor(),
+          //HttpLoggingInterceptor(),
           NetworkInterceptor(),
         ]);
     return _$MovieApiService(client);

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-import '../../ui/widget/base/custom_text.dart';
+import '../../../ui/widget/common/custom_text.dart';
 
 class SearchGuide extends StatelessWidget {
   final String title;
   final String subtitle;
 
-  SearchGuide({@required this.title, @required this.subtitle});
+  SearchGuide({this.title = 'Search guide', this.subtitle = 'Type to search'});
 
   @override
   Widget build(BuildContext context) {

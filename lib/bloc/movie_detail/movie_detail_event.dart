@@ -5,3 +5,10 @@ import 'package:meta/meta.dart';
 abstract class MovieDetailEvent extends Equatable {
   MovieDetailEvent([List props = const []]) : super(props);
 }
+
+class Load extends MovieDetailEvent {
+  final int movieId;
+
+  Load({this.movieId});
+
+}

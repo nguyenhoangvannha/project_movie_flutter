@@ -56,12 +56,12 @@ class _$MovieApiService extends MovieApiService {
     return client.send<VideoResponseModel, VideoResponseModel>($request);
   }
 
-  Future<Response<Movie>> getMovieDetail(
+  Future<Response<MovieModel>> getMovieDetail(
       {int movieId, String apiKey = ApiConfig.API_KEY}) {
     final $url = '/movie/${movieId}';
     final Map<String, dynamic> $params = {'api_key': apiKey};
     final $request = Request('GET', $url, client.baseUrl, parameters: $params);
-    return client.send<Movie, Movie>($request);
+    return client.send<MovieModel, MovieModel>($request);
   }
 
   Future<Response<CreditsResponseModel>> getMovieCredits(

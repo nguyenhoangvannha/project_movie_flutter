@@ -2,7 +2,9 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:logging/logging.dart';
+import 'package:project_movie/bloc/movie_detail/movie_detail_bloc.dart';
 
+import '../bloc/favorite/favorite_bloc.dart';
 import '../bloc/search/search_bloc.dart';
 import '../bloc/simple_bloc_delegate.dart';
 import '../bloc/trending/trending_bloc.dart';
@@ -26,7 +28,15 @@ class Helper {
       BlocProvider<SearchBloc>(
         builder: (BuildContext context) =>
             SearchBloc(repository: _movieRepository),
-      )
+      ),
+      BlocProvider<FavoriteBloc>(
+        builder: (BuildContext context) =>
+            FavoriteBloc(repository: _movieRepository),
+      ),
+      BlocProvider<MovieDetailBloc>(
+        builder: (BuildContext context) =>
+            MovieDetailBloc(repository: _movieRepository),
+      ),
     ];
   }
 

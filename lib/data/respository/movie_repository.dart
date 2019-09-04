@@ -54,7 +54,14 @@ class MovieRepository {
   Future<Movie> getMovieDetail({@required int movieId}) async {
     try {
       final data = await movieApiService.getMovieDetail(movieId: movieId);
-      return data.body;
+      final movie = data.body;
+      return Movie(
+          posterPath: '${ApiConfig.BASE_POSTER_URL}${movie.posterPath}',
+          id: movie.id,
+          title: movie.title,
+          voteAverage: movie.voteAverage,
+          overview: movie.overview,
+          releaseDate: movie.releaseDate);
     } catch (ex) {
       throw ex;
     }
@@ -91,6 +98,15 @@ class MovieRepository {
     }
   }
 
+  Future<List<Movie>> getFavoriteMovies() async {
+    try {
+      await Future.delayed(Duration(seconds: 1));
+      return [];
+    } catch (ex) {
+      throw ex;
+    }
+  }
+
   List<Movie> _mapMoviesResponseToList(BuiltList<MovieModel> movies) {
     return movies.map((movieModel) {
       return Movie(
@@ -98,7 +114,8 @@ class MovieRepository {
           title: movieModel.title,
           overview: movieModel.overview,
           posterPath: '${ApiConfig.BASE_POSTER_URL}${movieModel.posterPath}',
-          voteAverage: movieModel.voteAverage);
+          voteAverage: movieModel.voteAverage,
+          releaseDate: movieModel.releaseDate);
     }).toList();
   }
 

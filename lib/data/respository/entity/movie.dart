@@ -43,12 +43,10 @@ class Movie {
       @required this.title,
       @required this.voteAverage,
       @required this.overview,
-      this.releaseDate});
+        @required this.releaseDate});
 
   @override
   String toString() {
     return 'Movie{posterPath: $posterPath, id: $id, title: $title, voteAverage: $voteAverage}';
   }
-
-
 }

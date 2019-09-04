@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
-import '../../../ui/widget/base/custom_text.dart';
+import '../../../ui/widget/common/custom_text.dart';
 
 class RoundedBlurContainer extends StatelessWidget {
   final Widget child;

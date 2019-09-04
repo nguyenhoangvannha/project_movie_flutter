@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../ui/widget/base/custom_container.dart';
-import '../../ui/widget/base/custom_text.dart';
+import '../../ui/widget/common/custom_container.dart';
+import '../../ui/widget/common/custom_text.dart';
 
 class CastItem extends StatelessWidget {
   final String title;

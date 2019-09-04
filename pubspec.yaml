@@ -33,6 +33,7 @@ dependencies:
 
   #widget
   cached_network_image: ^1.1.1
+  swipedetector: ^1.2.0
 
   #convert
   built_value: ^6.7.1 #similar to Gson
