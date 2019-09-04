@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-
-import 'base/custom_container.dart';
-import 'base/custom_text.dart';
+import 'package:project_movie/ui/widget/base/custom_container.dart';
+import 'package:project_movie/ui/widget/base/custom_text.dart';
 
 class CastItem extends StatelessWidget {
   final String title;

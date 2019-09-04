@@ -3,9 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:project_movie/bloc/search/bloc.dart';
 import 'package:project_movie/data/respository/entity/movie.dart';
 import 'package:project_movie/ui/util/debouncer.dart';
-import 'package:project_movie/widget/common/bottom_loader.dart';
-import 'package:project_movie/widget/common/search_guide.dart';
-import 'package:project_movie/widget/common/search_movie_item.dart';
+import 'package:project_movie/ui/widget/bottom_loader.dart';
+import 'package:project_movie/ui/widget/search_guide.dart';
+import 'package:project_movie/ui/widget/search_movie_item.dart';
 
 class MovieSearchDelegate extends SearchDelegate<List<Movie>> {
   final Debouncer debouncer = Debouncer(milliseconds: 500);
