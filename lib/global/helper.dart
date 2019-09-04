@@ -2,11 +2,12 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:logging/logging.dart';
-import 'package:project_movie/bloc/search/search_bloc.dart';
-import 'package:project_movie/bloc/simple_bloc_delegate.dart';
-import 'package:project_movie/bloc/trending/trending_bloc.dart';
-import 'package:project_movie/data/network/service/movie_api_service.dart';
-import 'package:project_movie/data/respository/movie_repository.dart';
+
+import '../bloc/search/search_bloc.dart';
+import '../bloc/simple_bloc_delegate.dart';
+import '../bloc/trending/trending_bloc.dart';
+import '../data/network/service/movie_api_service.dart';
+import '../data/respository/movie_repository.dart';
 
 class Helper {
   static Helper _instance;

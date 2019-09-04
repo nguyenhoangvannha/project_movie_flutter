@@ -3,8 +3,9 @@ import 'dart:convert';
 import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:project_movie/data/network/model/movie_model.dart';
-import 'package:project_movie/data/network/model/serializers.dart';
+
+import 'movie_model.dart';
+import 'serializers.dart';
 
 part 'movie_response_model.g.dart';
 

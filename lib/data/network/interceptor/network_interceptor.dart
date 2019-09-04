@@ -2,7 +2,8 @@ import 'dart:async';
 
 import 'package:chopper/chopper.dart';
 import 'package:connectivity/connectivity.dart';
-import 'package:project_movie/data/network/exception/network_connect_exception.dart';
+
+import '../exception/network_connect_exception.dart';
 
 class NetworkInterceptor implements RequestInterceptor {
   @override

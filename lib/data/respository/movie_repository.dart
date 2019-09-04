@@ -1,11 +1,11 @@
 import 'package:built_collection/built_collection.dart';
 import 'package:meta/meta.dart';
-import 'package:project_movie/data/network/model/cast_model.dart';
-import 'package:project_movie/data/network/model/movie_model.dart';
-import 'package:project_movie/data/network/model/video_model.dart';
-import 'package:project_movie/data/network/service/movie_api_service.dart';
 
 import '../../global/api_config.dart' as ApiConfig;
+import '../network/model/cast_model.dart';
+import '../network/model/movie_model.dart';
+import '../network/model/video_model.dart';
+import '../network/service/movie_api_service.dart';
 import 'entity/cast.dart';
 import 'entity/movie.dart';
 import 'entity/video.dart';

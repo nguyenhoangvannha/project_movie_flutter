@@ -1,4 +1,4 @@
-import 'package:project_movie/data/network/model/movie_model.dart';
+import '../network/model/movie_model.dart';
 
 class DataProvider {
   Future<List<MovieModel>> readData() async {

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:project_movie/bloc/trending/bloc.dart';
-import 'package:project_movie/ui/feature/search/movie_search_delegate.dart';
-import 'package:project_movie/ui/widget/bottom_loader.dart';
-import 'package:project_movie/ui/widget/search_movie_item.dart';
+
+import '../../../bloc/trending/bloc.dart';
+import '../../../ui/feature/search/movie_search_delegate.dart';
+import '../../../ui/widget/bottom_loader.dart';
+import '../../../ui/widget/search_movie_item.dart';
 
 class HomePage extends StatefulWidget {
   @override

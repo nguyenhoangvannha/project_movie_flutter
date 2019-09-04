@@ -1,6 +1,7 @@
 import 'package:built_collection/built_collection.dart';
 import 'package:chopper/chopper.dart';
-import 'package:project_movie/data/network/model/serializers.dart';
+
+import '../model/serializers.dart';
 
 class BuiltValueConverter extends JsonConverter {
   @override

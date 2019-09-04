@@ -1,13 +1,13 @@
 import 'package:chopper/chopper.dart';
 import 'package:meta/meta.dart';
-import 'package:project_movie/data/network/converter/built_value_converter.dart';
-import 'package:project_movie/data/network/interceptor/network_interceptor.dart';
-import 'package:project_movie/data/network/model/credits_response_model.dart';
-import 'package:project_movie/data/network/model/movie_response_model.dart';
-import 'package:project_movie/data/network/model/video_response_model.dart';
-import 'package:project_movie/data/respository/entity/movie.dart';
 
 import '../../../global/api_config.dart' as ApiConfig;
+import '../../respository/entity/movie.dart';
+import '../converter/built_value_converter.dart';
+import '../interceptor/network_interceptor.dart';
+import '../model/credits_response_model.dart';
+import '../model/movie_response_model.dart';
+import '../model/video_response_model.dart';
 
 part 'movie_api_service.chopper.dart';
 

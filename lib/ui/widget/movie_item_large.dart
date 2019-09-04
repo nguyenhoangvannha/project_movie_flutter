@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:project_movie/data/respository/entity/movie.dart';
-import 'package:project_movie/ui/widget/base/custom_container.dart';
-import 'package:project_movie/ui/widget/base/custom_text.dart';
+
+import '../../data/respository/entity/movie.dart';
+import '../../ui/widget/base/custom_container.dart';
+import '../../ui/widget/base/custom_text.dart';
 
 class MovieItemLarge extends StatelessWidget {
   final Movie movie;

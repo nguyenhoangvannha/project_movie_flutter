@@ -2,9 +2,9 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:project_movie/data/respository/movie_repository.dart';
 
 import './bloc.dart';
+import '../../data/respository/movie_repository.dart';
 
 class TrendingBloc extends Bloc<TrendingEvent, TrendingState> {
   final MovieRepository repository;

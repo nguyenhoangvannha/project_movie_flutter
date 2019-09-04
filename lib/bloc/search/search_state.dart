@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
-import 'package:project_movie/data/respository/entity/movie.dart';
+
+import '../../data/respository/entity/movie.dart';
 
 @immutable
 abstract class SearchState extends Equatable {

@@ -2,10 +2,10 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:project_movie/data/respository/entity/movie.dart';
-import 'package:project_movie/data/respository/movie_repository.dart';
 
 import './bloc.dart';
+import '../../data/respository/entity/movie.dart';
+import '../../data/respository/movie_repository.dart';
 
 class SearchBloc extends Bloc<SearchEvent, SearchState> {
   final MovieRepository repository;
