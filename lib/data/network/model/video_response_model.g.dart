@@ -115,16 +115,12 @@ class VideoResponseModelBuilder
   _$VideoResponseModel _$v;
 
   int _id;
-
   int get id => _$this._id;
-
   set id(int id) => _$this._id = id;
 
   ListBuilder<VideoModel> _videos;
-
   ListBuilder<VideoModel> get videos =>
       _$this._videos ??= new ListBuilder<VideoModel>();
-
   set videos(ListBuilder<VideoModel> videos) => _$this._videos = videos;
 
   VideoResponseModelBuilder();

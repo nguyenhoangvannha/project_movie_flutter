@@ -204,51 +204,35 @@ class VideoModelBuilder implements Builder<VideoModel, VideoModelBuilder> {
   _$VideoModel _$v;
 
   String _id;
-
   String get id => _$this._id;
-
   set id(String id) => _$this._id = id;
 
   String _iso6391;
-
   String get iso6391 => _$this._iso6391;
-
   set iso6391(String iso6391) => _$this._iso6391 = iso6391;
 
   String _iso31661;
-
   String get iso31661 => _$this._iso31661;
-
   set iso31661(String iso31661) => _$this._iso31661 = iso31661;
 
   String _key;
-
   String get key => _$this._key;
-
   set key(String key) => _$this._key = key;
 
   String _name;
-
   String get name => _$this._name;
-
   set name(String name) => _$this._name = name;
 
   String _site;
-
   String get site => _$this._site;
-
   set site(String site) => _$this._site = site;
 
   int _size;
-
   int get size => _$this._size;
-
   set size(int size) => _$this._size = size;
 
   String _type;
-
   String get type => _$this._type;
-
   set type(String type) => _$this._type = type;
 
   VideoModelBuilder();

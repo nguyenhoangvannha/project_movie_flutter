@@ -205,51 +205,35 @@ class CastModelBuilder implements Builder<CastModel, CastModelBuilder> {
   _$CastModel _$v;
 
   int _castId;
-
   int get castId => _$this._castId;
-
   set castId(int castId) => _$this._castId = castId;
 
   String _character;
-
   String get character => _$this._character;
-
   set character(String character) => _$this._character = character;
 
   String _creditId;
-
   String get creditId => _$this._creditId;
-
   set creditId(String creditId) => _$this._creditId = creditId;
 
   int _gender;
-
   int get gender => _$this._gender;
-
   set gender(int gender) => _$this._gender = gender;
 
   int _id;
-
   int get id => _$this._id;
-
   set id(int id) => _$this._id = id;
 
   String _name;
-
   String get name => _$this._name;
-
   set name(String name) => _$this._name = name;
 
   int _order;
-
   int get order => _$this._order;
-
   set order(int order) => _$this._order = order;
 
   String _profilePath;
-
   String get profilePath => _$this._profilePath;
-
   set profilePath(String profilePath) => _$this._profilePath = profilePath;
 
   CastModelBuilder();

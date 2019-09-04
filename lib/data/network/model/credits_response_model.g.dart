@@ -119,16 +119,12 @@ class CreditsResponseModelBuilder
   _$CreditsResponseModel _$v;
 
   int _id;
-
   int get id => _$this._id;
-
   set id(int id) => _$this._id = id;
 
   ListBuilder<CastModel> _casts;
-
   ListBuilder<CastModel> get casts =>
       _$this._casts ??= new ListBuilder<CastModel>();
-
   set casts(ListBuilder<CastModel> casts) => _$this._casts = casts;
 
   CreditsResponseModelBuilder();

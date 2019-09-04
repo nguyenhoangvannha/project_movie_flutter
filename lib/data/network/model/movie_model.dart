@@ -21,6 +21,7 @@ abstract class MovieModel implements Built<MovieModel, MovieModelBuilder> {
   @BuiltValueField(wireName: 'video')
   bool get video;
 
+  @nullable
   @BuiltValueField(wireName: 'poster_path')
   String get posterPath;
 
@@ -30,6 +31,7 @@ abstract class MovieModel implements Built<MovieModel, MovieModelBuilder> {
   @BuiltValueField(wireName: 'adult')
   bool get adult;
 
+  @nullable
   @BuiltValueField(wireName: 'backdrop_path')
   String get backdropPath;
 

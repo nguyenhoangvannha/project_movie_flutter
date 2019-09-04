@@ -26,16 +26,10 @@ class _$MovieModelSerializer implements StructuredSerializer<MovieModel> {
           specifiedType: const FullType(int)),
       'video',
       serializers.serialize(object.video, specifiedType: const FullType(bool)),
-      'poster_path',
-      serializers.serialize(object.posterPath,
-          specifiedType: const FullType(String)),
       'id',
       serializers.serialize(object.id, specifiedType: const FullType(int)),
       'adult',
       serializers.serialize(object.adult, specifiedType: const FullType(bool)),
-      'backdrop_path',
-      serializers.serialize(object.backdropPath,
-          specifiedType: const FullType(String)),
       'original_language',
       serializers.serialize(object.originalLanguage,
           specifiedType: const FullType(String)),
@@ -59,7 +53,15 @@ class _$MovieModelSerializer implements StructuredSerializer<MovieModel> {
       serializers.serialize(object.releaseDate,
           specifiedType: const FullType(String)),
     ];
-
+    if (object.posterPath != null) {
+      result..add('poster_path')..add(serializers.serialize(object.posterPath,
+          specifiedType: const FullType(String)));
+    }
+    if (object.backdropPath != null) {
+      result..add('backdrop_path')..add(
+          serializers.serialize(object.backdropPath,
+              specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -198,17 +200,11 @@ class _$MovieModel extends MovieModel {
     if (video == null) {
       throw new BuiltValueNullFieldError('MovieModel', 'video');
     }
-    if (posterPath == null) {
-      throw new BuiltValueNullFieldError('MovieModel', 'posterPath');
-    }
     if (id == null) {
       throw new BuiltValueNullFieldError('MovieModel', 'id');
     }
     if (adult == null) {
       throw new BuiltValueNullFieldError('MovieModel', 'adult');
-    }
-    if (backdropPath == null) {
-      throw new BuiltValueNullFieldError('MovieModel', 'backdropPath');
     }
     if (originalLanguage == null) {
       throw new BuiltValueNullFieldError('MovieModel', 'originalLanguage');

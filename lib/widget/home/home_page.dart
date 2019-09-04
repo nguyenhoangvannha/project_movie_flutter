@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:project_movie/bloc/trending/bloc.dart';
 import 'package:project_movie/widget/common/bottom_loader.dart';
 import 'package:project_movie/widget/common/search_movie_item.dart';
+import 'package:project_movie/widget/search/movie_search_delegate.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -25,7 +26,17 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     _trendingBloc.dispatch(Fetch());
     return Scaffold(
-      appBar: AppBar(title: Text('Movies'),),
+      appBar: AppBar(
+        title: Text('Movies'),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.search),
+            onPressed: () {
+              showSearch(context: context, delegate: MovieSearchDelegate());
+            },
+          )
+        ],
+      ),
       body: BlocBuilder<TrendingBloc, TrendingState>(
         builder: (context, state) {
           if (state is TrendingError) {
