@@ -67,7 +67,7 @@ abstract class MovieApiService extends ChopperService {
         ],
         converter: BuiltValueConverter(),
         interceptors: [
-          //HttpLoggingInterceptor(),
+          HttpLoggingInterceptor(),
           NetworkInterceptor(),
         ]);
     return _$MovieApiService(client);

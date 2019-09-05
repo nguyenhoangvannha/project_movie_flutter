@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:project_movie/ui/widget/common/bottom_loader.dart';
+import 'package:project_movie/ui/widget/common/loading_indicator.dart';
+import 'package:project_movie/ui/widget/common/search_list_item.dart';
 
 import '../../../bloc/trending/bloc.dart';
 import '../../../ui/feature/search/movie_search_delegate.dart';
-import '../../../ui/widget/search_movie_item.dart';
 
 class TrendingPage extends StatefulWidget {
   @override
@@ -54,8 +54,8 @@ class _TrendingPageState extends State<TrendingPage> {
             return ListView.builder(
               itemBuilder: (BuildContext context, int index) {
                 return index >= state.movies.length
-                    ? BottomLoader()
-                    : SearchSuggestionItem(movie: state.movies[index]);
+                    ? LoadingIndicator()
+                    : SearchListItem(movie: state.movies[index]);
               },
               itemCount: state.hasReachedMax
                   ? state.movies.length

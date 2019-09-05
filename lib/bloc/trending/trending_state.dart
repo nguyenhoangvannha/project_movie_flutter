@@ -14,7 +14,7 @@ class TrendingUninitialized extends TrendingState {}
 class TrendingError extends TrendingState {
   final String message;
 
-  TrendingError(this.message);
+  TrendingError(this.message) :super([message]);
 
 }
 

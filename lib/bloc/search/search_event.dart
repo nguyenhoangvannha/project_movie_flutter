@@ -11,7 +11,7 @@ class SearchEmpty extends SearchEvent {}
 class Search extends SearchEvent {
   final String query;
 
-  Search({this.query});
+  Search({this.query}) :super([query]);
 
 }
 

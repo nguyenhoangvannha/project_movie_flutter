@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:project_movie/data/respository/entity/movie.dart';
-import 'package:project_movie/ui/widget/common/movie_item_small.dart';
 
 import '../../global/navigation.dart' as Navs;
+import 'common/movie_grid_item.dart';
 
 class MovieGrid extends StatelessWidget {
   final List<Movie> movies;
@@ -23,17 +23,11 @@ class MovieGrid extends StatelessWidget {
       gridDelegate: gridDelegate,
       itemBuilder: (_, index) {
         final movie = movies.elementAt(index);
-        return _buildItem(context, movie);
+        return MovieGridItem(
+          movie: movie,
+          onTap: () => Navs.showBottomSheetMovieDetails(context, movie.id),
+        );
       },
-    );
-  }
-
-  Widget _buildItem(BuildContext context, Movie movie) {
-    return MovieItemSmall(
-      title: movie.title,
-      imageUrl: movie.posterPath,
-      onTap: () => Navs.showBottomSheetMovieDetails(context, movie.id),
-      //onLongPress: () => Navs.showBottomSheetEditMovie(context, movie),
     );
   }
 }

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:project_movie/bloc/trending/bloc.dart';
 
-import 'common/custom_text.dart';
 import 'common/error_view.dart';
 import 'movie_grid.dart';
 
@@ -38,9 +37,12 @@ class _TrendingState extends State<Trending> {
           }
           return Column(
             children: <Widget>[
-              TextTitle(
-                text: 'Trending movies',
-                padding: EdgeInsets.all(8),
+              Text(
+                'Trending movies',
+                style: Theme
+                    .of(context)
+                    .textTheme
+                    .title,
               ),
               Expanded(
                   child: MovieGrid(

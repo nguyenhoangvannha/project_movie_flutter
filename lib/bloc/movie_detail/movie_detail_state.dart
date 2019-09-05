@@ -14,21 +14,21 @@ class Loading extends MovieDetailState {
 class NotFound extends MovieDetailState {
   final String message;
 
-  NotFound({this.message = ''});
+  NotFound({this.message = ''}) :super([message]);
 
 }
 
 class Error extends MovieDetailState {
   final String message;
 
-  Error({this.message = ''});
+  Error({this.message = ''}) :super([message]);
 
 }
 
 class Result extends MovieDetailState {
   final Movie movie;
 
-  Result({@required this.movie});
+  Result({@required this.movie}) :super([movie]);
 }
 
 

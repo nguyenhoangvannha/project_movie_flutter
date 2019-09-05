@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:project_movie/ui/widget/common/custom_container.dart';
+import 'package:project_movie/ui/widget/common/custom.dart';
 import 'package:swipedetector/swipedetector.dart';
 
 import '../../../bloc/movie_detail/bloc.dart';
@@ -58,8 +58,7 @@ class BottomSheetMovies extends StatelessWidget {
       child: Card(
         elevation: 0,
         borderOnForeground: true,
-        child: RoundedRectangle(
-          top: 16,
+        child: RoundedBackground(
           padding: EdgeInsets.all(8),
           child: MovieOverview(
             movie: movie,

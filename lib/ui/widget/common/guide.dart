@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../ui/widget/common/custom_text.dart';
-
 class Guide extends StatelessWidget {
   final IconData icon;
   final String title;
@@ -22,15 +20,17 @@ class Guide extends StatelessWidget {
               icon,
               size: 60,
             ),
-            TextTitle(
-              text: title,
-            ),
+            Text(title, style: Theme
+                .of(context)
+                .textTheme
+                .title,),
             SizedBox(
               height: 4,
             ),
-            TextSubtitle(
-              text: subtitle,
-            )
+            Text(subtitle, style: Theme
+                .of(context)
+                .textTheme
+                .subtitle,),
           ],
         ),
       ),

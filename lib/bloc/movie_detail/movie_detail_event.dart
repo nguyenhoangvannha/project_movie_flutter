@@ -9,6 +9,6 @@ abstract class MovieDetailEvent extends Equatable {
 class Load extends MovieDetailEvent {
   final int movieId;
 
-  Load({this.movieId});
+  Load({this.movieId}) :super([movieId]);
 
 }

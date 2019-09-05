@@ -13,13 +13,13 @@ class SearchUninitialized extends SearchState {}
 class SearchNotFound extends SearchState {
   final String message;
 
-  SearchNotFound({this.message});
+  SearchNotFound({this.message}) :super([message]);
 }
 
 class SearchError extends SearchState {
   final String message;
 
-  SearchError({this.message});
+  SearchError({this.message}) :super([message]);
 }
 
 class Loading extends SearchState {}
@@ -27,7 +27,7 @@ class Loading extends SearchState {}
 class SearchSuggestions extends SearchState {
   final List<Movie> movies;
 
-  SearchSuggestions({this.movies});
+  SearchSuggestions({this.movies}) :super([movies]);
 
   SearchSuggestions copyWith({List<Movie> movies, bool hasReachedMax}) {
     return SearchSuggestions(movies: movies ?? this.movies);
@@ -37,7 +37,7 @@ class SearchSuggestions extends SearchState {
 class SearchResults extends SearchState {
   final List<Movie> movies;
 
-  SearchResults({this.movies});
+  SearchResults({this.movies}) :super([movies]);
 
   SearchResults copyWith({List<Movie> movies, bool hasReachedMax}) {
     return SearchResults(movies: movies ?? this.movies);

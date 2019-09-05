@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project_movie/data/respository/entity/movie.dart';
 
-import 'common/custom_container.dart';
-import 'common/custom_text.dart';
+import 'common/custom.dart' as Custom;
 
 class MovieOverview extends StatelessWidget {
   final Movie movie;
@@ -29,12 +28,12 @@ class MovieOverview extends StatelessWidget {
           height: double.infinity,
           width: maxWidth * 0.55,
           child: Card(
-            elevation: 8,
-            child: RoundedImage(
-              imageUrl: movie.posterPath,
-              boxFit: BoxFit.fill,
-            ),
-          ),
+              elevation: 8,
+              child: Custom.RoundedBackground(
+                  child: Custom.NetworkImage(
+                    imageUrl: movie.posterPath,
+                    boxFit: BoxFit.fill,
+                  ))),
         ),
         Container(
           height: double.infinity,
@@ -44,8 +43,12 @@ class MovieOverview extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.end,
             children: <Widget>[
               ListTile(
-                title: TextTitle(
-                  text: movie.title,
+                title: Text(
+                  movie.title,
+                  style: Theme
+                      .of(context)
+                      .textTheme
+                      .title,
                   textAlign: TextAlign.start,
                 ),
                 trailing: IconButton(
@@ -59,11 +62,9 @@ class MovieOverview extends StatelessWidget {
               SizedBox(
                 height: 8,
               ),
-              Expanded(child: TextContent(text: movie.overview)),
+              Expanded(child: Text(movie.overview)),
               FlatButton(
-                  child: TextTitle(
-                    text: 'More',
-                  ),
+                  child: Text('More'),
                   color: Theme.of(context).accentColor,
                   onPressed: onPressedButton),
             ],
@@ -79,8 +80,12 @@ class MovieOverview extends StatelessWidget {
       children: <Widget>[
         ListTile(
           selected: true,
-          title: TextTitle(
-            text: movie.title,
+          title: Text(
+            movie.title,
+            style: Theme
+                .of(context)
+                .textTheme
+                .title,
             textAlign: TextAlign.start,
           ),
           trailing: IconButton(
@@ -93,25 +98,23 @@ class MovieOverview extends StatelessWidget {
         ),
         SizedBox(
           height: maxHeight * 0.25,
-          child: TextContent(text: movie.overview),
+          child: Text(movie.overview),
         ),
         Expanded(
           child: Container(
             margin: EdgeInsets.only(top: 8),
             width: double.infinity,
             child: Card(
-              elevation: 1,
-              child: RoundedImage(
-                imageUrl: movie.posterPath,
-                boxFit: BoxFit.fill,
-              ),
-            ),
+                elevation: 1,
+                child: Custom.RoundedBackground(
+                    child: Custom.NetworkImage(
+                      imageUrl: movie.posterPath,
+                      boxFit: BoxFit.fill,
+                    ))),
           ),
         ),
         FlatButton(
-            child: TextTitle(
-              text: 'More',
-            ),
+            child: Text('More'),
             color: Theme.of(context).accentColor,
             onPressed: onPressedButton),
       ],

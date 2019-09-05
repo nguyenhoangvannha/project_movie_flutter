@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:project_movie/ui/widget/common/bottom_loader.dart';
 import 'package:project_movie/ui/widget/common/error_view.dart';
 import 'package:project_movie/ui/widget/common/guide.dart';
+import 'package:project_movie/ui/widget/common/loading_indicator.dart';
+import 'package:project_movie/ui/widget/common/search_list_item.dart';
 
 import '../../../bloc/search/bloc.dart';
 import '../../../data/respository/entity/movie.dart';
 import '../../../ui/util/debouncer.dart';
-import '../../../ui/widget/search_movie_item.dart';
 
 class MovieSearchDelegate extends SearchDelegate<List<Movie>> {
   final Debouncer debouncer = Debouncer(milliseconds: 500);
@@ -42,8 +42,8 @@ class MovieSearchDelegate extends SearchDelegate<List<Movie>> {
           return ListView.builder(
               itemBuilder: (BuildContext context, int index) {
                 return index >= state.movies.length
-                    ? BottomLoader()
-                    : SearchSuggestionItem(movie: state.movies[index]);
+                    ? LoadingIndicator()
+                    : SearchListItem(movie: state.movies[index]);
               },
               itemCount: state.movies.length);
         }
@@ -81,7 +81,7 @@ class MovieSearchDelegate extends SearchDelegate<List<Movie>> {
         if (state is SearchSuggestions) {
           return ListView.builder(
               itemBuilder: (BuildContext context, int index) {
-                return SearchSuggestionItem(movie: state.movies[index]);
+                return SearchListItem(movie: state.movies.elementAt(index));
               },
               itemCount: state.movies.length);
         }
@@ -122,6 +122,9 @@ class MovieSearchDelegate extends SearchDelegate<List<Movie>> {
 
   @override
   ThemeData appBarTheme(BuildContext context) {
-    return Theme.of(context);
+    return Theme.of(context).copyWith(primaryColor: Theme
+        .of(context)
+        .appBarTheme
+        .color);
   }
 }
