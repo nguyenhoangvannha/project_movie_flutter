@@ -11,6 +11,8 @@ class BaseTheme {
 
   Color get backgroundColor => Colors.white;
 
+  Color get hintColor => Colors.white;
+
   AppBarTheme get appBarTheme =>
       AppBarTheme(brightness: brightness, color: primaryColor);
 

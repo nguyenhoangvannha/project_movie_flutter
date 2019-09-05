@@ -4,12 +4,11 @@ import 'base_theme.dart';
 
 class LightTheme extends BaseTheme {
   @override
-  Brightness get brightness {
-    return Brightness.light;
-  }
+  Brightness get brightness => Brightness.light;
 
   @override
-  Color get primaryColor {
-    return Colors.white;
-  }
+  Color get primaryColor => Colors.white;
+
+  @override
+  Color get hintColor => Colors.grey;
 }

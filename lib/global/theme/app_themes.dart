@@ -22,6 +22,7 @@ Map<AppTheme, ThemeData> get appThemeData {
         backgroundColor: theme.backgroundColor,
         primarySwatch: theme.primarySwatch,
         textTheme: theme.textTheme,
+        hintColor: theme.hintColor,
         appBarTheme: theme.appBarTheme,
         tabBarTheme: theme.tabBarTheme);
     data.putIfAbsent(themes.keys.elementAt(i), () {

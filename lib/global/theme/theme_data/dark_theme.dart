@@ -4,22 +4,17 @@ import 'base_theme.dart';
 
 class DarkTheme extends BaseTheme {
   @override
-  Brightness get brightness {
-    return Brightness.dark;
-  }
+  Brightness get brightness => Brightness.dark;
 
   @override
-  Color get primaryColor {
-    return Colors.black;
-  }
+  Color get primaryColor => Colors.black;
 
   @override
-  Color get backgroundColor {
-    return Colors.black;
-  }
+  Color get backgroundColor => Colors.black;
 
   @override
-  TextTheme get textTheme {
-    return TextTheme(title: TextStyle(color: Colors.white));
-  }
+  Color get hintColor => Colors.white70;
+
+  @override
+  TextTheme get textTheme => TextTheme(title: TextStyle(color: Colors.white));
 }

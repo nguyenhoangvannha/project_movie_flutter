@@ -124,6 +124,6 @@ class MovieSearchDelegate extends SearchDelegate<List<Movie>> {
 
   @override
   ThemeData appBarTheme(BuildContext context) {
-    return super.appBarTheme(context);
+    return Theme.of(context);
   }
 }
