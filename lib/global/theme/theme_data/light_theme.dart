@@ -19,16 +19,16 @@ class LightTheme extends BaseTheme {
   Color get accentColor => Colors.black54;
 
   @override
-  TextStyle get title =>
+  TextStyle get textTitleStyle =>
       TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold);
 
   @override
-  TextStyle get subtitle =>
+  TextStyle get textSubtitleStyle =>
       TextStyle(
           color: Colors.black54, fontSize: 14, fontWeight: FontWeight.bold);
 
   @override
-  TextStyle get body1 =>
+  TextStyle get textBody1Style =>
       TextStyle(backgroundColor: Colors.white,
           color: Colors.black87, fontWeight: FontWeight.normal, fontSize: 14);
 }
