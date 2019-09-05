@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:project_movie/bloc/favorite/bloc.dart';
+import 'package:project_movie/ui/widget/common/custom_text.dart';
 
 import '../../../global/navigation.dart' as Navs;
 import '../../../ui/feature/search/movie_search_delegate.dart';
+import '../../widget/common/error_view.dart';
 import '../../widget/common/loading_indicator.dart';
 import '../../widget/common/search_guide.dart';
-import '../../widget/common/unknow_state.dart';
 import '../../widget/trending.dart';
 
 class HomePage extends StatelessWidget {
@@ -62,9 +63,8 @@ class HomePage extends StatelessWidget {
         },
       ),
       title: Center(
-          child: Text(
-            'The Movie Db',
-            textAlign: TextAlign.center,
+          child: TextTitle(
+            text: 'The Movie Db',
           )),
       actions: <Widget>[
         IconButton(
@@ -95,7 +95,7 @@ class HomePage extends StatelessWidget {
       if (state is HasFavorite) {
         return _buildTabView(context, mediaQueryData);
       }
-      return UnknownState();
+      return ErrorView();
     });
   }
 }

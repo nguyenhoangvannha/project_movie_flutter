@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:project_movie/data/respository/entity/movie.dart';
+import 'package:project_movie/ui/widget/common/movie_item_small.dart';
 
 import '../../global/navigation.dart' as Navs;
-import 'movie_item_small.dart';
 
 class MovieGrid extends StatelessWidget {
   final List<Movie> movies;
 
-  MovieGrid({this.movies});
+  MovieGrid({@required this.movies});
 
   @override
   Widget build(BuildContext context) {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../ui/widget/common/custom_container.dart';
-import '../../ui/widget/common/custom_text.dart';
+import '../../../ui/widget/common/custom_container.dart';
+import '../../../ui/widget/common/custom_text.dart';
 
 class MovieItemSmall extends StatelessWidget {
   final String title;
@@ -28,9 +28,8 @@ class MovieItemSmall extends StatelessWidget {
             imageUrl: imageUrl,
           ),
           footer: RoundedBlurContainer(
-            child: TextTitleWhite(
+            child: TextSubtitle(
               text: title,
-              fontSize: 12,
               maxLines: 2,
             ),
             mainAxisAlignment: MainAxisAlignment.center,

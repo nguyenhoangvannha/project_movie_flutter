@@ -16,5 +16,19 @@ class DarkTheme extends BaseTheme {
   Color get hintColor => Colors.white70;
 
   @override
-  TextTheme get textTheme => TextTheme(title: TextStyle(color: Colors.white));
+  Color get accentColor => Colors.white70;
+
+  @override
+  TextStyle get title =>
+      TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold);
+
+  @override
+  TextStyle get subtitle =>
+      TextStyle(
+          color: Colors.white70, fontSize: 14, fontWeight: FontWeight.bold);
+
+  @override
+  TextStyle get body1 =>
+      TextStyle(
+          color: Colors.white, fontWeight: FontWeight.normal, fontSize: 14);
 }

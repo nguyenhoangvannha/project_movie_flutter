@@ -27,13 +27,9 @@ class SearchSuggestionItem extends StatelessWidget {
               ),
               title: TextTitle(
                 text: movie.title,
-                fontSize: 18,
-                fontWeight: FontWeight.normal,
               ),
               subtitle: TextSubtitle(
                 text: movie.overview,
-                fontSize: 14,
-                fontWeight: FontWeight.normal,
               ),
               trailing: VoteAverage(movie.voteAverage),
             ),

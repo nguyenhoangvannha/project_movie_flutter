@@ -23,5 +23,17 @@ class BaseTheme {
         labelStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
       );
 
-  TextTheme get textTheme => TextTheme(title: TextStyle(color: Colors.black));
+  TextStyle get title =>
+      TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold);
+
+  TextStyle get subtitle =>
+      TextStyle(
+          color: Colors.black54, fontSize: 14, fontWeight: FontWeight.bold);
+
+  TextStyle get body1 =>
+      TextStyle(backgroundColor: Colors.white,
+          color: Colors.black87, fontWeight: FontWeight.normal, fontSize: 14);
+
+  TextTheme get textTheme =>
+      TextTheme(title: title, subtitle: subtitle, body1: body1);
 }

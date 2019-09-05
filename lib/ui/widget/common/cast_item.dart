@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../ui/widget/common/custom_container.dart';
-import '../../ui/widget/common/custom_text.dart';
+import '../../../ui/widget/common/custom_container.dart';
+import '../../../ui/widget/common/custom_text.dart';
 
 class CastItem extends StatelessWidget {
   final String title;
@@ -23,8 +23,8 @@ class CastItem extends StatelessWidget {
         footer: Container(
           margin: EdgeInsets.only(top: 38),
           padding: EdgeInsets.all(4),
-          child: TextTitleWhite(
-              text: title, maxLines: 2, color: Colors.black, fontSize: 12),
+          child: TextTitle(
+            text: title, maxLines: 2,),
         ),
       ),
     );

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../data/respository/entity/movie.dart';
-import '../../ui/widget/common/custom_container.dart';
-import '../../ui/widget/common/custom_text.dart';
+import '../../../data/respository/entity/movie.dart';
+import '../../../ui/widget/common/custom_container.dart';
+import '../../../ui/widget/common/custom_text.dart';
 
 class MovieItemLarge extends StatelessWidget {
   final Movie movie;
@@ -27,22 +27,19 @@ class MovieItemLarge extends StatelessWidget {
               child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              TextTitleWhite(
+              TextTitle(
                 text: movie.title,
                 maxLines: 2,
               ),
-              TextTitleWhite(
+              TextTitle(
                 text: movie.releaseDate,
-                fontSize: 14,
               )
             ],
           )),
           footer: GridTileBar(
             leading: RoundedBlurContainer(
-              child: TextTitleWhite(
+              child: TextTitle(
                 text: movie.originalLanguage,
-                color: Colors.yellow,
-                fontSize: 16,
               ),
               color: Colors.white24,
             ),

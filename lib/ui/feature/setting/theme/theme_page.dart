@@ -27,7 +27,7 @@ class ThemePage extends StatelessWidget {
       elevation: 4,
       child: ListTile(
         leading: CircleAvatar(
-          backgroundColor: appTheme.backgroundColor,
+          backgroundColor: appTheme.accentColor,
           child: Text(
             theme.toString().substring(0, 1),
             style: appTheme.textTheme.title,

@@ -7,8 +7,8 @@ import '../../../data/respository/entity/movie.dart';
 import '../../../global/navigation.dart' as Navs;
 import '../../../ui/widget/common/custom_container.dart';
 import '../../../ui/widget/common/custom_text.dart';
+import '../../../ui/widget/common/error_view.dart';
 import '../../../ui/widget/common/loading_indicator.dart';
-import '../../../ui/widget/common/unknow_state.dart';
 import '../../../ui/widget/movie_overview.dart';
 
 class BottomSheetMovies extends StatelessWidget {
@@ -45,7 +45,7 @@ class BottomSheetMovies extends StatelessWidget {
           print("${state.movie.toString()}");
           return _buildMovieDetail(context, state.movie);
         }
-        return UnknownState();
+        return ErrorView();
       },
     );
   }
@@ -58,8 +58,10 @@ class BottomSheetMovies extends StatelessWidget {
       onSwipeDown: () => Navigator.of(context).pop(),
       onSwipeRight: () => Navigator.of(context).pop(),
       child: Scaffold(
-        backgroundColor: Colors.grey,
         appBar: _buildAppBar(context, movie),
+        backgroundColor: Theme
+            .of(context)
+            .primaryColor,
         body: RoundedRectangle.only(
           child: MovieOverview(
             title: movie.title,
@@ -69,7 +71,9 @@ class BottomSheetMovies extends StatelessWidget {
           ),
           top: 18,
           padding: EdgeInsets.all(16),
-          color: Colors.white,
+          color: Theme
+              .of(context)
+              .accentColor,
         ),
       ),
     );
@@ -84,13 +88,9 @@ class BottomSheetMovies extends StatelessWidget {
         contentPadding: EdgeInsets.all(0),
         title: TextTitle(
           text: movie.title,
-          fontSize: 16,
         ),
         subtitle: TextTitle(
           text: movie.releaseDate,
-          fontWeight: FontWeight.normal,
-          fontSize: 14,
-          color: Colors.black87,
         ),
       ),
       actions: <Widget>[

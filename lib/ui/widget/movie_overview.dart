@@ -52,9 +52,8 @@ class MovieOverview extends StatelessWidget {
               ),
               Expanded(child: TextContent(text: content)),
               FlatButton(
-                  child: TextTitleWhite(
+                  child: TextTitle(
                     text: 'More',
-                    fontSize: 16,
                   ),
                   color: Theme.of(context).accentColor,
                   onPressed: onPressedButton),
@@ -87,9 +86,8 @@ class MovieOverview extends StatelessWidget {
           ),
         ),
         FlatButton(
-            child: TextTitleWhite(
+            child: TextTitle(
               text: 'More',
-              fontSize: 16,
             ),
             color: Theme.of(context).accentColor,
             onPressed: onPressedButton),

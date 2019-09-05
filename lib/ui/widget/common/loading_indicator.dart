@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'custom_text.dart';
+
 class LoadingIndicator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -10,8 +12,8 @@ class LoadingIndicator extends StatelessWidget {
           Center(
             child: CircularProgressIndicator(),
           ),
-          SizedBox(height: 8,),
-          Text('Loading...')
+          SizedBox(height: 12,),
+          TextSubtitle(text: 'Loading...',)
         ],
       ),
     );

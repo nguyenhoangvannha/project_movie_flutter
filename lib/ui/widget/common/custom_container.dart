@@ -81,9 +81,8 @@ class VoteAverage extends StatelessWidget {
     return Container(
       width: 90,
       child: RoundedBlurContainer(
-        child: TextTitleWhite(
+        child: TextTitle(
           text: voteAverage.toString(),
-          color: Colors.yellow,
         ),
         color: Colors.white24,
         trailing: Icon(

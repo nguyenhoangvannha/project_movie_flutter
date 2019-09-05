@@ -10,5 +10,25 @@ class LightTheme extends BaseTheme {
   Color get primaryColor => Colors.white;
 
   @override
+  Color get backgroundColor => Colors.white;
+
+  @override
   Color get hintColor => Colors.grey;
+
+  @override
+  Color get accentColor => Colors.black54;
+
+  @override
+  TextStyle get title =>
+      TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold);
+
+  @override
+  TextStyle get subtitle =>
+      TextStyle(
+          color: Colors.black54, fontSize: 14, fontWeight: FontWeight.bold);
+
+  @override
+  TextStyle get body1 =>
+      TextStyle(backgroundColor: Colors.white,
+          color: Colors.black87, fontWeight: FontWeight.normal, fontSize: 14);
 }
