@@ -10,6 +10,7 @@ class LoadingIndicator extends StatelessWidget {
           Center(
             child: CircularProgressIndicator(),
           ),
+          SizedBox(height: 8,),
           Text('Loading...')
         ],
       ),

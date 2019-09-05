@@ -23,17 +23,17 @@ class ThemePage extends StatelessWidget {
   Widget _buildItem(BuildContext context, AppTheme theme) {
     final appTheme = appThemeData[theme];
     return Card(
-      color: appTheme.primaryColor,
+      color: appTheme.backgroundColor,
       elevation: 4,
       child: ListTile(
         leading: CircleAvatar(
-          backgroundColor: appTheme.primaryColor,
+          backgroundColor: appTheme.backgroundColor,
           child: Text(
             theme.toString().substring(0, 1),
             style: appTheme.textTheme.title,
           ),
         ),
-        title: Text(theme.toString()),
+        title: Text(theme.toString(), style: appTheme.textTheme.title,),
         onTap: () {
           BlocProvider.of<ThemeBloc>(context)
               .dispatch(ThemeChanged(theme: theme));

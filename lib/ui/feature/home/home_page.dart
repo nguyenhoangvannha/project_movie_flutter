@@ -87,7 +87,9 @@ class HomePage extends StatelessWidget {
         return LoadingIndicator();
       }
       if (state is NoFavorite) {
-        return Trending();
+        return Column(
+          children: <Widget>[SearchGuide(), Expanded(child: Trending())],
+        );
       }
 
       if (state is HasFavorite) {
