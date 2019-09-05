@@ -16,7 +16,7 @@ class CastItem extends StatelessWidget {
       child: GridTile(
         child: Container(
           margin: EdgeInsets.only(bottom: 38),
-          child: RoundedCachedNetworkImage(
+          child: RoundedImage(
             imageUrl: imageUrl,
           ),
         ),

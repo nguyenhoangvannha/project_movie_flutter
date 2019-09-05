@@ -24,7 +24,7 @@ class MovieItemSmall extends StatelessWidget {
         elevation: 8,
         color: Colors.transparent,
         child: GridTile(
-          child: RoundedCachedNetworkImage(
+          child: RoundedImage(
             imageUrl: imageUrl,
           ),
           footer: RoundedBlurContainer(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:project_movie/ui/widget/common/bottom_loader.dart';
+import 'package:project_movie/ui/widget/common/error_view.dart';
 import 'package:project_movie/ui/widget/common/guide.dart';
 
 import '../../../bloc/search/bloc.dart';
@@ -85,10 +86,7 @@ class MovieSearchDelegate extends SearchDelegate<List<Movie>> {
               itemCount: state.movies.length);
         }
         if (state is SearchUninitialized) {
-          return Guide(
-            title: 'Search guide',
-            subtitle: 'Type to search',
-          );
+          return Guide();
         }
         if (state is SearchNotFound) {
           return Center(
@@ -97,7 +95,7 @@ class MovieSearchDelegate extends SearchDelegate<List<Movie>> {
         }
         if (state is SearchError) {
           return Center(
-            child: Text(state.message),
+            child: ErrorView(message: state.message),
           );
         }
         return Center(

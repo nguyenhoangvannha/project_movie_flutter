@@ -22,7 +22,7 @@ class SearchSuggestionItem extends StatelessWidget {
             child: ListTile(
               contentPadding:
                   EdgeInsets.only(left: 8, top: 4, bottom: 4, right: 4),
-              leading: RectangleCachedNetworkImage(
+              leading: RectangleImage(
                 imageUrl: movie.posterPath,
               ),
               title: TextTitle(

@@ -20,7 +20,7 @@ class MovieItemLarge extends StatelessWidget {
         elevation: 8,
         color: Colors.transparent,
         child: GridTile(
-          child: RoundedCachedNetworkImage(
+          child: RoundedImage(
             imageUrl: movie.posterPath,
           ),
           header: RoundedBlurContainer(

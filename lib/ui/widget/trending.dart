@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:project_movie/bloc/trending/bloc.dart';
 
 import 'common/custom_text.dart';
+import 'common/error_view.dart';
 import 'movie_grid.dart';
 
 class Trending extends StatefulWidget {
@@ -26,7 +27,7 @@ class _TrendingState extends State<Trending> {
       builder: (context, state) {
         if (state is TrendingError) {
           return Center(
-            child: Text(state.message),
+            child: ErrorView(message: state.message),
           );
         }
         if (state is TrendingLoaded) {

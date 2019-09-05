@@ -1,19 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:project_movie/data/respository/entity/movie.dart';
 
 import 'common/custom_container.dart';
 import 'common/custom_text.dart';
 
 class MovieOverview extends StatelessWidget {
-  final String title;
-  final String content;
-  final String imageUrl;
+  final Movie movie;
   final Function onPressedButton;
 
-  MovieOverview(
-      {@required this.title,
-      @required this.content,
-      @required this.imageUrl,
-      @required this.onPressedButton});
+  MovieOverview({@required this.movie, @required this.onPressedButton});
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +28,13 @@ class MovieOverview extends StatelessWidget {
         SizedBox(
           height: double.infinity,
           width: maxWidth * 0.55,
-          child: RoundedCachedNetworkImage(imageUrl: imageUrl),
+          child: Card(
+            elevation: 8,
+            child: RoundedImage(
+              imageUrl: movie.posterPath,
+              boxFit: BoxFit.fill,
+            ),
+          ),
         ),
         Container(
           height: double.infinity,
@@ -42,15 +43,23 @@ class MovieOverview extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: <Widget>[
-              Container(
-                width: double.infinity,
-                alignment: Alignment.centerLeft,
-                child: TextTitle(text: title),
+              ListTile(
+                title: TextTitle(
+                  text: movie.title,
+                  textAlign: TextAlign.start,
+                ),
+                trailing: IconButton(
+                  icon: Icon(
+                    Icons.star,
+                    color: Colors.yellow,
+                  ),
+                  onPressed: null,
+                ),
               ),
               SizedBox(
                 height: 8,
               ),
-              Expanded(child: TextContent(text: content)),
+              Expanded(child: TextContent(text: movie.overview)),
               FlatButton(
                   child: TextTitle(
                     text: 'More',
@@ -68,20 +77,34 @@ class MovieOverview extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.end,
       children: <Widget>[
-        Container(
-            width: double.infinity,
-            margin: EdgeInsets.only(bottom: 8),
-            child: TextTitle(text: title)),
+        ListTile(
+          selected: true,
+          title: TextTitle(
+            text: movie.title,
+            textAlign: TextAlign.start,
+          ),
+          trailing: IconButton(
+            icon: Icon(
+              Icons.star,
+              color: Colors.yellow,
+            ),
+            onPressed: null,
+          ),
+        ),
         SizedBox(
-          height: maxHeight * 0.3,
-          child: TextContent(text: content),
+          height: maxHeight * 0.25,
+          child: TextContent(text: movie.overview),
         ),
         Expanded(
           child: Container(
             margin: EdgeInsets.only(top: 8),
             width: double.infinity,
-            child: RoundedCachedNetworkImage(
-              imageUrl: imageUrl,
+            child: Card(
+              elevation: 1,
+              child: RoundedImage(
+                imageUrl: movie.posterPath,
+                boxFit: BoxFit.fill,
+              ),
             ),
           ),
         ),

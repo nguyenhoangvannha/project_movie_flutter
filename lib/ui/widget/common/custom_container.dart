@@ -11,7 +11,7 @@ class RoundedBlurContainer extends StatelessWidget {
 
   RoundedBlurContainer(
       {@required this.child,
-      this.color,
+        this.color = Colors.black38,
       this.trailing,
       this.mainAxisAlignment});
 
@@ -22,7 +22,7 @@ class RoundedBlurContainer extends StatelessWidget {
         padding: EdgeInsets.only(left: 8, right: 8, top: 4, bottom: 4),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(12),
-            color: color ?? Colors.black38),
+            color: color),
         child: Row(
           mainAxisAlignment: mainAxisAlignment != null
               ? mainAxisAlignment
@@ -37,10 +37,11 @@ class RoundedBlurContainer extends StatelessWidget {
   }
 }
 
-class RoundedCachedNetworkImage extends StatelessWidget {
+class RoundedImage extends StatelessWidget {
   final String imageUrl;
+  final BoxFit boxFit;
 
-  RoundedCachedNetworkImage({@required this.imageUrl});
+  RoundedImage({@required this.imageUrl, this.boxFit = BoxFit.cover});
 
   @override
   Widget build(BuildContext context) {
@@ -48,25 +49,29 @@ class RoundedCachedNetworkImage extends StatelessWidget {
       child: CachedNetworkImage(
         imageUrl: imageUrl,
         placeholder: (context, url) =>
-            Center(child: CircularProgressIndicator(),),
+            Center(
+              child: CircularProgressIndicator(),
+            ),
         errorWidget: (context, url, error) => Icon(Icons.broken_image),
-        fit: BoxFit.cover,
+        fit: boxFit,
       ),
     );
   }
 }
 
-class RectangleCachedNetworkImage extends StatelessWidget {
+class RectangleImage extends StatelessWidget {
   final String imageUrl;
 
-  RectangleCachedNetworkImage({@required this.imageUrl});
+  RectangleImage({@required this.imageUrl});
 
   @override
   Widget build(BuildContext context) {
     return CachedNetworkImage(
       imageUrl: imageUrl,
       placeholder: (context, url) =>
-          Center(child: CircularProgressIndicator(),),
+          Center(
+            child: CircularProgressIndicator(),
+          ),
       errorWidget: (context, url, error) => Icon(Icons.broken_image),
       fit: BoxFit.cover,
     );
@@ -98,41 +103,23 @@ class VoteAverage extends StatelessWidget {
 
 class RoundedRectangle extends StatelessWidget {
   final Widget child;
-  final double borderRadius;
   final double bottom;
   final double top;
   final EdgeInsetsGeometry padding;
-  final Color color;
 
   RoundedRectangle(
       {@required this.child,
-      this.borderRadius = 8,
-      this.top = 0,
-      this.bottom = 0,
-      this.padding,
-      this.color});
-
-  RoundedRectangle.only(
-      {@required this.child,
-      this.borderRadius = 0,
-      this.top = 0,
-      this.bottom = 0,
-      this.padding,
-      this.color});
+        this.bottom = 8,
+        this.top = 8,
+        this.padding = const EdgeInsets.all(0)});
 
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-        borderRadius: borderRadius > 0
-            ? BorderRadius.circular(borderRadius)
-            : bottom > 0
-                ? BorderRadius.vertical(
-                    top: Radius.circular(0), bottom: Radius.circular(bottom))
-                : BorderRadius.vertical(
-                    top: Radius.circular(top), bottom: Radius.circular(0)),
+        borderRadius: BorderRadius.vertical(
+            top: Radius.circular(top), bottom: Radius.circular(bottom)),
         child: Container(
-          color: color ?? Colors.black38,
-          padding: padding ?? EdgeInsets.all(0),
+          padding: padding,
           child: child,
         ));
   }

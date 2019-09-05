@@ -8,7 +8,13 @@ class ErrorView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Text(message),
+      child: Card(
+        elevation: 8,
+        color: Theme
+            .of(context)
+            .errorColor,
+        child: MaterialButton(onPressed: null, child: Text(message),),
+      ),
     );
   }
 }

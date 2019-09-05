@@ -29,7 +29,8 @@ class ThemePage extends StatelessWidget {
         leading: CircleAvatar(
           backgroundColor: appTheme.accentColor,
           child: Text(
-            theme.toString().substring(0, 1),
+            theme.toString().substring(
+                theme.toString().lastIndexOf('.') + 1)[0],
             style: appTheme.textTheme.title,
           ),
         ),

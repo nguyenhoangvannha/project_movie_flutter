@@ -7,7 +7,6 @@ import 'package:project_movie/ui/feature/setting/theme/theme_page.dart';
 
 void showBottomSheetMovieDetails(BuildContext ctx, int movieId) {
   showModalBottomSheet(
-      backgroundColor: Colors.transparent,
       context: ctx,
       builder: (bCtx) {
         return BottomSheetMovies(
