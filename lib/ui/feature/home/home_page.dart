@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:project_movie/bloc/favorite/bloc.dart';
-import 'package:project_movie/ui/widget/common/custom_text.dart';
 
 import '../../../global/navigation.dart' as Navs;
 import '../../../ui/feature/search/movie_search_delegate.dart';
 import '../../widget/common/error_view.dart';
+import '../../widget/common/guide.dart';
 import '../../widget/common/loading_indicator.dart';
-import '../../widget/common/search_guide.dart';
 import '../../widget/trending.dart';
 
 class HomePage extends StatelessWidget {
@@ -59,12 +58,12 @@ class HomePage extends StatelessWidget {
       leading: IconButton(
         icon: Icon(Icons.account_circle),
         onPressed: () {
-          Navs.openSetting(context);
+          Navs.showSetting(context);
         },
       ),
       title: Center(
-          child: TextTitle(
-            text: 'The Movie Db',
+          child: Text(
+            'The Movie Db',
           )),
       actions: <Widget>[
         IconButton(
@@ -80,7 +79,7 @@ class HomePage extends StatelessWidget {
     final mediaQueryData = MediaQuery.of(context);
     return BlocBuilder<FavoriteBloc, FavoriteState>(builder: (context, state) {
       if (state is InitialFavoriteState) {
-        return SearchGuide();
+        return Guide();
       }
 
       if (state is LoadingFavorite) {
@@ -88,7 +87,7 @@ class HomePage extends StatelessWidget {
       }
       if (state is NoFavorite) {
         return Column(
-          children: <Widget>[SearchGuide(), Expanded(child: Trending())],
+          children: <Widget>[Guide(), Expanded(child: Trending())],
         );
       }
 

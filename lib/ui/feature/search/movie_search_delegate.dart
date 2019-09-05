@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:project_movie/ui/widget/common/bottom_loader.dart';
-import 'package:project_movie/ui/widget/common/search_guide.dart';
+import 'package:project_movie/ui/widget/common/guide.dart';
 
 import '../../../bloc/search/bloc.dart';
 import '../../../data/respository/entity/movie.dart';
@@ -85,7 +85,7 @@ class MovieSearchDelegate extends SearchDelegate<List<Movie>> {
               itemCount: state.movies.length);
         }
         if (state is SearchUninitialized) {
-          return SearchGuide(
+          return Guide(
             title: 'Search guide',
             subtitle: 'Type to search',
           );

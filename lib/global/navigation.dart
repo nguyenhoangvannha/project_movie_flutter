@@ -5,10 +5,8 @@ import 'package:project_movie/ui/feature/detail/detail_page.dart';
 import 'package:project_movie/ui/feature/setting/setting_page.dart';
 import 'package:project_movie/ui/feature/setting/theme/theme_page.dart';
 
-import '../ui/widget/common/bottom_sheet_custom.dart';
-
 void showBottomSheetMovieDetails(BuildContext ctx, int movieId) {
-  showModalBottomSheetCustom(
+  showModalBottomSheet(
       backgroundColor: Colors.transparent,
       context: ctx,
       builder: (bCtx) {
@@ -42,11 +40,11 @@ void showDetailsPage(BuildContext context, Movie movie) {
   }));
 }
 
-void openSetting(BuildContext context) {
+void showSetting(BuildContext context) {
   Navigator.of(context)
       .push(MaterialPageRoute(builder: (ctx) => SettingsPage()));
 }
 
-void openThemeSetting(BuildContext context) {
+void showThemeSetting(BuildContext context) {
   Navigator.of(context).push(MaterialPageRoute(builder: (ctx) => ThemePage()));
 }

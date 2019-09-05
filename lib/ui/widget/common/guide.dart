@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 
 import '../../../ui/widget/common/custom_text.dart';
 
-class SearchGuide extends StatelessWidget {
+class Guide extends StatelessWidget {
+  final IconData icon;
   final String title;
   final String subtitle;
 
-  SearchGuide({this.title = 'Search guide', this.subtitle = 'Type to search'});
+  Guide({this.icon = Icons
+      .search, this.title = 'Search guide', this.subtitle = 'Type to search'});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +19,7 @@ class SearchGuide extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Icon(
-              Icons.search,
+              icon,
               size: 60,
             ),
             TextTitle(

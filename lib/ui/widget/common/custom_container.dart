@@ -47,7 +47,8 @@ class RoundedCachedNetworkImage extends StatelessWidget {
     return RoundedRectangle(
       child: CachedNetworkImage(
         imageUrl: imageUrl,
-        placeholder: (context, url) => RefreshProgressIndicator(),
+        placeholder: (context, url) =>
+            Center(child: CircularProgressIndicator(),),
         errorWidget: (context, url, error) => Icon(Icons.broken_image),
         fit: BoxFit.cover,
       ),
@@ -64,7 +65,8 @@ class RectangleCachedNetworkImage extends StatelessWidget {
   Widget build(BuildContext context) {
     return CachedNetworkImage(
       imageUrl: imageUrl,
-      placeholder: (context, url) => RefreshProgressIndicator(),
+      placeholder: (context, url) =>
+          Center(child: CircularProgressIndicator(),),
       errorWidget: (context, url, error) => Icon(Icons.broken_image),
       fit: BoxFit.cover,
     );

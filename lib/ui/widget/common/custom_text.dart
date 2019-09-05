@@ -39,10 +39,7 @@ class TextSubtitle extends StatelessWidget {
   final TextStyle textStyle;
 
   TextSubtitle(
-      {@required this.text,
-        this.textStyle,
-      this.maxLines,
-        this.textAlign});
+      {@required this.text, this.textStyle, this.maxLines, this.textAlign});
 
   @override
   Widget build(BuildContext context) {

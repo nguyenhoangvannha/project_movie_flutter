@@ -22,7 +22,7 @@ class SettingsPage extends StatelessWidget {
             leading: Icon(Icons.format_paint),
             title: Text('Themes'),
             onTap: () {
-              Navs.openThemeSetting(context);
+              Navs.showThemeSetting(context);
             },
           ),
         ),
