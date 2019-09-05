@@ -1,55 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:project_movie/bloc/favorite/bloc.dart';
-import 'package:project_movie/ui/widget/common/loading_indicator.dart';
-import 'package:project_movie/ui/widget/common/search_guide.dart';
-import 'package:project_movie/ui/widget/common/unknow_state.dart';
-import 'package:project_movie/ui/widget/trending.dart';
 
+import '../../../global/navigation.dart' as Navs;
 import '../../../ui/feature/search/movie_search_delegate.dart';
+import '../../widget/common/loading_indicator.dart';
+import '../../widget/common/search_guide.dart';
+import '../../widget/common/unknow_state.dart';
+import '../../widget/trending.dart';
 
 class HomePage extends StatelessWidget {
-  FavoriteBloc _favoriteBloc;
-
   @override
   Widget build(BuildContext context) {
-    final mediaQueryData = MediaQuery.of(context);
-    if (_favoriteBloc == null)
-      _favoriteBloc = BlocProvider.of<FavoriteBloc>(context);
-    _favoriteBloc.dispatch(LoadFavorite());
+    BlocProvider.of<FavoriteBloc>(context).dispatch(LoadFavorite());
+
     return Scaffold(
-      appBar: AppBar(
-        leading: Icon(Icons.account_circle),
-        title: Center(
-            child: Text(
-              'The Movie Db',
-              textAlign: TextAlign.center,
-            )),
-        actions: <Widget>[
-          IconButton(
-              icon: Icon(Icons.search),
-              onPressed: () {
-                showSearch(context: context, delegate: MovieSearchDelegate());
-              })
-        ],
-      ),
-      body: BlocBuilder<FavoriteBloc, FavoriteState>(builder: (context, state) {
-        if (state is InitialFavoriteState) {
-          return SearchGuide();
-        }
-
-        if (state is LoadingFavorite) {
-          return LoadingIndicator();
-        }
-        if (state is NoFavorite) {
-          return Trending();
-        }
-
-        if (state is HasFavorite) {
-          return _buildTabView(context, mediaQueryData);
-        }
-        return UnknownState();
-      }),
+      appBar: _buildAppBar(context),
+      body: _buildContent(context),
     );
   }
 
@@ -84,5 +51,49 @@ class HomePage extends StatelessWidget {
                 ]))
           ],
         ));
+  }
+
+  _buildAppBar(BuildContext context) {
+    return AppBar(
+      leading: IconButton(
+        icon: Icon(Icons.account_circle),
+        onPressed: () {
+          Navs.openSetting(context);
+        },
+      ),
+      title: Center(
+          child: Text(
+            'The Movie Db',
+            textAlign: TextAlign.center,
+          )),
+      actions: <Widget>[
+        IconButton(
+            icon: Icon(Icons.search),
+            onPressed: () {
+              showSearch(context: context, delegate: MovieSearchDelegate());
+            })
+      ],
+    );
+  }
+
+  _buildContent(BuildContext context) {
+    final mediaQueryData = MediaQuery.of(context);
+    return BlocBuilder<FavoriteBloc, FavoriteState>(builder: (context, state) {
+      if (state is InitialFavoriteState) {
+        return SearchGuide();
+      }
+
+      if (state is LoadingFavorite) {
+        return LoadingIndicator();
+      }
+      if (state is NoFavorite) {
+        return Trending();
+      }
+
+      if (state is HasFavorite) {
+        return _buildTabView(context, mediaQueryData);
+      }
+      return UnknownState();
+    });
   }
 }

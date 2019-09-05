@@ -10,6 +10,7 @@ import '../bloc/simple_bloc_delegate.dart';
 import '../bloc/trending/trending_bloc.dart';
 import '../data/network/service/movie_api_service.dart';
 import '../data/respository/movie_repository.dart';
+import 'theme/bloc/theme_bloc.dart';
 
 class Helper {
   static Helper _instance;
@@ -36,6 +37,9 @@ class Helper {
       BlocProvider<MovieDetailBloc>(
         builder: (BuildContext context) =>
             MovieDetailBloc(repository: _movieRepository),
+      ),
+      BlocProvider<ThemeBloc>(
+        builder: (BuildContext context) => ThemeBloc(),
       ),
     ];
   }

@@ -1,0 +1,44 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../../global/theme/app_themes.dart';
+import '../../../../global/theme/bloc/bloc.dart';
+
+class ThemePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('App Theme'),
+      ),
+      body: ListView.builder(
+          itemCount: AppTheme.values.length,
+          itemBuilder: (ctx, index) {
+            final theme = AppTheme.values.elementAt(index);
+            return _buildItem(context, theme);
+          }),
+    );
+  }
+
+  Widget _buildItem(BuildContext context, AppTheme theme) {
+    final appTheme = appThemeData[theme];
+    return Card(
+      color: appTheme.primaryColor,
+      elevation: 4,
+      child: ListTile(
+        leading: CircleAvatar(
+          backgroundColor: appTheme.primaryColor,
+          child: Text(
+            theme.toString().substring(0, 1),
+            style: appTheme.textTheme.title,
+          ),
+        ),
+        title: Text(theme.toString()),
+        onTap: () {
+          BlocProvider.of<ThemeBloc>(context)
+              .dispatch(ThemeChanged(theme: theme));
+        },
+      ),
+    );
+  }
+}
