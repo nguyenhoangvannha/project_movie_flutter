@@ -28,16 +28,34 @@ class HomePage extends StatelessWidget {
           children: <Widget>[
             Container(
               height: mediaQueryData.orientation == Orientation.portrait
-                  ? mediaQueryData.size.height * 0.05
+                  ? mediaQueryData.size.height * 0.06
                   : mediaQueryData.size.height * 0.08,
-              color: Colors.white,
               child: TabBar(
                 tabs: [
                   Tab(
-                    text: 'Watching',
+                    //text: 'Watching',
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Icon(Icons.remove_red_eye),
+                        SizedBox(
+                          width: 8,
+                        ),
+                        Text('Watching',)
+                      ],
+                    ),
                   ),
                   Tab(
-                    text: 'Finished',
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Icon(Icons.done_outline),
+                        SizedBox(
+                          width: 8,
+                        ),
+                        Text('Finished')
+                      ],
+                    ),
                   ),
                 ],
               ),
@@ -77,11 +95,12 @@ class HomePage extends StatelessWidget {
 
   _buildContent(BuildContext context) {
     final mediaQueryData = MediaQuery.of(context);
-    return BlocBuilder<FavoriteBloc, FavoriteState>(builder: (context, state) {
-      if (state is InitialFavoriteState) {
-        return Guide();
-      }
-
+    return BlocBuilder<FavoriteBloc, FavoriteState>(condition: (pre, next) {
+      return next is LoadingFavorite ||
+          next is NoFavorite ||
+          next is HasFavorite ||
+          next is FavoriteError;
+    }, builder: (context, state) {
       if (state is LoadingFavorite) {
         return LoadingIndicator();
       }
@@ -93,6 +112,12 @@ class HomePage extends StatelessWidget {
 
       if (state is HasFavorite) {
         return _buildTabView(context, mediaQueryData);
+      }
+
+      if (state is FavoriteError) {
+        return ErrorView(
+          message: state.message,
+        );
       }
       return ErrorView();
     });

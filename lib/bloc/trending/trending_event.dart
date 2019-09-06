@@ -6,5 +6,6 @@ abstract class TrendingEvent extends Equatable {
   TrendingEvent([List props = const []]) : super(props);
 }
 
-class Fetch extends TrendingEvent{
-}
+class Fetch extends TrendingEvent {}
+
+class LoadMore extends TrendingEvent {}

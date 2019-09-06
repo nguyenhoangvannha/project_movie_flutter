@@ -122,9 +122,11 @@ class MovieSearchDelegate extends SearchDelegate<List<Movie>> {
 
   @override
   ThemeData appBarTheme(BuildContext context) {
-    return Theme.of(context).copyWith(primaryColor: Theme
-        .of(context)
-        .appBarTheme
-        .color);
+    final theme = Theme.of(context);
+    return theme.copyWith(
+        primaryColor: theme.appBarTheme.color,
+        hintColor: theme.hintColor,
+        textTheme: theme.textTheme.copyWith(
+            title: theme.textTheme.title.copyWith(color: Colors.white)));
   }
 }

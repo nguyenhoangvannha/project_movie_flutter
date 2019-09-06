@@ -1,6 +1,7 @@
+import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 
-class Movie {
+class Movie extends Equatable {
   final double popularity;
 
   final int voteCount;
@@ -29,21 +30,20 @@ class Movie {
 
   final String releaseDate;
 
-  Movie(
-      {this.popularity,
-      this.voteCount,
-      this.video,
-      @required this.posterPath,
-      @required this.id,
-      this.adult,
-      this.backdropPath,
-      this.originalLanguage,
-      this.originalTitle,
-      this.genreIds,
-      @required this.title,
-      @required this.voteAverage,
-      @required this.overview,
-        @required this.releaseDate});
+  Movie({this.popularity,
+    this.voteCount,
+    this.video,
+    @required this.posterPath,
+    @required this.id,
+    this.adult,
+    this.backdropPath,
+    this.originalLanguage,
+    this.originalTitle,
+    this.genreIds,
+    @required this.title,
+    @required this.voteAverage,
+    @required this.overview,
+    @required this.releaseDate}) :super([id]);
 
   @override
   String toString() {

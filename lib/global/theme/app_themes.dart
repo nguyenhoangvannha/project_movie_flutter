@@ -1,13 +1,8 @@
-import 'package:flutter/material.dart';
+import 'theme_data/dark_theme.dart' show darkTheme;
+import 'theme_data/default_theme.dart' show defaultTheme;
+import 'theme_data/light_theme.dart' show lightTheme;
 
 enum AppTheme { Default, Dark, Light }
-
-final defaultTheme = ThemeData.light().copyWith(
-    appBarTheme: AppBarTheme(color: Colors.black));
-
-final darkTheme = ThemeData.dark().copyWith();
-
-final lightTheme = ThemeData.light().copyWith();
 
 final appThemeData = {
   AppTheme.Default: defaultTheme,

@@ -9,7 +9,7 @@ abstract class TrendingState extends Equatable {
   TrendingState([List props = const []]) : super(props);
 }
 
-class TrendingUninitialized extends TrendingState {}
+class TrendingLoading extends TrendingState {}
 
 class TrendingError extends TrendingState {
   final String message;

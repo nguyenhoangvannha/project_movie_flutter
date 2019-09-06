@@ -24,11 +24,11 @@ class MovieDetailBloc extends Bloc<MovieDetailEvent, MovieDetailState> {
           yield NotFound(message: 'Movie not found: id - ${event.movieId}');
         } else {
           yield Result(movie: _movie);
+          return;
         }
       } catch (ex) {
         yield Error(message: ex.toString());
       }
-      return;
     } else {
       yield Error(message: 'Unknown');
     }

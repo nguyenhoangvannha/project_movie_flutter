@@ -101,7 +101,7 @@ class MovieRepository {
   Future<List<Movie>> getFavoriteMovies() async {
     try {
       await Future.delayed(Duration(seconds: 1));
-      return [];
+      return <Movie>[];
     } catch (ex) {
       throw ex;
     }
