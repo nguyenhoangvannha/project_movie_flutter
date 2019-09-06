@@ -7,8 +7,15 @@ import '../app_themes.dart';
 
 class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
   @override
-  ThemeState get initialState =>
-      ThemeState(themeData: appThemeData[AppTheme.Dark]);
+  ThemeState get initialState {
+    int hour = DateTime
+        .now()
+        .hour;
+    if (hour > 6 && hour < 19)
+      return ThemeState(themeData: appThemeData[AppTheme.Dark]);
+    else
+      return ThemeState(themeData: appThemeData[AppTheme.Default]);
+  }
 
   @override
   Stream<ThemeState> mapEventToState(ThemeEvent event,) async* {

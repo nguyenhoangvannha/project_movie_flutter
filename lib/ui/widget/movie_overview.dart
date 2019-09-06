@@ -110,10 +110,10 @@ class MovieOverview extends StatelessWidget {
                 .title,
             textAlign: TextAlign.start,
           ),
-          trailing: BlocBuilder<FavoriteBloc, FavoriteState>(
-              condition: (pre, cur) {
-                return cur is FavoriteChecked;
-              }, builder: (bCtx, state2) {
+          trailing:
+          BlocBuilder<FavoriteBloc, FavoriteState>(condition: (pre, cur) {
+            return cur is FavoriteChecked;
+          }, builder: (bCtx, state2) {
             var state = state2 as FavoriteChecked;
             return IconButton(
               icon: Icon(
@@ -136,7 +136,7 @@ class MovieOverview extends StatelessWidget {
         ),
         SizedBox(
           height: maxHeight * 0.25,
-          child: Text(movie.overview),
+          child: SingleChildScrollView(child: Text(movie.overview)),
         ),
         Expanded(
           child: Container(

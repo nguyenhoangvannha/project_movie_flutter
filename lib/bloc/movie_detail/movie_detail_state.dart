@@ -28,7 +28,7 @@ class Error extends MovieDetailState {
 class Result extends MovieDetailState {
   final Movie movie;
 
-  Result({@required this.movie}) :super([movie]);
+  Result({@required this.movie}) :super([movie.id]);
 }
 
 
