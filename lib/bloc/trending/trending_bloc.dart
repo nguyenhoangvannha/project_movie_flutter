@@ -7,34 +7,33 @@ import './bloc.dart';
 import '../../data/respository/entity/movie.dart';
 import '../../data/respository/movie_repository.dart';
 
-class TrendingBloc extends Bloc<TrendingEvent, TrendingState> {
+class TrendingBloc extends Bloc<MovieEvent, MovieState> {
   final MovieRepository repository;
   List<Movie> movies;
 
   TrendingBloc({@required this.repository});
 
   @override
-  TrendingState get initialState => TrendingLoading();
+  MovieState get initialState => MovieLoading();
 
   @override
-  Stream<TrendingState> mapEventToState(
-    TrendingEvent event,
+  Stream<MovieState> mapEventToState(MovieEvent event,
   ) async* {
     if (event is Fetch) {
       if (movies == null || movies.length < 1) {
-        yield TrendingLoading();
+        yield MovieLoading();
         try {
           movies = await repository.getTrendingMovies();
           if (movies.length < 1) {
-            yield TrendingError("No treding movie found");
+            yield MovieError("No treding movie found");
           } else
-            yield TrendingLoaded(
+            yield MovieLoaded(
                 movies: movies, hasReachedMax: false);
         } catch (e) {
-          yield TrendingError(e.toString());
+          yield MovieError(e.toString());
         }
       } else {
-        yield TrendingLoaded(movies: movies);
+        yield MovieLoaded(movies: movies);
       }
     }
 //    if (event is LoadMore && !_hasReachedMax(currentState)) {
@@ -62,6 +61,6 @@ class TrendingBloc extends Bloc<TrendingEvent, TrendingState> {
 //    }
   }
 
-  bool _hasReachedMax(TrendingState state) =>
-      state is TrendingLoaded && state.hasReachedMax;
+  bool _hasReachedMax(MovieState state) =>
+      state is MovieLoaded && state.hasReachedMax;
 }

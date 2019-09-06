@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:project_movie/bloc/favorite/bloc.dart';
+import 'package:project_movie/data/respository/entity/movie.dart';
+import 'package:project_movie/ui/widget/common/movie_grid.dart';
 
 import '../../../global/navigation.dart' as Navs;
 import '../../../ui/feature/search/movie_search_delegate.dart';
@@ -20,7 +22,8 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget _buildTabView(BuildContext context, MediaQueryData mediaQueryData) {
+  Widget _buildTabView(BuildContext context, MediaQueryData mediaQueryData,
+      List<Movie> movies) {
     return DefaultTabController(
         initialIndex: 0,
         length: 2,
@@ -41,7 +44,9 @@ class HomePage extends StatelessWidget {
                         SizedBox(
                           width: 8,
                         ),
-                        Text('Watching',)
+                        Text(
+                          'Watching',
+                        )
                       ],
                     ),
                   ),
@@ -62,10 +67,12 @@ class HomePage extends StatelessWidget {
             ),
             Expanded(
                 child: TabBarView(children: [
-                  Container(),
-                  Container(),
-//              MoviesPanel(MovieType.watching),
-//              MoviesPanel(MovieType.finished)
+                  MovieGrid(
+                    movies: movies,
+                  ),
+                  MovieGrid(
+                    movies: movies,
+                  ),
                 ]))
           ],
         ));
@@ -111,7 +118,7 @@ class HomePage extends StatelessWidget {
       }
 
       if (state is HasFavorite) {
-        return _buildTabView(context, mediaQueryData);
+        return _buildTabView(context, mediaQueryData, state.movies);
       }
 
       if (state is FavoriteError) {

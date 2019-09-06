@@ -38,14 +38,14 @@ class _TrendingPageState extends State<TrendingPage> {
           )
         ],
       ),
-      body: BlocBuilder<TrendingBloc, TrendingState>(
+      body: BlocBuilder<TrendingBloc, MovieState>(
         builder: (context, state) {
-          if (state is TrendingError) {
+          if (state is MovieError) {
             return Center(
               child: Text(state.message),
             );
           }
-          if (state is TrendingLoaded) {
+          if (state is MovieLoaded) {
             if (state.movies.isEmpty) {
               return Center(
                 child: Text('no movies'),

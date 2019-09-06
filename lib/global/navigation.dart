@@ -35,7 +35,7 @@ void showBottomSheetMovieDetails(BuildContext ctx, int movieId) {
 void showDetailsPage(BuildContext context, Movie movie) {
   Navigator.of(context).pop();
   Navigator.of(context).push(MaterialPageRoute(builder: (bCtx) {
-    return DetailPage();
+    return DetailPage(movieId: movie.id,);
   }));
 }
 

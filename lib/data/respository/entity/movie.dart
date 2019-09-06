@@ -30,20 +30,24 @@ class Movie extends Equatable {
 
   final String releaseDate;
 
+  final double runTime;
+
   Movie({this.popularity,
-    this.voteCount,
-    this.video,
     @required this.posterPath,
     @required this.id,
+    @required this.title,
+    @required this.voteAverage,
+    @required this.overview,
+    @required this.releaseDate,
     this.adult,
+    this.voteCount,
+    this.video,
     this.backdropPath,
     this.originalLanguage,
     this.originalTitle,
     this.genreIds,
-    @required this.title,
-    @required this.voteAverage,
-    @required this.overview,
-    @required this.releaseDate}) :super([id]);
+    this.runTime,
+  }) :super([id]);
 
   @override
   String toString() {

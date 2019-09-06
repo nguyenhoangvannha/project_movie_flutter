@@ -23,7 +23,7 @@ class MovieGridItem extends StatelessWidget {
               ),
             ),
             child: Custom.RoundedRectangle(
-                child: Custom.NetworkImage(
+                child: Custom.CustomNetworkImage(
               boxFit: BoxFit.cover,
               imageUrl: movie.posterPath,
             )),

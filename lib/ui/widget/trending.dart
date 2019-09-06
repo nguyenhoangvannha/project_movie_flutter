@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:project_movie/bloc/trending/bloc.dart';
+import 'package:project_movie/ui/widget/common/movie_grid.dart';
 
 import 'common/error_view.dart';
-import 'movie_grid.dart';
 
 class Trending extends StatefulWidget {
   @override
@@ -22,14 +22,14 @@ class _TrendingState extends State<Trending> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<TrendingBloc, TrendingState>(
+    return BlocBuilder<TrendingBloc, MovieState>(
       builder: (context, state) {
-        if (state is TrendingError) {
+        if (state is MovieError) {
           return Center(
             child: ErrorView(message: state.message),
           );
         }
-        if (state is TrendingLoaded) {
+        if (state is MovieLoaded) {
           if (state.movies.isEmpty) {
             return Center(
               child: Text('no movies'),

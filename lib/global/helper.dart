@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:logging/logging.dart';
 import 'package:project_movie/bloc/movie_detail/movie_detail_bloc.dart';
+import 'package:project_movie/bloc/similar/similar_bloc.dart';
 
 import '../bloc/favorite/favorite_bloc.dart';
 import '../bloc/search/search_bloc.dart';
@@ -22,6 +23,9 @@ class Helper {
     _movieApiService = MovieApiService.create();
     _movieRepository = MovieRepository(movieApiService: _movieApiService);
     _providers = [
+      BlocProvider<ThemeBloc>(
+        builder: (BuildContext context) => ThemeBloc(),
+      ),
       BlocProvider<TrendingBloc>(
         builder: (BuildContext context) =>
             TrendingBloc(repository: _movieRepository),
@@ -38,8 +42,9 @@ class Helper {
         builder: (BuildContext context) =>
             MovieDetailBloc(repository: _movieRepository),
       ),
-      BlocProvider<ThemeBloc>(
-        builder: (BuildContext context) => ThemeBloc(),
+      BlocProvider<SimilarBloc>(
+        builder: (BuildContext context) =>
+            SimilarBloc(repository: _movieRepository),
       ),
     ];
   }

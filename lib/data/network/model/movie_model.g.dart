@@ -62,6 +62,10 @@ class _$MovieModelSerializer implements StructuredSerializer<MovieModel> {
           serializers.serialize(object.backdropPath,
               specifiedType: const FullType(String)));
     }
+    if (object.runTime != null) {
+      result..add('runtime')..add(serializers.serialize(object.runTime,
+          specifiedType: const FullType(double)));
+    }
     return result;
   }
 
@@ -134,6 +138,10 @@ class _$MovieModelSerializer implements StructuredSerializer<MovieModel> {
           result.releaseDate = serializers.deserialize(value,
               specifiedType: const FullType(String)) as String;
           break;
+        case 'runtime':
+          result.runTime = serializers.deserialize(value,
+              specifiedType: const FullType(double)) as double;
+          break;
       }
     }
 
@@ -170,6 +178,8 @@ class _$MovieModel extends MovieModel {
   final String overview;
   @override
   final String releaseDate;
+  @override
+  final double runTime;
 
   factory _$MovieModel([void Function(MovieModelBuilder) updates]) =>
       (new MovieModelBuilder()
@@ -189,7 +199,8 @@ class _$MovieModel extends MovieModel {
       this.title,
       this.voteAverage,
       this.overview,
-      this.releaseDate})
+        this.releaseDate,
+        this.runTime})
       : super._() {
     if (popularity == null) {
       throw new BuiltValueNullFieldError('MovieModel', 'popularity');
@@ -255,7 +266,8 @@ class _$MovieModel extends MovieModel {
         title == other.title &&
         voteAverage == other.voteAverage &&
         overview == other.overview &&
-        releaseDate == other.releaseDate;
+        releaseDate == other.releaseDate &&
+        runTime == other.runTime;
   }
 
   @override
@@ -274,22 +286,24 @@ class _$MovieModel extends MovieModel {
                                                 $jc(
                                                     $jc(
                                                         $jc(
-                                                            0,
-                                                            popularity
-                                                                .hashCode),
-                                                        voteCount.hashCode),
-                                                    video.hashCode),
-                                                posterPath.hashCode),
-                                            id.hashCode),
-                                        adult.hashCode),
-                                    backdropPath.hashCode),
-                                originalLanguage.hashCode),
-                            originalTitle.hashCode),
-                        genreIds.hashCode),
-                    title.hashCode),
-                voteAverage.hashCode),
-            overview.hashCode),
-        releaseDate.hashCode));
+                                                            $jc(
+                                                                0,
+                                                                popularity
+                                                                    .hashCode),
+                                                            voteCount.hashCode),
+                                                        video.hashCode),
+                                                    posterPath.hashCode),
+                                                id.hashCode),
+                                            adult.hashCode),
+                                        backdropPath.hashCode),
+                                    originalLanguage.hashCode),
+                                originalTitle.hashCode),
+                            genreIds.hashCode),
+                        title.hashCode),
+                    voteAverage.hashCode),
+                overview.hashCode),
+            releaseDate.hashCode),
+        runTime.hashCode));
   }
 
   @override
@@ -307,8 +321,8 @@ class _$MovieModel extends MovieModel {
           ..add('genreIds', genreIds)
           ..add('title', title)
           ..add('voteAverage', voteAverage)
-          ..add('overview', overview)
-          ..add('releaseDate', releaseDate))
+          ..add('overview', overview)..add('releaseDate', releaseDate)..add(
+          'runTime', runTime))
         .toString();
   }
 }
@@ -374,6 +388,12 @@ class MovieModelBuilder implements Builder<MovieModel, MovieModelBuilder> {
   String get releaseDate => _$this._releaseDate;
   set releaseDate(String releaseDate) => _$this._releaseDate = releaseDate;
 
+  double _runTime;
+
+  double get runTime => _$this._runTime;
+
+  set runTime(double runTime) => _$this._runTime = runTime;
+
   MovieModelBuilder();
 
   MovieModelBuilder get _$this {
@@ -392,6 +412,7 @@ class MovieModelBuilder implements Builder<MovieModel, MovieModelBuilder> {
       _voteAverage = _$v.voteAverage;
       _overview = _$v.overview;
       _releaseDate = _$v.releaseDate;
+      _runTime = _$v.runTime;
       _$v = null;
     }
     return this;
@@ -429,7 +450,8 @@ class MovieModelBuilder implements Builder<MovieModel, MovieModelBuilder> {
               title: title,
               voteAverage: voteAverage,
               overview: overview,
-              releaseDate: releaseDate);
+              releaseDate: releaseDate,
+              runTime: runTime);
     } catch (_) {
       String _$failedField;
       try {

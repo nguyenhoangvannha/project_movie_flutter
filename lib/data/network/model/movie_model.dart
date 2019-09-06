@@ -57,6 +57,10 @@ abstract class MovieModel implements Built<MovieModel, MovieModelBuilder> {
   @BuiltValueField(wireName: 'release_date')
   String get releaseDate;
 
+  @nullable
+  @BuiltValueField(wireName: 'runtime')
+  double get runTime;
+
   String toJson() {
     return json.encode(serializers.serializeWith(MovieModel.serializer, this));
   }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:project_movie/ui/widget/common/custom.dart';
+import 'package:project_movie/ui/widget/common/movie_overview.dart';
 import 'package:swipedetector/swipedetector.dart';
 
 import '../../../bloc/movie_detail/bloc.dart';
@@ -8,7 +9,6 @@ import '../../../data/respository/entity/movie.dart';
 import '../../../global/navigation.dart' as Navs;
 import '../../../ui/widget/common/error_view.dart';
 import '../../../ui/widget/common/loading_indicator.dart';
-import '../../../ui/widget/movie_overview.dart';
 
 class BottomSheetMovies extends StatelessWidget {
   final int movieId;
@@ -31,9 +31,7 @@ class BottomSheetMovies extends StatelessWidget {
           return LoadingIndicator();
         }
         if (state is Error) {
-          return Center(
-            child: Text('Error: ${state.message}'),
-          );
+          return ErrorView(message: 'Error: ${state.message}',);
         }
         if (state is NotFound) {
           return Center(
@@ -48,13 +46,21 @@ class BottomSheetMovies extends StatelessWidget {
     );
   }
 
+  _showDetailPage(BuildContext context, Movie movie) {
+    Navs.showDetailsPage(context, movie);
+  }
+
+  _dispose(BuildContext context) {
+    Navigator.of(context).pop();
+  }
+
   Widget _buildMovieDetail(BuildContext context, Movie movie) {
     return SwipeDetector(
       swipeConfiguration: swipeConfig,
-      onSwipeUp: () => Navs.showDetailsPage(context, movie),
-      onSwipeLeft: () => Navs.showDetailsPage(context, movie),
-      onSwipeDown: () => Navigator.of(context).pop(),
-      onSwipeRight: () => Navigator.of(context).pop(),
+      onSwipeUp: () => _showDetailPage(context, movie),
+      onSwipeLeft: () => _showDetailPage(context, movie),
+      onSwipeDown: () => _dispose(context),
+      onSwipeRight: () => _dispose(context),
       child: Card(
         elevation: 0,
         borderOnForeground: true,

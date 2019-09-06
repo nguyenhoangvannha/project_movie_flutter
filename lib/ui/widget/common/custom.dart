@@ -66,11 +66,11 @@ class RoundedBackground extends StatelessWidget {
   }
 }
 
-class NetworkImage extends StatelessWidget {
+class CustomNetworkImage extends StatelessWidget {
   final String imageUrl;
   final BoxFit boxFit;
 
-  NetworkImage({@required this.imageUrl, this.boxFit = BoxFit.cover});
+  CustomNetworkImage({@required this.imageUrl, this.boxFit = BoxFit.cover});
 
   @override
   Widget build(BuildContext context) {

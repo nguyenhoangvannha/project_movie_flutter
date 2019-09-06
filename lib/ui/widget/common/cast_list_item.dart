@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 
 import 'custom.dart' as Custom;
 
-class CastItem extends StatelessWidget {
+class CastListItem extends StatelessWidget {
   final String title;
   final String imageUrl;
 
-  CastItem({@required this.title, @required this.imageUrl});
+  CastListItem({@required this.title, @required this.imageUrl});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class CastItem extends StatelessWidget {
         child: Container(
           margin: EdgeInsets.only(bottom: 38),
           child: Custom.RoundedBackground(
-              child: Custom.NetworkImage(imageUrl: imageUrl)),
+              child: Custom.CustomNetworkImage(imageUrl: imageUrl)),
         ),
         footer: Container(
           margin: EdgeInsets.only(top: 38),

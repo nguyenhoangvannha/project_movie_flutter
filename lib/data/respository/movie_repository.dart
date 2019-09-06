@@ -61,7 +61,8 @@ class MovieRepository {
           title: movie.title,
           voteAverage: movie.voteAverage,
           overview: movie.overview,
-          releaseDate: movie.releaseDate);
+          releaseDate: movie.releaseDate,
+          runTime: movie.runTime);
     } catch (ex) {
       throw ex;
     }
