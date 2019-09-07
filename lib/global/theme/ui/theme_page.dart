@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../app_themes.dart';
 import '../bloc/bloc.dart';
+import 'theme_item.dart';
 
 class ThemePage extends StatelessWidget {
   @override
@@ -15,31 +16,14 @@ class ThemePage extends StatelessWidget {
           itemCount: AppTheme.values.length,
           itemBuilder: (ctx, index) {
             final theme = AppTheme.values.elementAt(index);
-            return _buildItem(context, theme);
+            return ThemeItem(
+              theme: theme,
+              themeData: appThemeData[theme],
+              onTap: () =>
+                  BlocProvider.of<ThemeBloc>(context)
+                      .dispatch(ThemeChanged(theme: theme)),
+            );
           }),
-    );
-  }
-
-  Widget _buildItem(BuildContext context, AppTheme theme) {
-    final appTheme = appThemeData[theme];
-    return Card(
-      color: appTheme.backgroundColor,
-      elevation: 4,
-      child: ListTile(
-        leading: CircleAvatar(
-          backgroundColor: appTheme.accentColor,
-          child: Text(
-            theme.toString().substring(
-                theme.toString().lastIndexOf('.') + 1)[0],
-            style: appTheme.textTheme.title,
-          ),
-        ),
-        title: Text(theme.toString(), style: appTheme.textTheme.title,),
-        onTap: () {
-          BlocProvider.of<ThemeBloc>(context)
-              .dispatch(ThemeChanged(theme: theme));
-        },
-      ),
     );
   }
 }

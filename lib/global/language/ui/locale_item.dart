@@ -8,9 +8,15 @@ class LocaleItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      title: Text(locale.toString()),
-      onTap: onTap,
+    return Card(
+      elevation: 4,
+      child: ListTile(
+        leading: CircleAvatar(
+          child: Text(locale.toString().substring(0, 2)),
+        ),
+        title: Text(locale.toString().substring(3)),
+        onTap: onTap,
+      ),
     );
   }
 }
