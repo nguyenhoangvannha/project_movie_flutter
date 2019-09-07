@@ -320,9 +320,8 @@ class _$MovieModel extends MovieModel {
           ..add('originalTitle', originalTitle)
           ..add('genreIds', genreIds)
           ..add('title', title)
-          ..add('voteAverage', voteAverage)
-          ..add('overview', overview)..add('releaseDate', releaseDate)..add(
-          'runTime', runTime))
+          ..add('voteAverage', voteAverage)..add('overview', overview)..add(
+          'releaseDate', releaseDate)..add('runTime', runTime))
         .toString();
   }
 }
@@ -389,9 +388,7 @@ class MovieModelBuilder implements Builder<MovieModel, MovieModelBuilder> {
   set releaseDate(String releaseDate) => _$this._releaseDate = releaseDate;
 
   double _runTime;
-
   double get runTime => _$this._runTime;
-
   set runTime(double runTime) => _$this._runTime = runTime;
 
   MovieModelBuilder();

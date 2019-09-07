@@ -16,96 +16,60 @@ class MovieRepository {
   MovieRepository({@required this.movieApiService});
 
   Future<List<Movie>> getTrendingMovies({int page = 1}) async {
-    try {
-      final data = await movieApiService.getTrendingMovies(page: page);
-      return _mapMoviesResponseToList(data.body.movies);
-    } catch (ex) {
-      throw ex;
-    }
+    final data = await movieApiService.getTrendingMovies(page: page);
+    return _mapMoviesResponseToList(data.body.movies);
   }
 
   Future<List<Movie>> getNowPlaying({int page = 1}) async {
-    try {
-      final data = await movieApiService.getNowPlaying(page: page);
-      return _mapMoviesResponseToList(data.body.movies);
-    } catch (ex) {
-      throw ex;
-    }
+    final data = await movieApiService.getNowPlaying(page: page);
+    return _mapMoviesResponseToList(data.body.movies);
   }
 
   Future<List<Movie>> searchMovies(String query, {int page = 1}) async {
-    try {
-      final data = await movieApiService.searchMovies(query: query, page: page);
-      return _mapMoviesResponseToList(data.body.movies);
-    } catch (ex) {
-      throw ex;
-    }
+    final data = await movieApiService.searchMovies(query: query, page: page);
+    return _mapMoviesResponseToList(data.body.movies);
   }
 
   Future<List<Video>> getVideoTrailer({@required int movieId}) async {
-    try {
-      final data = await movieApiService.getVideoTrailer(movieId: movieId);
-      return _mapVideosResponseToList(data.body.videos);
-    } catch (ex) {
-      throw ex;
-    }
+    final data = await movieApiService.getVideoTrailer(movieId: movieId);
+    return _mapVideosResponseToList(data.body.videos);
   }
 
   Future<Movie> getMovieDetail({@required int movieId}) async {
-    try {
-      final data = await movieApiService.getMovieDetail(movieId: movieId);
-      final movie = data.body;
-      return Movie(
-          posterPath: '${ApiConfig.BASE_POSTER_URL}${movie.posterPath}',
-          id: movie.id,
-          title: movie.title,
-          voteAverage: movie.voteAverage,
-          overview: movie.overview,
-          releaseDate: movie.releaseDate,
-          runTime: movie.runTime);
-    } catch (ex) {
-      throw ex;
-    }
+    final data = await movieApiService.getMovieDetail(movieId: movieId);
+    final movie = data.body;
+    return Movie(
+        posterPath: '${ApiConfig.BASE_POSTER_URL}${movie.posterPath}',
+        id: movie.id,
+        title: movie.title,
+        voteAverage: movie.voteAverage,
+        overview: movie.overview,
+        releaseDate: movie.releaseDate,
+        runTime: movie.runTime);
   }
 
   Future<List<Cast>> getMovieCredits({@required int movieId}) async {
-    try {
-      final data = await movieApiService.getMovieCredits(movieId: movieId);
-      return _mapCreditsResponseToList(data.body.casts);
-    } catch (ex) {
-      throw ex;
-    }
+    final data = await movieApiService.getMovieCredits(movieId: movieId);
+    return _mapCreditsResponseToList(data.body.casts);
   }
 
   Future<List<Movie>> recommendationsMovies(
       {@required int movieId, int page = 1}) async {
-    try {
-      final data = await movieApiService.recommendationsMovies(
-          movieId: movieId, page: page);
-      return _mapMoviesResponseToList(data.body.movies);
-    } catch (ex) {
-      throw ex;
-    }
+    final data = await movieApiService.recommendationsMovies(
+        movieId: movieId, page: page);
+    return _mapMoviesResponseToList(data.body.movies);
   }
 
   Future<List<Movie>> similarMovies(
       {@required int movieId, int page = 1}) async {
-    try {
-      final data =
-      await movieApiService.similarMovies(movieId: movieId, page: page);
-      return _mapMoviesResponseToList(data.body.movies);
-    } catch (ex) {
-      throw ex;
-    }
+    final data =
+    await movieApiService.similarMovies(movieId: movieId, page: page);
+    return _mapMoviesResponseToList(data.body.movies);
   }
 
   Future<List<Movie>> getFavoriteMovies() async {
-    try {
-      await Future.delayed(Duration(seconds: 1));
-      return <Movie>[];
-    } catch (ex) {
-      throw ex;
-    }
+    await Future.delayed(Duration(seconds: 1));
+    return <Movie>[];
   }
 
   List<Movie> _mapMoviesResponseToList(BuiltList<MovieModel> movies) {
