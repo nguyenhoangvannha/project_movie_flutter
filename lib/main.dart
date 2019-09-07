@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:project_movie/global/components/helper.dart';
 
 import './ui/feature/home/home_page.dart';
+import 'global/components/routes.dart';
 import 'global/language/bloc/bloc.dart';
 import 'global/language/localizations_delegates.dart';
 import 'global/theme/bloc/bloc.dart';
@@ -31,7 +32,10 @@ class MyApp extends StatelessWidget {
             LocalizationsDelegates.instance.localizationsDelegates,
             localeResolutionCallback:
             LocalizationsDelegates.instance.localeResolutionCallback,
-            home: HomePage(),
+            routes: Routes.routes,
+            onUnknownRoute: (settings) {
+              return MaterialPageRoute(builder: (ctx) => HomePage());
+            },
           );
             });
           }),

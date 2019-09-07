@@ -20,7 +20,7 @@ dependencies:
   flutter:
     sdk: flutter
 
-  #Multi languages
+  # Internationalization
   flutter_localizations:
     sdk: flutter
 

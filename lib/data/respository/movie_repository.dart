@@ -79,6 +79,7 @@ class MovieRepository {
           title: movieModel.title,
           overview: movieModel.overview,
           posterPath: '${ApiConfig.BASE_POSTER_URL}${movieModel.posterPath}',
+          originalLanguage: movieModel.originalLanguage,
           voteAverage: movieModel.voteAverage,
           releaseDate: movieModel.releaseDate);
     }).toList();

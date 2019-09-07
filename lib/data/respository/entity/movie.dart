@@ -51,6 +51,8 @@ class Movie extends Equatable {
 
   @override
   String toString() {
-    return 'Movie{posterPath: $posterPath, id: $id, title: $title, voteAverage: $voteAverage}';
+    return 'Movie{popularity: $popularity, voteCount: $voteCount, video: $video, posterPath: $posterPath, id: $id, adult: $adult, backdropPath: $backdropPath, originalLanguage: $originalLanguage, originalTitle: $originalTitle, genreIds: $genreIds, title: $title, voteAverage: $voteAverage, overview: $overview, releaseDate: $releaseDate, runTime: $runTime}';
   }
+
+
 }
