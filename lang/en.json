@@ -1,0 +1,14 @@
+{
+  "app_name": "The Movie Db",
+  "title_settings": "Settings",
+  "title_themes": "Themes",
+  "title_languages": "Languages",
+  "title_trending": "Trending",
+  "title_release": "Release",
+  "title_duration": "Duration",
+  "title_overview": "Overview",
+  "msg_no_movies": "There are no movies",
+  "msg_loading": "Loading",
+  "en_EN": "English",
+  "vi_VN": "Vietnamese"
+}

@@ -1,0 +1,14 @@
+{
+  "app_name": "The Movie Db",
+  "title_settings": "Cài đặt",
+  "title_themes": "Chủ đề",
+  "title_languages": "Ngôn ngữ",
+  "title_trending": "Phổ biến",
+  "title_release": "Phát hành",
+  "title_duration": "Thời lượng",
+  "title_overview": "Tổng quan",
+  "msg_no_movies": "Không có phim nào",
+  "msg_loading": "Đang tải",
+  "en_EN": "Tiếng anh",
+  "vi_VN": "Tiếng việt"
+}
