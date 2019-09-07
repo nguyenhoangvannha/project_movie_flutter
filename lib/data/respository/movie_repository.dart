@@ -1,7 +1,7 @@
 import 'package:built_collection/built_collection.dart';
 import 'package:meta/meta.dart';
+import 'package:project_movie/global/components/api_config.dart' as ApiConfig;
 
-import '../../global/api_config.dart' as ApiConfig;
 import '../network/model/cast_model.dart';
 import '../network/model/movie_model.dart';
 import '../network/model/video_model.dart';

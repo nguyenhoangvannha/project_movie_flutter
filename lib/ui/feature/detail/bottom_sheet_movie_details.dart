@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:project_movie/global/components/navigation.dart' as Navs;
 import 'package:project_movie/ui/widget/common/custom.dart';
 import 'package:project_movie/ui/widget/common/movie_overview.dart';
 import 'package:swipedetector/swipedetector.dart';
 
 import '../../../bloc/movie_detail/bloc.dart';
 import '../../../data/respository/entity/movie.dart';
-import '../../../global/navigation.dart' as Navs;
 import '../../../ui/widget/common/error_view.dart';
 import '../../../ui/widget/common/loading_indicator.dart';
 

@@ -4,14 +4,15 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:logging/logging.dart';
 import 'package:project_movie/bloc/movie_detail/movie_detail_bloc.dart';
 import 'package:project_movie/bloc/similar/similar_bloc.dart';
+import 'package:project_movie/global/language/bloc/bloc.dart';
 
-import '../bloc/favorite/favorite_bloc.dart';
-import '../bloc/search/search_bloc.dart';
-import '../bloc/simple_bloc_delegate.dart';
-import '../bloc/trending/trending_bloc.dart';
-import '../data/network/service/movie_api_service.dart';
-import '../data/respository/movie_repository.dart';
-import 'theme/bloc/theme_bloc.dart';
+import '../../bloc/favorite/favorite_bloc.dart';
+import '../../bloc/search/search_bloc.dart';
+import '../../bloc/simple_bloc_delegate.dart';
+import '../../bloc/trending/trending_bloc.dart';
+import '../../data/network/service/movie_api_service.dart';
+import '../../data/respository/movie_repository.dart';
+import '../theme/bloc/theme_bloc.dart';
 
 class Helper {
   static Helper _instance;
@@ -45,6 +46,10 @@ class Helper {
       BlocProvider<SimilarBloc>(
         builder: (BuildContext context) =>
             SimilarBloc(repository: _movieRepository),
+      ),
+      BlocProvider<LocalizationsBloc>(
+        builder: (BuildContext context) =>
+            LocalizationsBloc(),
       ),
     ];
   }

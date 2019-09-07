@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../../../global/navigation.dart' as Navs;
+import 'package:project_movie/global/components/navigation.dart' as Navs;
 
 class SettingsPage extends StatelessWidget {
   @override
@@ -23,6 +22,16 @@ class SettingsPage extends StatelessWidget {
             title: Text('Themes'),
             onTap: () {
               Navs.showThemeSetting(context);
+            },
+          ),
+        ),
+        Card(
+          elevation: 4,
+          child: ListTile(
+            leading: Icon(Icons.language),
+            title: Text('Languages'),
+            onTap: () {
+              Navs.showLanguagesSetting(context);
             },
           ),
         ),

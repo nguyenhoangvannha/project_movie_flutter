@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:project_movie/bloc/favorite/bloc.dart';
 import 'package:project_movie/data/respository/entity/movie.dart';
+import 'package:project_movie/global/components/navigation.dart' as Navs;
 import 'package:project_movie/ui/widget/common/movie_grid.dart';
 
-import '../../../global/navigation.dart' as Navs;
 import '../../../ui/feature/search/movie_search_delegate.dart';
 import '../../widget/common/error_view.dart';
 import '../../widget/common/guide.dart';

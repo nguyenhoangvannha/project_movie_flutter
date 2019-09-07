@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../global/theme/app_themes.dart';
-import '../../../../global/theme/bloc/bloc.dart';
+import '../app_themes.dart';
+import '../bloc/bloc.dart';
 
 class ThemePage extends StatelessWidget {
   @override

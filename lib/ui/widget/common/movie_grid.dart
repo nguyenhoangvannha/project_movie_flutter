@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project_movie/data/respository/entity/movie.dart';
+import 'package:project_movie/global/components/navigation.dart' as Navs;
 
-import '../../../global/navigation.dart' as Navs;
 import '../common/movie_grid_item.dart';
 
 class MovieGrid extends StatelessWidget {

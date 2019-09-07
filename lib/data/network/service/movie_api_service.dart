@@ -1,7 +1,7 @@
 import 'package:chopper/chopper.dart';
 import 'package:meta/meta.dart';
+import 'package:project_movie/global/components/api_config.dart' as ApiConfig;
 
-import '../../../global/api_config.dart' as ApiConfig;
 import '../converter/built_value_converter.dart';
 import '../interceptor/network_interceptor.dart';
 import '../model/credits_response_model.dart';
