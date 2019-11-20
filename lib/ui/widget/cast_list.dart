@@ -1,64 +1,73 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:project_movie_flutter/domain/entity/cast.dart';
+import 'package:project_movie_flutter/domain/usecase/movie/get_movie_credits.dart';
+import 'package:project_movie_flutter/ui/bloc/movie_credit/bloc.dart';
+import 'package:project_movie_flutter/ui/global/localizations/app_localizations.dart';
+import 'package:project_movie_flutter/util/exception_handler.dart';
+
+import 'cast_list_item.dart';
+import 'common/loading_indicator.dart';
+import 'common/message_view.dart';
 
 class CastList extends StatelessWidget {
-  final String _listTitle;
   final int _movieId;
+  final MovieCreditsBloc movieCreditsBloc;
 
-  CastList(this._listTitle, this._movieId);
+  CastList(this._movieId, {this.movieCreditsBloc});
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    final mediaQueryData = MediaQuery.of(context);
+    final bool portrait = mediaQueryData.orientation == Orientation.portrait;
+    final bloc = this.movieCreditsBloc ??
+        MovieCreditsBloc(
+            getMovieCredits: RepositoryProvider.of<GetMovieCredits>(context))
+          ..dispatch(Fetch(movieId: _movieId));
+    return LayoutBuilder(
+      builder: (ctx, constraints) {
+        double width = constraints.maxWidth;
+        double height = mediaQueryData.size.height;
+        return BlocBuilder<MovieCreditsBloc, MovieCreditsState>(
+          bloc: bloc,
+          builder: (context, state) {
+            if (state is Loading) {
+              return LoadingIndicator();
+            }
+            if (state is Loaded) {
+              if (state.casts.isEmpty) {
+                return MessageView(
+                    message:
+                    AppLocalizations.of(context).translate('msg_no_casts'));
+              }
+              return _buildContent(width, height, portrait, state.casts);
+            }
+            if (state is Error) {
+              return MessageView(
+                  message: ExceptionHandler.handle(context, state.exception));
+            }
+            return Container();
+          },
+        );
+      },
+    );
+  }
+
+  _buildContent(double width, double height, bool portrait, List<Cast> casts) {
+    return Container(
+        width: double.infinity,
+        height: portrait ? height * 0.2 : height * 0.4,
+        child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: casts.length,
+            itemBuilder: (context, index) {
+              var cast = casts.elementAt(index);
+              return Container(
+                width: portrait ? width * 0.25 : width * 0.2,
+                margin: EdgeInsets.only(left: 8, right: 8),
+                child:
+                CastListItem(title: cast.name, imageUrl: cast.profilePath),
+              );
+            }));
   }
 }
-//class CastList extends StatelessWidget {
-//  final String _listTitle;
-//  final int _movieId;
-//
-//  CastList(this._listTitle, this._movieId);
-//
-//  @override
-//  Widget build(BuildContext context) {
-//    final bool isPortrail =
-//        MediaQuery.of(context).orientation == Orientation.portrait;
-//    return LayoutBuilder(
-//      builder: (ctx, constraints) {
-//        double width = constraints.maxWidth;
-//        double height = MediaQuery.of(context).size.height;
-//        return Column(
-//          children: <Widget>[
-//            ListTile(
-//                contentPadding: EdgeInsets.all(0),
-//                title: Text(
-//                  _listTitle,
-//                  style: Theme.of(context).textTheme.title,
-//                )),
-//            Container(
-//                width: width,
-//                height: isPortrail ? height * 0.2 : height * 0.4,
-//                child: WidgetUtils.getFutureBuilder(
-//                    future: Provider.of<Casts>(context, listen: false)
-//                        .loadCredits(),
-//                    child: Consumer<Casts>(
-//                      builder: (cCtx, castsData, child) {
-//                        final casts = castsData.items;
-//                        return ListView.builder(
-//                            scrollDirection: Axis.horizontal,
-//                            itemCount: casts.length,
-//                            itemBuilder: (context, index) {
-//                              var cast = casts.elementAt(index);
-//                              return Container(
-//                                width: isPortrail ? width * 0.25 : width * 0.2,
-//                                child: CastListItem(
-//                                    title: cast.name,
-//                                    imageUrl: cast.profilePath),
-//                              );
-//                            });
-//                      },
-//                    )))
-//          ],
-//        );
-//      },
-//    );
-//  }
-//}

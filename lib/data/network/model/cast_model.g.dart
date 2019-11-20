@@ -18,27 +18,37 @@ class _$CastModelSerializer implements StructuredSerializer<CastModel> {
   Iterable<Object> serialize(Serializers serializers, CastModel object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object>[
-      'cast_id',
-      serializers.serialize(object.castId, specifiedType: const FullType(int)),
-      'character',
-      serializers.serialize(object.character,
-          specifiedType: const FullType(String)),
-      'credit_id',
-      serializers.serialize(object.creditId,
-          specifiedType: const FullType(String)),
-      'gender',
-      serializers.serialize(object.gender, specifiedType: const FullType(int)),
       'id',
       serializers.serialize(object.id, specifiedType: const FullType(int)),
-      'name',
-      serializers.serialize(object.name, specifiedType: const FullType(String)),
-      'order',
-      serializers.serialize(object.order, specifiedType: const FullType(int)),
-      'profile_path',
-      serializers.serialize(object.profilePath,
-          specifiedType: const FullType(String)),
     ];
-
+    if (object.castId != null) {
+      result..add('cast_id')..add(serializers.serialize(object.castId,
+          specifiedType: const FullType(int)));
+    }
+    if (object.character != null) {
+      result..add('character')..add(serializers.serialize(object.character,
+          specifiedType: const FullType(String)));
+    }
+    if (object.creditId != null) {
+      result..add('credit_id')..add(serializers.serialize(object.creditId,
+          specifiedType: const FullType(String)));
+    }
+    if (object.gender != null) {
+      result..add('gender')..add(serializers.serialize(object.gender,
+          specifiedType: const FullType(int)));
+    }
+    if (object.name != null) {
+      result..add('name')..add(serializers.serialize(object.name,
+          specifiedType: const FullType(String)));
+    }
+    if (object.order != null) {
+      result..add('order')..add(serializers.serialize(object.order,
+          specifiedType: const FullType(int)));
+    }
+    if (object.profilePath != null) {
+      result..add('profile_path')..add(serializers.serialize(object.profilePath,
+          specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -123,29 +133,8 @@ class _$CastModel extends CastModel {
       this.order,
       this.profilePath})
       : super._() {
-    if (castId == null) {
-      throw new BuiltValueNullFieldError('CastModel', 'castId');
-    }
-    if (character == null) {
-      throw new BuiltValueNullFieldError('CastModel', 'character');
-    }
-    if (creditId == null) {
-      throw new BuiltValueNullFieldError('CastModel', 'creditId');
-    }
-    if (gender == null) {
-      throw new BuiltValueNullFieldError('CastModel', 'gender');
-    }
     if (id == null) {
       throw new BuiltValueNullFieldError('CastModel', 'id');
-    }
-    if (name == null) {
-      throw new BuiltValueNullFieldError('CastModel', 'name');
-    }
-    if (order == null) {
-      throw new BuiltValueNullFieldError('CastModel', 'order');
-    }
-    if (profilePath == null) {
-      throw new BuiltValueNullFieldError('CastModel', 'profilePath');
     }
   }
 

@@ -19,21 +19,25 @@ class _$MovieResponseModelSerializer
   @override
   Iterable<Object> serialize(Serializers serializers, MovieResponseModel object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object>[
-      'page',
-      serializers.serialize(object.page, specifiedType: const FullType(int)),
-      'total_results',
-      serializers.serialize(object.totalResults,
-          specifiedType: const FullType(int)),
-      'total_pages',
-      serializers.serialize(object.totalPages,
-          specifiedType: const FullType(int)),
-      'results',
-      serializers.serialize(object.movies,
+    final result = <Object>[];
+    if (object.page != null) {
+      result..add('page')..add(serializers.serialize(object.page,
+          specifiedType: const FullType(int)));
+    }
+    if (object.totalResults != null) {
+      result..add('total_results')..add(
+          serializers.serialize(object.totalResults,
+              specifiedType: const FullType(int)));
+    }
+    if (object.totalPages != null) {
+      result..add('total_pages')..add(serializers.serialize(object.totalPages,
+          specifiedType: const FullType(int)));
+    }
+    if (object.movies != null) {
+      result..add('results')..add(serializers.serialize(object.movies,
           specifiedType:
-              const FullType(BuiltList, const [const FullType(MovieModel)])),
-    ];
-
+          const FullType(BuiltList, const [const FullType(MovieModel)])));
+    }
     return result;
   }
 
@@ -90,20 +94,7 @@ class _$MovieResponseModel extends MovieResponseModel {
 
   _$MovieResponseModel._(
       {this.page, this.totalResults, this.totalPages, this.movies})
-      : super._() {
-    if (page == null) {
-      throw new BuiltValueNullFieldError('MovieResponseModel', 'page');
-    }
-    if (totalResults == null) {
-      throw new BuiltValueNullFieldError('MovieResponseModel', 'totalResults');
-    }
-    if (totalPages == null) {
-      throw new BuiltValueNullFieldError('MovieResponseModel', 'totalPages');
-    }
-    if (movies == null) {
-      throw new BuiltValueNullFieldError('MovieResponseModel', 'movies');
-    }
-  }
+      : super._();
 
   @override
   MovieResponseModel rebuild(
@@ -199,12 +190,12 @@ class MovieResponseModelBuilder
               page: page,
               totalResults: totalResults,
               totalPages: totalPages,
-              movies: movies.build());
+              movies: _movies?.build());
     } catch (_) {
       String _$failedField;
       try {
         _$failedField = 'movies';
-        movies.build();
+        _movies?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'MovieResponseModel', _$failedField, e.toString());

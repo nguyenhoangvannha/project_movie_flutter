@@ -2,18 +2,16 @@
 
 A new Flutter application.
 
-## Getting Started
+## Architecture
+![Clean-Architecture-Flutter-Diagram](readme/Clean-Architecture-Flutter-Diagram.png "Clean-Architecture-Flutter-Diagram") 
+---
+[Image Source](https://resocoder.com/2019/08/27/flutter-tdd-clean-architecture-course-1-explanation-project-structure/)
 
-This project is a starting point for a Flutter application.
+## To gererate code
+1. flutter packages pub run build_runner clean
+2. flutter packages pub run build_runner build //watch (--delete-conflicting-outputs)
+- flutter packages pub run build_runner build --delete-conflicting-outputs
 
-A few resources to get you started if this is your first Flutter project:
+## Build apk
+flutter build apk --split-per-abi
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-# flutter packages pub run build_runner build //watch
-# flutter packages pub run build_runner clean
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.

@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:project_movie_flutter/global/util/serializers.dart';
+import 'package:project_movie_flutter/data/network/model/serializers.dart';
 
 import 'movie_model.dart';
 
@@ -13,18 +13,22 @@ abstract class MovieResponseModel
     implements Built<MovieResponseModel, MovieResponseModelBuilder> {
   MovieResponseModel._();
 
-  factory MovieResponseModel(
-      [updates(MovieResponseModelBuilder b)]) = _$MovieResponseModel;
+  factory MovieResponseModel([updates(MovieResponseModelBuilder b)]) =
+  _$MovieResponseModel;
 
+  @nullable
   @BuiltValueField(wireName: 'page')
   int get page;
 
+  @nullable
   @BuiltValueField(wireName: 'total_results')
   int get totalResults;
 
+  @nullable
   @BuiltValueField(wireName: 'total_pages')
   int get totalPages;
 
+  @nullable
   @BuiltValueField(wireName: 'results')
   BuiltList<MovieModel> get movies;
 

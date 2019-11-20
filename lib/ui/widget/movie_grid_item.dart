@@ -1,49 +1,74 @@
 import 'package:flutter/material.dart';
-import 'package:project_movie_flutter/data/respository/entity/movie.dart';
-import 'package:project_movie_flutter/ui/widget/common/vote_average.dart';
+import 'package:project_movie_flutter/domain/entity/movie.dart';
 
-import './common/custom.dart' as Custom;
+import 'common/cached_image.dart';
+import 'common/container.dart';
 
 class MovieGridItem extends StatelessWidget {
   final Movie movie;
   final Function onTap;
+  final Function onLongPress;
 
-  MovieGridItem({@required this.movie, this.onTap});
+  MovieGridItem(this.movie, {this.onTap, this.onLongPress});
 
   @override
   Widget build(BuildContext context) {
+    final caption = Theme.of(context)
+        .textTheme
+        .caption
+        .copyWith(fontStyle: FontStyle.normal, fontSize: 10);
     return InkWell(
       onTap: onTap,
-      child: Card(
-          elevation: 4,
-          child: GridTile(
-            header: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: <Widget>[
-                VoteAverage(
-                  voteAverage: movie.voteAverage,
-                  margin: EdgeInsets.all(8),
-                  padding: EdgeInsets.symmetric(horizontal: 4),
-                )
-              ],
+      onLongPress: onLongPress,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Expanded(
+            child: CustomCard(
+              margin: EdgeInsets.all(4),
+              child: CachedImage(image: movie.posterPath),
             ),
-            child: Custom.RoundedRectangle(
-                child: Custom.CustomNetworkImage(
-              boxFit: BoxFit.cover,
-              imageUrl: movie.posterPath,
-            )),
-            footer: Custom.RoundedBackground(
-              margin: EdgeInsets.all(8),
-              padding: EdgeInsets.all(8),
-              child: Text(
-                '${movie.title}',
-                textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.subtitle,
-                maxLines: 2,
-                overflow: TextOverflow.ellipsis,
+          ),
+          SizedBox(
+            height: 4,
+          ),
+          Container(
+            margin: EdgeInsets.only(left: 8),
+            child: Text(
+              movie.title,
+              style: TextStyle(fontStyle: FontStyle.normal, fontSize: 12),
+              overflow: TextOverflow.ellipsis,
+              maxLines: 1,
+            ),
+          ),
+          SizedBox(
+            height: 4,
+          ),
+          Row(
+            children: <Widget>[
+              SizedBox(
+                width: 8,
               ),
-            ),
-          )),
+              Text(movie.voteAverage.toString(), style: caption),
+              SizedBox(
+                width: 2,
+              ),
+              Icon(
+                Icons.star,
+                size: 8,
+              ),
+              Spacer(),
+              Text(
+                movie.releaseDate,
+                style: caption,
+              ),
+              SizedBox(
+                width: 16,
+              )
+            ],
+          )
+        ],
+      ),
     );
   }
 }

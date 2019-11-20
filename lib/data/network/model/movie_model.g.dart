@@ -18,52 +18,66 @@ class _$MovieModelSerializer implements StructuredSerializer<MovieModel> {
   Iterable<Object> serialize(Serializers serializers, MovieModel object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object>[
-      'popularity',
-      serializers.serialize(object.popularity,
-          specifiedType: const FullType(double)),
-      'vote_count',
-      serializers.serialize(object.voteCount,
-          specifiedType: const FullType(int)),
-      'video',
-      serializers.serialize(object.video, specifiedType: const FullType(bool)),
       'id',
       serializers.serialize(object.id, specifiedType: const FullType(int)),
-      'adult',
-      serializers.serialize(object.adult, specifiedType: const FullType(bool)),
-      'original_language',
-      serializers.serialize(object.originalLanguage,
-          specifiedType: const FullType(String)),
-      'original_title',
-      serializers.serialize(object.originalTitle,
-          specifiedType: const FullType(String)),
-      'genre_ids',
-      serializers.serialize(object.genreIds,
-          specifiedType:
-              const FullType(BuiltList, const [const FullType(int)])),
-      'title',
-      serializers.serialize(object.title,
-          specifiedType: const FullType(String)),
-      'vote_average',
-      serializers.serialize(object.voteAverage,
-          specifiedType: const FullType(double)),
-      'overview',
-      serializers.serialize(object.overview,
-          specifiedType: const FullType(String)),
       'release_date',
       serializers.serialize(object.releaseDate,
           specifiedType: const FullType(String)),
     ];
+    if (object.popularity != null) {
+      result..add('popularity')..add(serializers.serialize(object.popularity,
+          specifiedType: const FullType(double)));
+    }
+    if (object.voteCount != null) {
+      result..add('vote_count')..add(serializers.serialize(object.voteCount,
+          specifiedType: const FullType(int)));
+    }
+    if (object.video != null) {
+      result..add('video')..add(serializers.serialize(object.video,
+          specifiedType: const FullType(bool)));
+    }
     if (object.posterPath != null) {
       result
         ..add('poster_path')
         ..add(serializers.serialize(object.posterPath,
             specifiedType: const FullType(String)));
     }
+    if (object.adult != null) {
+      result..add('adult')..add(serializers.serialize(object.adult,
+          specifiedType: const FullType(bool)));
+    }
     if (object.backdropPath != null) {
       result
         ..add('backdrop_path')
         ..add(serializers.serialize(object.backdropPath,
             specifiedType: const FullType(String)));
+    }
+    if (object.originalLanguage != null) {
+      result..add('original_language')..add(
+          serializers.serialize(object.originalLanguage,
+              specifiedType: const FullType(String)));
+    }
+    if (object.originalTitle != null) {
+      result..add('original_title')..add(
+          serializers.serialize(object.originalTitle,
+              specifiedType: const FullType(String)));
+    }
+    if (object.genreIds != null) {
+      result..add('genre_ids')..add(serializers.serialize(object.genreIds,
+          specifiedType:
+          const FullType(BuiltList, const [const FullType(int)])));
+    }
+    if (object.title != null) {
+      result..add('title')..add(serializers.serialize(object.title,
+          specifiedType: const FullType(String)));
+    }
+    if (object.voteAverage != null) {
+      result..add('vote_average')..add(serializers.serialize(object.voteAverage,
+          specifiedType: const FullType(double)));
+    }
+    if (object.overview != null) {
+      result..add('overview')..add(serializers.serialize(object.overview,
+          specifiedType: const FullType(String)));
     }
     if (object.runTime != null) {
       result
@@ -206,38 +220,8 @@ class _$MovieModel extends MovieModel {
       this.releaseDate,
       this.runTime})
       : super._() {
-    if (popularity == null) {
-      throw new BuiltValueNullFieldError('MovieModel', 'popularity');
-    }
-    if (voteCount == null) {
-      throw new BuiltValueNullFieldError('MovieModel', 'voteCount');
-    }
-    if (video == null) {
-      throw new BuiltValueNullFieldError('MovieModel', 'video');
-    }
     if (id == null) {
       throw new BuiltValueNullFieldError('MovieModel', 'id');
-    }
-    if (adult == null) {
-      throw new BuiltValueNullFieldError('MovieModel', 'adult');
-    }
-    if (originalLanguage == null) {
-      throw new BuiltValueNullFieldError('MovieModel', 'originalLanguage');
-    }
-    if (originalTitle == null) {
-      throw new BuiltValueNullFieldError('MovieModel', 'originalTitle');
-    }
-    if (genreIds == null) {
-      throw new BuiltValueNullFieldError('MovieModel', 'genreIds');
-    }
-    if (title == null) {
-      throw new BuiltValueNullFieldError('MovieModel', 'title');
-    }
-    if (voteAverage == null) {
-      throw new BuiltValueNullFieldError('MovieModel', 'voteAverage');
-    }
-    if (overview == null) {
-      throw new BuiltValueNullFieldError('MovieModel', 'overview');
     }
     if (releaseDate == null) {
       throw new BuiltValueNullFieldError('MovieModel', 'releaseDate');
@@ -447,7 +431,7 @@ class MovieModelBuilder implements Builder<MovieModel, MovieModelBuilder> {
               backdropPath: backdropPath,
               originalLanguage: originalLanguage,
               originalTitle: originalTitle,
-              genreIds: genreIds.build(),
+              genreIds: _genreIds?.build(),
               title: title,
               voteAverage: voteAverage,
               overview: overview,
@@ -457,7 +441,7 @@ class MovieModelBuilder implements Builder<MovieModel, MovieModelBuilder> {
       String _$failedField;
       try {
         _$failedField = 'genreIds';
-        genreIds.build();
+        _genreIds?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'MovieModel', _$failedField, e.toString());

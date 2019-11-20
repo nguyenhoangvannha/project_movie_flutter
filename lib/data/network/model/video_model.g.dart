@@ -20,24 +20,35 @@ class _$VideoModelSerializer implements StructuredSerializer<VideoModel> {
     final result = <Object>[
       'id',
       serializers.serialize(object.id, specifiedType: const FullType(String)),
-      'iso_639_1',
-      serializers.serialize(object.iso6391,
-          specifiedType: const FullType(String)),
-      'iso_3166_1',
-      serializers.serialize(object.iso31661,
-          specifiedType: const FullType(String)),
-      'key',
-      serializers.serialize(object.key, specifiedType: const FullType(String)),
-      'name',
-      serializers.serialize(object.name, specifiedType: const FullType(String)),
-      'site',
-      serializers.serialize(object.site, specifiedType: const FullType(String)),
-      'size',
-      serializers.serialize(object.size, specifiedType: const FullType(int)),
-      'type',
-      serializers.serialize(object.type, specifiedType: const FullType(String)),
     ];
-
+    if (object.iso6391 != null) {
+      result..add('iso_639_1')..add(serializers.serialize(object.iso6391,
+          specifiedType: const FullType(String)));
+    }
+    if (object.iso31661 != null) {
+      result..add('iso_3166_1')..add(serializers.serialize(object.iso31661,
+          specifiedType: const FullType(String)));
+    }
+    if (object.key != null) {
+      result..add('key')..add(serializers.serialize(object.key,
+          specifiedType: const FullType(String)));
+    }
+    if (object.name != null) {
+      result..add('name')..add(serializers.serialize(object.name,
+          specifiedType: const FullType(String)));
+    }
+    if (object.site != null) {
+      result..add('site')..add(serializers.serialize(object.site,
+          specifiedType: const FullType(String)));
+    }
+    if (object.size != null) {
+      result..add('size')..add(serializers.serialize(object.size,
+          specifiedType: const FullType(int)));
+    }
+    if (object.type != null) {
+      result..add('type')..add(serializers.serialize(object.type,
+          specifiedType: const FullType(String)));
+    }
     return result;
   }
 
@@ -124,27 +135,6 @@ class _$VideoModel extends VideoModel {
       : super._() {
     if (id == null) {
       throw new BuiltValueNullFieldError('VideoModel', 'id');
-    }
-    if (iso6391 == null) {
-      throw new BuiltValueNullFieldError('VideoModel', 'iso6391');
-    }
-    if (iso31661 == null) {
-      throw new BuiltValueNullFieldError('VideoModel', 'iso31661');
-    }
-    if (key == null) {
-      throw new BuiltValueNullFieldError('VideoModel', 'key');
-    }
-    if (name == null) {
-      throw new BuiltValueNullFieldError('VideoModel', 'name');
-    }
-    if (site == null) {
-      throw new BuiltValueNullFieldError('VideoModel', 'site');
-    }
-    if (size == null) {
-      throw new BuiltValueNullFieldError('VideoModel', 'size');
-    }
-    if (type == null) {
-      throw new BuiltValueNullFieldError('VideoModel', 'type');
     }
   }
 

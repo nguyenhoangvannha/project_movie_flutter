@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import './common/custom.dart' as Custom;
+import 'common/cached_image.dart';
 
 class CastListItem extends StatelessWidget {
   final String title;
@@ -10,23 +10,27 @@ class CastListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      borderOnForeground: true,
-      child: GridTile(
-        child: Container(
-          margin: EdgeInsets.only(bottom: 38),
-          child: Custom.RoundedBackground(
-              child: Custom.CustomNetworkImage(imageUrl: imageUrl)),
-        ),
-        footer: Container(
-          margin: EdgeInsets.only(top: 38),
-          padding: EdgeInsets.all(4),
-          child: Text(
-            title,
-            maxLines: 2,
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: <Widget>[
+        Expanded(
+          child: Card(
+            shape: CircleBorder(),
+            clipBehavior: Clip.antiAlias,
+            child: CachedImage(
+              image: imageUrl,
+              fit: BoxFit.cover,
+            ),
           ),
         ),
-      ),
+        Text(
+          '$title\n',
+          textAlign: TextAlign.center,
+          maxLines: 2,
+          overflow: TextOverflow.ellipsis,
+        )
+      ],
     );
   }
 }

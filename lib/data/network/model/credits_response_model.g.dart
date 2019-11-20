@@ -23,15 +23,16 @@ class _$CreditsResponseModelSerializer
   Iterable<Object> serialize(
       Serializers serializers, CreditsResponseModel object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object>[
-      'id',
-      serializers.serialize(object.id, specifiedType: const FullType(int)),
-      'cast',
-      serializers.serialize(object.casts,
+    final result = <Object>[];
+    if (object.id != null) {
+      result..add('id')..add(serializers.serialize(object.id,
+          specifiedType: const FullType(int)));
+    }
+    if (object.casts != null) {
+      result..add('cast')..add(serializers.serialize(object.casts,
           specifiedType:
-              const FullType(BuiltList, const [const FullType(CastModel)])),
-    ];
-
+          const FullType(BuiltList, const [const FullType(CastModel)])));
+    }
     return result;
   }
 
@@ -74,14 +75,7 @@ class _$CreditsResponseModel extends CreditsResponseModel {
           [void Function(CreditsResponseModelBuilder) updates]) =>
       (new CreditsResponseModelBuilder()..update(updates)).build();
 
-  _$CreditsResponseModel._({this.id, this.casts}) : super._() {
-    if (id == null) {
-      throw new BuiltValueNullFieldError('CreditsResponseModel', 'id');
-    }
-    if (casts == null) {
-      throw new BuiltValueNullFieldError('CreditsResponseModel', 'casts');
-    }
-  }
+  _$CreditsResponseModel._({this.id, this.casts}) : super._();
 
   @override
   CreditsResponseModel rebuild(
@@ -156,12 +150,12 @@ class CreditsResponseModelBuilder
     _$CreditsResponseModel _$result;
     try {
       _$result =
-          _$v ?? new _$CreditsResponseModel._(id: id, casts: casts.build());
+          _$v ?? new _$CreditsResponseModel._(id: id, casts: _casts?.build());
     } catch (_) {
       String _$failedField;
       try {
         _$failedField = 'casts';
-        casts.build();
+        _casts?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'CreditsResponseModel', _$failedField, e.toString());

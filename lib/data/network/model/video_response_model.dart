@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:project_movie_flutter/global/util/serializers.dart';
+import 'package:project_movie_flutter/data/network/model/serializers.dart';
 
 import 'video_model.dart';
 
@@ -16,9 +16,11 @@ abstract class VideoResponseModel
   factory VideoResponseModel([updates(VideoResponseModelBuilder b)]) =
       _$VideoResponseModel;
 
+  @nullable
   @BuiltValueField(wireName: 'id')
   int get id;
 
+  @nullable
   @BuiltValueField(wireName: 'results')
   BuiltList<VideoModel> get videos;
 

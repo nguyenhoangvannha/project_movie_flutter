@@ -36,12 +36,12 @@ class _$MovieApiService extends MovieApiService {
     return client.send<MovieResponseModel, MovieResponseModel>($request);
   }
 
-  Future<Response<MovieResponseModel>> searchMovies(
-      {String apiKey = ApiConfig.API_KEY, String query = '', int page = 1}) {
+  Future<Response<MovieResponseModel>> searchMovies(String query,
+      {String apiKey = ApiConfig.API_KEY, int page = 1}) {
     final $url = '/search/movie';
     final Map<String, dynamic> $params = {
-      'api_key': apiKey,
       'query': query,
+      'api_key': apiKey,
       'page': page
     };
     final $request = Request('GET', $url, client.baseUrl, parameters: $params);

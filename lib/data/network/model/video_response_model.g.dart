@@ -19,15 +19,16 @@ class _$VideoResponseModelSerializer
   @override
   Iterable<Object> serialize(Serializers serializers, VideoResponseModel object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object>[
-      'id',
-      serializers.serialize(object.id, specifiedType: const FullType(int)),
-      'results',
-      serializers.serialize(object.videos,
+    final result = <Object>[];
+    if (object.id != null) {
+      result..add('id')..add(serializers.serialize(object.id,
+          specifiedType: const FullType(int)));
+    }
+    if (object.videos != null) {
+      result..add('results')..add(serializers.serialize(object.videos,
           specifiedType:
-              const FullType(BuiltList, const [const FullType(VideoModel)])),
-    ];
-
+          const FullType(BuiltList, const [const FullType(VideoModel)])));
+    }
     return result;
   }
 
@@ -70,14 +71,7 @@ class _$VideoResponseModel extends VideoResponseModel {
           [void Function(VideoResponseModelBuilder) updates]) =>
       (new VideoResponseModelBuilder()..update(updates)).build();
 
-  _$VideoResponseModel._({this.id, this.videos}) : super._() {
-    if (id == null) {
-      throw new BuiltValueNullFieldError('VideoResponseModel', 'id');
-    }
-    if (videos == null) {
-      throw new BuiltValueNullFieldError('VideoResponseModel', 'videos');
-    }
-  }
+  _$VideoResponseModel._({this.id, this.videos}) : super._();
 
   @override
   VideoResponseModel rebuild(
@@ -152,12 +146,12 @@ class VideoResponseModelBuilder
     _$VideoResponseModel _$result;
     try {
       _$result =
-          _$v ?? new _$VideoResponseModel._(id: id, videos: videos.build());
+          _$v ?? new _$VideoResponseModel._(id: id, videos: _videos?.build());
     } catch (_) {
       String _$failedField;
       try {
         _$failedField = 'videos';
-        videos.build();
+        _videos?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             'VideoResponseModel', _$failedField, e.toString());

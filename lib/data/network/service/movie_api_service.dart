@@ -1,8 +1,8 @@
 import 'package:chopper/chopper.dart';
 import 'package:meta/meta.dart';
+import 'package:project_movie_flutter/component/api_config.dart';
+import 'package:project_movie_flutter/data/network/service/built_value_converter.dart';
 
-import '../../../global/config/api_config.dart';
-import '../../../global/util/built_value_converter.dart';
 import '../interceptor/network_interceptor.dart';
 import '../model/credits_response_model.dart';
 import '../model/movie_model.dart';
@@ -28,8 +28,8 @@ abstract class MovieApiService extends ChopperService {
 
   @Get(path: '/search/movie')
   Future<Response<MovieResponseModel>> searchMovies(
+      @Query("query") String query,
       {@Query('api_key') String apiKey = ApiConfig.API_KEY,
-        @Query("query") String query = '',
         @Query('page') int page = 1});
 
   @Get(path: '/movie/{movieId}/videos')
@@ -37,7 +37,7 @@ abstract class MovieApiService extends ChopperService {
       {@Path("movieId") @required int movieId,
         @Query('api_key') String apiKey = ApiConfig.API_KEY});
 
-  @Get(path: '/movie/{movieId}')
+  @Get(path: '/movie/{movieId}') //&append_to_response=videos
   Future<Response<MovieModel>> getMovieDetail(
       {@Path("movieId") @required int movieId,
         @Query('api_key') String apiKey = ApiConfig.API_KEY});
@@ -66,6 +66,7 @@ abstract class MovieApiService extends ChopperService {
           _$MovieApiService(),
         ],
         converter: BuiltValueConverter(),
+        errorConverter: JsonConverter(),
         interceptors: [
           HttpLoggingInterceptor(),
           NetworkInterceptor(),

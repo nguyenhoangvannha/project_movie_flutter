@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
-import 'package:project_movie_flutter/global/util/serializers.dart';
+import 'package:project_movie_flutter/data/network/model/serializers.dart';
 
 part 'movie_model.g.dart';
 
@@ -12,12 +12,15 @@ abstract class MovieModel implements Built<MovieModel, MovieModelBuilder> {
 
   factory MovieModel([updates(MovieModelBuilder b)]) = _$MovieModel;
 
+  @nullable
   @BuiltValueField(wireName: 'popularity')
   double get popularity;
 
+  @nullable
   @BuiltValueField(wireName: 'vote_count')
   int get voteCount;
 
+  @nullable
   @BuiltValueField(wireName: 'video')
   bool get video;
 
@@ -28,6 +31,7 @@ abstract class MovieModel implements Built<MovieModel, MovieModelBuilder> {
   @BuiltValueField(wireName: 'id')
   int get id;
 
+  @nullable
   @BuiltValueField(wireName: 'adult')
   bool get adult;
 
@@ -35,21 +39,27 @@ abstract class MovieModel implements Built<MovieModel, MovieModelBuilder> {
   @BuiltValueField(wireName: 'backdrop_path')
   String get backdropPath;
 
+  @nullable
   @BuiltValueField(wireName: 'original_language')
   String get originalLanguage;
 
+  @nullable
   @BuiltValueField(wireName: 'original_title')
   String get originalTitle;
 
+  @nullable
   @BuiltValueField(wireName: 'genre_ids')
   BuiltList<int> get genreIds;
 
+  @nullable
   @BuiltValueField(wireName: 'title')
   String get title;
 
+  @nullable
   @BuiltValueField(wireName: 'vote_average')
   double get voteAverage;
 
+  @nullable
   @BuiltValueField(wireName: 'overview')
   String get overview;
 

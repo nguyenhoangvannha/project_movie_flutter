@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'custom.dart';
+import 'container.dart';
 
 class VoteAverage extends StatelessWidget {
   final double voteAverage;
@@ -24,6 +24,7 @@ class VoteAverage extends StatelessWidget {
           ),
           Icon(
             Icons.star,
+            size: 8,
             color: Colors.yellow,
           )
         ],
