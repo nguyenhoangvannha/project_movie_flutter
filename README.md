@@ -1,6 +1,6 @@
 # project_movie_flutter
 
-A new Flutter application.
+[Download](https://github.com/nguyenhoangvannha/project_movie_flutter/releases/tag/v1.0)
 
 ## Architecture
 ![Clean-Architecture-Flutter-Diagram](readme/Clean-Architecture-Flutter-Diagram.png "Clean-Architecture-Flutter-Diagram") 
