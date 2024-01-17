@@ -9,7 +9,8 @@ class MoviesListVer extends StatelessWidget {
   final List<Movie>? movies;
   final Function()? onEndList;
 
-  MoviesListVer({required this.movies, this.onEndList});
+  const MoviesListVer({Key? key, required this.movies, this.onEndList})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +40,7 @@ class MoviesListVer extends StatelessWidget {
 
             return Container(
                 height: _calculateListItemHeight(isPortrait, height),
-                margin: EdgeInsets.only(left: 8, right: 8),
+                margin: const EdgeInsets.only(left: 8, right: 8),
                 child: MovieListVerItem(
                   movie,
                   onTap: () => AppNavigator.instance!

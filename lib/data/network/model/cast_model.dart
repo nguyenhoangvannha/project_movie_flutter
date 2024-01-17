@@ -9,7 +9,7 @@ part 'cast_model.g.dart';
 abstract class CastModel implements Built<CastModel, CastModelBuilder> {
   CastModel._();
 
-  factory CastModel([updates(CastModelBuilder b)]) = _$CastModel;
+  factory CastModel([Function(CastModelBuilder b) updates]) = _$CastModel;
 
   @BuiltValueField(wireName: 'cast_id')
   int? get castId;

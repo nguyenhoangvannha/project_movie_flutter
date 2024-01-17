@@ -14,13 +14,14 @@ class CastList extends StatelessWidget {
   final int? _movieId;
   final MovieCreditsBloc? movieCreditsBloc;
 
-  CastList(this._movieId, {this.movieCreditsBloc});
+  const CastList(this._movieId, {Key? key, this.movieCreditsBloc})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final mediaQueryData = MediaQuery.of(context);
     final bool portrait = mediaQueryData.orientation == Orientation.portrait;
-    final bloc = this.movieCreditsBloc ??
+    final bloc = movieCreditsBloc ??
         MovieCreditsBloc(
             getMovieCredits: RepositoryProvider.of<GetMovieCredits>(context))
       ..add(Fetch(movieId: _movieId));
@@ -32,7 +33,7 @@ class CastList extends StatelessWidget {
           bloc: bloc,
           builder: (context, state) {
             if (state is Loading) {
-              return LoadingIndicator();
+              return const LoadingIndicator();
             }
             if (state is Loaded) {
               if (state.casts!.isEmpty) {
@@ -54,7 +55,7 @@ class CastList extends StatelessWidget {
   }
 
   _buildContent(double width, double height, bool portrait, List<Cast> casts) {
-    return Container(
+    return SizedBox(
         width: double.infinity,
         height: portrait ? height * 0.2 : height * 0.4,
         child: ListView.builder(
@@ -64,7 +65,7 @@ class CastList extends StatelessWidget {
               var cast = casts.elementAt(index);
               return Container(
                 width: portrait ? width * 0.25 : width * 0.2,
-                margin: EdgeInsets.only(left: 8, right: 8),
+                margin: const EdgeInsets.only(left: 8, right: 8),
                 child:
                     CastListItem(title: cast.name, imageUrl: cast.profilePath),
               );

@@ -3,11 +3,11 @@ import 'package:meta/meta.dart';
 
 @immutable
 abstract class TrendingMovieEvent extends Equatable {
-  TrendingMovieEvent() : super();
+  const TrendingMovieEvent() : super();
 }
 
 class Fetch extends TrendingMovieEvent {
-  Fetch();
+  const Fetch();
 
   @override
   List<Object> get props => [];

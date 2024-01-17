@@ -4,7 +4,7 @@ import 'package:project_movie_flutter/domain/entity/movie.dart';
 
 @immutable
 abstract class TrendingMovieState extends Equatable {
-  TrendingMovieState() : super();
+  const TrendingMovieState() : super();
 }
 
 class Loading extends TrendingMovieState {
@@ -15,7 +15,7 @@ class Loading extends TrendingMovieState {
 class Error extends TrendingMovieState {
   final Object? exception;
 
-  Error(this.exception) : super();
+  const Error(this.exception) : super();
   @override
   List<Object> get props => [exception.hashCode];
 }
@@ -23,7 +23,7 @@ class Error extends TrendingMovieState {
 class Loaded extends TrendingMovieState {
   final List<Movie>? movies;
 
-  Loaded({this.movies}) : super();
+  const Loaded({this.movies}) : super();
   @override
   List<Object> get props => [
         {movies}

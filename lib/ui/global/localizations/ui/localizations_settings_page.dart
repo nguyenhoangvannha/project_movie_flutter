@@ -7,6 +7,8 @@ import '../localizations_delegates.dart';
 import 'locale_item.dart';
 
 class LocalizationsSettingPage extends StatelessWidget {
+  const LocalizationsSettingPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final supportedLocales = LocalizationsDelegates.instance!.supportedLocales!;

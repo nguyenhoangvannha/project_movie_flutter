@@ -14,7 +14,8 @@ class SearchItem extends StatelessWidget {
   final Function? onTap;
   final Function? onLongPress;
 
-  SearchItem(this.movie, {this.onTap, this.onLongPress});
+  const SearchItem(this.movie, {Key? key, this.onTap, this.onLongPress})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -81,8 +82,9 @@ class SearchItem extends StatelessWidget {
             ],
           ),
         );
-      } else
-        return LoadingIndicator();
+      } else {
+        return const LoadingIndicator();
+      }
     });
   }
 
@@ -91,8 +93,8 @@ class SearchItem extends StatelessWidget {
       onTap: onTap as void Function()?,
       onLongPress: onLongPress as void Function()?,
       child: ListTile(
-        contentPadding: EdgeInsets.only(left: 8, right: 8),
-        leading: Container(
+        contentPadding: const EdgeInsets.only(left: 8, right: 8),
+        leading: SizedBox(
           width: MediaQuery.of(context).size.width * 0.1,
           child: CachedImage(
             image: movie.posterPath,
@@ -113,16 +115,16 @@ class SearchItem extends StatelessWidget {
           maxLines: 1,
         ),
         trailing: Chip(
-          label: Container(
+          label: SizedBox(
             width: 44,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Text(movie.voteAverage.toString()),
-                SizedBox(
+                const SizedBox(
                   width: 1,
                 ),
-                Icon(
+                const Icon(
                   Icons.star,
                   size: 14,
                 )

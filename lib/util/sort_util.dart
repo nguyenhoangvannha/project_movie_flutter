@@ -20,22 +20,14 @@ class SortUtil {
         items!.sort((item1, item2) {
           var d1 = DateFormat('yyyy-MM-dd', "en_US").parse(item1.releaseDate!);
           var d2 = DateFormat('yyyy-MM-dd', "en_US").parse(item2.releaseDate!);
-          if (d2 != null) {
-            return d1.compareTo(d2);
-          } else {
-            return 0;
-          }
+          return d1.compareTo(d2);
         });
         break;
       case SortType.date_dec:
         items!.sort((item1, item2) {
           var d1 = DateFormat('yyyy-MM-dd', "en_US").parse(item1.releaseDate!);
           var d2 = DateFormat('yyyy-MM-dd', "en_US").parse(item2.releaseDate!);
-          if (d2 != null) {
-            return d2.compareTo(d1);
-          } else {
-            return 0;
-          }
+          return d2.compareTo(d1);
         });
         break;
       case SortType.popular_inc:

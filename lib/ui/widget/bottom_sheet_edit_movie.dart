@@ -10,7 +10,7 @@ import 'common/text.dart';
 class BottomSheetEditMovie extends StatelessWidget {
   final Movie _movie;
 
-  BottomSheetEditMovie(this._movie);
+  BottomSheetEditMovie(this._movie, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,8 +24,8 @@ class BottomSheetEditMovie extends StatelessWidget {
       onSwipeRight: () => _hideBottomSheet(context),
       child: Column(
         children: <Widget>[
-          ListTile(leading: TextTitle('Edit')),
-          Divider(),
+          const ListTile(leading: TextTitle('Edit')),
+          const Divider(),
           BlocBuilder<FavouriteMovieBloc, FavouriteMovieState>(
               buildWhen: (pre, cur) {
             return cur is FavoriteChecked;
@@ -35,15 +35,16 @@ class BottomSheetEditMovie extends StatelessWidget {
                 return Column(
                   children: <Widget>[
                     _buildActionMove(context, translator),
-                    Divider(),
+                    const Divider(),
                     _buildFavoriteAction(context, state.isFavorite, translator),
                   ],
                 );
               }
               return _buildFavoriteAction(
                   context, state.isFavorite, translator);
-            } else
-              return SizedBox();
+            } else {
+              return const SizedBox();
+            }
           })
         ],
       ),
@@ -72,7 +73,7 @@ class BottomSheetEditMovie extends StatelessWidget {
               _hideBottomSheet(context);
             },
             child: ListTile(
-              leading: Icon(Icons.move_to_inbox, color: Colors.black),
+              leading: const Icon(Icons.move_to_inbox, color: Colors.black),
               title: Text(translator!.translate('act_move_finished')!),
             ),
           )
@@ -83,7 +84,7 @@ class BottomSheetEditMovie extends StatelessWidget {
               _hideBottomSheet(context);
             },
             child: ListTile(
-              leading: Icon(
+              leading: const Icon(
                 Icons.watch_later,
                 color: Colors.green,
               ),

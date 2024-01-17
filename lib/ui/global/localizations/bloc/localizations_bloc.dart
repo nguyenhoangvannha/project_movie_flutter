@@ -20,15 +20,13 @@ class LocalizationsBloc extends Bloc<LocalizationsEvent, LocalizationsState> {
   }
 
   static LocalizationsBloc? get instance {
-    if (_instance == null) {
-      _instance =
-          LocalizationsBloc._(LocalizationsState(locale: ui.window.locale));
-    }
+    _instance ??=
+        LocalizationsBloc._(LocalizationsState(locale: ui.window.locale));
     return _instance;
   }
 
   _loadSettings() async {
-    if (prefs == null) prefs = await SharedPreferences.getInstance();
+    prefs ??= await SharedPreferences.getInstance();
     List<String>? localeString = prefs!.getStringList(LOCALE);
     if (localeString != null) {
       ui.Locale locale =
@@ -38,7 +36,7 @@ class LocalizationsBloc extends Bloc<LocalizationsEvent, LocalizationsState> {
   }
 
   _saveSettings(Locale locale) async {
-    if (prefs == null) prefs = await SharedPreferences.getInstance();
+    prefs ??= await SharedPreferences.getInstance();
     await prefs!
         .setStringList(LOCALE, [locale.languageCode, locale.countryCode!]);
   }

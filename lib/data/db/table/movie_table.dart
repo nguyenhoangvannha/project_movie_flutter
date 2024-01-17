@@ -1,4 +1,3 @@
-import 'package:drift_sqflite/drift_sqflite.dart';
 import 'package:drift/drift.dart';
 
 class Movies extends Table {
@@ -6,13 +5,15 @@ class Movies extends Table {
 
   IntColumn? get voteCount => integer().nullable()();
 
-  BoolColumn? get video => boolean().nullable().withDefault(Constant(false))();
+  BoolColumn? get video =>
+      boolean().nullable().withDefault(const Constant(false))();
 
   TextColumn? get posterPath => text()();
 
   IntColumn? get id => integer()();
 
-  BoolColumn? get adult => boolean().nullable().withDefault(Constant(false))();
+  BoolColumn? get adult =>
+      boolean().nullable().withDefault(const Constant(false))();
 
   TextColumn? get backdropPath => text().nullable()();
 
@@ -31,7 +32,7 @@ class Movies extends Table {
   RealColumn? get runTime => real().nullable()();
 
   BoolColumn? get finished =>
-      boolean().nullable().withDefault(Constant(false))();
+      boolean().nullable().withDefault(const Constant(false))();
 
   @override
   Set<Column> get primaryKey => {id!};

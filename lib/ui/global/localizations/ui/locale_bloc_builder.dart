@@ -12,7 +12,7 @@ class LocaleBlocBuilder extends StatelessWidget {
       List<LocalizationsDelegate>? localizationsDelegates,
       Function localeResolutionCallback) builder;
 
-  LocaleBlocBuilder({required this.builder});
+  const LocaleBlocBuilder({Key? key, required this.builder}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

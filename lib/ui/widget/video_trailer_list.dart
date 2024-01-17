@@ -14,7 +14,8 @@ class VideoTrailerList extends StatelessWidget {
   final int? _movieId;
   final MovieVideosBloc? movieVideosBloc;
 
-  VideoTrailerList(this._movieId, {this.movieVideosBloc});
+  const VideoTrailerList(this._movieId, {Key? key, this.movieVideosBloc})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,13 +26,13 @@ class VideoTrailerList extends StatelessWidget {
         MovieVideosBloc(
             getMovieVideos: RepositoryProvider.of<GetVideoTrailer>(context))
       ..add(Fetch(movieId: _movieId));
-    return Container(
+    return SizedBox(
       height: mediaQueryData.size.height * heightPct,
       child: BlocBuilder<MovieVideosBloc, MovieVideosState>(
           bloc: bloc,
           builder: (bCtx, state) {
             if (state is Loading) {
-              return LoadingIndicator();
+              return const LoadingIndicator();
             }
             if (state is Error) {
               return MessageView(
@@ -58,7 +59,7 @@ class VideoTrailerList extends StatelessWidget {
                     );
                   });
             }
-            return MessageView();
+            return const MessageView();
           }),
     );
   }

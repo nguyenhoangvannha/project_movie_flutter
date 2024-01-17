@@ -7,7 +7,7 @@ import 'package:meta/meta.dart';
 class LocalizationsState extends Equatable {
   final Locale? locale;
 
-  LocalizationsState({required this.locale}) : super();
+  const LocalizationsState({required this.locale}) : super();
 
   @override
   List<Object?> get props => [locale!.countryCode, locale!.languageCode];

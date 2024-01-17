@@ -9,7 +9,8 @@ class MovieListHorItem extends StatelessWidget {
   final Function? onTap;
   final Function? onLongPress;
 
-  MovieListHorItem(this.movie, {this.onTap, this.onLongPress});
+  const MovieListHorItem(this.movie, {Key? key, this.onTap, this.onLongPress})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,40 +26,40 @@ class MovieListHorItem extends StatelessWidget {
         children: <Widget>[
           Expanded(
             child: CustomCard(
-              margin: EdgeInsets.all(4),
+              margin: const EdgeInsets.all(4),
               child: CachedImage(image: movie.posterPath),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 4,
           ),
           Text(
             '${movie.title}\n',
-            style: TextStyle(fontStyle: FontStyle.normal, fontSize: 12),
+            style: const TextStyle(fontStyle: FontStyle.normal, fontSize: 12),
             overflow: TextOverflow.ellipsis,
             textAlign: TextAlign.center,
             maxLines: 1,
           ),
-          SizedBox(
+          const SizedBox(
             height: 4,
           ),
           Row(
             children: <Widget>[
               Text(movie.voteAverage.toString(), style: caption),
-              SizedBox(
+              const SizedBox(
                 width: 2,
               ),
-              Icon(
+              const Icon(
                 Icons.star,
                 size: 8,
               ),
-              Spacer(),
+              const Spacer(),
               Text(
                 movie.releaseDate!
                     .substring(0, movie.releaseDate!.indexOf('-')),
                 style: caption,
               ),
-              SizedBox(
+              const SizedBox(
                 width: 8,
               )
             ],

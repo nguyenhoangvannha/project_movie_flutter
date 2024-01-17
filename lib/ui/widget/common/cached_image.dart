@@ -7,11 +7,12 @@ class CachedImage extends StatelessWidget {
   final BoxFit? fit;
   final placeholder;
 
-  CachedImage({
+  const CachedImage({
+    Key? key,
     required this.image,
     this.fit,
     this.placeholder,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,15 +21,15 @@ class CachedImage extends StatelessWidget {
       height: double.infinity,
       imageUrl: image!,
       placeholder: (bCtx, url) =>
-          _matchParentWidget(CupertinoActivityIndicator()),
+          _matchParentWidget(const CupertinoActivityIndicator()),
       errorWidget: (bCtx, url, error) =>
-          _matchParentWidget(Icon(Icons.broken_image)),
+          _matchParentWidget(const Icon(Icons.broken_image)),
       fit: fit ?? BoxFit.cover,
     );
   }
 
   _matchParentWidget(Widget child) {
-    return Container(
+    return SizedBox(
       width: double.infinity,
       height: double.infinity,
       child: Center(

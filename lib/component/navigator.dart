@@ -17,9 +17,7 @@ class AppNavigator {
   AppNavigator._();
 
   static AppNavigator? get instance {
-    if (_instance == null) {
-      _instance = AppNavigator._();
-    }
+    _instance ??= AppNavigator._();
     return _instance;
   }
 
@@ -49,7 +47,7 @@ class AppNavigator {
 
   void showBottomSheetMovieDetails(BuildContext context, Movie movie) {
     showModalBottomSheet(
-        shape: RoundedRectangleBorder(
+        shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(top: Radius.circular(16))),
         context: context,
         builder: (bCtx) {
@@ -59,7 +57,7 @@ class AppNavigator {
 
   void showBottomSheetMovieVideoTrailer(BuildContext context, Video video) {
     showModalBottomSheet(
-        shape: RoundedRectangleBorder(
+        shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(top: Radius.circular(16))),
         context: context,
         builder: (bCtx) {
@@ -72,7 +70,7 @@ class AppNavigator {
 
   void showBottomSheetEditMovie(BuildContext context, Movie movie) {
     showModalBottomSheet(
-        shape: RoundedRectangleBorder(
+        shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(top: Radius.circular(16))),
         context: context,
         builder: (bCtx) {
@@ -85,7 +83,7 @@ class AppNavigator {
       SortType? currentSortType,
       Function(SortType? newSortType) onSortTypeChanged) {
     showModalBottomSheet(
-        shape: RoundedRectangleBorder(
+        shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
         context: context,
         builder: (bCtx) {
@@ -100,9 +98,7 @@ class AppNavigator {
       {required Widget content,
       Widget title = const Text("Attention"),
       List<Widget>? actions}) {
-    if (actions == null) {
-      actions = [];
-    }
+    actions ??= [];
     SchedulerBinding.instance.addPostFrameCallback((_) {
       showDialog(
         context: context,

@@ -13,11 +13,13 @@ class RecommendationsMoviesList extends StatelessWidget {
   final int? _movieId;
   final RecommendationMovieBloc? recommendationMovieBloc;
 
-  RecommendationsMoviesList(this._movieId, {this.recommendationMovieBloc});
+  const RecommendationsMoviesList(this._movieId,
+      {Key? key, this.recommendationMovieBloc})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final bloc = this.recommendationMovieBloc ??
+    final bloc = recommendationMovieBloc ??
         RecommendationMovieBloc(
             getRecommendationMovie:
                 RepositoryProvider.of<GetRecommendationsMovies>(context))
@@ -26,7 +28,7 @@ class RecommendationsMoviesList extends StatelessWidget {
       bloc: bloc,
       builder: (bCtx, state) {
         if (state is Loading) {
-          return LoadingIndicator();
+          return const LoadingIndicator();
         }
         if (state is Error) {
           return Center(
@@ -45,7 +47,7 @@ class RecommendationsMoviesList extends StatelessWidget {
             movies: state.movies,
           );
         }
-        return Center(
+        return const Center(
           child: MessageView(),
         );
       },

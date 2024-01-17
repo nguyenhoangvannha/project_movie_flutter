@@ -12,7 +12,7 @@ import 'ui/global/application.dart';
 //todo: animation
 void main() {
   initApp();
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 void initApp() {
@@ -31,6 +31,8 @@ void setupLogging() {
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Application(
@@ -47,7 +49,7 @@ class MyApp extends StatelessWidget {
               Function(Locale?, Iterable<Locale>)?,
           routes: Routes.routes,
           onUnknownRoute: (settings) {
-            return MaterialPageRoute(builder: (ctx) => HomePage());
+            return MaterialPageRoute(builder: (ctx) => const HomePage());
           },
         );
       },

@@ -5,13 +5,13 @@ import '../app_themes.dart';
 
 @immutable
 abstract class ThemeEvent extends Equatable {
-  ThemeEvent() : super();
+  const ThemeEvent() : super();
 }
 
 class ThemeChanged extends ThemeEvent {
   final AppTheme theme;
 
-  ThemeChanged({required this.theme}) : super();
+  const ThemeChanged({required this.theme}) : super();
 
   @override
   List<Object> get props => [theme];

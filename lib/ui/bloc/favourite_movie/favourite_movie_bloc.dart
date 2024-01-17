@@ -32,7 +32,7 @@ class FavouriteMovieBloc
 
   FutureOr<void> _loadFavorite(
       LoadFavorite event, Emitter<FavouriteMovieState> emit) async {
-    if (listFavMovie != null && listFavMovie!.length > 0) {
+    if (listFavMovie != null && listFavMovie!.isNotEmpty) {
       emit(
         HasFavorite(
           movies: listFavMovie,
@@ -53,7 +53,7 @@ class FavouriteMovieBloc
           break;
         case ResourceType.Success:
           listFavMovie = res.data;
-          if (listFavMovie!.length > 0)
+          if (listFavMovie!.isNotEmpty) {
             emit(HasFavorite(
               movies: listFavMovie,
               watching: listFavMovie!.where((m) {
@@ -63,8 +63,9 @@ class FavouriteMovieBloc
                 return m.finished!;
               }).toList(),
             ));
-          else
+          } else {
             emit(NoFavorite());
+          }
           break;
       }
     }

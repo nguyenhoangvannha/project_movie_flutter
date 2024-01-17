@@ -7,7 +7,7 @@ import 'package:project_movie_flutter/ui/global/theme/app_themes.dart';
 import 'package:project_movie_flutter/ui/global/theme/bloc/bloc.dart';
 
 class SettingsPage extends StatefulWidget {
-  const SettingsPage();
+  const SettingsPage({Key? key}) : super(key: key);
 
   @override
   _SettingsPageState createState() => _SettingsPageState();
@@ -46,7 +46,7 @@ class _SettingsPageState extends State<SettingsPage> {
     return ListView(
       children: <Widget>[
         _buildThemeItem(translator),
-        Divider(
+        const Divider(
           indent: 8,
           endIndent: 8,
           thickness: 0,
@@ -59,11 +59,11 @@ class _SettingsPageState extends State<SettingsPage> {
 
   Widget _buildThemeItem(AppLocalizations translator) {
     return Card(
-      shape: BeveledRectangleBorder(),
+      shape: const BeveledRectangleBorder(),
       elevation: 1,
-      margin: EdgeInsets.all(0),
+      margin: const EdgeInsets.all(0),
       child: ListTile(
-          leading: Icon(Icons.format_paint),
+          leading: const Icon(Icons.format_paint),
           title: Text(translator.translate('title_themes_dark')!),
           trailing: Switch.adaptive(
             value: _darkTheme,
@@ -78,15 +78,15 @@ class _SettingsPageState extends State<SettingsPage> {
   Widget _buildLanguageItem(AppLocalizations translator) {
     final supportedLocales = LocalizationsDelegates.instance!.supportedLocales!;
     return Card(
-      shape: BeveledRectangleBorder(),
+      shape: const BeveledRectangleBorder(),
       elevation: 1,
-      margin: EdgeInsets.all(0),
+      margin: const EdgeInsets.all(0),
       child: ListTile(
-        leading: Icon(Icons.language),
+        leading: const Icon(Icons.language),
         title: Text(translator.translate('title_languages')!),
         trailing: DropdownButton<Locale>(
           value: _currentLocale,
-          icon: Icon(Icons.arrow_downward),
+          icon: const Icon(Icons.arrow_downward),
           iconSize: 18,
           elevation: 16,
           onChanged: (Locale? newValue) {
@@ -102,7 +102,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
                     //Icon(FontAwesomeIcons.globeAfrica, size: 16,),
-                    SizedBox(
+                    const SizedBox(
                       width: 4,
                     ),
                     Text(

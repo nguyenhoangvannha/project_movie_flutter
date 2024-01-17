@@ -5,7 +5,7 @@ import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 class VideoTrailerItem extends StatelessWidget {
   final Video video;
   final Function? onTap;
-  VideoTrailerItem(this.video, {this.onTap});
+  const VideoTrailerItem(this.video, {Key? key, this.onTap}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,9 +15,9 @@ class VideoTrailerItem extends StatelessWidget {
     return Center(
       child: Container(
           width: mediaQueryData.size.width * widthPct,
-          margin: EdgeInsets.only(right: 16),
+          margin: const EdgeInsets.only(right: 16),
           child: InkWell(
-            onTap: this.onTap as void Function()?,
+            onTap: onTap as void Function()?,
             child: Column(
               children: <Widget>[
                 Stack(
@@ -26,11 +26,11 @@ class VideoTrailerItem extends StatelessWidget {
                     YoutubePlayer(
                       controller: YoutubePlayerController(
                         initialVideoId: "${video.key}",
-                        flags: YoutubePlayerFlags(
+                        flags: const YoutubePlayerFlags(
                             hideControls: true, autoPlay: false, mute: true),
                       ),
                     ),
-                    Icon(
+                    const Icon(
                       Icons.play_arrow,
                       color: Colors.white,
                       size: 48,
@@ -38,7 +38,7 @@ class VideoTrailerItem extends StatelessWidget {
                   ],
                 ),
                 Container(
-                  padding: EdgeInsets.only(left: 4, right: 4, top: 4),
+                  padding: const EdgeInsets.only(left: 4, right: 4, top: 4),
                   child: Text(
                     '${video.name}',
                     maxLines: 2,

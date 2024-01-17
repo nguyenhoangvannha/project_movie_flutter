@@ -8,7 +8,8 @@ class MovieGrid extends StatelessWidget {
   final List<Movie>? movies;
   final Function()? onEndList;
 
-  MovieGrid({required this.movies, this.onEndList});
+  const MovieGrid({Key? key, required this.movies, this.onEndList})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

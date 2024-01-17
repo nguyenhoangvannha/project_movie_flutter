@@ -5,7 +5,8 @@ class TextTitle extends StatelessWidget {
   final int maxLines;
   final double? fontSize;
 
-  TextTitle(this.text, {this.maxLines = 1, this.fontSize});
+  const TextTitle(this.text, {Key? key, this.maxLines = 1, this.fontSize})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +24,7 @@ class TextTitle extends StatelessWidget {
 class TextSubtitle extends StatelessWidget {
   final String text;
 
-  TextSubtitle(this.text);
+  const TextSubtitle(this.text, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +44,7 @@ class TextSubtitle extends StatelessWidget {
 class TextCaption extends StatelessWidget {
   final String? text;
 
-  TextCaption(this.text);
+  const TextCaption(this.text, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +62,7 @@ class TextBody1 extends StatelessWidget {
   final String? text;
   final int maxLines;
 
-  TextBody1(this.text, {this.maxLines = 5});
+  const TextBody1(this.text, {Key? key, this.maxLines = 5}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -78,7 +79,7 @@ class TextBody1 extends StatelessWidget {
 class ExpandableText extends StatefulWidget {
   final String? text;
 
-  ExpandableText(this.text);
+  const ExpandableText(this.text, {Key? key}) : super(key: key);
 
   @override
   _ExpandableTextState createState() => _ExpandableTextState();

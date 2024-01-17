@@ -9,7 +9,7 @@ class ServerException implements Exception {
   ServerException.fromJson(
       {required int httpStatusCode, required Map<String, dynamic> errorBody}) {
     this.httpStatusCode = httpStatusCode;
-    this.statusCode = errorBody['status_code'];
-    this.statusMessage = errorBody['status_message'];
+    statusCode = errorBody['status_code'];
+    statusMessage = errorBody['status_message'];
   }
 }

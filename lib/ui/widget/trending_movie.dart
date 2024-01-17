@@ -14,8 +14,12 @@ import 'common/loading_list_placeholder.dart';
 import 'common/message_view.dart';
 
 class TrendingMovies extends StatelessWidget {
+  const TrendingMovies({Key? key}) : super(key: key);
+
+  @override
   Widget build(BuildContext context) {
-    final bloc = BlocProvider.of<TrendingMovieBloc>(context)..add(Fetch());
+    final bloc = BlocProvider.of<TrendingMovieBloc>(context)
+      ..add(const Fetch());
     AppLocalizations? translator = AppLocalizations.of(context);
 
     return BlocBuilder<TrendingMovieBloc, TrendingMovieState>(
@@ -23,7 +27,7 @@ class TrendingMovies extends StatelessWidget {
         if (state is Error) {
           String message = ExceptionHandler.handle(context, state.exception)!;
           AppNavigator.instance!.showAlertDialog(context,
-              title: Text('Error'), content: Text(message));
+              title: const Text('Error'), content: Text(message));
           return _buildError(context, bloc, state.exception, translator!);
         }
         if (state is Loaded) {
@@ -34,7 +38,7 @@ class TrendingMovies extends StatelessWidget {
           }
           return _buildResult(context, state.movies!, translator);
         }
-        return Center(
+        return const Center(
           child: LoadingListPlaceHolder(),
         );
       },
@@ -62,7 +66,7 @@ class TrendingMovies extends StatelessWidget {
           backgroundColor: bgColor,
           pinned: false,
           expandedHeight: 200.0,
-          flexibleSpace: FlexibleSpaceBar(
+          flexibleSpace: const FlexibleSpaceBar(
             background: Guide(),
           ),
         ),
@@ -74,7 +78,7 @@ class TrendingMovies extends StatelessWidget {
                 height: _calculateListItemHeight(
                     MediaQuery.of(context).orientation == Orientation.portrait,
                     MediaQuery.of(context).size.height),
-                margin: EdgeInsets.only(left: 8, right: 8),
+                margin: const EdgeInsets.only(left: 8, right: 8),
                 child: MovieListVerItem(
                   movie,
                   onTap: () => AppNavigator.instance!
@@ -99,7 +103,7 @@ class TrendingMovies extends StatelessWidget {
           ),
           ElevatedButton(
               onPressed: () {
-                bloc.add(Fetch());
+                bloc.add(const Fetch());
               },
               child: Text(translator.translate('act_retry')!)),
           ElevatedButton(

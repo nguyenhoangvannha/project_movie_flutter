@@ -4,7 +4,7 @@ import 'package:project_movie_flutter/domain/entity/video.dart';
 
 @immutable
 abstract class MovieVideosState extends Equatable {
-  MovieVideosState() : super();
+  const MovieVideosState() : super();
 
   @override
   List<Object?> get props => [];
@@ -15,7 +15,7 @@ class Loading extends MovieVideosState {}
 class Error extends MovieVideosState {
   final Object? exception;
 
-  Error(this.exception) : super();
+  const Error(this.exception) : super();
 
   @override
   List<Object?> get props => [exception];
@@ -24,7 +24,7 @@ class Error extends MovieVideosState {
 class Result extends MovieVideosState {
   final List<Video>? videos;
 
-  Result({required this.videos}) : super();
+  const Result({required this.videos}) : super();
 
   @override
   List<Object?> get props => [videos];

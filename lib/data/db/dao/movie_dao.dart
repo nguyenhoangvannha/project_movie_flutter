@@ -1,4 +1,3 @@
-import 'package:drift_sqflite/drift_sqflite.dart';
 import 'package:drift/drift.dart';
 import 'package:project_movie_flutter/data/db/moor_database.dart';
 import 'package:project_movie_flutter/data/db/table/movie_table.dart';

@@ -13,11 +13,12 @@ class SimilarMoviesList extends StatelessWidget {
   final int? _movieId;
   final SimilarMovieBloc? similarMovieBloc;
 
-  SimilarMoviesList(this._movieId, {this.similarMovieBloc});
+  const SimilarMoviesList(this._movieId, {Key? key, this.similarMovieBloc})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final bloc = this.similarMovieBloc ??
+    final bloc = similarMovieBloc ??
         SimilarMovieBloc(
             getSimilarMovies: RepositoryProvider.of<GetSimilarMovies>(context))
       ..add(Fetch(movieId: _movieId));
@@ -26,7 +27,7 @@ class SimilarMoviesList extends StatelessWidget {
       builder: (bCtx, state) {
         if (state is Loading) {
           print("LOADING SIMILAR");
-          return LoadingIndicator();
+          return const LoadingIndicator();
         }
         if (state is Error) {
           return Center(
@@ -45,7 +46,7 @@ class SimilarMoviesList extends StatelessWidget {
             movies: state.movies,
           );
         }
-        return Center(
+        return const Center(
           child: MessageView(),
         );
       },

@@ -7,16 +7,17 @@ class AdaptiveButton extends StatelessWidget {
   final Widget child;
   final Function? onPressed;
 
-  AdaptiveButton({required this.child, this.onPressed});
+  const AdaptiveButton({Key? key, required this.child, this.onPressed})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Platform.isIOS
         ? CupertinoButton(
-            child: this.child, onPressed: this.onPressed as void Function()?)
+            onPressed: onPressed as void Function()?, child: child)
         : OutlinedButton(
-            child: this.child,
-            onPressed: this.onPressed as void Function()?,
+            onPressed: onPressed as void Function()?,
+            child: child,
           );
   }
 }

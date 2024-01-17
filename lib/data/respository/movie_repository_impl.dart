@@ -26,7 +26,7 @@ class MovieRepositoryImpl implements MovieRepository {
     try {
       final res = await movieApiService
           .getTrendingMovies(page: page)
-          .timeout(Duration(seconds: _TIME_OUT));
+          .timeout(const Duration(seconds: _TIME_OUT));
       if (res.isSuccessful) {
         return DataResource(ResourceType.Success,
             data: mapper.mapMoviesResponseToList(res.body!.movies!));
@@ -47,7 +47,7 @@ class MovieRepositoryImpl implements MovieRepository {
     try {
       final res = await movieApiService
           .getNowPlaying(page: page)
-          .timeout(Duration(seconds: _TIME_OUT));
+          .timeout(const Duration(seconds: _TIME_OUT));
       if (res.isSuccessful) {
         return DataResource(ResourceType.Success,
             data: mapper.mapMoviesResponseToList(res.body!.movies!));
@@ -68,7 +68,7 @@ class MovieRepositoryImpl implements MovieRepository {
     try {
       final res = await movieApiService
           .searchMovies(query, page: page)
-          .timeout(Duration(seconds: _TIME_OUT));
+          .timeout(const Duration(seconds: _TIME_OUT));
       if (res.isSuccessful) {
         return DataResource(ResourceType.Success,
             data: mapper.mapMoviesResponseToList(res.body!.movies!));
@@ -88,7 +88,7 @@ class MovieRepositoryImpl implements MovieRepository {
     try {
       final res = await movieApiService
           .getVideoTrailer(movieId: movieId)
-          .timeout(Duration(seconds: _TIME_OUT));
+          .timeout(const Duration(seconds: _TIME_OUT));
       if (res.isSuccessful) {
         return DataResource(ResourceType.Success,
             data: mapper.mapVideosResponseToList(res.body!.videos!));
@@ -108,7 +108,7 @@ class MovieRepositoryImpl implements MovieRepository {
     try {
       final res = await movieApiService
           .getMovieDetail(movieId: movieId)
-          .timeout(Duration(seconds: _TIME_OUT));
+          .timeout(const Duration(seconds: _TIME_OUT));
       if (res.isSuccessful) {
         return DataResource(ResourceType.Success,
             data: mapper.mapMovieResponseToMovie(res.body!));
@@ -128,7 +128,7 @@ class MovieRepositoryImpl implements MovieRepository {
     try {
       final res = await movieApiService
           .getMovieCredits(movieId: movieId)
-          .timeout(Duration(seconds: _TIME_OUT));
+          .timeout(const Duration(seconds: _TIME_OUT));
       if (res.isSuccessful) {
         return DataResource(ResourceType.Success,
             data: mapper.mapCreditsResponseToList(res.body!.casts!));
@@ -149,7 +149,7 @@ class MovieRepositoryImpl implements MovieRepository {
     try {
       final res = await movieApiService
           .recommendationsMovies(movieId: movieId, page: page)
-          .timeout(Duration(seconds: _TIME_OUT));
+          .timeout(const Duration(seconds: _TIME_OUT));
       if (res.isSuccessful) {
         return DataResource(ResourceType.Success,
             data: mapper.mapMoviesResponseToList(res.body!.movies!));
@@ -170,7 +170,7 @@ class MovieRepositoryImpl implements MovieRepository {
     try {
       final res = await movieApiService
           .similarMovies(movieId: movieId, page: page)
-          .timeout(Duration(seconds: _TIME_OUT));
+          .timeout(const Duration(seconds: _TIME_OUT));
       if (res.isSuccessful) {
         return DataResource(ResourceType.Success,
             data: mapper.mapMoviesResponseToList(res.body!.movies!));

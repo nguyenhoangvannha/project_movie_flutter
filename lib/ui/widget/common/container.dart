@@ -9,14 +9,16 @@ class CustomCard extends StatelessWidget {
   final Color? color;
   final Color borderColor;
 
-  CustomCard(
-      {this.child,
+  const CustomCard(
+      {Key? key,
+      this.child,
       this.borderRadius = const BorderRadius.all(Radius.circular(8)),
       this.elevation = 2,
       this.borderWidth = 0.0,
       this.margin = const EdgeInsets.all(0),
       this.color,
-      this.borderColor = Colors.white});
+      this.borderColor = Colors.white})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -44,13 +46,15 @@ class RoundedBackground extends StatelessWidget {
   final double? width;
   final EdgeInsetsGeometry? margin;
 
-  RoundedBackground(
-      {required this.child,
+  const RoundedBackground(
+      {Key? key,
+      required this.child,
       this.padding = const EdgeInsets.all(0),
       this.width,
       this.margin = const EdgeInsets.all(0),
       this.borderRadius,
-      this.color});
+      this.color})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -59,12 +63,11 @@ class RoundedBackground extends StatelessWidget {
         : Colors.white30;
     if (color != null) brightColor = color;
     return Container(
-      width: this.width ?? double.infinity,
+      width: width ?? double.infinity,
       margin: margin,
       padding: padding,
       decoration: BoxDecoration(
-          borderRadius:
-              borderRadius != null ? borderRadius : BorderRadius.circular(8),
+          borderRadius: borderRadius ?? BorderRadius.circular(8),
           color: brightColor),
       child: child,
     );

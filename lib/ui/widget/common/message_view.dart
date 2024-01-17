@@ -5,19 +5,20 @@ class MessageView extends StatelessWidget {
   final IconData? icon;
   final String? message;
 
-  MessageView({this.icon, this.message = 'Unknown state'});
+  const MessageView({Key? key, this.icon, this.message = 'Unknown state'})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(16),
+      margin: const EdgeInsets.all(16),
       child: FractionallySizedBox(
         widthFactor: 0.7,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Icon(icon ?? Icons.warning),
-            SizedBox(
+            const SizedBox(
               width: 8,
             ),
             TextTitle(message),

@@ -6,7 +6,8 @@ class CastListItem extends StatelessWidget {
   final String? title;
   final String? imageUrl;
 
-  CastListItem({required this.title, required this.imageUrl});
+  const CastListItem({Key? key, required this.title, required this.imageUrl})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +17,7 @@ class CastListItem extends StatelessWidget {
       children: <Widget>[
         Expanded(
           child: Card(
-            shape: CircleBorder(),
+            shape: const CircleBorder(),
             clipBehavior: Clip.antiAlias,
             child: CachedImage(
               image: imageUrl,

@@ -6,7 +6,7 @@ import '../bloc/bloc.dart';
 class ThemeBlocBuilder extends StatelessWidget {
   final Widget Function(BuildContext context, ThemeData? themeData) builder;
 
-  ThemeBlocBuilder({required this.builder});
+  const ThemeBlocBuilder({Key? key, required this.builder}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

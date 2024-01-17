@@ -10,7 +10,7 @@ part 'movie_model.g.dart';
 abstract class MovieModel implements Built<MovieModel, MovieModelBuilder> {
   MovieModel._();
 
-  factory MovieModel([updates(MovieModelBuilder b)]) = _$MovieModel;
+  factory MovieModel([Function(MovieModelBuilder b) updates]) = _$MovieModel;
 
   @BuiltValueField(wireName: 'popularity')
   double? get popularity;

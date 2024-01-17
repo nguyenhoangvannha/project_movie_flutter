@@ -45,9 +45,7 @@ class LocalizationsDelegates {
   }
 
   static LocalizationsDelegates? get instance {
-    if (_instance == null) {
-      _instance = LocalizationsDelegates._();
-    }
+    _instance ??= LocalizationsDelegates._();
     return _instance;
   }
 

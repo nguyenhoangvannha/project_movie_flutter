@@ -58,9 +58,7 @@ class AppBlocDelegate {
   }
 
   static AppBlocDelegate? instance(BuildContext context) {
-    if (_instance == null) {
-      _instance = AppBlocDelegate._(context);
-    }
+    _instance ??= AppBlocDelegate._(context);
     return _instance;
   }
 

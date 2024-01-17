@@ -14,7 +14,7 @@ class MoviesPanel extends StatefulWidget {
   final List<Movie>? movies;
   final Future<List<Movie>?> Function(BuildContext context, int page)? loadMore;
 
-  MoviesPanel(this.movies, {this.loadMore});
+  const MoviesPanel(this.movies, {Key? key, this.loadMore}) : super(key: key);
 
   @override
   _MoviesPanelState createState() => _MoviesPanelState();
@@ -42,8 +42,8 @@ class _MoviesPanelState extends State<MoviesPanel> {
 
   @override
   Widget build(BuildContext context) {
-    return widget.movies!.length < 1
-        ? Guide()
+    return widget.movies!.isEmpty
+        ? const Guide()
         : _buildContent(context, widget.movies);
   }
 
@@ -65,7 +65,7 @@ class _MoviesPanelState extends State<MoviesPanel> {
                 child: Row(
                   children: <Widget>[
                     Text(translator.translate('title_sort')!),
-                    Icon(Icons.keyboard_arrow_down)
+                    const Icon(Icons.keyboard_arrow_down)
                   ],
                 ),
               ),
@@ -87,15 +87,15 @@ class _MoviesPanelState extends State<MoviesPanel> {
                   onEndList: _onEndList,
                 ),
         ),
-        if (loading) LinearProgressIndicator()
+        if (loading) const LinearProgressIndicator()
       ],
     );
   }
 
-  final _lock = new Lock();
+  final _lock = Lock();
 
   _onEndList() async {
-    if (widget.loadMore != null)
+    if (widget.loadMore != null) {
       await _lock.synchronized(() async {
         if (!noMore) {
           setState(() {
@@ -115,5 +115,6 @@ class _MoviesPanelState extends State<MoviesPanel> {
           });
         }
       });
+    }
   }
 }

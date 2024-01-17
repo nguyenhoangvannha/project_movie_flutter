@@ -7,6 +7,8 @@ import '../bloc/bloc.dart';
 import 'theme_item.dart';
 
 class ThemeSettingPage extends StatelessWidget {
+  const ThemeSettingPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

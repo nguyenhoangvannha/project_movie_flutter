@@ -18,7 +18,7 @@ class TrendingMovieBloc extends Bloc<TrendingMovieEvent, TrendingMovieState> {
   }
 
   FutureOr<void> _onFetch(Fetch event, Emitter<TrendingMovieState> emit) async {
-    if (movies == null || movies!.length < 1) {
+    if (movies == null || movies!.isEmpty) {
       emit(Loading());
       var res = await getTrendingMovies.execute(MovieParams());
       switch (res.type) {

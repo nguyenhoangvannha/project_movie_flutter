@@ -10,7 +10,7 @@ import 'package:project_movie_flutter/data/network/model/video_response_model.da
 
 part 'serializers.g.dart';
 
-@SerializersFor(const [
+@SerializersFor([
   MovieModel,
   MovieResponseModel,
   CastModel,

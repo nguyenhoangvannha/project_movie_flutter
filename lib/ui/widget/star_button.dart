@@ -6,7 +6,7 @@ import 'package:project_movie_flutter/ui/bloc/favourite_movie/bloc.dart';
 class StarButton extends StatelessWidget {
   final Movie movie;
 
-  StarButton({required this.movie});
+  const StarButton({Key? key, required this.movie}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class StarButton extends StatelessWidget {
         buildWhen: (pre, cur) {
       return cur is FavoriteChecked && cur.movieId == movie.id;
     }, builder: (bCtx, state) {
-      if (state is FavoriteChecked)
+      if (state is FavoriteChecked) {
         return IconButton(
           icon: Icon(
             state.isFavorite ? Icons.star : Icons.star_border,
@@ -30,8 +30,9 @@ class StarButton extends StatelessWidget {
             }
           },
         );
-      else
-        return Text('');
+      } else {
+        return const Text('');
+      }
     });
   }
 }

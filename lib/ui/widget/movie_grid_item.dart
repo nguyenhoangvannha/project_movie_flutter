@@ -9,7 +9,8 @@ class MovieGridItem extends StatelessWidget {
   final Function? onTap;
   final Function? onLongPress;
 
-  MovieGridItem(this.movie, {this.onTap, this.onLongPress});
+  const MovieGridItem(this.movie, {Key? key, this.onTap, this.onLongPress})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,44 +26,44 @@ class MovieGridItem extends StatelessWidget {
         children: <Widget>[
           Expanded(
             child: CustomCard(
-              margin: EdgeInsets.all(4),
+              margin: const EdgeInsets.all(4),
               child: CachedImage(image: movie.posterPath),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 4,
           ),
           Container(
-            margin: EdgeInsets.only(left: 8),
+            margin: const EdgeInsets.only(left: 8),
             child: Text(
               movie.title!,
-              style: TextStyle(fontStyle: FontStyle.normal, fontSize: 12),
+              style: const TextStyle(fontStyle: FontStyle.normal, fontSize: 12),
               overflow: TextOverflow.ellipsis,
               maxLines: 1,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 4,
           ),
           Row(
             children: <Widget>[
-              SizedBox(
+              const SizedBox(
                 width: 8,
               ),
               Text(movie.voteAverage.toString(), style: caption),
-              SizedBox(
+              const SizedBox(
                 width: 2,
               ),
-              Icon(
+              const Icon(
                 Icons.star,
                 size: 8,
               ),
-              Spacer(),
+              const Spacer(),
               Text(
                 movie.releaseDate!,
                 style: caption,
               ),
-              SizedBox(
+              const SizedBox(
                 width: 16,
               )
             ],

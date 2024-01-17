@@ -6,7 +6,8 @@ class LocaleItem extends StatelessWidget {
   final Locale locale;
   final Function? onTap;
 
-  LocaleItem({required this.locale, this.onTap});
+  const LocaleItem({Key? key, required this.locale, this.onTap})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

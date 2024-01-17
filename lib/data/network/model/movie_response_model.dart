@@ -13,7 +13,7 @@ abstract class MovieResponseModel
     implements Built<MovieResponseModel, MovieResponseModelBuilder> {
   MovieResponseModel._();
 
-  factory MovieResponseModel([updates(MovieResponseModelBuilder b)]) =
+  factory MovieResponseModel([Function(MovieResponseModelBuilder b) updates]) =
       _$MovieResponseModel;
 
   @BuiltValueField(wireName: 'page')

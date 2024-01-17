@@ -7,7 +7,9 @@ class ThemeItem extends StatelessWidget {
   final ThemeData? themeData;
   final AppTheme theme;
 
-  ThemeItem({this.onTap, required this.themeData, required this.theme});
+  const ThemeItem(
+      {Key? key, this.onTap, required this.themeData, required this.theme})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

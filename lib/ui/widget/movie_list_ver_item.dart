@@ -16,7 +16,8 @@ class MovieListVerItem extends StatelessWidget {
   final Function? onTap;
   final Function? onLongPress;
 
-  MovieListVerItem(this.movie, {this.onTap, this.onLongPress});
+  const MovieListVerItem(this.movie, {Key? key, this.onTap, this.onLongPress})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +33,6 @@ class MovieListVerItem extends StatelessWidget {
         bool favorite = state.isFavorite;
         return Slidable(
           closeOnScroll: true,
-          child: _buildContent(context),
           endActionPane: ActionPane(
             motion: const ScrollMotion(),
             children: <Widget>[
@@ -81,9 +81,11 @@ class MovieListVerItem extends StatelessWidget {
                       )
             ],
           ),
+          child: _buildContent(context),
         );
-      } else
-        return LoadingIndicator();
+      } else {
+        return const LoadingIndicator();
+      }
     });
   }
 
@@ -93,14 +95,14 @@ class MovieListVerItem extends StatelessWidget {
       onLongPress: onLongPress as void Function()?,
       child: LayoutBuilder(builder: (_, constrains) {
         return Container(
-          padding: EdgeInsets.all(8),
+          padding: const EdgeInsets.all(8),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
-              Container(
+              SizedBox(
                 width: MediaQuery.of(context).size.width * 0.275,
                 child: CustomCard(
-                  margin: EdgeInsets.only(right: 16, bottom: 8),
+                  margin: const EdgeInsets.only(right: 16, bottom: 8),
                   child: CachedImage(image: movie.posterPath),
                 ),
               ),
@@ -108,7 +110,7 @@ class MovieListVerItem extends StatelessWidget {
                   child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  SizedBox(
+                  const SizedBox(
                     height: 2,
                   ),
                   TextTitle(
@@ -116,34 +118,34 @@ class MovieListVerItem extends StatelessWidget {
                     maxLines: 2,
                     fontSize: 18,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 4,
                   ),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
-                      Icon(
+                      const Icon(
                         Icons.date_range,
                         size: 10,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 2,
                       ),
                       TextCaption(movie.releaseDate),
-                      SizedBox(
+                      const SizedBox(
                         width: 8,
                       ),
-                      Icon(
+                      const Icon(
                         Icons.language,
                         size: 10,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 2,
                       ),
                       TextCaption(movie.originalLanguage)
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 2,
                   ),
                   Expanded(
@@ -151,7 +153,7 @@ class MovieListVerItem extends StatelessWidget {
                       child: Text(
                     movie.overview!,
                     overflow: TextOverflow.ellipsis,
-                    style: TextStyle(fontSize: 13),
+                    style: const TextStyle(fontSize: 13),
                     softWrap: true,
                     maxLines: MediaQuery.of(context).orientation ==
                             Orientation.portrait
@@ -163,43 +165,43 @@ class MovieListVerItem extends StatelessWidget {
                       Chip(
                           label: Row(
                         children: <Widget>[
-                          Icon(
+                          const Icon(
                             Icons.star,
                             size: 12,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 4,
                           ),
                           TextSubtitle(movie.voteAverage.toString())
                         ],
                       )),
-                      SizedBox(
+                      const SizedBox(
                         width: 8,
                       ),
                       Chip(
                           label: Row(
                         children: <Widget>[
-                          Icon(
+                          const Icon(
                             Icons.sort,
                             size: 12,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 4,
                           ),
                           TextSubtitle(movie.voteCount.toString())
                         ],
                       )),
-                      SizedBox(
+                      const SizedBox(
                         width: 8,
                       ),
                       Chip(
                           label: Row(
                         children: <Widget>[
-                          Icon(
+                          const Icon(
                             Icons.format_list_numbered,
                             size: 12,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 4,
                           ),
                           TextSubtitle(movie.popularity.toString())

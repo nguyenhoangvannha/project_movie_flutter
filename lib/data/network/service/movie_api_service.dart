@@ -60,12 +60,12 @@ abstract class MovieApiService extends ChopperService {
 
   static MovieApiService create([ChopperClient? client]) {
     final client = ChopperClient(
-        baseUrl: Uri.tryParse('${ApiConfig.BASE_API_URL}'),
+        baseUrl: Uri.tryParse(ApiConfig.BASE_API_URL),
         services: [
           _$MovieApiService(),
         ],
         converter: BuiltValueConverter(serializers),
-        errorConverter: JsonConverter(),
+        errorConverter: const JsonConverter(),
         interceptors: [
           HttpLoggingInterceptor(),
           NetworkInterceptor(),

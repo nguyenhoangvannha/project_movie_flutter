@@ -19,7 +19,7 @@ class MovieSearchDelegate extends SearchDelegate<List<Movie>> {
   List<Widget> buildActions(BuildContext context) {
     return <Widget>[
       IconButton(
-          icon: Icon(Icons.clear),
+          icon: const Icon(Icons.clear),
           tooltip: 'Clear',
           onPressed: () {
             query = "";
@@ -30,7 +30,7 @@ class MovieSearchDelegate extends SearchDelegate<List<Movie>> {
 
   @override
   Widget buildLeading(BuildContext context) {
-    return BackButton();
+    return const BackButton();
   }
 
   @override
@@ -40,8 +40,7 @@ class MovieSearchDelegate extends SearchDelegate<List<Movie>> {
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    if (_searchBloc == null)
-      _searchBloc = BlocProvider.of<SearchMovieBloc>(context);
+    _searchBloc ??= BlocProvider.of<SearchMovieBloc>(context);
     _searchBloc!.add(Search(query ?? ""));
     return _search(context, Type.Suggestions);
   }
@@ -50,10 +49,10 @@ class MovieSearchDelegate extends SearchDelegate<List<Movie>> {
     return BlocBuilder<SearchMovieBloc, SearchMovieState>(
       builder: (bctx, state) {
         if (state is Initial) {
-          return Guide();
+          return const Guide();
         }
         if (state is Searching) {
-          return LoadingListPlaceHolder();
+          return const LoadingListPlaceHolder();
         }
 
         if (state is Error) {
@@ -66,9 +65,9 @@ class MovieSearchDelegate extends SearchDelegate<List<Movie>> {
               message: AppLocalizations.of(context)!.translate('msg_no_movies'),
             );
           }
-          if (type == Type.Suggestions)
+          if (type == Type.Suggestions) {
             return _buildSuggestionsList(state.movies!);
-          else {
+          } else {
             return MoviesPanel(
               state.movies,
               loadMore: loadMore,
@@ -89,7 +88,7 @@ class MovieSearchDelegate extends SearchDelegate<List<Movie>> {
   _buildSuggestionsList(List<Movie> movies) {
     return ListView.separated(
         separatorBuilder: (bCtx, index) {
-          return Divider(
+          return const Divider(
             indent: 8,
             endIndent: 8,
             height: 4,

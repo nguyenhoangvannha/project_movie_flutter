@@ -13,7 +13,7 @@ abstract class VideoResponseModel
     implements Built<VideoResponseModel, VideoResponseModelBuilder> {
   VideoResponseModel._();
 
-  factory VideoResponseModel([updates(VideoResponseModelBuilder b)]) =
+  factory VideoResponseModel([Function(VideoResponseModelBuilder b) updates]) =
       _$VideoResponseModel;
 
   @BuiltValueField(wireName: 'id')

@@ -6,8 +6,11 @@ class BottomSheetSort extends StatefulWidget {
   final SortType? currentSortType;
   final Function(SortType? sortType) onSortTypeChanged;
 
-  BottomSheetSort(
-      {required this.currentSortType, required this.onSortTypeChanged});
+  const BottomSheetSort(
+      {Key? key,
+      required this.currentSortType,
+      required this.onSortTypeChanged})
+      : super(key: key);
 
   @override
   _BottomSheetSortState createState() => _BottomSheetSortState();
@@ -27,7 +30,7 @@ class _BottomSheetSortState extends State<BottomSheetSort> {
   Widget build(BuildContext context) {
     _translator = AppLocalizations.of(context);
     return Container(
-      padding: EdgeInsets.only(top: 16, left: 8, right: 8),
+      padding: const EdgeInsets.only(top: 16, left: 8, right: 8),
       child: Column(
         children: <Widget>[
           Text(
@@ -35,7 +38,7 @@ class _BottomSheetSortState extends State<BottomSheetSort> {
             style: Theme.of(context).textTheme.titleMedium,
             textAlign: TextAlign.center,
           ),
-          SizedBox(
+          const SizedBox(
             height: 8,
           ),
           Expanded(

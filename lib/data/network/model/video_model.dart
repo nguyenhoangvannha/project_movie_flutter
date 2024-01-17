@@ -9,7 +9,7 @@ part 'video_model.g.dart';
 abstract class VideoModel implements Built<VideoModel, VideoModelBuilder> {
   VideoModel._();
 
-  factory VideoModel([updates(VideoModelBuilder b)]) = _$VideoModel;
+  factory VideoModel([Function(VideoModelBuilder b) updates]) = _$VideoModel;
 
   @BuiltValueField(wireName: 'id')
   String get id;

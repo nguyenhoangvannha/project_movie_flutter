@@ -7,7 +7,9 @@ class VoteAverage extends StatelessWidget {
   final EdgeInsetsGeometry? margin;
   final EdgeInsetsGeometry? padding;
 
-  VoteAverage({required this.voteAverage, this.margin, this.padding});
+  const VoteAverage(
+      {Key? key, required this.voteAverage, this.margin, this.padding})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +24,7 @@ class VoteAverage extends StatelessWidget {
             '$voteAverage',
             textAlign: TextAlign.start,
           ),
-          Icon(
+          const Icon(
             Icons.star,
             size: 8,
             color: Colors.yellow,

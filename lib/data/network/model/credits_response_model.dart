@@ -13,7 +13,8 @@ abstract class CreditsResponseModel
     implements Built<CreditsResponseModel, CreditsResponseModelBuilder> {
   CreditsResponseModel._();
 
-  factory CreditsResponseModel([updates(CreditsResponseModelBuilder b)]) =
+  factory CreditsResponseModel(
+          [Function(CreditsResponseModelBuilder b) updates]) =
       _$CreditsResponseModel;
 
   @BuiltValueField(wireName: 'id')

@@ -12,6 +12,8 @@ import 'package:project_movie_flutter/util/exception_handler.dart';
 import '../../widget/trending_movie.dart';
 
 class HomePage extends StatelessWidget {
+  const HomePage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final translator = AppLocalizations.of(context);
@@ -26,7 +28,8 @@ class HomePage extends StatelessWidget {
           next is FavoriteError;
     }, builder: (context, state) {
       if (state is NoFavorite) {
-        return _buildScaffold(context, TrendingMovies(), null, translator!);
+        return _buildScaffold(
+            context, const TrendingMovies(), null, translator!);
       }
 
       if (state is HasFavorite) {
@@ -46,14 +49,14 @@ class HomePage extends StatelessWidget {
             translator!);
       }
       return _buildScaffold(
-          context, LoadingListPlaceHolder(), null, translator!);
+          context, const LoadingListPlaceHolder(), null, translator!);
     });
   }
 
   Widget _buildAppBar(BuildContext context, AppLocalizations translator) {
     return AppBar(
       leading: IconButton(
-        icon: Icon(Icons.account_circle),
+        icon: const Icon(Icons.account_circle),
         onPressed: () => AppNavigator.instance!.navToSetting(context),
       ),
       title: Center(
@@ -62,7 +65,7 @@ class HomePage extends StatelessWidget {
       )),
       actions: <Widget>[
         IconButton(
-            icon: Icon(Icons.search),
+            icon: const Icon(Icons.search),
             onPressed: () => AppNavigator.instance!.navToSearch(context))
       ],
     );
@@ -94,8 +97,8 @@ class HomePage extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Icon(Icons.remove_red_eye),
-                      SizedBox(
+                      const Icon(Icons.remove_red_eye),
+                      const SizedBox(
                         width: 8,
                       ),
                       Text(
@@ -108,8 +111,8 @@ class HomePage extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Icon(Icons.done_outline),
-                      SizedBox(
+                      const Icon(Icons.done_outline),
+                      const SizedBox(
                         width: 8,
                       ),
                       Text(translator.translate('title_finished')!)
