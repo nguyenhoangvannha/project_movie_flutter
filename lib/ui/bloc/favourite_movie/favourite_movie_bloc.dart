@@ -14,13 +14,13 @@ class FavouriteMovieBloc
   final UseCase<List<Movie>, MovieParams> getFavoriteMovie;
   final UseCase<bool, Movie> addFavoriteMovie;
   final UseCase<bool, Movie> updateFavoriteMovie;
-  final UseCase<bool, int> removeFavoriteMovie;
+  final UseCase<bool, int?> removeFavoriteMovie;
 
   FavouriteMovieBloc(
-      {@required this.getFavoriteMovie,
-      @required this.addFavoriteMovie,
-      @required this.updateFavoriteMovie,
-      @required this.removeFavoriteMovie})
+      {required this.getFavoriteMovie,
+      required this.addFavoriteMovie,
+      required this.updateFavoriteMovie,
+      required this.removeFavoriteMovie})
       : super(LoadingFavorite()) {
     on<LoadFavorite>(_loadFavorite);
     on<CheckFavorite>(_onCheckFavorite);
@@ -29,19 +29,19 @@ class FavouriteMovieBloc
     on<UpdateFavorite>(_onUpdateFavorite);
   }
 
-  List<Movie> listFavMovie = [];
+  List<Movie>? listFavMovie = [];
 
   FutureOr<void> _loadFavorite(
       LoadFavorite event, Emitter<FavouriteMovieState> emit) async {
-    if (listFavMovie != null && listFavMovie.length > 0) {
+    if (listFavMovie != null && listFavMovie!.length > 0) {
       emit(
         HasFavorite(
           movies: listFavMovie,
-          watching: listFavMovie.where((m) {
-            return !m.finished;
+          watching: listFavMovie!.where((m) {
+            return !m.finished!;
           }).toList(),
-          finished: listFavMovie.where((m) {
-            return m.finished;
+          finished: listFavMovie!.where((m) {
+            return m.finished!;
           }).toList(),
         ),
       );
@@ -54,14 +54,14 @@ class FavouriteMovieBloc
           break;
         case ResourceType.Success:
           listFavMovie = res.data;
-          if (listFavMovie.length > 0)
+          if (listFavMovie!.length > 0)
             emit(HasFavorite(
               movies: listFavMovie,
-              watching: listFavMovie.where((m) {
-                return !m.finished;
+              watching: listFavMovie!.where((m) {
+                return !m.finished!;
               }).toList(),
-              finished: listFavMovie.where((m) {
-                return m.finished;
+              finished: listFavMovie!.where((m) {
+                return m.finished!;
               }).toList(),
             ));
           else
@@ -74,7 +74,7 @@ class FavouriteMovieBloc
   FutureOr<void> _onCheckFavorite(
       CheckFavorite event, Emitter<FavouriteMovieState> emit) {
     if (listFavMovie != null &&
-        listFavMovie.indexWhere((e) {
+        listFavMovie!.indexWhere((e) {
               return e.id == event.movieId;
             }) >=
             0) {
@@ -87,11 +87,11 @@ class FavouriteMovieBloc
   FutureOr<void> _onRemoveFavorite(
       RemoveFavorite event, Emitter<FavouriteMovieState> emit) {
     if (listFavMovie != null &&
-        listFavMovie.indexWhere((e) {
+        listFavMovie!.indexWhere((e) {
               return e.id == event.movieId;
             }) >=
             0) {
-      listFavMovie.removeWhere((m) {
+      listFavMovie!.removeWhere((m) {
         return m.id == event.movieId;
       });
       removeFavoriteMovie.execute(event.movieId);
@@ -103,11 +103,11 @@ class FavouriteMovieBloc
   FutureOr<void> _onAddFavorite(
       AddFavorite event, Emitter<FavouriteMovieState> emit) {
     if (listFavMovie != null &&
-        listFavMovie.indexWhere((e) {
+        listFavMovie!.indexWhere((e) {
               return e.id == event.movie.id;
             }) <
             0) {
-      listFavMovie.add(event.movie);
+      listFavMovie!.add(event.movie);
       addFavoriteMovie.execute(event.movie);
       add(CheckFavorite(movieId: event.movie.id));
       add(LoadFavorite());
@@ -117,7 +117,7 @@ class FavouriteMovieBloc
   FutureOr<void> _onUpdateFavorite(
       UpdateFavorite event, Emitter<FavouriteMovieState> emit) {
     final eventMovie = event.movie;
-    final favMovie = listFavMovie.firstWhere((m) {
+    final favMovie = listFavMovie!.firstWhere((m) {
       if (m.id == eventMovie.id) {
         m.finished = eventMovie.finished;
         return true;

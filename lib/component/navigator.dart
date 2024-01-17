@@ -12,11 +12,11 @@ import 'package:project_movie_flutter/ui/widget/bottom_sheet_sort.dart';
 import 'package:project_movie_flutter/util/movie_sort_type.dart';
 
 class AppNavigator {
-  static AppNavigator _instance;
+  static AppNavigator? _instance;
 
   AppNavigator._();
 
-  static AppNavigator get instance {
+  static AppNavigator? get instance {
     if (_instance == null) {
       _instance = AppNavigator._();
     }
@@ -39,7 +39,7 @@ class AppNavigator {
     Navigator.of(context).pushNamed(Routes.SETTINGS_LANGUAGES);
   }
 
-  void navToDetailsPage(BuildContext context, int movieId,
+  void navToDetailsPage(BuildContext context, int? movieId,
       {bool fromBottomSheet = false}) {
     if (fromBottomSheet) {
       Navigator.of(context).pop();
@@ -82,8 +82,8 @@ class AppNavigator {
 
   void showBottomSheetShortMovies(
       BuildContext context,
-      SortType currentSortType,
-      Function(SortType newSortType) onSortTypeChanged) {
+      SortType? currentSortType,
+      Function(SortType? newSortType) onSortTypeChanged) {
     showModalBottomSheet(
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
@@ -97,9 +97,9 @@ class AppNavigator {
   }
 
   void showAlertDialog(BuildContext context,
-      {@required Widget content,
+      {required Widget content,
       Widget title = const Text("Attention"),
-      List<Widget> actions}) {
+      List<Widget>? actions}) {
     if (actions == null) {
       actions = [];
     }
@@ -111,11 +111,11 @@ class AppNavigator {
           return AlertDialog(
             title: title,
             content: content,
-            actions: actions
+            actions: actions!
               ..add(TextButton(
                 onPressed: () => Navigator.of(context).pop(),
                 child:
-                    Text(AppLocalizations.of(context).translate('act_close')),
+                    Text(AppLocalizations.of(context)!.translate('act_close')!),
               )),
           );
         },

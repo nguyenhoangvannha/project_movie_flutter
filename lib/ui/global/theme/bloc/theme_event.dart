@@ -11,7 +11,7 @@ abstract class ThemeEvent extends Equatable {
 class ThemeChanged extends ThemeEvent {
   final AppTheme theme;
 
-  ThemeChanged({@required this.theme}) : super();
+  ThemeChanged({required this.theme}) : super();
 
   @override
   List<Object> get props => [theme];

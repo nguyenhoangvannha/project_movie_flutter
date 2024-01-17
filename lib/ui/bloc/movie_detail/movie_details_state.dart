@@ -13,7 +13,7 @@ class Loading extends MovieDetailsState {
 }
 
 class Error extends MovieDetailsState {
-  final Exception exception;
+  final Object? exception;
 
   Error(this.exception) : super();
 
@@ -22,10 +22,10 @@ class Error extends MovieDetailsState {
 }
 
 class Result extends MovieDetailsState {
-  final Movie movie;
+  final Movie? movie;
 
-  Result({@required this.movie}) : super();
+  Result({required this.movie}) : super();
 
   @override
-  List<Object> get props => [movie.id];
+  List<Object?> get props => [movie!.id];
 }

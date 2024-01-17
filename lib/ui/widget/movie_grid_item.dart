@@ -6,8 +6,8 @@ import 'common/container.dart';
 
 class MovieGridItem extends StatelessWidget {
   final Movie movie;
-  final Function onTap;
-  final Function onLongPress;
+  final Function? onTap;
+  final Function? onLongPress;
 
   MovieGridItem(this.movie, {this.onTap, this.onLongPress});
 
@@ -15,11 +15,11 @@ class MovieGridItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final caption = Theme.of(context)
         .textTheme
-        .caption
+        .caption!
         .copyWith(fontStyle: FontStyle.normal, fontSize: 10);
     return InkWell(
-      onTap: onTap,
-      onLongPress: onLongPress,
+      onTap: onTap as void Function()?,
+      onLongPress: onLongPress as void Function()?,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -35,7 +35,7 @@ class MovieGridItem extends StatelessWidget {
           Container(
             margin: EdgeInsets.only(left: 8),
             child: Text(
-              movie.title,
+              movie.title!,
               style: TextStyle(fontStyle: FontStyle.normal, fontSize: 12),
               overflow: TextOverflow.ellipsis,
               maxLines: 1,
@@ -59,7 +59,7 @@ class MovieGridItem extends StatelessWidget {
               ),
               Spacer(),
               Text(
-                movie.releaseDate,
+                movie.releaseDate!,
                 style: caption,
               ),
               SizedBox(

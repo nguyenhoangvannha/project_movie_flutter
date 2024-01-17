@@ -11,8 +11,8 @@ import 'common/cached_image.dart';
 
 class SearchItem extends StatelessWidget {
   final Movie movie;
-  final Function onTap;
-  final Function onLongPress;
+  final Function? onTap;
+  final Function? onLongPress;
 
   SearchItem(this.movie, {this.onTap, this.onLongPress});
 
@@ -37,8 +37,8 @@ class SearchItem extends StatelessWidget {
             children: <Widget>[
               SlidableAction(
                 label: favorite
-                    ? translator.translate('act_remove')
-                    : translator.translate('act_favourite'),
+                    ? translator!.translate('act_remove')
+                    : translator!.translate('act_favourite'),
                 backgroundColor: favorite ? Colors.red : Colors.yellow,
                 icon: favorite ? Icons.remove_circle : Icons.star,
                 onPressed: (context) {
@@ -47,15 +47,15 @@ class SearchItem extends StatelessWidget {
                   } else {
                     favBloc.add(AddFavorite(movie: movie));
                   }
-                  AppNavigator.instance.showSnackBar(
+                  AppNavigator.instance!.showSnackBar(
                       context,
                       favorite
-                          ? translator.translate('act_remove_favourite')
-                          : translator.translate('act_add_favourite'));
+                          ? translator.translate('act_remove_favourite')!
+                          : translator.translate('act_add_favourite')!);
                 },
               ),
               if (favorite)
-                !movie.finished
+                !movie.finished!
                     ? SlidableAction(
                         label: translator.translate('act_finished'),
                         backgroundColor: Colors.black,
@@ -63,8 +63,8 @@ class SearchItem extends StatelessWidget {
                         onPressed: (context) {
                           movie.finished = true;
                           favBloc.add(UpdateFavorite(movie: movie));
-                          AppNavigator.instance.showSnackBar(context,
-                              translator.translate('act_move_finished'));
+                          AppNavigator.instance!.showSnackBar(context,
+                              translator.translate('act_move_finished')!);
                         },
                       )
                     : SlidableAction(
@@ -74,8 +74,8 @@ class SearchItem extends StatelessWidget {
                         onPressed: (context) {
                           movie.finished = false;
                           favBloc.add(UpdateFavorite(movie: movie));
-                          AppNavigator.instance.showSnackBar(context,
-                              translator.translate('act_move_watching'));
+                          AppNavigator.instance!.showSnackBar(context,
+                              translator.translate('act_move_watching')!);
                         },
                       )
             ],
@@ -88,8 +88,8 @@ class SearchItem extends StatelessWidget {
 
   _buildContent(BuildContext context) {
     return InkWell(
-      onTap: onTap,
-      onLongPress: onLongPress,
+      onTap: onTap as void Function()?,
+      onLongPress: onLongPress as void Function()?,
       child: ListTile(
         contentPadding: EdgeInsets.only(left: 8, right: 8),
         leading: Container(
@@ -101,13 +101,13 @@ class SearchItem extends StatelessWidget {
           ),
         ),
         title: Text(
-          movie.title,
+          movie.title!,
           style: Theme.of(context).textTheme.titleMedium,
           maxLines: 1,
           overflow: TextOverflow.ellipsis,
         ),
         subtitle: Text(
-          movie.overview,
+          movie.overview!,
           style: Theme.of(context).textTheme.caption,
           overflow: TextOverflow.ellipsis,
           maxLines: 1,

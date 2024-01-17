@@ -6,10 +6,10 @@ import 'package:project_movie_flutter/util/device_info.dart';
 import 'movie_list_ver_item.dart';
 
 class MoviesListVer extends StatelessWidget {
-  final List<Movie> movies;
-  final Function() onEndList;
+  final List<Movie>? movies;
+  final Function()? onEndList;
 
-  MoviesListVer({@required this.movies, this.onEndList});
+  MoviesListVer({required this.movies, this.onEndList});
 
   @override
   Widget build(BuildContext context) {
@@ -27,24 +27,24 @@ class MoviesListVer extends StatelessWidget {
       onNotification: (ScrollNotification scrollInfo) {
         if (scrollInfo.metrics.pixels == scrollInfo.metrics.maxScrollExtent &&
             onEndList != null) {
-          onEndList();
+          onEndList!();
         }
         return true;
       },
       child: ListView.builder(
           scrollDirection: Axis.vertical,
-          itemCount: movies.length,
+          itemCount: movies!.length,
           itemBuilder: (context, index) {
-            final movie = movies.elementAt(index);
+            final movie = movies!.elementAt(index);
 
             return Container(
                 height: _calculateListItemHeight(isPortrait, height),
                 margin: EdgeInsets.only(left: 8, right: 8),
                 child: MovieListVerItem(
                   movie,
-                  onTap: () => AppNavigator.instance
+                  onTap: () => AppNavigator.instance!
                       .showBottomSheetMovieDetails(context, movie),
-                  onLongPress: () => AppNavigator.instance
+                  onLongPress: () => AppNavigator.instance!
                       .showBottomSheetEditMovie(context, movie),
                 ));
           }),

@@ -10,8 +10,8 @@ import 'common/message_view.dart';
 import 'movie_list_hor.dart';
 
 class RecommendationsMoviesList extends StatelessWidget {
-  final int _movieId;
-  final RecommendationMovieBloc recommendationMovieBloc;
+  final int? _movieId;
+  final RecommendationMovieBloc? recommendationMovieBloc;
 
   RecommendationsMoviesList(this._movieId, {this.recommendationMovieBloc});
 
@@ -35,10 +35,10 @@ class RecommendationsMoviesList extends StatelessWidget {
           );
         }
         if (state is Result) {
-          if (state.movies.isEmpty) {
+          if (state.movies!.isEmpty) {
             return MessageView(
               icon: Icons.info_outline,
-              message: AppLocalizations.of(context).translate('msg_no_movies'),
+              message: AppLocalizations.of(context)!.translate('msg_no_movies'),
             );
           }
           return MoviesListHor(

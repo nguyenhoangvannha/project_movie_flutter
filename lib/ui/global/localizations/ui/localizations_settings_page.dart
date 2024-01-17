@@ -9,11 +9,11 @@ import 'locale_item.dart';
 class LocalizationsSettingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final supportedLocales = LocalizationsDelegates.instance.supportedLocales;
+    final supportedLocales = LocalizationsDelegates.instance!.supportedLocales!;
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          AppLocalizations.of(context).translate('title_languages'),
+          AppLocalizations.of(context)!.translate('title_languages')!,
         ),
       ),
       body: ListView.builder(

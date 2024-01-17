@@ -11,8 +11,8 @@ import 'common/loading_indicator.dart';
 import 'common/message_view.dart';
 
 class VideoTrailerList extends StatelessWidget {
-  final int _movieId;
-  final MovieVideosBloc movieVideosBloc;
+  final int? _movieId;
+  final MovieVideosBloc? movieVideosBloc;
 
   VideoTrailerList(this._movieId, {this.movieVideosBloc});
 
@@ -39,21 +39,21 @@ class VideoTrailerList extends StatelessWidget {
               );
             }
             if (state is Result) {
-              if (state.videos.isEmpty) {
+              if (state.videos!.isEmpty) {
                 return MessageView(
                   icon: Icons.info_outline,
                   message:
-                      AppLocalizations.of(context).translate('msg_no_video'),
+                      AppLocalizations.of(context)!.translate('msg_no_video'),
                 );
               }
               return ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  itemCount: state.videos.length,
+                  itemCount: state.videos!.length,
                   itemBuilder: (bCtx, index) {
-                    final video = state.videos.elementAt(index);
+                    final video = state.videos!.elementAt(index);
                     return VideoTrailerItem(
                       video,
-                      onTap: () => AppNavigator.instance
+                      onTap: () => AppNavigator.instance!
                           .showBottomSheetMovieVideoTrailer(context, video),
                     );
                   });

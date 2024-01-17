@@ -18,6 +18,6 @@ class MovieDao extends DatabaseAccessor<AppDatabase> with _$MovieDaoMixin {
   Future<bool> updateMovie(Insertable<Movie> movie) =>
       update(movies).replace(movie);
 
-  Future<int> deleteMovie(Insertable<Movie> movie) =>
-      delete(movies).delete((movie));
+  Future<int> deleteMovie(int movieId) =>
+      (delete(movies)..where((t) => t.id.equals(movieId))).go();
 }

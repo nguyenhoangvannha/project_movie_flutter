@@ -11,10 +11,10 @@ import './bloc.dart';
 
 class MovieVideosBloc extends Bloc<MovieVideosEvent, MovieVideosState> {
   final UseCase<List<Video>, MovieParams> getMovieVideos;
-  List<Video> _videos;
-  int movieId;
+  List<Video>? _videos;
+  int? movieId;
 
-  MovieVideosBloc({@required this.getMovieVideos}) : super(Loading()) {
+  MovieVideosBloc({required this.getMovieVideos}) : super(Loading()) {
     on<Fetch>(_onFetch);
   }
 

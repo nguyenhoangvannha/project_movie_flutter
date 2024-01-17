@@ -35,15 +35,16 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Application(
       builder: (bCtx, initData) {
-        _setSystemUI(initData.themeData.brightness);
+        _setSystemUI(initData.themeData!.brightness);
         return MaterialApp(
           title: 'app_name',
           theme: initData.themeData,
           //darkTheme: appThemeData[AppTheme.Dark],
           locale: initData.locale,
-          supportedLocales: initData.supportedLocales,
+          supportedLocales: initData.supportedLocales!,
           localizationsDelegates: initData.localizationsDelegates,
-          localeResolutionCallback: initData.localeResolutionCallback,
+          localeResolutionCallback: initData.localeResolutionCallback as Locale?
+              Function(Locale?, Iterable<Locale>)?,
           routes: Routes.routes,
           onUnknownRoute: (settings) {
             return MaterialPageRoute(builder: (ctx) => HomePage());

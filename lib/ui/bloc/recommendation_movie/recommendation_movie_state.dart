@@ -7,13 +7,13 @@ abstract class RecommendationMovieState extends Equatable {
   RecommendationMovieState() : super();
 
   @override
-  List<Object> get props => [];
+  List<Object?> get props => [];
 }
 
 class Loading extends RecommendationMovieState {}
 
 class Error extends RecommendationMovieState {
-  final Exception exception;
+  final Object? exception;
 
   Error(this.exception) : super();
 
@@ -22,10 +22,10 @@ class Error extends RecommendationMovieState {
 }
 
 class Result extends RecommendationMovieState {
-  final List<Movie> movies;
+  final List<Movie>? movies;
 
-  Result({@required this.movies}) : super();
+  Result({required this.movies}) : super();
 
   @override
-  List<Object> get props => [movies];
+  List<Object?> get props => [movies];
 }

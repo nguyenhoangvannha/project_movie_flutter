@@ -8,8 +8,8 @@ class LoadingListPlaceHolder extends StatelessWidget {
     return Container(
       padding: EdgeInsets.only(left: 12, right: 12, bottom: 12, top: 8),
       child: Shimmer.fromColors(
-        baseColor: Colors.grey[300],
-        highlightColor: Colors.grey[100],
+        baseColor: Colors.grey[300]!,
+        highlightColor: Colors.grey[100]!,
         enabled: true,
         child: _buildChild(context),
       ),

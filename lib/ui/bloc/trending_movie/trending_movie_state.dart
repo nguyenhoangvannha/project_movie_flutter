@@ -13,7 +13,7 @@ class Loading extends TrendingMovieState {
 }
 
 class Error extends TrendingMovieState {
-  final Exception exception;
+  final Object? exception;
 
   Error(this.exception) : super();
   @override
@@ -21,7 +21,7 @@ class Error extends TrendingMovieState {
 }
 
 class Loaded extends TrendingMovieState {
-  final List<Movie> movies;
+  final List<Movie>? movies;
 
   Loaded({this.movies}) : super();
   @override

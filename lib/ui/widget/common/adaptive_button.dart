@@ -5,17 +5,18 @@ import 'package:flutter/material.dart';
 
 class AdaptiveButton extends StatelessWidget {
   final Widget child;
-  final Function onPressed;
+  final Function? onPressed;
 
-  AdaptiveButton({@required this.child, this.onPressed});
+  AdaptiveButton({required this.child, this.onPressed});
 
   @override
   Widget build(BuildContext context) {
     return Platform.isIOS
-        ? CupertinoButton(child: this.child, onPressed: this.onPressed)
+        ? CupertinoButton(
+            child: this.child, onPressed: this.onPressed as void Function()?)
         : OutlinedButton(
             child: this.child,
-            onPressed: this.onPressed,
+            onPressed: this.onPressed as void Function()?,
           );
   }
 }

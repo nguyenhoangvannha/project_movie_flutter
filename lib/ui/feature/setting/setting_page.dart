@@ -17,7 +17,7 @@ class SettingsPage extends StatefulWidget {
 
 class _SettingsPageState extends State<SettingsPage> {
   bool _darkTheme = false;
-  Locale _currentLocale;
+  Locale? _currentLocale;
 
   bool alreadyInit = false;
 
@@ -35,10 +35,10 @@ class _SettingsPageState extends State<SettingsPage> {
 
   @override
   Widget build(BuildContext context) {
-    final translator = AppLocalizations.of(context);
+    final translator = AppLocalizations.of(context)!;
     return Scaffold(
       appBar: AppBar(
-        title: Text(translator.translate('title_settings')),
+        title: Text(translator.translate('title_settings')!),
       ),
       body: _buildBody(context, translator),
     );
@@ -66,7 +66,7 @@ class _SettingsPageState extends State<SettingsPage> {
       margin: EdgeInsets.all(0),
       child: ListTile(
           leading: Icon(Icons.format_paint),
-          title: Text(translator.translate('title_themes_dark')),
+          title: Text(translator.translate('title_themes_dark')!),
           trailing: Switch.adaptive(
             value: _darkTheme,
             onChanged: (darkTheme) {
@@ -78,20 +78,20 @@ class _SettingsPageState extends State<SettingsPage> {
   }
 
   Widget _buildLanguageItem(AppLocalizations translator) {
-    final supportedLocales = LocalizationsDelegates.instance.supportedLocales;
+    final supportedLocales = LocalizationsDelegates.instance!.supportedLocales!;
     return Card(
       shape: BeveledRectangleBorder(),
       elevation: 1,
       margin: EdgeInsets.all(0),
       child: ListTile(
         leading: Icon(Icons.language),
-        title: Text(translator.translate('title_languages')),
+        title: Text(translator.translate('title_languages')!),
         trailing: DropdownButton<Locale>(
           value: _currentLocale,
           icon: Icon(Icons.arrow_downward),
           iconSize: 18,
           elevation: 16,
-          onChanged: (Locale newValue) {
+          onChanged: (Locale? newValue) {
             _changeLanguage(newValue);
           },
           items:
@@ -108,7 +108,7 @@ class _SettingsPageState extends State<SettingsPage> {
                       width: 4,
                     ),
                     Text(
-                      translator.translate(locale.toString()),
+                      translator.translate(locale.toString())!,
                     ),
                   ],
                 ),
@@ -121,7 +121,7 @@ class _SettingsPageState extends State<SettingsPage> {
     );
   }
 
-  void _changeLanguage(Locale locale) {
+  void _changeLanguage(Locale? locale) {
     setState(() {
       _currentLocale = locale;
       BlocProvider.of<LocalizationsBloc>(context)

@@ -11,8 +11,8 @@ import 'common/loading_indicator.dart';
 import 'common/message_view.dart';
 
 class CastList extends StatelessWidget {
-  final int _movieId;
-  final MovieCreditsBloc movieCreditsBloc;
+  final int? _movieId;
+  final MovieCreditsBloc? movieCreditsBloc;
 
   CastList(this._movieId, {this.movieCreditsBloc});
 
@@ -35,12 +35,12 @@ class CastList extends StatelessWidget {
               return LoadingIndicator();
             }
             if (state is Loaded) {
-              if (state.casts.isEmpty) {
+              if (state.casts!.isEmpty) {
                 return MessageView(
-                    message:
-                        AppLocalizations.of(context).translate('msg_no_casts'));
+                    message: AppLocalizations.of(context)!
+                        .translate('msg_no_casts'));
               }
-              return _buildContent(width, height, portrait, state.casts);
+              return _buildContent(width, height, portrait, state.casts!);
             }
             if (state is Error) {
               return MessageView(

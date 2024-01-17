@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:project_movie_flutter/ui/widget/common/text.dart';
 
 class MessageView extends StatelessWidget {
-  final IconData icon;
-  final String message;
+  final IconData? icon;
+  final String? message;
 
   MessageView({this.icon, this.message = 'Unknown state'});
 

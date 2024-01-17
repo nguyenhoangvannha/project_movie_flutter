@@ -12,10 +12,10 @@ enum DisplayResolution {
 }
 
 class DeviceInfo {
-  static DeviceType _deviceType;
-  static DisplayResolution _displayResolution;
+  static DeviceType? _deviceType;
+  static DisplayResolution? _displayResolution;
 
-  static DeviceType deviceType(BuildContext context) {
+  static DeviceType? deviceType(BuildContext context) {
     if (_deviceType == null) {
       final mediaQueryData = MediaQuery.of(context);
       _deviceType = mediaQueryData.size.shortestSide > 600.0
@@ -30,7 +30,7 @@ class DeviceInfo {
     return deviceType(context) == DeviceType.TABLET;
   }
 
-  static DisplayResolution displayResolution() {
+  static DisplayResolution? displayResolution() {
     if (_displayResolution == null) {
       final devicePixelRatio = window.devicePixelRatio;
       if (devicePixelRatio <= 2.0) {

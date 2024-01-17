@@ -12,10 +12,10 @@ import './bloc.dart';
 class RecommendationMovieBloc
     extends Bloc<RecommendationMovieEvent, RecommendationMovieState> {
   final UseCase<List<Movie>, MovieParams> getRecommendationMovie;
-  List<Movie> movies;
-  int movieId;
+  List<Movie>? movies;
+  int? movieId;
 
-  RecommendationMovieBloc({@required this.getRecommendationMovie})
+  RecommendationMovieBloc({required this.getRecommendationMovie})
       : super(Loading()) {
     on<Fetch>(_onFetch);
   }

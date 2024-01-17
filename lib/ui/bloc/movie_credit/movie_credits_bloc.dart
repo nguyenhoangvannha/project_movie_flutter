@@ -11,10 +11,10 @@ import './bloc.dart';
 
 class MovieCreditsBloc extends Bloc<MovieCreditsEvent, MovieCreditsState> {
   final UseCase<List<Cast>, MovieParams> getMovieCredits;
-  List<Cast> casts;
-  int movieId;
+  List<Cast>? casts;
+  int? movieId;
 
-  MovieCreditsBloc({@required this.getMovieCredits}) : super(Loading()) {
+  MovieCreditsBloc({required this.getMovieCredits}) : super(Loading()) {
     on<Fetch>(_onFetch);
   }
 

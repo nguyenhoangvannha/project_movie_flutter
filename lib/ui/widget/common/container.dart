@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
 class CustomCard extends StatelessWidget {
-  final Widget child;
+  final Widget? child;
   final BorderRadius borderRadius;
   final double elevation;
   final double borderWidth;
   final EdgeInsetsGeometry margin;
-  final Color color;
+  final Color? color;
   final Color borderColor;
 
   CustomCard(
@@ -38,14 +38,14 @@ class CustomCard extends StatelessWidget {
 
 class RoundedBackground extends StatelessWidget {
   final Widget child;
-  final EdgeInsetsGeometry padding;
-  final BorderRadius borderRadius;
-  final Color color;
-  final double width;
-  final EdgeInsetsGeometry margin;
+  final EdgeInsetsGeometry? padding;
+  final BorderRadius? borderRadius;
+  final Color? color;
+  final double? width;
+  final EdgeInsetsGeometry? margin;
 
   RoundedBackground(
-      {@required this.child,
+      {required this.child,
       this.padding = const EdgeInsets.all(0),
       this.width,
       this.margin = const EdgeInsets.all(0),
@@ -54,7 +54,7 @@ class RoundedBackground extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var brightColor = Theme.of(context).brightness == Brightness.dark
+    Color? brightColor = Theme.of(context).brightness == Brightness.dark
         ? Colors.black38
         : Colors.white30;
     if (color != null) brightColor = color;

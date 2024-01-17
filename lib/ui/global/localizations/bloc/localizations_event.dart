@@ -9,10 +9,10 @@ abstract class LocalizationsEvent extends Equatable {
 }
 
 class LocaleChanged extends LocalizationsEvent {
-  final Locale locale;
+  final Locale? locale;
 
-  LocaleChanged({@required this.locale}) : super();
+  LocaleChanged({required this.locale}) : super();
 
   @override
-  List<Object> get props => [locale.languageCode, locale.countryCode];
+  List<Object?> get props => [locale!.languageCode, locale!.countryCode];
 }

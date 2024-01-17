@@ -11,10 +11,10 @@ import './bloc.dart';
 
 class SimilarMovieBloc extends Bloc<SimilarMovieEvent, SimilarMovieState> {
   final UseCase<List<Movie>, MovieParams> getSimilarMovies;
-  List<Movie> movies;
-  int movieId;
+  List<Movie>? movies;
+  int? movieId;
 
-  SimilarMovieBloc({@required this.getSimilarMovies}) : super(Loading()) {
+  SimilarMovieBloc({required this.getSimilarMovies}) : super(Loading()) {
     on<Fetch>(_onFetch);
   }
 

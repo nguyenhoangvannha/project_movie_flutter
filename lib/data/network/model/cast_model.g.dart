@@ -15,13 +15,13 @@ class _$CastModelSerializer implements StructuredSerializer<CastModel> {
   final String wireName = 'CastModel';
 
   @override
-  Iterable<Object> serialize(Serializers serializers, CastModel object,
+  Iterable<Object?> serialize(Serializers serializers, CastModel object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object>[
+    final result = <Object?>[
       'id',
       serializers.serialize(object.id, specifiedType: const FullType(int)),
     ];
-    Object value;
+    Object? value;
     value = object.castId;
     if (value != null) {
       result
@@ -72,47 +72,47 @@ class _$CastModelSerializer implements StructuredSerializer<CastModel> {
   }
 
   @override
-  CastModel deserialize(Serializers serializers, Iterable<Object> serialized,
+  CastModel deserialize(Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result = new CastModelBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
-      final key = iterator.current as String;
+      final key = iterator.current! as String;
       iterator.moveNext();
-      final Object value = iterator.current;
+      final Object? value = iterator.current;
       switch (key) {
         case 'cast_id':
           result.castId = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int;
+              specifiedType: const FullType(int)) as int?;
           break;
         case 'character':
           result.character = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'credit_id':
           result.creditId = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'gender':
           result.gender = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int;
+              specifiedType: const FullType(int)) as int?;
           break;
         case 'id':
           result.id = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int;
+              specifiedType: const FullType(int))! as int;
           break;
         case 'name':
           result.name = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'order':
           result.order = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int;
+              specifiedType: const FullType(int)) as int?;
           break;
         case 'profile_path':
           result.profilePath = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
       }
     }
@@ -123,23 +123,23 @@ class _$CastModelSerializer implements StructuredSerializer<CastModel> {
 
 class _$CastModel extends CastModel {
   @override
-  final int castId;
+  final int? castId;
   @override
-  final String character;
+  final String? character;
   @override
-  final String creditId;
+  final String? creditId;
   @override
-  final int gender;
+  final int? gender;
   @override
   final int id;
   @override
-  final String name;
+  final String? name;
   @override
-  final int order;
+  final int? order;
   @override
-  final String profilePath;
+  final String? profilePath;
 
-  factory _$CastModel([void Function(CastModelBuilder) updates]) =>
+  factory _$CastModel([void Function(CastModelBuilder)? updates]) =>
       (new CastModelBuilder()..update(updates))._build();
 
   _$CastModel._(
@@ -147,7 +147,7 @@ class _$CastModel extends CastModel {
       this.character,
       this.creditId,
       this.gender,
-      this.id,
+      required this.id,
       this.name,
       this.order,
       this.profilePath})
@@ -207,39 +207,39 @@ class _$CastModel extends CastModel {
 }
 
 class CastModelBuilder implements Builder<CastModel, CastModelBuilder> {
-  _$CastModel _$v;
+  _$CastModel? _$v;
 
-  int _castId;
-  int get castId => _$this._castId;
-  set castId(int castId) => _$this._castId = castId;
+  int? _castId;
+  int? get castId => _$this._castId;
+  set castId(int? castId) => _$this._castId = castId;
 
-  String _character;
-  String get character => _$this._character;
-  set character(String character) => _$this._character = character;
+  String? _character;
+  String? get character => _$this._character;
+  set character(String? character) => _$this._character = character;
 
-  String _creditId;
-  String get creditId => _$this._creditId;
-  set creditId(String creditId) => _$this._creditId = creditId;
+  String? _creditId;
+  String? get creditId => _$this._creditId;
+  set creditId(String? creditId) => _$this._creditId = creditId;
 
-  int _gender;
-  int get gender => _$this._gender;
-  set gender(int gender) => _$this._gender = gender;
+  int? _gender;
+  int? get gender => _$this._gender;
+  set gender(int? gender) => _$this._gender = gender;
 
-  int _id;
-  int get id => _$this._id;
-  set id(int id) => _$this._id = id;
+  int? _id;
+  int? get id => _$this._id;
+  set id(int? id) => _$this._id = id;
 
-  String _name;
-  String get name => _$this._name;
-  set name(String name) => _$this._name = name;
+  String? _name;
+  String? get name => _$this._name;
+  set name(String? name) => _$this._name = name;
 
-  int _order;
-  int get order => _$this._order;
-  set order(int order) => _$this._order = order;
+  int? _order;
+  int? get order => _$this._order;
+  set order(int? order) => _$this._order = order;
 
-  String _profilePath;
-  String get profilePath => _$this._profilePath;
-  set profilePath(String profilePath) => _$this._profilePath = profilePath;
+  String? _profilePath;
+  String? get profilePath => _$this._profilePath;
+  set profilePath(String? profilePath) => _$this._profilePath = profilePath;
 
   CastModelBuilder();
 
@@ -266,7 +266,7 @@ class CastModelBuilder implements Builder<CastModel, CastModelBuilder> {
   }
 
   @override
-  void update(void Function(CastModelBuilder) updates) {
+  void update(void Function(CastModelBuilder)? updates) {
     if (updates != null) updates(this);
   }
 

@@ -7,25 +7,25 @@ abstract class MovieVideosState extends Equatable {
   MovieVideosState() : super();
 
   @override
-  List<Object> get props => [];
+  List<Object?> get props => [];
 }
 
 class Loading extends MovieVideosState {}
 
 class Error extends MovieVideosState {
-  final Exception exception;
+  final Object? exception;
 
   Error(this.exception) : super();
 
   @override
-  List<Object> get props => [exception];
+  List<Object?> get props => [exception];
 }
 
 class Result extends MovieVideosState {
-  final List<Video> videos;
+  final List<Video>? videos;
 
-  Result({@required this.videos}) : super();
+  Result({required this.videos}) : super();
 
   @override
-  List<Object> get props => [videos];
+  List<Object?> get props => [videos];
 }

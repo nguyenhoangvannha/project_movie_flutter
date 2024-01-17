@@ -7,7 +7,7 @@ abstract class SearchMovieState extends Equatable {
   SearchMovieState() : super();
 
   @override
-  List<Object> get props => [];
+  List<Object?> get props => [];
 }
 
 class Initial extends SearchMovieState {}
@@ -15,7 +15,7 @@ class Initial extends SearchMovieState {}
 class Searching extends SearchMovieState {}
 
 class Error extends SearchMovieState {
-  final Exception exception;
+  final Object? exception;
 
   Error(this.exception) : super();
 
@@ -24,12 +24,12 @@ class Error extends SearchMovieState {
 }
 
 class Result extends SearchMovieState {
-  final List<Movie> movies;
+  final List<Movie>? movies;
 
-  Result({@required this.movies}) : super();
+  Result({required this.movies}) : super();
 
   @override
-  List<Object> get props => [movies];
+  List<Object?> get props => [movies];
 }
 //
 //class LoadMoreProcessing extends SearchMovieState {

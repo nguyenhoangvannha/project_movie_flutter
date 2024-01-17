@@ -16,28 +16,24 @@ abstract class MovieResponseModel
   factory MovieResponseModel([updates(MovieResponseModelBuilder b)]) =
       _$MovieResponseModel;
 
-  @nullable
   @BuiltValueField(wireName: 'page')
-  int get page;
+  int? get page;
 
-  @nullable
   @BuiltValueField(wireName: 'total_results')
-  int get totalResults;
+  int? get totalResults;
 
-  @nullable
   @BuiltValueField(wireName: 'total_pages')
-  int get totalPages;
+  int? get totalPages;
 
-  @nullable
   @BuiltValueField(wireName: 'results')
-  BuiltList<MovieModel> get movies;
+  BuiltList<MovieModel>? get movies;
 
   String toJson() {
     return json
         .encode(serializers.serializeWith(MovieResponseModel.serializer, this));
   }
 
-  static MovieResponseModel fromJson(String jsonString) {
+  static MovieResponseModel? fromJson(String jsonString) {
     return serializers.deserializeWith(
         MovieResponseModel.serializer, json.decode(jsonString));
   }

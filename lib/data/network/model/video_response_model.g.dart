@@ -17,10 +17,11 @@ class _$VideoResponseModelSerializer
   final String wireName = 'VideoResponseModel';
 
   @override
-  Iterable<Object> serialize(Serializers serializers, VideoResponseModel object,
+  Iterable<Object?> serialize(
+      Serializers serializers, VideoResponseModel object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object>[];
-    Object value;
+    final result = <Object?>[];
+    Object? value;
     value = object.id;
     if (value != null) {
       result
@@ -40,33 +41,25 @@ class _$VideoResponseModelSerializer
 
   @override
   VideoResponseModel deserialize(
-      Serializers serializers, Iterable<Object> serialized,
+      Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    T $cast<T>(dynamic any) => any as T;
-
     final result = new VideoResponseModelBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
-      final key = iterator.current as String;
+      final key = iterator.current! as String;
       iterator.moveNext();
-      final Object value = iterator.current;
+      final Object? value = iterator.current;
       switch (key) {
         case 'id':
           result.id = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int;
+              specifiedType: const FullType(int)) as int?;
           break;
         case 'results':
-          var maybeBuilder = result.videos;
-          var fieldValue = serializers.deserialize(value,
+          result.videos.replace(serializers.deserialize(value,
                   specifiedType: const FullType(
-                      BuiltList, const [const FullType(VideoModel)]))
-              as BuiltList<VideoModel>;
-          if (maybeBuilder == null) {
-            result.videos = $cast(fieldValue.toBuilder());
-          } else {
-            maybeBuilder.replace(fieldValue);
-          }
+                      BuiltList, const [const FullType(VideoModel)]))!
+              as BuiltList<Object?>);
           break;
       }
     }
@@ -77,12 +70,12 @@ class _$VideoResponseModelSerializer
 
 class _$VideoResponseModel extends VideoResponseModel {
   @override
-  final int id;
+  final int? id;
   @override
-  final BuiltList<VideoModel> videos;
+  final BuiltList<VideoModel>? videos;
 
   factory _$VideoResponseModel(
-          [void Function(VideoResponseModelBuilder) updates]) =>
+          [void Function(VideoResponseModelBuilder)? updates]) =>
       (new VideoResponseModelBuilder()..update(updates))._build();
 
   _$VideoResponseModel._({this.id, this.videos}) : super._();
@@ -124,16 +117,16 @@ class _$VideoResponseModel extends VideoResponseModel {
 
 class VideoResponseModelBuilder
     implements Builder<VideoResponseModel, VideoResponseModelBuilder> {
-  _$VideoResponseModel _$v;
+  _$VideoResponseModel? _$v;
 
-  int _id;
-  int get id => _$this._id;
-  set id(int id) => _$this._id = id;
+  int? _id;
+  int? get id => _$this._id;
+  set id(int? id) => _$this._id = id;
 
-  ListBuilder<VideoModel> _videos;
+  ListBuilder<VideoModel>? _videos;
   ListBuilder<VideoModel> get videos =>
       _$this._videos ??= new ListBuilder<VideoModel>();
-  set videos(ListBuilder<VideoModel> videos) => _$this._videos = videos;
+  set videos(ListBuilder<VideoModel>? videos) => _$this._videos = videos;
 
   VideoResponseModelBuilder();
 
@@ -154,7 +147,7 @@ class VideoResponseModelBuilder
   }
 
   @override
-  void update(void Function(VideoResponseModelBuilder) updates) {
+  void update(void Function(VideoResponseModelBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
@@ -167,7 +160,7 @@ class VideoResponseModelBuilder
       _$result =
           _$v ?? new _$VideoResponseModel._(id: id, videos: _videos?.build());
     } catch (_) {
-      String _$failedField;
+      late String _$failedField;
       try {
         _$failedField = 'videos';
         _videos?.build();

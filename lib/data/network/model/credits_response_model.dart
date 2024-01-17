@@ -16,20 +16,18 @@ abstract class CreditsResponseModel
   factory CreditsResponseModel([updates(CreditsResponseModelBuilder b)]) =
       _$CreditsResponseModel;
 
-  @nullable
   @BuiltValueField(wireName: 'id')
-  int get id;
+  int? get id;
 
-  @nullable
   @BuiltValueField(wireName: 'cast')
-  BuiltList<CastModel> get casts;
+  BuiltList<CastModel>? get casts;
 
   String toJson() {
     return json.encode(
         serializers.serializeWith(CreditsResponseModel.serializer, this));
   }
 
-  static CreditsResponseModel fromJson(String jsonString) {
+  static CreditsResponseModel? fromJson(String jsonString) {
     return serializers.deserializeWith(
         CreditsResponseModel.serializer, json.decode(jsonString));
   }

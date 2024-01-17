@@ -17,10 +17,11 @@ class _$MovieResponseModelSerializer
   final String wireName = 'MovieResponseModel';
 
   @override
-  Iterable<Object> serialize(Serializers serializers, MovieResponseModel object,
+  Iterable<Object?> serialize(
+      Serializers serializers, MovieResponseModel object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object>[];
-    Object value;
+    final result = <Object?>[];
+    Object? value;
     value = object.page;
     if (value != null) {
       result
@@ -52,41 +53,33 @@ class _$MovieResponseModelSerializer
 
   @override
   MovieResponseModel deserialize(
-      Serializers serializers, Iterable<Object> serialized,
+      Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    T $cast<T>(dynamic any) => any as T;
-
     final result = new MovieResponseModelBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
-      final key = iterator.current as String;
+      final key = iterator.current! as String;
       iterator.moveNext();
-      final Object value = iterator.current;
+      final Object? value = iterator.current;
       switch (key) {
         case 'page':
           result.page = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int;
+              specifiedType: const FullType(int)) as int?;
           break;
         case 'total_results':
           result.totalResults = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int;
+              specifiedType: const FullType(int)) as int?;
           break;
         case 'total_pages':
           result.totalPages = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int;
+              specifiedType: const FullType(int)) as int?;
           break;
         case 'results':
-          var maybeBuilder = result.movies;
-          var fieldValue = serializers.deserialize(value,
+          result.movies.replace(serializers.deserialize(value,
                   specifiedType: const FullType(
-                      BuiltList, const [const FullType(MovieModel)]))
-              as BuiltList<MovieModel>;
-          if (maybeBuilder == null) {
-            result.movies = $cast(fieldValue.toBuilder());
-          } else {
-            maybeBuilder.replace(fieldValue);
-          }
+                      BuiltList, const [const FullType(MovieModel)]))!
+              as BuiltList<Object?>);
           break;
       }
     }
@@ -97,16 +90,16 @@ class _$MovieResponseModelSerializer
 
 class _$MovieResponseModel extends MovieResponseModel {
   @override
-  final int page;
+  final int? page;
   @override
-  final int totalResults;
+  final int? totalResults;
   @override
-  final int totalPages;
+  final int? totalPages;
   @override
-  final BuiltList<MovieModel> movies;
+  final BuiltList<MovieModel>? movies;
 
   factory _$MovieResponseModel(
-          [void Function(MovieResponseModelBuilder) updates]) =>
+          [void Function(MovieResponseModelBuilder)? updates]) =>
       (new MovieResponseModelBuilder()..update(updates))._build();
 
   _$MovieResponseModel._(
@@ -156,24 +149,24 @@ class _$MovieResponseModel extends MovieResponseModel {
 
 class MovieResponseModelBuilder
     implements Builder<MovieResponseModel, MovieResponseModelBuilder> {
-  _$MovieResponseModel _$v;
+  _$MovieResponseModel? _$v;
 
-  int _page;
-  int get page => _$this._page;
-  set page(int page) => _$this._page = page;
+  int? _page;
+  int? get page => _$this._page;
+  set page(int? page) => _$this._page = page;
 
-  int _totalResults;
-  int get totalResults => _$this._totalResults;
-  set totalResults(int totalResults) => _$this._totalResults = totalResults;
+  int? _totalResults;
+  int? get totalResults => _$this._totalResults;
+  set totalResults(int? totalResults) => _$this._totalResults = totalResults;
 
-  int _totalPages;
-  int get totalPages => _$this._totalPages;
-  set totalPages(int totalPages) => _$this._totalPages = totalPages;
+  int? _totalPages;
+  int? get totalPages => _$this._totalPages;
+  set totalPages(int? totalPages) => _$this._totalPages = totalPages;
 
-  ListBuilder<MovieModel> _movies;
+  ListBuilder<MovieModel>? _movies;
   ListBuilder<MovieModel> get movies =>
       _$this._movies ??= new ListBuilder<MovieModel>();
-  set movies(ListBuilder<MovieModel> movies) => _$this._movies = movies;
+  set movies(ListBuilder<MovieModel>? movies) => _$this._movies = movies;
 
   MovieResponseModelBuilder();
 
@@ -196,7 +189,7 @@ class MovieResponseModelBuilder
   }
 
   @override
-  void update(void Function(MovieResponseModelBuilder) updates) {
+  void update(void Function(MovieResponseModelBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
@@ -213,7 +206,7 @@ class MovieResponseModelBuilder
               totalPages: totalPages,
               movies: _movies?.build());
     } catch (_) {
-      String _$failedField;
+      late String _$failedField;
       try {
         _$failedField = 'movies';
         _movies?.build();

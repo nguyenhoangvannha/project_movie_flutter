@@ -7,13 +7,13 @@ abstract class SimilarMovieState extends Equatable {
   SimilarMovieState() : super();
 
   @override
-  List<Object> get props => [];
+  List<Object?> get props => [];
 }
 
 class Loading extends SimilarMovieState {}
 
 class Error extends SimilarMovieState {
-  final Exception exception;
+  final Object? exception;
 
   Error(this.exception) : super();
 
@@ -22,10 +22,10 @@ class Error extends SimilarMovieState {
 }
 
 class Result extends SimilarMovieState {
-  final List<Movie> movies;
+  final List<Movie>? movies;
 
-  Result({@required this.movies}) : super();
+  Result({required this.movies}) : super();
 
   @override
-  List<Object> get props => [movies];
+  List<Object?> get props => [movies];
 }

@@ -26,27 +26,27 @@ class HomePage extends StatelessWidget {
           next is FavoriteError;
     }, builder: (context, state) {
       if (state is NoFavorite) {
-        return _buildScaffold(context, TrendingMovies(), null, translator);
+        return _buildScaffold(context, TrendingMovies(), null, translator!);
       }
 
       if (state is HasFavorite) {
         return _buildTabView(
-            context, state.watching, state.finished, translator);
+            context, state.watching, state.finished, translator!);
       }
 
       if (state is FavoriteError) {
-        String message = ExceptionHandler.handle(context, state.exception);
-        AppNavigator.instance.showAlertDialog(context, content: Text(message));
+        String message = ExceptionHandler.handle(context, state.exception)!;
+        AppNavigator.instance!.showAlertDialog(context, content: Text(message));
         return _buildScaffold(
             context,
             MessageView(
               message: message,
             ),
             null,
-            translator);
+            translator!);
       }
       return _buildScaffold(
-          context, LoadingListPlaceHolder(), null, translator);
+          context, LoadingListPlaceHolder(), null, translator!);
     });
   }
 
@@ -54,24 +54,24 @@ class HomePage extends StatelessWidget {
     return AppBar(
       leading: IconButton(
         icon: Icon(Icons.account_circle),
-        onPressed: () => AppNavigator.instance.navToSetting(context),
+        onPressed: () => AppNavigator.instance!.navToSetting(context),
       ),
       title: Center(
           child: Text(
-        translator.translate('app_name'),
+        translator.translate('app_name')!,
       )),
       actions: <Widget>[
         IconButton(
             icon: Icon(Icons.search),
-            onPressed: () => AppNavigator.instance.navToSearch(context))
+            onPressed: () => AppNavigator.instance!.navToSearch(context))
       ],
     );
   }
 
   Widget _buildScaffold(BuildContext context, Widget body,
-      Widget bottomNavigationBar, AppLocalizations translator) {
+      Widget? bottomNavigationBar, AppLocalizations translator) {
     return Scaffold(
-      appBar: _buildAppBar(context, translator),
+      appBar: _buildAppBar(context, translator) as PreferredSizeWidget?,
       body: body,
       bottomNavigationBar: bottomNavigationBar,
     );
@@ -99,7 +99,7 @@ class HomePage extends StatelessWidget {
                         width: 8,
                       ),
                       Text(
-                        translator.translate('title_watching'),
+                        translator.translate('title_watching')!,
                       )
                     ],
                   ),
@@ -112,7 +112,7 @@ class HomePage extends StatelessWidget {
                       SizedBox(
                         width: 8,
                       ),
-                      Text(translator.translate('title_finished'))
+                      Text(translator.translate('title_finished')!)
                     ],
                   ),
                 ),

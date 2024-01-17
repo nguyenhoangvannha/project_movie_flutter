@@ -9,16 +9,16 @@ import '../app_themes.dart';
 class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
   static const String DARK_THEME = "ThemeBloc_DARK_THEME";
 
-  static ThemeBloc _instance;
+  static ThemeBloc? _instance;
 
-  SharedPreferences prefs;
+  SharedPreferences? prefs;
 
   ThemeBloc._(ThemeState initState) : super(initState) {
     on<ThemeChanged>(_onThemeChanged);
     _loadSettings();
   }
 
-  static ThemeBloc get instance {
+  static ThemeBloc? get instance {
     if (_instance == null) {
       _instance =
           ThemeBloc._(ThemeState(themeData: appThemeData[AppTheme.Light]));
@@ -28,14 +28,14 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
 
   _loadSettings() async {
     if (prefs == null) prefs = await SharedPreferences.getInstance();
-    bool _darkTheme = prefs.getBool(DARK_THEME) ?? false;
+    bool _darkTheme = prefs!.getBool(DARK_THEME) ?? false;
     add(ThemeChanged(theme: _darkTheme ? AppTheme.Dark : AppTheme.Light));
     return _darkTheme;
   }
 
   _saveSettings(bool darkTheme) async {
     if (prefs == null) prefs = await SharedPreferences.getInstance();
-    await prefs.setBool(DARK_THEME, darkTheme);
+    await prefs!.setBool(DARK_THEME, darkTheme);
   }
 
   FutureOr<void> _onThemeChanged(

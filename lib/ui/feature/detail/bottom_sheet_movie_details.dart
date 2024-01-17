@@ -11,7 +11,7 @@ import 'package:swipedetector_nullsafety/swipedetector_nullsafety.dart';
 class BottomSheetMovies extends StatelessWidget {
   final Movie movie;
 
-  BottomSheetMovies({@required this.movie});
+  BottomSheetMovies({required this.movie});
 
   @override
   Widget build(BuildContext context) {
@@ -23,8 +23,8 @@ class BottomSheetMovies extends StatelessWidget {
         final maxHeight = constraints.maxHeight;
         final maxWidth = constraints.maxWidth;
         return MediaQuery.of(context).orientation == Orientation.portrait
-            ? _buildPortrait(context, maxHeight, translator)
-            : _buildLandscape(context, maxWidth, translator);
+            ? _buildPortrait(context, maxHeight, translator!)
+            : _buildLandscape(context, maxWidth, translator!);
       }),
     );
   }
@@ -108,12 +108,12 @@ class BottomSheetMovies extends StatelessWidget {
 
   _moreButton(BuildContext context, AppLocalizations translator) {
     return AdaptiveButton(
-        child: Text(translator.translate('act_more')),
+        child: Text(translator.translate('act_more')!),
         onPressed: () => _navToDetailsPage(context, movie));
   }
 
   _navToDetailsPage(BuildContext context, Movie movie) {
-    AppNavigator.instance
+    AppNavigator.instance!
         .navToDetailsPage(context, movie.id, fromBottomSheet: true);
   }
 }

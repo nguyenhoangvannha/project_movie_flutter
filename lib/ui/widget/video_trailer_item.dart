@@ -4,7 +4,7 @@ import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class VideoTrailerItem extends StatelessWidget {
   final Video video;
-  final Function onTap;
+  final Function? onTap;
   VideoTrailerItem(this.video, {this.onTap});
 
   @override
@@ -17,7 +17,7 @@ class VideoTrailerItem extends StatelessWidget {
           width: mediaQueryData.size.width * widthPct,
           margin: EdgeInsets.only(right: 16),
           child: InkWell(
-            onTap: this.onTap,
+            onTap: this.onTap as void Function()?,
             child: Column(
               children: <Widget>[
                 Stack(

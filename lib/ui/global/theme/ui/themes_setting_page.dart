@@ -11,7 +11,7 @@ class ThemeSettingPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(AppLocalizations.of(context).translate('title_themes')),
+        title: Text(AppLocalizations.of(context)!.translate('title_themes')!),
       ),
       body: ListView.builder(
           itemCount: AppTheme.values.length,

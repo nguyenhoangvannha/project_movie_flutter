@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 
 class TextTitle extends StatelessWidget {
-  final String text;
+  final String? text;
   final int maxLines;
-  final double fontSize;
+  final double? fontSize;
 
   TextTitle(this.text, {this.maxLines = 1, this.fontSize});
 
   @override
   Widget build(BuildContext context) {
     return Text(
-      text,
+      text!,
       style:
-          Theme.of(context).textTheme.titleMedium.copyWith(fontSize: fontSize),
+          Theme.of(context).textTheme.titleMedium!.copyWith(fontSize: fontSize),
       textAlign: TextAlign.start,
       overflow: TextOverflow.ellipsis,
       maxLines: maxLines,
@@ -31,7 +31,7 @@ class TextSubtitle extends StatelessWidget {
       text,
       style: Theme.of(context)
           .textTheme
-          .titleSmall
+          .titleSmall!
           .copyWith(fontSize: 12, fontStyle: FontStyle.normal),
       textAlign: TextAlign.start,
       overflow: TextOverflow.ellipsis,
@@ -41,15 +41,15 @@ class TextSubtitle extends StatelessWidget {
 }
 
 class TextCaption extends StatelessWidget {
-  final String text;
+  final String? text;
 
   TextCaption(this.text);
 
   @override
   Widget build(BuildContext context) {
     return Text(
-      text,
-      style: Theme.of(context).textTheme.caption.copyWith(fontSize: 12),
+      text!,
+      style: Theme.of(context).textTheme.caption!.copyWith(fontSize: 12),
       textAlign: TextAlign.start,
       overflow: TextOverflow.ellipsis,
       maxLines: 2,
@@ -58,7 +58,7 @@ class TextCaption extends StatelessWidget {
 }
 
 class TextBody1 extends StatelessWidget {
-  final String text;
+  final String? text;
   final int maxLines;
 
   TextBody1(this.text, {this.maxLines = 5});
@@ -66,7 +66,7 @@ class TextBody1 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(
-      text,
+      text!,
       style: Theme.of(context).textTheme.bodyMedium,
       textAlign: TextAlign.start,
       overflow: TextOverflow.ellipsis,
@@ -76,7 +76,7 @@ class TextBody1 extends StatelessWidget {
 }
 
 class ExpandableText extends StatefulWidget {
-  final String text;
+  final String? text;
 
   ExpandableText(this.text);
 
@@ -93,11 +93,11 @@ class _ExpandableTextState extends State<ExpandableText> {
       children: <Widget>[
         _expanded
             ? Text(
-                widget.text,
+                widget.text!,
                 softWrap: true,
               )
             : Text(
-                widget.text,
+                widget.text!,
                 maxLines: 5,
                 softWrap: true,
                 overflow: TextOverflow.fade,

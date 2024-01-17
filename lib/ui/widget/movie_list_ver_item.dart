@@ -13,8 +13,8 @@ import 'common/text.dart';
 
 class MovieListVerItem extends StatelessWidget {
   final Movie movie;
-  final Function onTap;
-  final Function onLongPress;
+  final Function? onTap;
+  final Function? onLongPress;
 
   MovieListVerItem(this.movie, {this.onTap, this.onLongPress});
 
@@ -38,8 +38,8 @@ class MovieListVerItem extends StatelessWidget {
             children: <Widget>[
               SlidableAction(
                 label: favorite
-                    ? translator.translate('act_remove')
-                    : translator.translate('act_favourite'),
+                    ? translator!.translate('act_remove')
+                    : translator!.translate('act_favourite'),
                 backgroundColor: favorite ? Colors.red : Colors.yellow,
                 icon: favorite ? Icons.remove_circle : Icons.star,
                 onPressed: (context) {
@@ -48,15 +48,15 @@ class MovieListVerItem extends StatelessWidget {
                   } else {
                     favBloc.add(AddFavorite(movie: movie));
                   }
-                  AppNavigator.instance.showSnackBar(
+                  AppNavigator.instance!.showSnackBar(
                       context,
                       favorite
-                          ? translator.translate('act_remove_favourite')
-                          : translator.translate('act_add_favourite'));
+                          ? translator.translate('act_remove_favourite')!
+                          : translator.translate('act_add_favourite')!);
                 },
               ),
               if (favorite)
-                !movie.finished
+                !movie.finished!
                     ? SlidableAction(
                         label: translator.translate('act_finished'),
                         backgroundColor: Colors.black,
@@ -64,8 +64,8 @@ class MovieListVerItem extends StatelessWidget {
                         onPressed: (context) {
                           movie.finished = true;
                           favBloc.add(UpdateFavorite(movie: movie));
-                          AppNavigator.instance.showSnackBar(context,
-                              translator.translate('act_move_finished'));
+                          AppNavigator.instance!.showSnackBar(context,
+                              translator.translate('act_move_finished')!);
                         },
                       )
                     : SlidableAction(
@@ -75,8 +75,8 @@ class MovieListVerItem extends StatelessWidget {
                         onPressed: (context) {
                           movie.finished = false;
                           favBloc.add(UpdateFavorite(movie: movie));
-                          AppNavigator.instance.showSnackBar(context,
-                              translator.translate('act_move_watching'));
+                          AppNavigator.instance!.showSnackBar(context,
+                              translator.translate('act_move_watching')!);
                         },
                       )
             ],
@@ -89,8 +89,8 @@ class MovieListVerItem extends StatelessWidget {
 
   Widget _buildContent(BuildContext context) {
     return InkWell(
-      onTap: onTap,
-      onLongPress: onLongPress,
+      onTap: onTap as void Function()?,
+      onLongPress: onLongPress as void Function()?,
       child: LayoutBuilder(builder: (_, constrains) {
         return Container(
           padding: EdgeInsets.all(8),
@@ -149,7 +149,7 @@ class MovieListVerItem extends StatelessWidget {
                   Expanded(
                       //height: constrains.maxHeight * 0.25,
                       child: Text(
-                    movie.overview,
+                    movie.overview!,
                     overflow: TextOverflow.ellipsis,
                     style: TextStyle(fontSize: 13),
                     softWrap: true,

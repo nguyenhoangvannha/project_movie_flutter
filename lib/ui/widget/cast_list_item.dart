@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'common/cached_image.dart';
 
 class CastListItem extends StatelessWidget {
-  final String title;
-  final String imageUrl;
+  final String? title;
+  final String? imageUrl;
 
-  CastListItem({@required this.title, @required this.imageUrl});
+  CastListItem({required this.title, required this.imageUrl});
 
   @override
   Widget build(BuildContext context) {

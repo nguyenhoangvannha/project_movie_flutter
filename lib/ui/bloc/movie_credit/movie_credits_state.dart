@@ -13,7 +13,7 @@ class Loading extends MovieCreditsState {
 }
 
 class Error extends MovieCreditsState {
-  final Exception exception;
+  final Object? exception;
 
   Error(this.exception) : super();
 
@@ -22,7 +22,7 @@ class Error extends MovieCreditsState {
 }
 
 class Loaded extends MovieCreditsState {
-  final List<Cast> casts;
+  final List<Cast>? casts;
 
   Loaded({this.casts}) : super();
 

@@ -5,9 +5,9 @@ import 'package:project_movie_flutter/domain/entity/movie.dart';
 import 'movie_list_hor_item.dart';
 
 class MoviesListHor extends StatelessWidget {
-  final List<Movie> movies;
+  final List<Movie>? movies;
 
-  const MoviesListHor({@required this.movies});
+  const MoviesListHor({required this.movies});
 
   @override
   Widget build(BuildContext context) {
@@ -26,17 +26,17 @@ class MoviesListHor extends StatelessWidget {
   Widget _buildList(double itemWidth) {
     return ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: movies.length,
+        itemCount: movies!.length,
         itemBuilder: (context, index) {
-          final movie = movies.elementAt(index);
+          final movie = movies!.elementAt(index);
           return Container(
               width: itemWidth,
               margin: EdgeInsets.only(left: 4, right: 4),
               child: MovieListHorItem(
                 movie,
-                onTap: () => AppNavigator.instance
+                onTap: () => AppNavigator.instance!
                     .showBottomSheetMovieDetails(context, movie),
-                onLongPress: () => AppNavigator.instance
+                onLongPress: () => AppNavigator.instance!
                     .showBottomSheetEditMovie(context, movie),
               ));
         });

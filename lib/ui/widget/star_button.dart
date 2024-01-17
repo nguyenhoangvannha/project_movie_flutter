@@ -6,7 +6,7 @@ import 'package:project_movie_flutter/ui/bloc/favourite_movie/bloc.dart';
 class StarButton extends StatelessWidget {
   final Movie movie;
 
-  StarButton({@required this.movie});
+  StarButton({required this.movie});
 
   @override
   Widget build(BuildContext context) {

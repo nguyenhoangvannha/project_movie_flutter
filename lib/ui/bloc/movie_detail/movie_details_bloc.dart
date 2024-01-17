@@ -11,14 +11,14 @@ import './bloc.dart';
 
 class MovieDetailsBloc extends Bloc<MovieDetailsEvent, MovieDetailsState> {
   final UseCase<Movie, MovieParams> getMovieDetails;
-  Movie _movie;
+  Movie? _movie;
 
-  MovieDetailsBloc({@required this.getMovieDetails}) : super(Loading()) {
+  MovieDetailsBloc({required this.getMovieDetails}) : super(Loading()) {
     on<Fetch>(_onFetch);
   }
 
   FutureOr<void> _onFetch(Fetch event, Emitter<MovieDetailsState> emit) async {
-    if (_movie == null || _movie.id != event.movieId) {
+    if (_movie == null || _movie!.id != event.movieId) {
       emit(Loading());
       var res =
           await getMovieDetails.execute(MovieParams(movieId: event.movieId));
@@ -32,7 +32,7 @@ class MovieDetailsBloc extends Bloc<MovieDetailsEvent, MovieDetailsState> {
           emit(Result(movie: _movie));
           break;
       }
-    } else if (_movie != null && _movie.id == event.movieId) {
+    } else if (_movie != null && _movie!.id == event.movieId) {
       emit(Result(movie: _movie));
     }
   }

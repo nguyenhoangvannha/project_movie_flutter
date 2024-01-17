@@ -12,14 +12,14 @@ import './bloc.dart';
 
 class TrendingMovieBloc extends Bloc<TrendingMovieEvent, TrendingMovieState> {
   final UseCase<List<Movie>, MovieParams> getTrendingMovies;
-  List<Movie> movies;
+  List<Movie>? movies;
 
-  TrendingMovieBloc({@required this.getTrendingMovies}) : super(Loading()) {
+  TrendingMovieBloc({required this.getTrendingMovies}) : super(Loading()) {
     on<Fetch>(_onFetch);
   }
 
   FutureOr<void> _onFetch(Fetch event, Emitter<TrendingMovieState> emit) async {
-    if (movies == null || movies.length < 1) {
+    if (movies == null || movies!.length < 1) {
       emit(Loading());
       var res = await getTrendingMovies.execute(MovieParams());
       switch (res.type) {

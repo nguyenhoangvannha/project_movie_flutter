@@ -85,12 +85,12 @@ class Mapper {
   db.Movie mapMovieEntityToLocalMovie(Movie m) {
     return db.Movie(
         popularity: m.popularity,
-        posterPath: m.posterPath,
-        id: m.id,
-        title: m.title,
-        voteAverage: m.voteAverage,
-        overview: m.overview,
-        releaseDate: m.releaseDate,
+        posterPath: m.posterPath ?? '',
+        id: m.id ?? 0,
+        title: m.title ?? '',
+        voteAverage: m.voteAverage ?? 0.0,
+        overview: m.overview ?? '',
+        releaseDate: m.releaseDate ?? '',
         adult: m.adult,
         voteCount: m.voteCount,
         video: m.video,

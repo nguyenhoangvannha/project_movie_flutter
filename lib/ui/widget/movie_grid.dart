@@ -5,10 +5,10 @@ import 'package:project_movie_flutter/domain/entity/movie.dart';
 import 'movie_grid_item.dart';
 
 class MovieGrid extends StatelessWidget {
-  final List<Movie> movies;
-  final Function() onEndList;
+  final List<Movie>? movies;
+  final Function()? onEndList;
 
-  MovieGrid({@required this.movies, this.onEndList});
+  MovieGrid({required this.movies, this.onEndList});
 
   @override
   Widget build(BuildContext context) {
@@ -23,22 +23,22 @@ class MovieGrid extends StatelessWidget {
       onNotification: (ScrollNotification scrollInfo) {
         if (scrollInfo.metrics.pixels == scrollInfo.metrics.maxScrollExtent &&
             onEndList != null) {
-          onEndList();
+          onEndList!();
         }
         return true;
       },
       child: GridView.builder(
         padding: const EdgeInsets.all(8),
-        itemCount: movies.length,
+        itemCount: movies!.length,
         gridDelegate: gridDelegate,
         itemBuilder: (_, index) {
-          final movie = movies.elementAt(index);
+          final movie = movies!.elementAt(index);
           return Container(
             child: MovieGridItem(
               movie,
-              onTap: () => AppNavigator.instance
+              onTap: () => AppNavigator.instance!
                   .showBottomSheetMovieDetails(context, movie),
-              onLongPress: () => AppNavigator.instance
+              onLongPress: () => AppNavigator.instance!
                   .showBottomSheetEditMovie(context, movie),
             ),
           );

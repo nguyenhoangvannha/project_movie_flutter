@@ -12,7 +12,7 @@ import './bloc.dart';
 class SearchMovieBloc extends Bloc<SearchMovieEvent, SearchMovieState> {
   final UseCase<List<Movie>, MovieParams> searchMovie;
 
-  SearchMovieBloc({@required this.searchMovie}) : super(Initial()) {
+  SearchMovieBloc({required this.searchMovie}) : super(Initial()) {
     on<Search>(_onSearch);
   }
 
@@ -38,9 +38,9 @@ class SearchMovieBloc extends Bloc<SearchMovieEvent, SearchMovieState> {
 //    }
   }
 
-  Future<List<Movie>> loadMore(String query, int page) async {
+  Future<List<Movie>?> loadMore(String query, int page) async {
     var res = await searchMovie.execute(MovieParams(query: query, page: page));
-    var data = [];
+    List<dynamic>? data = [];
     switch (res.type) {
       case ResourceType.Error:
         break;
@@ -48,7 +48,7 @@ class SearchMovieBloc extends Bloc<SearchMovieEvent, SearchMovieState> {
         data = res.data;
         break;
     }
-    return data;
+    return data as FutureOr<List<Movie>?>;
   }
 
   FutureOr<void> _onSearch(Search event, Emitter<SearchMovieState> emit) async {

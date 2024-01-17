@@ -20,11 +20,11 @@ class _$CreditsResponseModelSerializer
   final String wireName = 'CreditsResponseModel';
 
   @override
-  Iterable<Object> serialize(
+  Iterable<Object?> serialize(
       Serializers serializers, CreditsResponseModel object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object>[];
-    Object value;
+    final result = <Object?>[];
+    Object? value;
     value = object.id;
     if (value != null) {
       result
@@ -44,33 +44,25 @@ class _$CreditsResponseModelSerializer
 
   @override
   CreditsResponseModel deserialize(
-      Serializers serializers, Iterable<Object> serialized,
+      Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    T $cast<T>(dynamic any) => any as T;
-
     final result = new CreditsResponseModelBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
-      final key = iterator.current as String;
+      final key = iterator.current! as String;
       iterator.moveNext();
-      final Object value = iterator.current;
+      final Object? value = iterator.current;
       switch (key) {
         case 'id':
           result.id = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int;
+              specifiedType: const FullType(int)) as int?;
           break;
         case 'cast':
-          var maybeBuilder = result.casts;
-          var fieldValue = serializers.deserialize(value,
+          result.casts.replace(serializers.deserialize(value,
                   specifiedType: const FullType(
-                      BuiltList, const [const FullType(CastModel)]))
-              as BuiltList<CastModel>;
-          if (maybeBuilder == null) {
-            result.casts = $cast(fieldValue.toBuilder());
-          } else {
-            maybeBuilder.replace(fieldValue);
-          }
+                      BuiltList, const [const FullType(CastModel)]))!
+              as BuiltList<Object?>);
           break;
       }
     }
@@ -81,12 +73,12 @@ class _$CreditsResponseModelSerializer
 
 class _$CreditsResponseModel extends CreditsResponseModel {
   @override
-  final int id;
+  final int? id;
   @override
-  final BuiltList<CastModel> casts;
+  final BuiltList<CastModel>? casts;
 
   factory _$CreditsResponseModel(
-          [void Function(CreditsResponseModelBuilder) updates]) =>
+          [void Function(CreditsResponseModelBuilder)? updates]) =>
       (new CreditsResponseModelBuilder()..update(updates))._build();
 
   _$CreditsResponseModel._({this.id, this.casts}) : super._();
@@ -128,16 +120,16 @@ class _$CreditsResponseModel extends CreditsResponseModel {
 
 class CreditsResponseModelBuilder
     implements Builder<CreditsResponseModel, CreditsResponseModelBuilder> {
-  _$CreditsResponseModel _$v;
+  _$CreditsResponseModel? _$v;
 
-  int _id;
-  int get id => _$this._id;
-  set id(int id) => _$this._id = id;
+  int? _id;
+  int? get id => _$this._id;
+  set id(int? id) => _$this._id = id;
 
-  ListBuilder<CastModel> _casts;
+  ListBuilder<CastModel>? _casts;
   ListBuilder<CastModel> get casts =>
       _$this._casts ??= new ListBuilder<CastModel>();
-  set casts(ListBuilder<CastModel> casts) => _$this._casts = casts;
+  set casts(ListBuilder<CastModel>? casts) => _$this._casts = casts;
 
   CreditsResponseModelBuilder();
 
@@ -158,7 +150,7 @@ class CreditsResponseModelBuilder
   }
 
   @override
-  void update(void Function(CreditsResponseModelBuilder) updates) {
+  void update(void Function(CreditsResponseModelBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
@@ -171,7 +163,7 @@ class CreditsResponseModelBuilder
       _$result =
           _$v ?? new _$CreditsResponseModel._(id: id, casts: _casts?.build());
     } catch (_) {
-      String _$failedField;
+      late String _$failedField;
       try {
         _$failedField = 'casts';
         _casts?.build();

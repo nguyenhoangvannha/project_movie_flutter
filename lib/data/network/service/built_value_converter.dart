@@ -1,4 +1,5 @@
 import 'package:built_collection/built_collection.dart';
+import 'package:built_value/serializer.dart';
 import 'package:chopper/chopper.dart';
 import 'package:project_movie_flutter/data/network/model/serializers.dart';
 
@@ -8,7 +9,7 @@ class BuiltValueConverter extends JsonConverter {
     return super.convertRequest(
       request.copyWith(
         body: serializers.serializeWith(
-          serializers.serializerForType(request.body.runtimeType),
+          serializers.serializerForType(request.body.runtimeType)!,
           request.body,
         ),
       ),
@@ -19,8 +20,9 @@ class BuiltValueConverter extends JsonConverter {
   Response<BodyType> convertResponse<BodyType, SingleItemType>(
     Response response,
   ) {
-    final Response dynamicResponse = super.convertResponse(response);
-    final BodyType customBody =
+    final Response dynamicResponse =
+        super.convertResponse(response) as Response<dynamic>;
+    final BodyType? customBody =
         _convertToCustomObject<SingleItemType>(dynamicResponse.body);
     return dynamicResponse.copyWith<BodyType>(body: customBody);
   }
@@ -42,11 +44,12 @@ class BuiltValueConverter extends JsonConverter {
     );
   }
 
-  SingleItemType _deserialize<SingleItemType>(
-    Map<String, dynamic> value,
+  SingleItemType? _deserialize<SingleItemType>(
+    Map<String, dynamic>? value,
   ) {
     return serializers.deserializeWith(
-      serializers.serializerForType(SingleItemType),
+      serializers.serializerForType(SingleItemType)
+          as Serializer<SingleItemType>,
       value,
     );
   }

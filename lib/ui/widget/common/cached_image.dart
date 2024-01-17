@@ -3,12 +3,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CachedImage extends StatelessWidget {
-  final String image;
-  final BoxFit fit;
+  final String? image;
+  final BoxFit? fit;
   final placeholder;
 
   CachedImage({
-    @required this.image,
+    required this.image,
     this.fit,
     this.placeholder,
   });
@@ -18,7 +18,7 @@ class CachedImage extends StatelessWidget {
     return CachedNetworkImage(
       width: double.infinity,
       height: double.infinity,
-      imageUrl: image,
+      imageUrl: image!,
       placeholder: (bCtx, url) =>
           _matchParentWidget(CupertinoActivityIndicator()),
       errorWidget: (bCtx, url, error) =>

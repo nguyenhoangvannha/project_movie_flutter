@@ -14,7 +14,7 @@ import 'package:project_movie_flutter/util/exception_handler.dart';
 
 class MovieSearchDelegate extends SearchDelegate<List<Movie>> {
   //final Debouncer debouncer = Debouncer(milliseconds: 500);
-  SearchMovieBloc _searchBloc;
+  SearchMovieBloc? _searchBloc;
 
   @override
   List<Widget> buildActions(BuildContext context) {
@@ -43,7 +43,7 @@ class MovieSearchDelegate extends SearchDelegate<List<Movie>> {
   Widget buildSuggestions(BuildContext context) {
     if (_searchBloc == null)
       _searchBloc = BlocProvider.of<SearchMovieBloc>(context);
-    _searchBloc.add(Search(query ?? ""));
+    _searchBloc!.add(Search(query ?? ""));
     return _search(context, Type.Suggestions);
   }
 
@@ -62,13 +62,13 @@ class MovieSearchDelegate extends SearchDelegate<List<Movie>> {
               message: ExceptionHandler.handle(context, state.exception));
         }
         if (state is Result) {
-          if (state.movies.isEmpty) {
+          if (state.movies!.isEmpty) {
             return MessageView(
-              message: AppLocalizations.of(context).translate('msg_no_movies'),
+              message: AppLocalizations.of(context)!.translate('msg_no_movies'),
             );
           }
           if (type == Type.Suggestions)
-            return _buildSuggestionsList(state.movies);
+            return _buildSuggestionsList(state.movies!);
           else {
             return MoviesPanel(
               state.movies,
@@ -82,7 +82,7 @@ class MovieSearchDelegate extends SearchDelegate<List<Movie>> {
     );
   }
 
-  Future<List<Movie>> loadMore(BuildContext context, int page) async {
+  Future<List<Movie>?> loadMore(BuildContext context, int page) async {
     return await BlocProvider.of<SearchMovieBloc>(context)
         .loadMore(query, page);
   }
@@ -100,9 +100,9 @@ class MovieSearchDelegate extends SearchDelegate<List<Movie>> {
         itemBuilder: (BuildContext context, int index) {
           return SearchItem(
             movies.elementAt(index),
-            onTap: () => AppNavigator.instance
+            onTap: () => AppNavigator.instance!
                 .showBottomSheetMovieDetails(context, movies.elementAt(index)),
-            onLongPress: () => AppNavigator.instance
+            onLongPress: () => AppNavigator.instance!
                 .showBottomSheetEditMovie(context, movies.elementAt(index)),
           );
         },

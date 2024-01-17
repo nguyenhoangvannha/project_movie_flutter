@@ -62,9 +62,9 @@ class BottomSheetEditMovie extends StatelessWidget {
       horizontalSwipeMinDisplacement: 50.0,
       horizontalSwipeMinVelocity: 200.0);
 
-  Widget _buildActionMove(BuildContext context, AppLocalizations translator) {
+  Widget _buildActionMove(BuildContext context, AppLocalizations? translator) {
     final favBloc = BlocProvider.of<FavouriteMovieBloc>(context);
-    return !_movie.finished
+    return !_movie.finished!
         ? InkWell(
             onTap: () {
               _movie.finished = true;
@@ -73,7 +73,7 @@ class BottomSheetEditMovie extends StatelessWidget {
             },
             child: ListTile(
               leading: Icon(Icons.move_to_inbox, color: Colors.black),
-              title: Text(translator.translate('act_move_finished')),
+              title: Text(translator!.translate('act_move_finished')!),
             ),
           )
         : InkWell(
@@ -87,13 +87,13 @@ class BottomSheetEditMovie extends StatelessWidget {
                 Icons.watch_later,
                 color: Colors.green,
               ),
-              title: Text(translator.translate('act_move_watching')),
+              title: Text(translator!.translate('act_move_watching')!),
             ),
           );
   }
 
   Widget _buildFavoriteAction(
-      BuildContext context, bool favorite, AppLocalizations translator) {
+      BuildContext context, bool favorite, AppLocalizations? translator) {
     final favBloc = BlocProvider.of<FavouriteMovieBloc>(context);
     return InkWell(
       onTap: () {
@@ -110,8 +110,8 @@ class BottomSheetEditMovie extends StatelessWidget {
           color: favorite ? Colors.red : Colors.yellow,
         ),
         title: Text(favorite
-            ? translator.translate('act_remove_favourite')
-            : translator.translate('act_add_favourite')),
+            ? translator!.translate('act_remove_favourite')!
+            : translator!.translate('act_add_favourite')!),
       ),
     );
   }

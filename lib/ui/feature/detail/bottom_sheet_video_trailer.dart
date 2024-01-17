@@ -4,11 +4,11 @@ import 'package:project_movie_flutter/ui/widget/common/text.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class BottomSheetVideoTrailer extends StatefulWidget {
-  final String title;
-  final String videoKey;
+  final String? title;
+  final String? videoKey;
 
   BottomSheetVideoTrailer(
-      {Key key, @required this.videoKey, @required this.title})
+      {Key? key, required this.videoKey, required this.title})
       : super(key: key);
 
   @override
@@ -17,18 +17,18 @@ class BottomSheetVideoTrailer extends StatefulWidget {
 }
 
 class _BottomSheetVideoTrailerState extends State<BottomSheetVideoTrailer> {
-  YoutubePlayerController _controller;
+  late YoutubePlayerController _controller;
   double _volume = 50;
   bool _muted = false;
 
-  String _videoId;
+  String? _videoId;
 
   @override
   void initState() {
     super.initState();
     _videoId = widget.videoKey;
     _controller = YoutubePlayerController(
-      initialVideoId: _videoId,
+      initialVideoId: _videoId!,
       flags: YoutubePlayerFlags(
         mute: false,
         autoPlay: false,
@@ -114,7 +114,7 @@ class _BottomSheetVideoTrailerState extends State<BottomSheetVideoTrailer> {
     return Row(
       children: <Widget>[
         Text(
-          AppLocalizations.of(context).translate('label_volume'),
+          AppLocalizations.of(context)!.translate('label_volume')!,
           style: TextStyle(fontWeight: FontWeight.w300),
         ),
         Expanded(

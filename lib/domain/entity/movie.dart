@@ -2,47 +2,47 @@ import 'package:flutter/foundation.dart';
 import 'package:meta/meta.dart';
 
 class Movie {
-  final double popularity;
+  final double? popularity;
 
-  final int voteCount;
+  final int? voteCount;
 
-  final bool video;
+  final bool? video;
 
-  final String posterPath;
+  final String? posterPath;
 
-  final int id;
+  final int? id;
 
-  final bool adult;
+  final bool? adult;
 
-  final String backdropPath;
+  final String? backdropPath;
 
-  final String originalLanguage;
+  final String? originalLanguage;
 
-  final String originalTitle;
+  final String? originalTitle;
 
-  final List<int> genreIds;
+  final List<int>? genreIds;
 
-  final String title;
+  final String? title;
 
-  final double voteAverage;
+  final double? voteAverage;
 
-  final String overview;
+  final String? overview;
 
-  final String releaseDate;
+  final String? releaseDate;
 
-  final double runTime;
+  final double? runTime;
 
-  bool finished;
+  bool? finished;
 
   Movie({
     this.popularity,
-    @required this.posterPath,
-    @required this.id,
-    @required this.title,
-    @required this.voteAverage,
-    @required this.overview,
-    @required this.releaseDate,
-    @required this.finished,
+    required this.posterPath,
+    required this.id,
+    required this.title,
+    required this.voteAverage,
+    required this.overview,
+    required this.releaseDate,
+    required this.finished,
     this.adult,
     this.voteCount,
     this.video,

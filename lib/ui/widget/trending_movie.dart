@@ -16,23 +16,23 @@ import 'common/message_view.dart';
 class TrendingMovies extends StatelessWidget {
   Widget build(BuildContext context) {
     final bloc = BlocProvider.of<TrendingMovieBloc>(context)..add(Fetch());
-    AppLocalizations translator = AppLocalizations.of(context);
+    AppLocalizations? translator = AppLocalizations.of(context);
 
     return BlocBuilder<TrendingMovieBloc, TrendingMovieState>(
       builder: (bbCtx, state) {
         if (state is Error) {
-          String message = ExceptionHandler.handle(context, state.exception);
-          AppNavigator.instance.showAlertDialog(context,
+          String message = ExceptionHandler.handle(context, state.exception)!;
+          AppNavigator.instance!.showAlertDialog(context,
               title: Text('Error'), content: Text(message));
-          return _buildError(context, bloc, state.exception, translator);
+          return _buildError(context, bloc, state.exception, translator!);
         }
         if (state is Loaded) {
-          if (state.movies.isEmpty) {
+          if (state.movies!.isEmpty) {
             return Center(
-              child: Text(translator.translate('msg_no_movies')),
+              child: Text(translator!.translate('msg_no_movies')!),
             );
           }
-          return _buildResult(context, state.movies, translator);
+          return _buildResult(context, state.movies!, translator);
         }
         return Center(
           child: LoadingListPlaceHolder(),
@@ -54,7 +54,7 @@ class TrendingMovies extends StatelessWidget {
   }
 
   Widget _buildResult(
-      BuildContext context, List<Movie> movies, AppLocalizations translator) {
+      BuildContext context, List<Movie> movies, AppLocalizations? translator) {
     Color bgColor = Theme.of(context).canvasColor;
     return CustomScrollView(
       slivers: <Widget>[
@@ -77,9 +77,9 @@ class TrendingMovies extends StatelessWidget {
                 margin: EdgeInsets.only(left: 8, right: 8),
                 child: MovieListVerItem(
                   movie,
-                  onTap: () => AppNavigator.instance
+                  onTap: () => AppNavigator.instance!
                       .showBottomSheetMovieDetails(context, movie),
-                  onLongPress: () => AppNavigator.instance
+                  onLongPress: () => AppNavigator.instance!
                       .showBottomSheetEditMovie(context, movie),
                 ));
           }, childCount: movies.length),
@@ -89,7 +89,7 @@ class TrendingMovies extends StatelessWidget {
   }
 
   Widget _buildError(BuildContext context, TrendingMovieBloc bloc,
-      Exception exception, AppLocalizations translator) {
+      Object? exception, AppLocalizations translator) {
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -101,12 +101,12 @@ class TrendingMovies extends StatelessWidget {
               onPressed: () {
                 bloc.add(Fetch());
               },
-              child: Text(translator.translate('act_retry'))),
+              child: Text(translator.translate('act_retry')!)),
           ElevatedButton(
               onPressed: () {
                 SystemNavigator.pop();
               },
-              child: Text(translator.translate('act_exit'))),
+              child: Text(translator.translate('act_exit')!)),
         ],
       ),
     );

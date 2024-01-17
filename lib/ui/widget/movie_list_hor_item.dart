@@ -6,8 +6,8 @@ import 'common/container.dart';
 
 class MovieListHorItem extends StatelessWidget {
   final Movie movie;
-  final Function onTap;
-  final Function onLongPress;
+  final Function? onTap;
+  final Function? onLongPress;
 
   MovieListHorItem(this.movie, {this.onTap, this.onLongPress});
 
@@ -15,11 +15,11 @@ class MovieListHorItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final caption = Theme.of(context)
         .textTheme
-        .caption
+        .caption!
         .copyWith(fontStyle: FontStyle.normal, fontSize: 10);
     return InkWell(
-      onTap: onTap,
-      onLongPress: onLongPress,
+      onTap: onTap as void Function()?,
+      onLongPress: onLongPress as void Function()?,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -54,7 +54,8 @@ class MovieListHorItem extends StatelessWidget {
               ),
               Spacer(),
               Text(
-                movie.releaseDate.substring(0, movie.releaseDate.indexOf('-')),
+                movie.releaseDate!
+                    .substring(0, movie.releaseDate!.indexOf('-')),
                 style: caption,
               ),
               SizedBox(

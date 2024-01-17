@@ -3,11 +3,11 @@ import 'package:project_movie_flutter/ui/global/localizations/app_localizations.
 import 'package:project_movie_flutter/util/movie_sort_type.dart';
 
 class BottomSheetSort extends StatefulWidget {
-  final SortType currentSortType;
-  final Function(SortType sortType) onSortTypeChanged;
+  final SortType? currentSortType;
+  final Function(SortType? sortType) onSortTypeChanged;
 
   BottomSheetSort(
-      {@required this.currentSortType, @required this.onSortTypeChanged});
+      {required this.currentSortType, required this.onSortTypeChanged});
 
   @override
   _BottomSheetSortState createState() => _BottomSheetSortState();
@@ -15,7 +15,7 @@ class BottomSheetSort extends StatefulWidget {
 
 class _BottomSheetSortState extends State<BottomSheetSort> {
   var _currentSortType;
-  AppLocalizations _translator;
+  AppLocalizations? _translator;
 
   @override
   void initState() {
@@ -31,7 +31,7 @@ class _BottomSheetSortState extends State<BottomSheetSort> {
       child: Column(
         children: <Widget>[
           Text(
-            _translator.translate('title_sort'),
+            _translator!.translate('title_sort')!,
             style: Theme.of(context).textTheme.titleMedium,
             textAlign: TextAlign.center,
           ),
@@ -74,16 +74,16 @@ class _BottomSheetSortState extends State<BottomSheetSort> {
       key: UniqueKey(),
       value: itemSortType,
       title: Text(
-        _translator.translate(itemSortType.toString()),
+        _translator!.translate(itemSortType.toString())!,
         style: Theme.of(context).textTheme.headlineSmall,
       ),
       groupValue: _currentSortType,
-      onChanged: (value) => _changeSortType(value),
+      onChanged: (dynamic value) => _changeSortType(value),
       controlAffinity: ListTileControlAffinity.platform,
     );
   }
 
-  void _changeSortType(SortType value) {
+  void _changeSortType(SortType? value) {
     setState(() {
       _currentSortType = value;
       widget.onSortTypeChanged(value);

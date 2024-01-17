@@ -14,10 +14,6 @@ class AppInjector {
       return MovieDao(Injector.appInstance.get());
     });
 
-    Injector.appInstance.registerSingleton<MovieDao>(() {
-      return MovieDao(Injector.appInstance.get());
-    });
-
     Injector.appInstance.registerSingleton<MovieApiService>(() {
       return MovieApiService.create();
     });

@@ -33,7 +33,7 @@ class DetailPage extends StatefulWidget {
 
 class _DetailPageState extends State<DetailPage> {
   var _movieId;
-  detail.MovieDetailsBloc _movieDetailsBloc;
+  detail.MovieDetailsBloc? _movieDetailsBloc;
   var _movieCreditsBloc;
   var _similarMovieBloc;
   var _recommendationMovieBloc;
@@ -59,7 +59,7 @@ class _DetailPageState extends State<DetailPage> {
           );
         }
         if (state is detail.Error) {
-          return _buildError(context, state.exception, translator);
+          return _buildError(context, state.exception, translator!);
         }
         if (state is detail.Result) {
           if (!_alreadyInitRelativeBlocs) {
@@ -67,7 +67,7 @@ class _DetailPageState extends State<DetailPage> {
             _alreadyInitRelativeBlocs = true;
           }
           return Scaffold(
-            body: _buildResult(context, state.movie, translator),
+            body: _buildResult(context, state.movie!, translator!),
           );
         }
         return MessageView();
@@ -76,7 +76,7 @@ class _DetailPageState extends State<DetailPage> {
   }
 
   Widget _buildError(
-      BuildContext context, Exception exception, AppLocalizations translator) {
+      BuildContext context, Object? exception, AppLocalizations translator) {
     return Scaffold(
       appBar: AppBar(),
       body: Center(
@@ -88,14 +88,14 @@ class _DetailPageState extends State<DetailPage> {
             ),
             ElevatedButton(
                 onPressed: () {
-                  _movieDetailsBloc.add(detail.Fetch(movieId: _movieId));
+                  _movieDetailsBloc!.add(detail.Fetch(movieId: _movieId));
                 },
-                child: Text(translator.translate('act_retry'))),
+                child: Text(translator.translate('act_retry')!)),
             ElevatedButton(
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                child: Text(translator.translate('act_back'))),
+                child: Text(translator.translate('act_back')!)),
           ],
         ),
       ),
@@ -160,11 +160,15 @@ class _DetailPageState extends State<DetailPage> {
         SizedBox(height: 16),
         Center(
           child: RatingBarIndicator(
-            rating: movie.voteAverage,
+            rating: movie.voteAverage!,
             itemCount: 10,
             itemSize: 25.0,
             unratedColor: Colors.amber.withAlpha(50),
             itemPadding: EdgeInsets.all(2),
+            itemBuilder: (context, index) => Icon(
+              Icons.star,
+              color: Colors.amber,
+            ),
           ),
         ),
         SizedBox(height: 8),
@@ -173,10 +177,10 @@ class _DetailPageState extends State<DetailPage> {
           children: <Widget>[
             _buildCustomListTile(
                 Icons.access_time,
-                DateTimeFormat.format(movie.runTime.toInt()),
-                translator.translate('title_duration')),
-            _buildCustomListTile(Icons.date_range, movie.releaseDate,
-                translator.translate('title_release')),
+                DateTimeFormat.format(movie.runTime!.toInt()),
+                translator.translate('title_duration')!),
+            _buildCustomListTile(Icons.date_range, movie.releaseDate!,
+                translator.translate('title_release')!),
           ],
         ),
         SizedBox(height: 8),
@@ -240,7 +244,7 @@ class _DetailPageState extends State<DetailPage> {
 
   void _initMovieDetailsBloc() {
     if (_movieId == null) {
-      _movieId = ModalRoute.of(context).settings.arguments;
+      _movieId = ModalRoute.of(context)!.settings.arguments;
     }
     if (_movieDetailsBloc == null) {
       _movieDetailsBloc = detail.MovieDetailsBloc(

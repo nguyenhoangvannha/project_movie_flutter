@@ -8,18 +8,18 @@ import 'package:shared_preferences/shared_preferences.dart';
 import './bloc.dart';
 
 class LocalizationsBloc extends Bloc<LocalizationsEvent, LocalizationsState> {
-  static LocalizationsBloc _instance;
+  static LocalizationsBloc? _instance;
 
   static const String LOCALE = "LocalizationsBloc_LOCALE";
 
-  SharedPreferences prefs;
+  SharedPreferences? prefs;
 
   LocalizationsBloc._(LocalizationsState initState) : super(initState) {
     _loadSettings();
     on<LocaleChanged>(_onLocaleChanged);
   }
 
-  static LocalizationsBloc get instance {
+  static LocalizationsBloc? get instance {
     if (_instance == null) {
       _instance =
           LocalizationsBloc._(LocalizationsState(locale: ui.window.locale));
@@ -29,7 +29,7 @@ class LocalizationsBloc extends Bloc<LocalizationsEvent, LocalizationsState> {
 
   _loadSettings() async {
     if (prefs == null) prefs = await SharedPreferences.getInstance();
-    List<String> localeString = prefs.getStringList(LOCALE);
+    List<String>? localeString = prefs!.getStringList(LOCALE);
     if (localeString != null) {
       ui.Locale locale =
           ui.Locale(localeString.elementAt(0), localeString.elementAt(1));
@@ -39,13 +39,13 @@ class LocalizationsBloc extends Bloc<LocalizationsEvent, LocalizationsState> {
 
   _saveSettings(Locale locale) async {
     if (prefs == null) prefs = await SharedPreferences.getInstance();
-    await prefs
-        .setStringList(LOCALE, [locale.languageCode, locale.countryCode]);
+    await prefs!
+        .setStringList(LOCALE, [locale.languageCode, locale.countryCode!]);
   }
 
   FutureOr<void> _onLocaleChanged(
       LocaleChanged event, Emitter<LocalizationsState> emit) async {
-    await _saveSettings(event.locale);
+    await _saveSettings(event.locale!);
     emit(LocalizationsState(locale: event.locale));
   }
 }

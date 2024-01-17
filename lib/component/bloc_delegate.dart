@@ -11,10 +11,10 @@ import 'package:project_movie_flutter/ui/bloc/search_movie/search_movie_bloc.dar
 import 'package:project_movie_flutter/ui/bloc/trending_movie/trending_movie_bloc.dart';
 
 class AppBlocDelegate {
-  static AppBlocDelegate _instance;
+  static AppBlocDelegate? _instance;
 
-  List<BlocProvider> _blocProviders;
-  List<RepositoryProvider> _repositoryProviders;
+  List<BlocProvider>? _blocProviders;
+  List<RepositoryProvider>? _repositoryProviders;
 
   AppBlocDelegate._(BuildContext context) {
     final MovieRepository movieRepository =
@@ -57,14 +57,14 @@ class AppBlocDelegate {
     ];
   }
 
-  static AppBlocDelegate instance(BuildContext context) {
+  static AppBlocDelegate? instance(BuildContext context) {
     if (_instance == null) {
       _instance = AppBlocDelegate._(context);
     }
     return _instance;
   }
 
-  List<BlocProvider> get blocProviders => _blocProviders;
+  List<BlocProvider>? get blocProviders => _blocProviders;
 
-  List<RepositoryProvider> get repositoryProviders => _repositoryProviders;
+  List<RepositoryProvider>? get repositoryProviders => _repositoryProviders;
 }

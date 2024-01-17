@@ -4,10 +4,10 @@ import 'container.dart';
 
 class VoteAverage extends StatelessWidget {
   final double voteAverage;
-  final EdgeInsetsGeometry margin;
-  final EdgeInsetsGeometry padding;
+  final EdgeInsetsGeometry? margin;
+  final EdgeInsetsGeometry? padding;
 
-  VoteAverage({@required this.voteAverage, this.margin, this.padding});
+  VoteAverage({required this.voteAverage, this.margin, this.padding});
 
   @override
   Widget build(BuildContext context) {

@@ -7,10 +7,10 @@ abstract class MovieVideosEvent extends Equatable {
 }
 
 class Fetch extends MovieVideosEvent {
-  final int movieId;
+  final int? movieId;
 
-  Fetch({@required this.movieId}) : super();
+  Fetch({required this.movieId}) : super();
 
   @override
-  List<Object> get props => [movieId];
+  List<Object?> get props => [movieId];
 }

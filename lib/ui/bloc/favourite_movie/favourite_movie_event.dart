@@ -13,36 +13,36 @@ class LoadFavorite extends FavouriteMovieEvent {
 }
 
 class CheckFavorite extends FavouriteMovieEvent {
-  final int movieId;
+  final int? movieId;
 
-  CheckFavorite({@required this.movieId}) : super();
+  CheckFavorite({required this.movieId}) : super();
 
   @override
-  List<Object> get props => [movieId];
+  List<Object?> get props => [movieId];
 }
 
 class AddFavorite extends FavouriteMovieEvent {
   final Movie movie;
 
-  AddFavorite({@required this.movie}) : super();
+  AddFavorite({required this.movie}) : super();
 
   @override
   List<Object> get props => [movie];
 }
 
 class RemoveFavorite extends FavouriteMovieEvent {
-  final int movieId;
+  final int? movieId;
 
-  RemoveFavorite({@required this.movieId}) : super();
+  RemoveFavorite({required this.movieId}) : super();
 
   @override
-  List<Object> get props => [movieId];
+  List<Object?> get props => [movieId];
 }
 
 class UpdateFavorite extends FavouriteMovieEvent {
   final Movie movie;
 
-  UpdateFavorite({@required this.movie});
+  UpdateFavorite({required this.movie});
 
   @override
   List<Object> get props => [];
