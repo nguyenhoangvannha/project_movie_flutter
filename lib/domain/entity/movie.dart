@@ -34,7 +34,8 @@ class Movie {
 
   bool finished;
 
-  Movie({this.popularity,
+  Movie({
+    this.popularity,
     @required this.posterPath,
     @required this.id,
     @required this.title,
@@ -52,11 +53,8 @@ class Movie {
     this.runTime,
   });
 
-
   @override
   String toString() {
     return 'Movie{popularity: $popularity, voteCount: $voteCount, video: $video, posterPath: $posterPath, id: $id, adult: $adult, backdropPath: $backdropPath, originalLanguage: $originalLanguage, originalTitle: $originalTitle, genreIds: $genreIds, title: $title, voteAverage: $voteAverage, overview: $overview, releaseDate: $releaseDate, runTime: $runTime}';
   }
-
-
 }

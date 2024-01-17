@@ -51,7 +51,7 @@ class _MoviesPanelState extends State<MoviesPanel> {
     final translator = AppLocalizations.of(context);
     return Column(
       children: <Widget>[
-        OutlineButton(
+        OutlinedButton(
           onPressed: null,
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,

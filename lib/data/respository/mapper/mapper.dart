@@ -25,7 +25,7 @@ class Mapper {
         voteAverage: movie.voteAverage ?? 0.0,
         overview: movie.overview ?? "0",
         releaseDate:
-        movie.releaseDate.isEmpty ? "0000-00-00" : movie.releaseDate,
+            movie.releaseDate.isEmpty ? "0000-00-00" : movie.releaseDate,
         originalLanguage: movie.originalLanguage ?? "",
         popularity: movie.popularity ?? 0,
         voteCount: movie.voteCount ?? 0,

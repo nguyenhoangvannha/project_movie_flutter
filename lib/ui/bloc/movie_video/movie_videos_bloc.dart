@@ -14,32 +14,26 @@ class MovieVideosBloc extends Bloc<MovieVideosEvent, MovieVideosState> {
   List<Video> _videos;
   int movieId;
 
-  MovieVideosBloc({@required this.getMovieVideos});
+  MovieVideosBloc({@required this.getMovieVideos}) : super(Loading()) {
+    on<Fetch>(_onFetch);
+  }
 
-  @override
-  MovieVideosState get initialState => Loading();
-
-  @override
-  Stream<MovieVideosState> mapEventToState(
-    MovieVideosEvent event,
-  ) async* {
-    if (event is Fetch) {
-      if (movieId == null || movieId != event.movieId) {
-        yield Loading();
-        var res =
-            await getMovieVideos.execute(MovieParams(movieId: event.movieId));
-        switch (res.type) {
-          case ResourceType.Error:
-            yield Error(res.exception);
-            break;
-          case ResourceType.Success:
-            _videos = res.data;
-            yield Result(videos: _videos);
-            break;
-        }
-      } else if (_videos != null && movieId == event.movieId) {
-        yield Result(videos: _videos);
+  FutureOr<void> _onFetch(Fetch event, Emitter<MovieVideosState> emit) async {
+    if (movieId == null || movieId != event.movieId) {
+      emit(Loading());
+      var res =
+          await getMovieVideos.execute(MovieParams(movieId: event.movieId));
+      switch (res.type) {
+        case ResourceType.Error:
+          emit(Error(res.exception));
+          break;
+        case ResourceType.Success:
+          _videos = res.data;
+          emit(Result(videos: _videos));
+          break;
       }
+    } else if (_videos != null && movieId == event.movieId) {
+      emit(Result(videos: _videos));
     }
   }
 }

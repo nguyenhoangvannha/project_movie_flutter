@@ -3,7 +3,10 @@ import 'package:meta/meta.dart';
 
 @immutable
 abstract class SearchMovieEvent extends Equatable {
-  SearchMovieEvent([List props = const []]) : super(props);
+  SearchMovieEvent() : super();
+
+  @override
+  List<Object> get props => [];
 }
 
 class Search extends SearchMovieEvent {

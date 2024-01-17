@@ -4,21 +4,28 @@ import 'package:project_movie_flutter/domain/entity/movie.dart';
 
 @immutable
 abstract class MovieDetailsState extends Equatable {
-  MovieDetailsState([List props = const []]) : super(props);
+  MovieDetailsState() : super();
 }
 
 class Loading extends MovieDetailsState {
+  @override
+  List<Object> get props => [];
 }
 
 class Error extends MovieDetailsState {
   final Exception exception;
 
-  Error(this.exception) :super([exception.runtimeType]);
+  Error(this.exception) : super();
 
+  @override
+  List<Object> get props => [exception.runtimeType];
 }
 
 class Result extends MovieDetailsState {
   final Movie movie;
 
-  Result({@required this.movie}) :super([movie.id]);
+  Result({@required this.movie}) : super();
+
+  @override
+  List<Object> get props => [movie.id];
 }

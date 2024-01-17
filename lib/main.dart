@@ -9,18 +9,18 @@ import 'component/routes.dart';
 import 'ui/bloc/simple_bloc_delegate.dart';
 import 'ui/global/application.dart';
 
-
 //todo: animation
 void main() {
   initApp();
   runApp(MyApp());
 }
+
 void initApp() {
   setupLogging();
 
   AppInjector.init();
 
-  BlocSupervisor.delegate = SimpleBlocDelegate();
+  Bloc.observer = SimpleBlocDelegate();
 }
 
 void setupLogging() {

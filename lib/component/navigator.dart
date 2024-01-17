@@ -80,7 +80,8 @@ class AppNavigator {
         });
   }
 
-  void showBottomSheetShortMovies(BuildContext context,
+  void showBottomSheetShortMovies(
+      BuildContext context,
       SortType currentSortType,
       Function(SortType newSortType) onSortTypeChanged) {
     showModalBottomSheet(
@@ -97,8 +98,8 @@ class AppNavigator {
 
   void showAlertDialog(BuildContext context,
       {@required Widget content,
-        Widget title = const Text("Attention"),
-        List<Widget> actions}) {
+      Widget title = const Text("Attention"),
+      List<Widget> actions}) {
     if (actions == null) {
       actions = [];
     }
@@ -111,18 +112,20 @@ class AppNavigator {
             title: title,
             content: content,
             actions: actions
-              ..add(FlatButton(
+              ..add(TextButton(
                 onPressed: () => Navigator.of(context).pop(),
                 child:
-                Text(AppLocalizations.of(context).translate('act_close')),
+                    Text(AppLocalizations.of(context).translate('act_close')),
               )),
           );
         },
       );
     });
   }
+
   void showSnackBar(BuildContext context, String message) {
-    Scaffold.of(context).removeCurrentSnackBar();
-    Scaffold.of(context).showSnackBar(SnackBar(content: Text(message)));
+    ScaffoldMessenger.of(context).removeCurrentSnackBar();
+    ScaffoldMessenger.of(context)
+        .showSnackBar(SnackBar(content: Text(message)));
   }
 }

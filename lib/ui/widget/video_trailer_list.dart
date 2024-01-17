@@ -20,11 +20,11 @@ class VideoTrailerList extends StatelessWidget {
   Widget build(BuildContext context) {
     final mediaQueryData = MediaQuery.of(context);
     final heightPct =
-    mediaQueryData.orientation == Orientation.portrait ? 0.24 : 0.45;
+        mediaQueryData.orientation == Orientation.portrait ? 0.24 : 0.45;
     final bloc = movieVideosBloc ??
         MovieVideosBloc(
             getMovieVideos: RepositoryProvider.of<GetVideoTrailer>(context))
-          ..dispatch(Fetch(movieId: _movieId));
+      ..add(Fetch(movieId: _movieId));
     return Container(
       height: mediaQueryData.size.height * heightPct,
       child: BlocBuilder<MovieVideosBloc, MovieVideosState>(
@@ -42,8 +42,8 @@ class VideoTrailerList extends StatelessWidget {
               if (state.videos.isEmpty) {
                 return MessageView(
                   icon: Icons.info_outline,
-                  message: AppLocalizations.of(context).translate(
-                      'msg_no_video'),
+                  message:
+                      AppLocalizations.of(context).translate('msg_no_video'),
                 );
               }
               return ListView.builder(

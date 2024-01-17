@@ -23,7 +23,7 @@ class CastList extends StatelessWidget {
     final bloc = this.movieCreditsBloc ??
         MovieCreditsBloc(
             getMovieCredits: RepositoryProvider.of<GetMovieCredits>(context))
-          ..dispatch(Fetch(movieId: _movieId));
+      ..add(Fetch(movieId: _movieId));
     return LayoutBuilder(
       builder: (ctx, constraints) {
         double width = constraints.maxWidth;
@@ -38,7 +38,7 @@ class CastList extends StatelessWidget {
               if (state.casts.isEmpty) {
                 return MessageView(
                     message:
-                    AppLocalizations.of(context).translate('msg_no_casts'));
+                        AppLocalizations.of(context).translate('msg_no_casts'));
               }
               return _buildContent(width, height, portrait, state.casts);
             }
@@ -66,7 +66,7 @@ class CastList extends StatelessWidget {
                 width: portrait ? width * 0.25 : width * 0.2,
                 margin: EdgeInsets.only(left: 8, right: 8),
                 child:
-                CastListItem(title: cast.name, imageUrl: cast.profilePath),
+                    CastListItem(title: cast.name, imageUrl: cast.profilePath),
               );
             }));
   }

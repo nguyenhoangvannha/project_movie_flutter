@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 final primaryTextTheme = ThemeData.light().textTheme.copyWith(
-      title: TextStyle(color: Colors.white),
-      body2: TextStyle(color: Colors.black54),
+      titleMedium: TextStyle(color: Colors.white),
+      bodyMedium: TextStyle(color: Colors.black54),
     );
 final defaultTheme = ThemeData(
   brightness: Brightness.light,

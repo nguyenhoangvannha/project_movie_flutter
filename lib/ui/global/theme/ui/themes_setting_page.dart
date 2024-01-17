@@ -21,7 +21,7 @@ class ThemeSettingPage extends StatelessWidget {
               theme: theme,
               themeData: appThemeData[theme],
               onTap: () => BlocProvider.of<ThemeBloc>(context)
-                  .dispatch(ThemeChanged(theme: theme)),
+                  .add(ThemeChanged(theme: theme)),
             );
           }),
     );

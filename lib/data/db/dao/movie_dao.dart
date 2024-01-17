@@ -20,5 +20,4 @@ class MovieDao extends DatabaseAccessor<AppDatabase> with _$MovieDaoMixin {
 
   Future<int> deleteMovie(Insertable<Movie> movie) =>
       delete(movies).delete((movie));
-
 }

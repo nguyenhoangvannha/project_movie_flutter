@@ -14,6 +14,4 @@ class GetSimilarMovies implements UseCase<List<Movie>, MovieParams> {
   Future<DataResource<List<Movie>>> execute(MovieParams params) {
     return movieRepository.similarMovies(params.movieId, page: params.page);
   }
-
-
 }

@@ -22,12 +22,12 @@ class ThemeItem extends StatelessWidget {
             theme
                 .toString()
                 .substring(theme.toString().lastIndexOf('.') + 1)[0],
-            style: themeData.textTheme.title,
+            style: themeData.textTheme.titleMedium,
           ),
         ),
         title: Text(
           theme.toString(),
-          style: themeData.textTheme.title,
+          style: themeData.textTheme.titleMedium,
         ),
         onTap: onTap,
       ),

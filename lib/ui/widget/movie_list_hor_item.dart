@@ -26,8 +26,7 @@ class MovieListHorItem extends StatelessWidget {
           Expanded(
             child: CustomCard(
               margin: EdgeInsets.all(4),
-              child: CachedImage(
-                  image: movie.posterPath),
+              child: CachedImage(image: movie.posterPath),
             ),
           ),
           SizedBox(

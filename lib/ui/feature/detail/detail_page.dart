@@ -7,9 +7,9 @@ import 'package:project_movie_flutter/ui/bloc/movie_credit/bloc.dart';
 import 'package:project_movie_flutter/ui/bloc/movie_detail/bloc.dart' as detail;
 import 'package:project_movie_flutter/ui/bloc/movie_video/bloc.dart' as video;
 import 'package:project_movie_flutter/ui/bloc/recommendation_movie/bloc.dart'
-as recommendation;
+    as recommendation;
 import 'package:project_movie_flutter/ui/bloc/similar_movie/bloc.dart'
-as similar;
+    as similar;
 import 'package:project_movie_flutter/ui/global/localizations/app_localizations.dart';
 import 'package:project_movie_flutter/ui/widget/cast_list.dart';
 import 'package:project_movie_flutter/ui/widget/common/cached_image.dart';
@@ -75,8 +75,8 @@ class _DetailPageState extends State<DetailPage> {
     );
   }
 
-  Widget _buildError(BuildContext context, Exception exception,
-      AppLocalizations translator) {
+  Widget _buildError(
+      BuildContext context, Exception exception, AppLocalizations translator) {
     return Scaffold(
       appBar: AppBar(),
       body: Center(
@@ -86,12 +86,12 @@ class _DetailPageState extends State<DetailPage> {
             MessageView(
               message: '${ExceptionHandler.handle(context, exception)}',
             ),
-            RaisedButton(
+            ElevatedButton(
                 onPressed: () {
-                  _movieDetailsBloc.dispatch(detail.Fetch(movieId: _movieId));
+                  _movieDetailsBloc.add(detail.Fetch(movieId: _movieId));
                 },
                 child: Text(translator.translate('act_retry'))),
-            RaisedButton(
+            ElevatedButton(
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
@@ -102,8 +102,8 @@ class _DetailPageState extends State<DetailPage> {
     );
   }
 
-  Widget _buildResult(BuildContext context, Movie movie,
-      AppLocalizations translator) {
+  Widget _buildResult(
+      BuildContext context, Movie movie, AppLocalizations translator) {
     return SingleChildScrollView(
       child: Column(
         children: <Widget>[
@@ -159,12 +159,11 @@ class _DetailPageState extends State<DetailPage> {
         ),
         SizedBox(height: 16),
         Center(
-          child: FlutterRatingBarIndicator(
+          child: RatingBarIndicator(
             rating: movie.voteAverage,
             itemCount: 10,
             itemSize: 25.0,
-            emptyColor: Colors.amber.withAlpha(50),
-            fillColor: Colors.yellow,
+            unratedColor: Colors.amber.withAlpha(50),
             itemPadding: EdgeInsets.all(2),
           ),
         ),
@@ -241,15 +240,12 @@ class _DetailPageState extends State<DetailPage> {
 
   void _initMovieDetailsBloc() {
     if (_movieId == null) {
-      _movieId = ModalRoute
-          .of(context)
-          .settings
-          .arguments;
+      _movieId = ModalRoute.of(context).settings.arguments;
     }
     if (_movieDetailsBloc == null) {
       _movieDetailsBloc = detail.MovieDetailsBloc(
           getMovieDetails: RepositoryProvider.of<GetMovieDetail>(context))
-        ..dispatch(detail.Fetch(movieId: _movieId));
+        ..add(detail.Fetch(movieId: _movieId));
     }
   }
 
@@ -257,23 +253,23 @@ class _DetailPageState extends State<DetailPage> {
     if (_movieCreditsBloc == null) {
       _movieCreditsBloc = MovieCreditsBloc(
           getMovieCredits: RepositoryProvider.of<GetMovieCredits>(context))
-        ..dispatch(Fetch(movieId: _movieId));
+        ..add(Fetch(movieId: _movieId));
     }
     if (_similarMovieBloc == null) {
       _similarMovieBloc = similar.SimilarMovieBloc(
           getSimilarMovies: RepositoryProvider.of<GetSimilarMovies>(context))
-        ..dispatch(similar.Fetch(movieId: _movieId));
+        ..add(similar.Fetch(movieId: _movieId));
     }
     if (_recommendationMovieBloc == null) {
       _recommendationMovieBloc = recommendation.RecommendationMovieBloc(
           getRecommendationMovie:
-          RepositoryProvider.of<GetRecommendationsMovies>(context))
-        ..dispatch(recommendation.Fetch(movieId: _movieId));
+              RepositoryProvider.of<GetRecommendationsMovies>(context))
+        ..add(recommendation.Fetch(movieId: _movieId));
     }
     if (_movieVideosBloc == null) {
       _movieVideosBloc = video.MovieVideosBloc(
           getMovieVideos: RepositoryProvider.of<GetVideoTrailer>(context))
-        ..dispatch(video.Fetch(movieId: _movieId));
+        ..add(video.Fetch(movieId: _movieId));
     }
   }
 }

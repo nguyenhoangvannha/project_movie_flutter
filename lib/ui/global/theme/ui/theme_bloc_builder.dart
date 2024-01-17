@@ -11,7 +11,7 @@ class ThemeBlocBuilder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<ThemeBloc>(
-      builder: (BuildContext context) => ThemeBloc.instance,
+      create: (BuildContext context) => ThemeBloc.instance,
       child: BlocBuilder<ThemeBloc, ThemeState>(builder: (ctx, themeState) {
         return builder(context, themeState.themeData);
       }),

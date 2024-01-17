@@ -15,32 +15,29 @@ class RecommendationMovieBloc
   List<Movie> movies;
   int movieId;
 
-  RecommendationMovieBloc({@required this.getRecommendationMovie});
+  RecommendationMovieBloc({@required this.getRecommendationMovie})
+      : super(Loading()) {
+    on<Fetch>(_onFetch);
+  }
 
-  @override
-  RecommendationMovieState get initialState => Loading();
-
-  @override
-  Stream<RecommendationMovieState> mapEventToState(
-      RecommendationMovieEvent event,) async* {
-    if (event is Fetch) {
-      if (movieId == null || movieId != event.movieId) {
-        yield Loading();
-        var res = await getRecommendationMovie
-            .execute(MovieParams(movieId: event.movieId));
-        switch (res.type) {
-          case ResourceType.Error:
-            yield Error(res.exception);
-            break;
-          case ResourceType.Success:
-            movies = res.data;
-            movieId = event.movieId;
-            yield Result(movies: movies);
-            break;
-        }
-      } else if (movies != null) {
-        yield Result(movies: movies);
+  FutureOr<void> _onFetch(
+      Fetch event, Emitter<RecommendationMovieState> emit) async {
+    if (movieId == null || movieId != event.movieId) {
+      emit(Loading());
+      var res = await getRecommendationMovie
+          .execute(MovieParams(movieId: event.movieId));
+      switch (res.type) {
+        case ResourceType.Error:
+          emit(Error(res.exception));
+          break;
+        case ResourceType.Success:
+          movies = res.data;
+          movieId = event.movieId;
+          emit(Result(movies: movies));
+          break;
       }
+    } else if (movies != null) {
+      emit(Result(movies: movies));
     }
   }
 }

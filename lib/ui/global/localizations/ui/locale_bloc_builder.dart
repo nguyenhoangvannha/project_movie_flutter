@@ -17,7 +17,7 @@ class LocaleBlocBuilder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider<LocalizationsBloc>(
-      builder: (BuildContext context) => LocalizationsBloc.instance,
+      create: (BuildContext context) => LocalizationsBloc.instance,
       child: BlocBuilder<LocalizationsBloc, LocalizationsState>(
           builder: (bCtx, localeState) {
         return builder(

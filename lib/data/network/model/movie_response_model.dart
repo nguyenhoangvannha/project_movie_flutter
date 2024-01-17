@@ -14,7 +14,7 @@ abstract class MovieResponseModel
   MovieResponseModel._();
 
   factory MovieResponseModel([updates(MovieResponseModelBuilder b)]) =
-  _$MovieResponseModel;
+      _$MovieResponseModel;
 
   @nullable
   @BuiltValueField(wireName: 'page')

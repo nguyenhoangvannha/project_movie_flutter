@@ -15,12 +15,13 @@ class MovieRepositoryImpl implements MovieRepository {
   MovieApiService movieApiService;
   MovieDao movieDao;
   final Mapper mapper;
-  
+
   static const int _TIME_OUT = 10;
 
-  MovieRepositoryImpl({@required this.movieApiService,
-    @required this.movieDao,
-    this.mapper = const Mapper()});
+  MovieRepositoryImpl(
+      {@required this.movieApiService,
+      @required this.movieDao,
+      this.mapper = const Mapper()});
 
   @override
   Future<DataResource<List<Movie>>> getTrendingMovies({int page = 1}) async {

@@ -11,5 +11,4 @@ class DataResource<T> {
   String get errorString {
     return 'Error : ${exception.toString()}';
   }
-
 }

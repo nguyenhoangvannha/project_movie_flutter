@@ -20,7 +20,7 @@ class SimilarMoviesList extends StatelessWidget {
     final bloc = this.similarMovieBloc ??
         SimilarMovieBloc(
             getSimilarMovies: RepositoryProvider.of<GetSimilarMovies>(context))
-          ..dispatch(Fetch(movieId: _movieId));
+      ..add(Fetch(movieId: _movieId));
     return BlocBuilder<SimilarMovieBloc, SimilarMovieState>(
       bloc: bloc,
       builder: (bCtx, state) {
@@ -38,8 +38,8 @@ class SimilarMoviesList extends StatelessWidget {
           if (state.movies.isEmpty) {
             return MessageView(
               icon: Icons.info_outline,
-              message: AppLocalizations.of(context).translate(
-                  'msg_no_movies'),);
+              message: AppLocalizations.of(context).translate('msg_no_movies'),
+            );
           }
           return MoviesListHor(
             movies: state.movies,

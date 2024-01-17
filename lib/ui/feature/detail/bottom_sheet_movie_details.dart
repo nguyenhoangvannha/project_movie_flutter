@@ -6,7 +6,7 @@ import 'package:project_movie_flutter/ui/widget/common/adaptive_button.dart';
 import 'package:project_movie_flutter/ui/widget/common/cached_image.dart';
 import 'package:project_movie_flutter/ui/widget/common/text.dart';
 import 'package:project_movie_flutter/ui/widget/star_button.dart';
-import 'package:swipedetector/swipedetector.dart';
+import 'package:swipedetector_nullsafety/swipedetector_nullsafety.dart';
 
 class BottomSheetMovies extends StatelessWidget {
   final Movie movie;
@@ -22,9 +22,7 @@ class BottomSheetMovies extends StatelessWidget {
       child: LayoutBuilder(builder: (_, constraints) {
         final maxHeight = constraints.maxHeight;
         final maxWidth = constraints.maxWidth;
-        return MediaQuery
-            .of(context)
-            .orientation == Orientation.portrait
+        return MediaQuery.of(context).orientation == Orientation.portrait
             ? _buildPortrait(context, maxHeight, translator)
             : _buildLandscape(context, maxWidth, translator);
       }),
@@ -53,9 +51,9 @@ class BottomSheetMovies extends StatelessWidget {
                 SizedBox(height: 8),
                 Expanded(
                     child: TextBody1(
-                      movie.overview,
-                      maxLines: 6,
-                    )),
+                  movie.overview,
+                  maxLines: 6,
+                )),
                 _moreButton(context, translator),
               ],
             ),

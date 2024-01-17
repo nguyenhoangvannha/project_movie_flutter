@@ -6,7 +6,7 @@ class BuiltValueConverter extends JsonConverter {
   @override
   Request convertRequest(Request request) {
     return super.convertRequest(
-      request.replace(
+      request.copyWith(
         body: serializers.serializeWith(
           serializers.serializerForType(request.body.runtimeType),
           request.body,
@@ -22,7 +22,7 @@ class BuiltValueConverter extends JsonConverter {
     final Response dynamicResponse = super.convertResponse(response);
     final BodyType customBody =
         _convertToCustomObject<SingleItemType>(dynamicResponse.body);
-    return dynamicResponse.replace<BodyType>(body: customBody);
+    return dynamicResponse.copyWith<BodyType>(body: customBody);
   }
 
   dynamic _convertToCustomObject<SingleItemType>(dynamic element) {

@@ -14,32 +14,26 @@ class MovieCreditsBloc extends Bloc<MovieCreditsEvent, MovieCreditsState> {
   List<Cast> casts;
   int movieId;
 
-  MovieCreditsBloc({@required this.getMovieCredits});
+  MovieCreditsBloc({@required this.getMovieCredits}) : super(Loading()) {
+    on<Fetch>(_onFetch);
+  }
 
-  @override
-  MovieCreditsState get initialState => Loading();
-
-  @override
-  Stream<MovieCreditsState> mapEventToState(
-    MovieCreditsEvent event,
-  ) async* {
-    if (event is Fetch) {
-      if (movieId == null || movieId != event.movieId) {
-        var res = await getMovieCredits.execute(
-            MovieParams(movieId: event.movieId));
-        switch (res.type) {
-          case ResourceType.Error:
-            yield Error(res.exception);
-            break;
-          case ResourceType.Success:
-            casts = res.data;
-            movieId = event.movieId;
-            yield Loaded(casts: casts);
-            break;
-        }
-      } else {
-        yield Loaded(casts: casts);
+  FutureOr<void> _onFetch(Fetch event, Emitter<MovieCreditsState> emit) async {
+    if (movieId == null || movieId != event.movieId) {
+      var res =
+          await getMovieCredits.execute(MovieParams(movieId: event.movieId));
+      switch (res.type) {
+        case ResourceType.Error:
+          emit(Error(res.exception));
+          break;
+        case ResourceType.Success:
+          casts = res.data;
+          movieId = event.movieId;
+          emit(Loaded(casts: casts));
+          break;
       }
+    } else {
+      emit(Loaded(casts: casts));
     }
   }
 }

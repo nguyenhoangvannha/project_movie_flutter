@@ -21,33 +21,52 @@ class _$CastModelSerializer implements StructuredSerializer<CastModel> {
       'id',
       serializers.serialize(object.id, specifiedType: const FullType(int)),
     ];
-    if (object.castId != null) {
-      result..add('cast_id')..add(serializers.serialize(object.castId,
-          specifiedType: const FullType(int)));
+    Object value;
+    value = object.castId;
+    if (value != null) {
+      result
+        ..add('cast_id')
+        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
     }
-    if (object.character != null) {
-      result..add('character')..add(serializers.serialize(object.character,
-          specifiedType: const FullType(String)));
+    value = object.character;
+    if (value != null) {
+      result
+        ..add('character')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
     }
-    if (object.creditId != null) {
-      result..add('credit_id')..add(serializers.serialize(object.creditId,
-          specifiedType: const FullType(String)));
+    value = object.creditId;
+    if (value != null) {
+      result
+        ..add('credit_id')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
     }
-    if (object.gender != null) {
-      result..add('gender')..add(serializers.serialize(object.gender,
-          specifiedType: const FullType(int)));
+    value = object.gender;
+    if (value != null) {
+      result
+        ..add('gender')
+        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
     }
-    if (object.name != null) {
-      result..add('name')..add(serializers.serialize(object.name,
-          specifiedType: const FullType(String)));
+    value = object.name;
+    if (value != null) {
+      result
+        ..add('name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
     }
-    if (object.order != null) {
-      result..add('order')..add(serializers.serialize(object.order,
-          specifiedType: const FullType(int)));
+    value = object.order;
+    if (value != null) {
+      result
+        ..add('order')
+        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
     }
-    if (object.profilePath != null) {
-      result..add('profile_path')..add(serializers.serialize(object.profilePath,
-          specifiedType: const FullType(String)));
+    value = object.profilePath;
+    if (value != null) {
+      result
+        ..add('profile_path')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
     }
     return result;
   }
@@ -61,7 +80,7 @@ class _$CastModelSerializer implements StructuredSerializer<CastModel> {
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
-      final dynamic value = iterator.current;
+      final Object value = iterator.current;
       switch (key) {
         case 'cast_id':
           result.castId = serializers.deserialize(value,
@@ -121,7 +140,7 @@ class _$CastModel extends CastModel {
   final String profilePath;
 
   factory _$CastModel([void Function(CastModelBuilder) updates]) =>
-      (new CastModelBuilder()..update(updates)).build();
+      (new CastModelBuilder()..update(updates))._build();
 
   _$CastModel._(
       {this.castId,
@@ -133,9 +152,7 @@ class _$CastModel extends CastModel {
       this.order,
       this.profilePath})
       : super._() {
-    if (id == null) {
-      throw new BuiltValueNullFieldError('CastModel', 'id');
-    }
+    BuiltValueNullFieldError.checkNotNull(id, r'CastModel', 'id');
   }
 
   @override
@@ -161,23 +178,22 @@ class _$CastModel extends CastModel {
 
   @override
   int get hashCode {
-    return $jf($jc(
-        $jc(
-            $jc(
-                $jc(
-                    $jc(
-                        $jc($jc($jc(0, castId.hashCode), character.hashCode),
-                            creditId.hashCode),
-                        gender.hashCode),
-                    id.hashCode),
-                name.hashCode),
-            order.hashCode),
-        profilePath.hashCode));
+    var _$hash = 0;
+    _$hash = $jc(_$hash, castId.hashCode);
+    _$hash = $jc(_$hash, character.hashCode);
+    _$hash = $jc(_$hash, creditId.hashCode);
+    _$hash = $jc(_$hash, gender.hashCode);
+    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, name.hashCode);
+    _$hash = $jc(_$hash, order.hashCode);
+    _$hash = $jc(_$hash, profilePath.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
   }
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('CastModel')
+    return (newBuiltValueToStringHelper(r'CastModel')
           ..add('castId', castId)
           ..add('character', character)
           ..add('creditId', creditId)
@@ -228,15 +244,16 @@ class CastModelBuilder implements Builder<CastModel, CastModelBuilder> {
   CastModelBuilder();
 
   CastModelBuilder get _$this {
-    if (_$v != null) {
-      _castId = _$v.castId;
-      _character = _$v.character;
-      _creditId = _$v.creditId;
-      _gender = _$v.gender;
-      _id = _$v.id;
-      _name = _$v.name;
-      _order = _$v.order;
-      _profilePath = _$v.profilePath;
+    final $v = _$v;
+    if ($v != null) {
+      _castId = $v.castId;
+      _character = $v.character;
+      _creditId = $v.creditId;
+      _gender = $v.gender;
+      _id = $v.id;
+      _name = $v.name;
+      _order = $v.order;
+      _profilePath = $v.profilePath;
       _$v = null;
     }
     return this;
@@ -244,9 +261,7 @@ class CastModelBuilder implements Builder<CastModel, CastModelBuilder> {
 
   @override
   void replace(CastModel other) {
-    if (other == null) {
-      throw new ArgumentError.notNull('other');
-    }
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$CastModel;
   }
 
@@ -256,14 +271,16 @@ class CastModelBuilder implements Builder<CastModel, CastModelBuilder> {
   }
 
   @override
-  _$CastModel build() {
+  CastModel build() => _build();
+
+  _$CastModel _build() {
     final _$result = _$v ??
         new _$CastModel._(
             castId: castId,
             character: character,
             creditId: creditId,
             gender: gender,
-            id: id,
+            id: BuiltValueNullFieldError.checkNotNull(id, r'CastModel', 'id'),
             name: name,
             order: order,
             profilePath: profilePath);
@@ -272,4 +289,4 @@ class CastModelBuilder implements Builder<CastModel, CastModelBuilder> {
   }
 }
 
-// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,lines_longer_than_80_chars,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new
+// ignore_for_file: deprecated_member_use_from_same_package,type=lint

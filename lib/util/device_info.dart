@@ -21,8 +21,7 @@ class DeviceInfo {
       _deviceType = mediaQueryData.size.shortestSide > 600.0
           ? DeviceType.TABLET
           : DeviceType.PHONE;
-      print(
-          "${_deviceType.toString()} : ${mediaQueryData.size.shortestSide}");
+      print("${_deviceType.toString()} : ${mediaQueryData.size.shortestSide}");
     }
     return _deviceType;
   }
@@ -44,8 +43,7 @@ class DeviceInfo {
         _displayResolution = DisplayResolution.QHD;
       }
     }
-    print(
-        "${_displayResolution.toString()} : ${window.devicePixelRatio}");
+    print("${_displayResolution.toString()} : ${window.devicePixelRatio}");
     return _displayResolution;
   }
 }

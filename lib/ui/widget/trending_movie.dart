@@ -15,8 +15,7 @@ import 'common/message_view.dart';
 
 class TrendingMovies extends StatelessWidget {
   Widget build(BuildContext context) {
-    final bloc = BlocProvider.of<TrendingMovieBloc>(context)
-      ..dispatch(Fetch());
+    final bloc = BlocProvider.of<TrendingMovieBloc>(context)..add(Fetch());
     AppLocalizations translator = AppLocalizations.of(context);
 
     return BlocBuilder<TrendingMovieBloc, TrendingMovieState>(
@@ -54,11 +53,9 @@ class TrendingMovies extends StatelessWidget {
     return heightPercent * height;
   }
 
-  Widget _buildResult(BuildContext context, List<Movie> movies,
-      AppLocalizations translator) {
-    Color bgColor = Theme
-        .of(context)
-        .canvasColor;
+  Widget _buildResult(
+      BuildContext context, List<Movie> movies, AppLocalizations translator) {
+    Color bgColor = Theme.of(context).canvasColor;
     return CustomScrollView(
       slivers: <Widget>[
         SliverAppBar(
@@ -71,32 +68,24 @@ class TrendingMovies extends StatelessWidget {
         ),
         SliverList(
           delegate:
-          SliverChildBuilderDelegate((BuildContext context, int index) {
+              SliverChildBuilderDelegate((BuildContext context, int index) {
             final movie = movies.elementAt(index);
             return Container(
                 height: _calculateListItemHeight(
-                    MediaQuery
-                        .of(context)
-                        .orientation == Orientation.portrait,
-                    MediaQuery
-                        .of(context)
-                        .size
-                        .height),
+                    MediaQuery.of(context).orientation == Orientation.portrait,
+                    MediaQuery.of(context).size.height),
                 margin: EdgeInsets.only(left: 8, right: 8),
                 child: MovieListVerItem(
                   movie,
-                  onTap: () =>
-                      AppNavigator.instance
-                          .showBottomSheetMovieDetails(context, movie),
-                  onLongPress: () =>
-                      AppNavigator.instance
-                          .showBottomSheetEditMovie(context, movie),
+                  onTap: () => AppNavigator.instance
+                      .showBottomSheetMovieDetails(context, movie),
+                  onLongPress: () => AppNavigator.instance
+                      .showBottomSheetEditMovie(context, movie),
                 ));
           }, childCount: movies.length),
         )
       ],
     );
-
   }
 
   Widget _buildError(BuildContext context, TrendingMovieBloc bloc,
@@ -108,12 +97,12 @@ class TrendingMovies extends StatelessWidget {
           MessageView(
             message: '${ExceptionHandler.handle(context, exception)}',
           ),
-          RaisedButton(
+          ElevatedButton(
               onPressed: () {
-                bloc.dispatch(Fetch());
+                bloc.add(Fetch());
               },
               child: Text(translator.translate('act_retry'))),
-          RaisedButton(
+          ElevatedButton(
               onPressed: () {
                 SystemNavigator.pop();
               },

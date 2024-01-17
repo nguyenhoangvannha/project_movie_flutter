@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:project_movie_flutter/domain/entity/movie.dart';
 import 'package:project_movie_flutter/ui/bloc/favourite_movie/bloc.dart';
 import 'package:project_movie_flutter/ui/global/localizations/app_localizations.dart';
-import 'package:swipedetector/swipedetector.dart';
+import 'package:swipedetector_nullsafety/swipedetector_nullsafety.dart';
 
 import 'common/text.dart';
 
@@ -16,7 +16,7 @@ class BottomSheetEditMovie extends StatelessWidget {
   Widget build(BuildContext context) {
     final translator = AppLocalizations.of(context);
     BlocProvider.of<FavouriteMovieBloc>(context)
-        .dispatch(CheckFavorite(movieId: _movie.id));
+        .add(CheckFavorite(movieId: _movie.id));
     return SwipeDetector(
       swipeConfiguration: swipeConfig,
       onSwipeLeft: () => _hideBottomSheet(context),
@@ -27,9 +27,9 @@ class BottomSheetEditMovie extends StatelessWidget {
           ListTile(leading: TextTitle('Edit')),
           Divider(),
           BlocBuilder<FavouriteMovieBloc, FavouriteMovieState>(
-              condition: (pre, cur) {
-                return cur is FavoriteChecked;
-              }, builder: (bCtx, state) {
+              buildWhen: (pre, cur) {
+            return cur is FavoriteChecked;
+          }, builder: (bCtx, state) {
             if (state is FavoriteChecked) {
               if (state.isFavorite) {
                 return Column(
@@ -68,7 +68,7 @@ class BottomSheetEditMovie extends StatelessWidget {
         ? InkWell(
             onTap: () {
               _movie.finished = true;
-              favBloc.dispatch(UpdateFavorite(movie: _movie));
+              favBloc.add(UpdateFavorite(movie: _movie));
               _hideBottomSheet(context);
             },
             child: ListTile(
@@ -79,7 +79,7 @@ class BottomSheetEditMovie extends StatelessWidget {
         : InkWell(
             onTap: () {
               _movie.finished = false;
-              favBloc.dispatch(UpdateFavorite(movie: _movie));
+              favBloc.add(UpdateFavorite(movie: _movie));
               _hideBottomSheet(context);
             },
             child: ListTile(
@@ -92,15 +92,15 @@ class BottomSheetEditMovie extends StatelessWidget {
           );
   }
 
-  Widget _buildFavoriteAction(BuildContext context, bool favorite,
-      AppLocalizations translator) {
+  Widget _buildFavoriteAction(
+      BuildContext context, bool favorite, AppLocalizations translator) {
     final favBloc = BlocProvider.of<FavouriteMovieBloc>(context);
     return InkWell(
       onTap: () {
         if (favorite) {
-          favBloc.dispatch(RemoveFavorite(movieId: _movie.id));
+          favBloc.add(RemoveFavorite(movieId: _movie.id));
         } else {
-          favBloc.dispatch(AddFavorite(movie: _movie));
+          favBloc.add(AddFavorite(movie: _movie));
         }
         _hideBottomSheet(context);
       },

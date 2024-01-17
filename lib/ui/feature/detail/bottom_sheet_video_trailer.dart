@@ -17,7 +17,7 @@ class BottomSheetVideoTrailer extends StatefulWidget {
 }
 
 class _BottomSheetVideoTrailerState extends State<BottomSheetVideoTrailer> {
-  YoutubePlayerController _controller = YoutubePlayerController();
+  YoutubePlayerController _controller;
   double _volume = 50;
   bool _muted = false;
 
@@ -27,18 +27,16 @@ class _BottomSheetVideoTrailerState extends State<BottomSheetVideoTrailer> {
   void initState() {
     super.initState();
     _videoId = widget.videoKey;
-  }
-
-  void listener() {
-//    if (_controller.value.playerState == PlayerState.ENDED) {
-//      _showThankYouDialog();
-//    }
-//    if (mounted) {
-//      setState(() {
-//        _playerStatus = _controller.value.playerState.toString();
-//        _errorCode = _controller.value.errorCode.toString();
-//      });
-//    }
+    _controller = YoutubePlayerController(
+      initialVideoId: _videoId,
+      flags: YoutubePlayerFlags(
+        mute: false,
+        autoPlay: false,
+        // forceHideAnnotation: true,
+        // showVideoProgressIndicator: true,
+        disableDragSeek: false,
+      ),
+    );
   }
 
   @override
@@ -50,17 +48,8 @@ class _BottomSheetVideoTrailerState extends State<BottomSheetVideoTrailer> {
 
   _buildVideoPlayer() {
     return YoutubePlayer(
-      context: context,
-      videoId: _videoId,
-      flags: YoutubePlayerFlags(
-        mute: false,
-        autoPlay: false,
-        forceHideAnnotation: true,
-        showVideoProgressIndicator: true,
-        disableDragSeek: false,
-      ),
-      videoProgressIndicatorColor: Color(0xFFFF0000),
-      actions: <Widget>[
+      progressIndicatorColor: Color(0xFFFF0000),
+      bottomActions: <Widget>[
         IconButton(
           icon: Icon(
             Icons.info_outline,
@@ -81,14 +70,11 @@ class _BottomSheetVideoTrailerState extends State<BottomSheetVideoTrailer> {
           ),
         ),
       ],
-      progressColors: ProgressColors(
+      progressColors: ProgressBarColors(
         playedColor: Color(0xFFFF0000),
         handleColor: Color(0xFFFF4433),
       ),
-      onPlayerInitialized: (controller) {
-        _controller = controller;
-        _controller.addListener(listener);
-      },
+      controller: _controller,
     );
   }
 
@@ -118,7 +104,7 @@ class _BottomSheetVideoTrailerState extends State<BottomSheetVideoTrailer> {
         ),
         IconButton(
           icon: Icon(Icons.fullscreen),
-          onPressed: () => _controller.enterFullScreen(),
+          onPressed: () => _controller.toggleFullScreenMode(),
         ),
       ],
     );
@@ -208,7 +194,12 @@ class _BottomSheetVideoTrailerState extends State<BottomSheetVideoTrailer> {
               child: Column(
                 children: <Widget>[
                   Flexible(
-                    flex: 2, child: TextTitle(widget.title, maxLines: 2,),),
+                    flex: 2,
+                    child: TextTitle(
+                      widget.title,
+                      maxLines: 2,
+                    ),
+                  ),
                   Flexible(
                     flex: 3,
                     fit: FlexFit.tight,

@@ -9,13 +9,14 @@ class CustomCard extends StatelessWidget {
   final Color color;
   final Color borderColor;
 
-  CustomCard({this.child,
-    this.borderRadius = const BorderRadius.all(Radius.circular(8)),
-    this.elevation = 2,
-    this.borderWidth = 0.0,
+  CustomCard(
+      {this.child,
+      this.borderRadius = const BorderRadius.all(Radius.circular(8)),
+      this.elevation = 2,
+      this.borderWidth = 0.0,
       this.margin = const EdgeInsets.all(0),
       this.color,
-    this.borderColor = Colors.white});
+      this.borderColor = Colors.white});
 
   @override
   Widget build(BuildContext context) {

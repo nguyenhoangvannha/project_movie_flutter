@@ -4,19 +4,28 @@ import 'package:project_movie_flutter/domain/entity/movie.dart';
 
 @immutable
 abstract class TrendingMovieState extends Equatable {
-  TrendingMovieState([List props = const []]) : super(props);
+  TrendingMovieState() : super();
 }
 
-class Loading extends TrendingMovieState {}
+class Loading extends TrendingMovieState {
+  @override
+  List<Object> get props => [];
+}
 
 class Error extends TrendingMovieState {
   final Exception exception;
 
-  Error(this.exception) :super([exception.hashCode]);
+  Error(this.exception) : super();
+  @override
+  List<Object> get props => [exception.hashCode];
 }
 
 class Loaded extends TrendingMovieState {
   final List<Movie> movies;
 
-  Loaded({this.movies}) : super([]);
+  Loaded({this.movies}) : super();
+  @override
+  List<Object> get props => [
+        {movies}
+      ];
 }

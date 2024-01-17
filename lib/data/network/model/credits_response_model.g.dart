@@ -24,14 +24,20 @@ class _$CreditsResponseModelSerializer
       Serializers serializers, CreditsResponseModel object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object>[];
-    if (object.id != null) {
-      result..add('id')..add(serializers.serialize(object.id,
-          specifiedType: const FullType(int)));
+    Object value;
+    value = object.id;
+    if (value != null) {
+      result
+        ..add('id')
+        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
     }
-    if (object.casts != null) {
-      result..add('cast')..add(serializers.serialize(object.casts,
-          specifiedType:
-          const FullType(BuiltList, const [const FullType(CastModel)])));
+    value = object.casts;
+    if (value != null) {
+      result
+        ..add('cast')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(CastModel)])));
     }
     return result;
   }
@@ -40,23 +46,31 @@ class _$CreditsResponseModelSerializer
   CreditsResponseModel deserialize(
       Serializers serializers, Iterable<Object> serialized,
       {FullType specifiedType = FullType.unspecified}) {
+    T $cast<T>(dynamic any) => any as T;
+
     final result = new CreditsResponseModelBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
-      final dynamic value = iterator.current;
+      final Object value = iterator.current;
       switch (key) {
         case 'id':
           result.id = serializers.deserialize(value,
               specifiedType: const FullType(int)) as int;
           break;
         case 'cast':
-          result.casts.replace(serializers.deserialize(value,
+          var maybeBuilder = result.casts;
+          var fieldValue = serializers.deserialize(value,
                   specifiedType: const FullType(
                       BuiltList, const [const FullType(CastModel)]))
-              as BuiltList<dynamic>);
+              as BuiltList<CastModel>;
+          if (maybeBuilder == null) {
+            result.casts = $cast(fieldValue.toBuilder());
+          } else {
+            maybeBuilder.replace(fieldValue);
+          }
           break;
       }
     }
@@ -73,7 +87,7 @@ class _$CreditsResponseModel extends CreditsResponseModel {
 
   factory _$CreditsResponseModel(
           [void Function(CreditsResponseModelBuilder) updates]) =>
-      (new CreditsResponseModelBuilder()..update(updates)).build();
+      (new CreditsResponseModelBuilder()..update(updates))._build();
 
   _$CreditsResponseModel._({this.id, this.casts}) : super._();
 
@@ -96,12 +110,16 @@ class _$CreditsResponseModel extends CreditsResponseModel {
 
   @override
   int get hashCode {
-    return $jf($jc($jc(0, id.hashCode), casts.hashCode));
+    var _$hash = 0;
+    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, casts.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
   }
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('CreditsResponseModel')
+    return (newBuiltValueToStringHelper(r'CreditsResponseModel')
           ..add('id', id)
           ..add('casts', casts))
         .toString();
@@ -124,9 +142,10 @@ class CreditsResponseModelBuilder
   CreditsResponseModelBuilder();
 
   CreditsResponseModelBuilder get _$this {
-    if (_$v != null) {
-      _id = _$v.id;
-      _casts = _$v.casts?.toBuilder();
+    final $v = _$v;
+    if ($v != null) {
+      _id = $v.id;
+      _casts = $v.casts?.toBuilder();
       _$v = null;
     }
     return this;
@@ -134,9 +153,7 @@ class CreditsResponseModelBuilder
 
   @override
   void replace(CreditsResponseModel other) {
-    if (other == null) {
-      throw new ArgumentError.notNull('other');
-    }
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$CreditsResponseModel;
   }
 
@@ -146,7 +163,9 @@ class CreditsResponseModelBuilder
   }
 
   @override
-  _$CreditsResponseModel build() {
+  CreditsResponseModel build() => _build();
+
+  _$CreditsResponseModel _build() {
     _$CreditsResponseModel _$result;
     try {
       _$result =
@@ -158,7 +177,7 @@ class CreditsResponseModelBuilder
         _casts?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            'CreditsResponseModel', _$failedField, e.toString());
+            r'CreditsResponseModel', _$failedField, e.toString());
       }
       rethrow;
     }
@@ -167,4 +186,4 @@ class CreditsResponseModelBuilder
   }
 }
 
-// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,lines_longer_than_80_chars,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new
+// ignore_for_file: deprecated_member_use_from_same_package,type=lint

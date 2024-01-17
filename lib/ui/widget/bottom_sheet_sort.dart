@@ -32,7 +32,7 @@ class _BottomSheetSortState extends State<BottomSheetSort> {
         children: <Widget>[
           Text(
             _translator.translate('title_sort'),
-            style: Theme.of(context).textTheme.title,
+            style: Theme.of(context).textTheme.titleMedium,
             textAlign: TextAlign.center,
           ),
           SizedBox(
@@ -40,22 +40,22 @@ class _BottomSheetSortState extends State<BottomSheetSort> {
           ),
           Expanded(
               child: SingleChildScrollView(
-                child: Column(
-                  children: <Widget>[
-                    _buildSortItem(context, SortType.name_inc),
-                    _buildDivider(),
-                    _buildSortItem(context, SortType.name_dec),
-                    _buildDivider(),
-                    _buildSortItem(context, SortType.date_inc),
-                    _buildDivider(),
-                    _buildSortItem(context, SortType.date_dec),
-                    _buildDivider(),
-                    _buildSortItem(context, SortType.popular_inc),
-                    _buildDivider(),
-                    _buildSortItem(context, SortType.popular_dec),
-                  ],
-                ),
-              ))
+            child: Column(
+              children: <Widget>[
+                _buildSortItem(context, SortType.name_inc),
+                _buildDivider(),
+                _buildSortItem(context, SortType.name_dec),
+                _buildDivider(),
+                _buildSortItem(context, SortType.date_inc),
+                _buildDivider(),
+                _buildSortItem(context, SortType.date_dec),
+                _buildDivider(),
+                _buildSortItem(context, SortType.popular_inc),
+                _buildDivider(),
+                _buildSortItem(context, SortType.popular_dec),
+              ],
+            ),
+          ))
         ],
       ),
     );
@@ -75,10 +75,7 @@ class _BottomSheetSortState extends State<BottomSheetSort> {
       value: itemSortType,
       title: Text(
         _translator.translate(itemSortType.toString()),
-        style: Theme
-            .of(context)
-            .textTheme
-            .subhead,
+        style: Theme.of(context).textTheme.headlineSmall,
       ),
       groupValue: _currentSortType,
       onChanged: (value) => _changeSortType(value),

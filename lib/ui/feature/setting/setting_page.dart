@@ -16,7 +16,6 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
-
   bool _darkTheme = false;
   Locale _currentLocale;
 
@@ -27,9 +26,7 @@ class _SettingsPageState extends State<SettingsPage> {
     super.didChangeDependencies();
     if (!alreadyInit) {
       setState(() {
-        _darkTheme = Theme
-            .of(context)
-            .brightness == Brightness.dark;
+        _darkTheme = Theme.of(context).brightness == Brightness.dark;
         _currentLocale = Localizations.localeOf(context);
       });
       alreadyInit = true;
@@ -51,7 +48,12 @@ class _SettingsPageState extends State<SettingsPage> {
     return ListView(
       children: <Widget>[
         _buildThemeItem(translator),
-        Divider(indent: 8, endIndent: 8, thickness: 0, height: 1,),
+        Divider(
+          indent: 8,
+          endIndent: 8,
+          thickness: 0,
+          height: 1,
+        ),
         _buildLanguageItem(translator),
       ],
     );
@@ -93,7 +95,7 @@ class _SettingsPageState extends State<SettingsPage> {
             _changeLanguage(newValue);
           },
           items:
-          supportedLocales.map<DropdownMenuItem<Locale>>((Locale locale) {
+              supportedLocales.map<DropdownMenuItem<Locale>>((Locale locale) {
             return DropdownMenuItem<Locale>(
               value: locale,
               child: SizedBox(
@@ -105,7 +107,9 @@ class _SettingsPageState extends State<SettingsPage> {
                     SizedBox(
                       width: 4,
                     ),
-                    Text(translator.translate(locale.toString()),),
+                    Text(
+                      translator.translate(locale.toString()),
+                    ),
                   ],
                 ),
               ),
@@ -121,7 +125,7 @@ class _SettingsPageState extends State<SettingsPage> {
     setState(() {
       _currentLocale = locale;
       BlocProvider.of<LocalizationsBloc>(context)
-          .dispatch(LocaleChanged(locale: _currentLocale));
+          .add(LocaleChanged(locale: _currentLocale));
     });
   }
 
@@ -129,7 +133,7 @@ class _SettingsPageState extends State<SettingsPage> {
     setState(() {
       _darkTheme = !_darkTheme;
     });
-    BlocProvider.of<ThemeBloc>(context).dispatch(
-        ThemeChanged(theme: _darkTheme ? AppTheme.Dark : AppTheme.Light));
+    BlocProvider.of<ThemeBloc>(context)
+        .add(ThemeChanged(theme: _darkTheme ? AppTheme.Dark : AppTheme.Light));
   }
 }

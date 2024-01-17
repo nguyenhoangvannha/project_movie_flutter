@@ -16,22 +16,22 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final translator = AppLocalizations.of(context);
 
-    BlocProvider.of<FavouriteMovieBloc>(context).dispatch(LoadFavorite());
+    BlocProvider.of<FavouriteMovieBloc>(context).add(LoadFavorite());
 
     return BlocBuilder<FavouriteMovieBloc, FavouriteMovieState>(
-        condition: (pre, next) {
-          return next is LoadingFavorite ||
-              next is NoFavorite ||
-              next is HasFavorite ||
-              next is FavoriteError;
-        }, builder: (context, state) {
+        buildWhen: (pre, next) {
+      return next is LoadingFavorite ||
+          next is NoFavorite ||
+          next is HasFavorite ||
+          next is FavoriteError;
+    }, builder: (context, state) {
       if (state is NoFavorite) {
         return _buildScaffold(context, TrendingMovies(), null, translator);
       }
 
       if (state is HasFavorite) {
-        return _buildTabView(context, state.watching,
-            state.finished, translator);
+        return _buildTabView(
+            context, state.watching, state.finished, translator);
       }
 
       if (state is FavoriteError) {
@@ -58,8 +58,8 @@ class HomePage extends StatelessWidget {
       ),
       title: Center(
           child: Text(
-            translator.translate('app_name'),
-          )),
+        translator.translate('app_name'),
+      )),
       actions: <Widget>[
         IconButton(
             icon: Icon(Icons.search),
@@ -77,10 +77,8 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  Widget _buildTabView(BuildContext context,
-      List<Movie> watchingList,
-      List<Movie> finishedList,
-      AppLocalizations translator) {
+  Widget _buildTabView(BuildContext context, List<Movie> watchingList,
+      List<Movie> finishedList, AppLocalizations translator) {
     return DefaultTabController(
         initialIndex: 0,
         length: 2,

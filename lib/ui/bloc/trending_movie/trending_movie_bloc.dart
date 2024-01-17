@@ -14,29 +14,25 @@ class TrendingMovieBloc extends Bloc<TrendingMovieEvent, TrendingMovieState> {
   final UseCase<List<Movie>, MovieParams> getTrendingMovies;
   List<Movie> movies;
 
-  TrendingMovieBloc({@required this.getTrendingMovies});
+  TrendingMovieBloc({@required this.getTrendingMovies}) : super(Loading()) {
+    on<Fetch>(_onFetch);
+  }
 
-  @override
-  TrendingMovieState get initialState => Loading();
-
-  @override
-  Stream<TrendingMovieState> mapEventToState(TrendingMovieEvent event,) async* {
-    if (event is Fetch) {
-      if (movies == null || movies.length < 1) {
-        yield Loading();
-        var res = await getTrendingMovies.execute(MovieParams());
-        switch (res.type) {
-          case ResourceType.Error:
-            yield (Error(res.exception));
-            break;
-          case ResourceType.Success:
-            movies = res.data;
-            yield Loaded(movies: movies);
-            break;
-        }
-      } else {
-        yield Loaded(movies: movies);
+  FutureOr<void> _onFetch(Fetch event, Emitter<TrendingMovieState> emit) async {
+    if (movies == null || movies.length < 1) {
+      emit(Loading());
+      var res = await getTrendingMovies.execute(MovieParams());
+      switch (res.type) {
+        case ResourceType.Error:
+          emit((Error(res.exception)));
+          break;
+        case ResourceType.Success:
+          movies = res.data;
+          emit(Loaded(movies: movies));
+          break;
       }
+    } else {
+      emit(Loaded(movies: movies));
     }
   }
 }

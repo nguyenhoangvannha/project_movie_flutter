@@ -21,33 +21,54 @@ class _$VideoModelSerializer implements StructuredSerializer<VideoModel> {
       'id',
       serializers.serialize(object.id, specifiedType: const FullType(String)),
     ];
-    if (object.iso6391 != null) {
-      result..add('iso_639_1')..add(serializers.serialize(object.iso6391,
-          specifiedType: const FullType(String)));
+    Object value;
+    value = object.iso6391;
+    if (value != null) {
+      result
+        ..add('iso_639_1')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
     }
-    if (object.iso31661 != null) {
-      result..add('iso_3166_1')..add(serializers.serialize(object.iso31661,
-          specifiedType: const FullType(String)));
+    value = object.iso31661;
+    if (value != null) {
+      result
+        ..add('iso_3166_1')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
     }
-    if (object.key != null) {
-      result..add('key')..add(serializers.serialize(object.key,
-          specifiedType: const FullType(String)));
+    value = object.key;
+    if (value != null) {
+      result
+        ..add('key')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
     }
-    if (object.name != null) {
-      result..add('name')..add(serializers.serialize(object.name,
-          specifiedType: const FullType(String)));
+    value = object.name;
+    if (value != null) {
+      result
+        ..add('name')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
     }
-    if (object.site != null) {
-      result..add('site')..add(serializers.serialize(object.site,
-          specifiedType: const FullType(String)));
+    value = object.site;
+    if (value != null) {
+      result
+        ..add('site')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
     }
-    if (object.size != null) {
-      result..add('size')..add(serializers.serialize(object.size,
-          specifiedType: const FullType(int)));
+    value = object.size;
+    if (value != null) {
+      result
+        ..add('size')
+        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
     }
-    if (object.type != null) {
-      result..add('type')..add(serializers.serialize(object.type,
-          specifiedType: const FullType(String)));
+    value = object.type;
+    if (value != null) {
+      result
+        ..add('type')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
     }
     return result;
   }
@@ -61,7 +82,7 @@ class _$VideoModelSerializer implements StructuredSerializer<VideoModel> {
     while (iterator.moveNext()) {
       final key = iterator.current as String;
       iterator.moveNext();
-      final dynamic value = iterator.current;
+      final Object value = iterator.current;
       switch (key) {
         case 'id':
           result.id = serializers.deserialize(value,
@@ -121,7 +142,7 @@ class _$VideoModel extends VideoModel {
   final String type;
 
   factory _$VideoModel([void Function(VideoModelBuilder) updates]) =>
-      (new VideoModelBuilder()..update(updates)).build();
+      (new VideoModelBuilder()..update(updates))._build();
 
   _$VideoModel._(
       {this.id,
@@ -133,9 +154,7 @@ class _$VideoModel extends VideoModel {
       this.size,
       this.type})
       : super._() {
-    if (id == null) {
-      throw new BuiltValueNullFieldError('VideoModel', 'id');
-    }
+    BuiltValueNullFieldError.checkNotNull(id, r'VideoModel', 'id');
   }
 
   @override
@@ -161,23 +180,22 @@ class _$VideoModel extends VideoModel {
 
   @override
   int get hashCode {
-    return $jf($jc(
-        $jc(
-            $jc(
-                $jc(
-                    $jc(
-                        $jc($jc($jc(0, id.hashCode), iso6391.hashCode),
-                            iso31661.hashCode),
-                        key.hashCode),
-                    name.hashCode),
-                site.hashCode),
-            size.hashCode),
-        type.hashCode));
+    var _$hash = 0;
+    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, iso6391.hashCode);
+    _$hash = $jc(_$hash, iso31661.hashCode);
+    _$hash = $jc(_$hash, key.hashCode);
+    _$hash = $jc(_$hash, name.hashCode);
+    _$hash = $jc(_$hash, site.hashCode);
+    _$hash = $jc(_$hash, size.hashCode);
+    _$hash = $jc(_$hash, type.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
   }
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('VideoModel')
+    return (newBuiltValueToStringHelper(r'VideoModel')
           ..add('id', id)
           ..add('iso6391', iso6391)
           ..add('iso31661', iso31661)
@@ -228,15 +246,16 @@ class VideoModelBuilder implements Builder<VideoModel, VideoModelBuilder> {
   VideoModelBuilder();
 
   VideoModelBuilder get _$this {
-    if (_$v != null) {
-      _id = _$v.id;
-      _iso6391 = _$v.iso6391;
-      _iso31661 = _$v.iso31661;
-      _key = _$v.key;
-      _name = _$v.name;
-      _site = _$v.site;
-      _size = _$v.size;
-      _type = _$v.type;
+    final $v = _$v;
+    if ($v != null) {
+      _id = $v.id;
+      _iso6391 = $v.iso6391;
+      _iso31661 = $v.iso31661;
+      _key = $v.key;
+      _name = $v.name;
+      _site = $v.site;
+      _size = $v.size;
+      _type = $v.type;
       _$v = null;
     }
     return this;
@@ -244,9 +263,7 @@ class VideoModelBuilder implements Builder<VideoModel, VideoModelBuilder> {
 
   @override
   void replace(VideoModel other) {
-    if (other == null) {
-      throw new ArgumentError.notNull('other');
-    }
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$VideoModel;
   }
 
@@ -256,10 +273,12 @@ class VideoModelBuilder implements Builder<VideoModel, VideoModelBuilder> {
   }
 
   @override
-  _$VideoModel build() {
+  VideoModel build() => _build();
+
+  _$VideoModel _build() {
     final _$result = _$v ??
         new _$VideoModel._(
-            id: id,
+            id: BuiltValueNullFieldError.checkNotNull(id, r'VideoModel', 'id'),
             iso6391: iso6391,
             iso31661: iso31661,
             key: key,
@@ -272,4 +291,4 @@ class VideoModelBuilder implements Builder<VideoModel, VideoModelBuilder> {
   }
 }
 
-// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,lines_longer_than_80_chars,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new
+// ignore_for_file: deprecated_member_use_from_same_package,type=lint

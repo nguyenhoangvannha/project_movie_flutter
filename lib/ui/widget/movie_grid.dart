@@ -15,7 +15,7 @@ class MovieGrid extends StatelessWidget {
     final mediaQueryData = MediaQuery.of(context);
     final gridDelegate = SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount:
-        mediaQueryData.orientation == Orientation.portrait ? 3 : 5,
+            mediaQueryData.orientation == Orientation.portrait ? 3 : 5,
         childAspectRatio: 1.7 / 3,
         mainAxisSpacing: 8,
         crossAxisSpacing: 6);
@@ -36,12 +36,10 @@ class MovieGrid extends StatelessWidget {
           return Container(
             child: MovieGridItem(
               movie,
-              onTap: () =>
-                  AppNavigator.instance
-                      .showBottomSheetMovieDetails(context, movie),
-              onLongPress: () =>
-                  AppNavigator.instance
-                      .showBottomSheetEditMovie(context, movie),
+              onTap: () => AppNavigator.instance
+                  .showBottomSheetMovieDetails(context, movie),
+              onLongPress: () => AppNavigator.instance
+                  .showBottomSheetEditMovie(context, movie),
             ),
           );
         },

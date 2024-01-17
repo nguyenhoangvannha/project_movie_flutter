@@ -14,5 +14,4 @@ class GetMovieDetail implements UseCase<Movie, MovieParams> {
   Future<DataResource<Movie>> execute(MovieParams params) {
     return movieRepository.getMovieDetail(params.movieId);
   }
-
 }

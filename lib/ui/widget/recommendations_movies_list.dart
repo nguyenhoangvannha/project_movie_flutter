@@ -20,8 +20,8 @@ class RecommendationsMoviesList extends StatelessWidget {
     final bloc = this.recommendationMovieBloc ??
         RecommendationMovieBloc(
             getRecommendationMovie:
-            RepositoryProvider.of<GetRecommendationsMovies>(context))
-          ..dispatch(Fetch(movieId: _movieId));
+                RepositoryProvider.of<GetRecommendationsMovies>(context))
+      ..add(Fetch(movieId: _movieId));
     return BlocBuilder<RecommendationMovieBloc, RecommendationMovieState>(
       bloc: bloc,
       builder: (bCtx, state) {
@@ -38,8 +38,8 @@ class RecommendationsMoviesList extends StatelessWidget {
           if (state.movies.isEmpty) {
             return MessageView(
               icon: Icons.info_outline,
-              message: AppLocalizations.of(context).translate(
-                  'msg_no_movies'),);
+              message: AppLocalizations.of(context).translate('msg_no_movies'),
+            );
           }
           return MoviesListHor(
             movies: state.movies,

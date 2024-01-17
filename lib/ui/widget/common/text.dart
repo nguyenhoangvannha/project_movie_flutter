@@ -11,11 +11,8 @@ class TextTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: Theme
-          .of(context)
-          .textTheme
-          .title
-          .copyWith(fontSize: fontSize),
+      style:
+          Theme.of(context).textTheme.titleMedium.copyWith(fontSize: fontSize),
       textAlign: TextAlign.start,
       overflow: TextOverflow.ellipsis,
       maxLines: maxLines,
@@ -32,10 +29,9 @@ class TextSubtitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: Theme
-          .of(context)
+      style: Theme.of(context)
           .textTheme
-          .subtitle
+          .titleSmall
           .copyWith(fontSize: 12, fontStyle: FontStyle.normal),
       textAlign: TextAlign.start,
       overflow: TextOverflow.ellipsis,
@@ -53,11 +49,7 @@ class TextCaption extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: Theme
-          .of(context)
-          .textTheme
-          .caption
-          .copyWith(fontSize: 12),
+      style: Theme.of(context).textTheme.caption.copyWith(fontSize: 12),
       textAlign: TextAlign.start,
       overflow: TextOverflow.ellipsis,
       maxLines: 2,
@@ -75,10 +67,7 @@ class TextBody1 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: Theme
-          .of(context)
-          .textTheme
-          .body1,
+      style: Theme.of(context).textTheme.bodyMedium,
       textAlign: TextAlign.start,
       overflow: TextOverflow.ellipsis,
       maxLines: maxLines,
@@ -104,19 +93,20 @@ class _ExpandableTextState extends State<ExpandableText> {
       children: <Widget>[
         _expanded
             ? Text(
-          widget.text,
-          softWrap: true,
-        )
+                widget.text,
+                softWrap: true,
+              )
             : Text(
-          widget.text,
-          maxLines: 5,
-          softWrap: true,
-          overflow: TextOverflow.fade,
-        ),
+                widget.text,
+                maxLines: 5,
+                softWrap: true,
+                overflow: TextOverflow.fade,
+              ),
         Center(
           child: IconButton(
-              icon: Icon(_expanded ? Icons.keyboard_arrow_up : Icons
-                  .keyboard_arrow_down),
+              icon: Icon(_expanded
+                  ? Icons.keyboard_arrow_up
+                  : Icons.keyboard_arrow_down),
               onPressed: () {
                 setState(() {
                   _expanded = !_expanded;

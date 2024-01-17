@@ -24,7 +24,7 @@ class MovieSearchDelegate extends SearchDelegate<List<Movie>> {
           tooltip: 'Clear',
           onPressed: () {
             query = "";
-            BlocProvider.of<SearchMovieBloc>(context).dispatch(Search(query));
+            BlocProvider.of<SearchMovieBloc>(context).add(Search(query));
           }),
     ];
   }
@@ -43,7 +43,7 @@ class MovieSearchDelegate extends SearchDelegate<List<Movie>> {
   Widget buildSuggestions(BuildContext context) {
     if (_searchBloc == null)
       _searchBloc = BlocProvider.of<SearchMovieBloc>(context);
-    _searchBloc.dispatch(Search(query ?? ""));
+    _searchBloc.add(Search(query ?? ""));
     return _search(context, Type.Suggestions);
   }
 
@@ -70,7 +70,10 @@ class MovieSearchDelegate extends SearchDelegate<List<Movie>> {
           if (type == Type.Suggestions)
             return _buildSuggestionsList(state.movies);
           else {
-            return MoviesPanel(state.movies, loadMore:  loadMore,);
+            return MoviesPanel(
+              state.movies,
+              loadMore: loadMore,
+            );
           }
         }
 
@@ -80,12 +83,11 @@ class MovieSearchDelegate extends SearchDelegate<List<Movie>> {
   }
 
   Future<List<Movie>> loadMore(BuildContext context, int page) async {
-    return await BlocProvider.of<SearchMovieBloc>(context).loadMore(
-        query, page);
+    return await BlocProvider.of<SearchMovieBloc>(context)
+        .loadMore(query, page);
   }
 
   _buildSuggestionsList(List<Movie> movies) {
-    final SlidableController slidableController = SlidableController();
     return ListView.separated(
         separatorBuilder: (bCtx, index) {
           return Divider(
@@ -98,7 +100,6 @@ class MovieSearchDelegate extends SearchDelegate<List<Movie>> {
         itemBuilder: (BuildContext context, int index) {
           return SearchItem(
             movies.elementAt(index),
-            slidableController: slidableController,
             onTap: () => AppNavigator.instance
                 .showBottomSheetMovieDetails(context, movies.elementAt(index)),
             onLongPress: () => AppNavigator.instance

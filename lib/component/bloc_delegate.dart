@@ -18,43 +18,41 @@ class AppBlocDelegate {
 
   AppBlocDelegate._(BuildContext context) {
     final MovieRepository movieRepository =
-    Injector.appInstance.getDependency();
+        Injector.appInstance.getDependency();
 
     _repositoryProviders = [
       RepositoryProvider<GetMovieDetail>(
-        builder: (context) => GetMovieDetail(movieRepository),
+        create: (context) => GetMovieDetail(movieRepository),
       ),
       RepositoryProvider<GetMovieCredits>(
-        builder: (context) => GetMovieCredits(movieRepository),
+        create: (context) => GetMovieCredits(movieRepository),
       ),
       RepositoryProvider<GetSimilarMovies>(
-        builder: (context) => GetSimilarMovies(movieRepository),
+        create: (context) => GetSimilarMovies(movieRepository),
       ),
       RepositoryProvider<GetRecommendationsMovies>(
-        builder: (context) => GetRecommendationsMovies(movieRepository),
+        create: (context) => GetRecommendationsMovies(movieRepository),
       ),
       RepositoryProvider<GetVideoTrailer>(
-        builder: (context) => GetVideoTrailer(movieRepository),
+        create: (context) => GetVideoTrailer(movieRepository),
       ),
     ];
 
     _blocProviders = [
       BlocProvider<TrendingMovieBloc>(
-        builder: (context) =>
-            TrendingMovieBloc(
-                getTrendingMovies: GetTrendingMovie(movieRepository)),
+        create: (context) => TrendingMovieBloc(
+            getTrendingMovies: GetTrendingMovie(movieRepository)),
       ),
       BlocProvider<SearchMovieBloc>(
-        builder: (context) =>
+        create: (context) =>
             SearchMovieBloc(searchMovie: SearchMovies(movieRepository)),
       ),
       BlocProvider<FavouriteMovieBloc>(
-        builder: (context) =>
-            FavouriteMovieBloc(
-                addFavoriteMovie: AddFavoriteMovie(movieRepository),
-                getFavoriteMovie: GetFavoriteMovies(movieRepository),
-                removeFavoriteMovie: RemoveFavoriteMovie(movieRepository),
-                updateFavoriteMovie: UpdateFavoriteMovie(movieRepository)),
+        create: (context) => FavouriteMovieBloc(
+            addFavoriteMovie: AddFavoriteMovie(movieRepository),
+            getFavoriteMovie: GetFavoriteMovies(movieRepository),
+            removeFavoriteMovie: RemoveFavoriteMovie(movieRepository),
+            updateFavoriteMovie: UpdateFavoriteMovie(movieRepository)),
       ),
     ];
   }

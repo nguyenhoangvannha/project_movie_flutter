@@ -42,12 +42,10 @@ class MoviesListVer extends StatelessWidget {
                 margin: EdgeInsets.only(left: 8, right: 8),
                 child: MovieListVerItem(
                   movie,
-                  onTap: () =>
-                      AppNavigator.instance
-                          .showBottomSheetMovieDetails(context, movie),
-                  onLongPress: () =>
-                      AppNavigator.instance
-                          .showBottomSheetEditMovie(context, movie),
+                  onTap: () => AppNavigator.instance
+                      .showBottomSheetMovieDetails(context, movie),
+                  onLongPress: () => AppNavigator.instance
+                      .showBottomSheetEditMovie(context, movie),
                 ));
           }),
     );

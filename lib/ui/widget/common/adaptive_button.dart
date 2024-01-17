@@ -13,7 +13,7 @@ class AdaptiveButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Platform.isIOS
         ? CupertinoButton(child: this.child, onPressed: this.onPressed)
-        : OutlineButton(
+        : OutlinedButton(
             child: this.child,
             onPressed: this.onPressed,
           );

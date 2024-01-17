@@ -23,7 +23,7 @@ class LocalizationsSettingPage extends StatelessWidget {
             return LocaleItem(
                 locale: locale,
                 onTap: () => BlocProvider.of<LocalizationsBloc>(context)
-                    .dispatch(LocaleChanged(locale: locale)));
+                    .add(LocaleChanged(locale: locale)));
           }),
     );
   }

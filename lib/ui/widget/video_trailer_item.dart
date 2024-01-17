@@ -5,7 +5,6 @@ import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 class VideoTrailerItem extends StatelessWidget {
   final Video video;
   final Function onTap;
-
   VideoTrailerItem(this.video, {this.onTap});
 
   @override
@@ -25,10 +24,11 @@ class VideoTrailerItem extends StatelessWidget {
                   alignment: AlignmentDirectional.center,
                   children: <Widget>[
                     YoutubePlayer(
-                      context: context,
-                      videoId: "${video.key}",
-                      flags: YoutubePlayerFlags(
-                          hideControls: true, autoPlay: false, mute: true),
+                      controller: YoutubePlayerController(
+                        initialVideoId: "${video.key}",
+                        flags: YoutubePlayerFlags(
+                            hideControls: true, autoPlay: false, mute: true),
+                      ),
                     ),
                     Icon(
                       Icons.play_arrow,

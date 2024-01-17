@@ -34,16 +34,13 @@ class MoviesListHor extends StatelessWidget {
               margin: EdgeInsets.only(left: 4, right: 4),
               child: MovieListHorItem(
                 movie,
-                onTap: () =>
-                    AppNavigator.instance
-                        .showBottomSheetMovieDetails(context, movie),
-                onLongPress: () =>
-                    AppNavigator.instance
-                        .showBottomSheetEditMovie(context, movie),
+                onTap: () => AppNavigator.instance
+                    .showBottomSheetMovieDetails(context, movie),
+                onLongPress: () => AppNavigator.instance
+                    .showBottomSheetEditMovie(context, movie),
               ));
         });
   }
-
 
   double _calculateListViewHeight(bool isPortrait, double height) {
     var heightPercent = 0.0;
