@@ -1,6 +1,4 @@
-import 'package:meta/meta.dart';
 import 'package:project_movie_flutter/data/db/dao/movie_dao.dart';
-import 'package:project_movie_flutter/data/db/moor_database.dart' as prefix0;
 import 'package:project_movie_flutter/data/network/exception/server_exception.dart';
 import 'package:project_movie_flutter/data/network/service/movie_api_service.dart';
 import 'package:project_movie_flutter/domain/entity/cast.dart';
@@ -38,7 +36,8 @@ class MovieRepositoryImpl implements MovieRepository {
                 httpStatusCode: res.statusCode,
                 errorBody: res.error as Map<String, dynamic>));
       }
-    } catch (ex) {
+    } catch (ex, stack) {
+      print(stack);
       return DataResource(ResourceType.Error, exception: ex);
     }
   }

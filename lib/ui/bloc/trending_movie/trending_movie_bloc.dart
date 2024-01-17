@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:core';
 
 import 'package:bloc/bloc.dart';
-import 'package:meta/meta.dart';
 import 'package:project_movie_flutter/domain/entity/movie.dart';
 import 'package:project_movie_flutter/domain/usecase/movie/movie_params.dart';
 import 'package:project_movie_flutter/domain/usecase/use_case.dart';

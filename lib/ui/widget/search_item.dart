@@ -108,7 +108,7 @@ class SearchItem extends StatelessWidget {
         ),
         subtitle: Text(
           movie.overview!,
-          style: Theme.of(context).textTheme.caption,
+          style: Theme.of(context).textTheme.bodySmall,
           overflow: TextOverflow.ellipsis,
           maxLines: 1,
         ),

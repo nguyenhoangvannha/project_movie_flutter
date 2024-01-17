@@ -1,5 +1,3 @@
-import 'package:meta/meta.dart';
-
 class ServerException implements Exception {
   int? httpStatusCode;
   int? statusCode;

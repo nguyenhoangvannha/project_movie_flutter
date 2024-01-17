@@ -1,7 +1,7 @@
 import 'package:chopper/chopper.dart';
-import 'package:meta/meta.dart';
+import 'package:chopper_built_value/chopper_built_value.dart';
 import 'package:project_movie_flutter/component/api_config.dart';
-import 'package:project_movie_flutter/data/network/service/built_value_converter.dart';
+import 'package:project_movie_flutter/data/network/model/serializers.dart';
 
 import '../interceptor/network_interceptor.dart';
 import '../model/credits_response_model.dart';
@@ -60,11 +60,11 @@ abstract class MovieApiService extends ChopperService {
 
   static MovieApiService create([ChopperClient? client]) {
     final client = ChopperClient(
-        baseUrl: Uri.dataFromString('${ApiConfig.BASE_API_URL}'),
+        baseUrl: Uri.tryParse('${ApiConfig.BASE_API_URL}'),
         services: [
           _$MovieApiService(),
         ],
-        converter: BuiltValueConverter(),
+        converter: BuiltValueConverter(serializers),
         errorConverter: JsonConverter(),
         interceptors: [
           HttpLoggingInterceptor(),

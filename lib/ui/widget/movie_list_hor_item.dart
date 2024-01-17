@@ -15,7 +15,7 @@ class MovieListHorItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final caption = Theme.of(context)
         .textTheme
-        .caption!
+        .bodySmall!
         .copyWith(fontStyle: FontStyle.normal, fontSize: 10);
     return InkWell(
       onTap: onTap as void Function()?,

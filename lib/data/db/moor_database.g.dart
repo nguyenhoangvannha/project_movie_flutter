@@ -39,8 +39,7 @@ class Movie extends DataClass implements Insertable<Movie> {
       required this.releaseDate,
       this.runTime,
       this.finished});
-  factory Movie.fromData(Map<String, dynamic> data, GeneratedDatabase db,
-      {String? prefix}) {
+  factory Movie.fromData(Map<String, dynamic> data, {String? prefix}) {
     final effectivePrefix = prefix ?? '';
     return Movie(
       popularity: const RealType()
@@ -152,7 +151,7 @@ class Movie extends DataClass implements Insertable<Movie> {
 
   factory Movie.fromJson(Map<String, dynamic> json,
       {ValueSerializer? serializer}) {
-    serializer ??= moorRuntimeOptions.defaultSerializer;
+    serializer ??= driftRuntimeOptions.defaultSerializer;
     return Movie(
       popularity: serializer.fromJson<double?>(json['popularity']),
       voteCount: serializer.fromJson<int?>(json['voteCount']),
@@ -173,7 +172,7 @@ class Movie extends DataClass implements Insertable<Movie> {
   }
   @override
   Map<String, dynamic> toJson({ValueSerializer? serializer}) {
-    serializer ??= moorRuntimeOptions.defaultSerializer;
+    serializer ??= driftRuntimeOptions.defaultSerializer;
     return <String, dynamic>{
       'popularity': serializer.toJson<double?>(popularity),
       'voteCount': serializer.toJson<int?>(voteCount),
@@ -699,7 +698,7 @@ class $MoviesTable extends Movies with TableInfo<$MoviesTable, Movie> {
   Set<GeneratedColumn> get $primaryKey => <GeneratedColumn>{};
   @override
   Movie map(Map<String, dynamic> data, {String? tablePrefix}) {
-    return Movie.fromData(data, attachedDatabase,
+    return Movie.fromData(data,
         prefix: tablePrefix != null ? '$tablePrefix.' : null);
   }
 

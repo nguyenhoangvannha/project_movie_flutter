@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:project_movie_flutter/component/navigator.dart';
 import 'package:project_movie_flutter/domain/entity/movie.dart';
 import 'package:project_movie_flutter/ui/bloc/search_movie/bloc.dart';

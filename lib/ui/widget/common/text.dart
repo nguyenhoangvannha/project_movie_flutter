@@ -49,7 +49,7 @@ class TextCaption extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text!,
-      style: Theme.of(context).textTheme.caption!.copyWith(fontSize: 12),
+      style: Theme.of(context).textTheme.bodySmall!.copyWith(fontSize: 12),
       textAlign: TextAlign.start,
       overflow: TextOverflow.ellipsis,
       maxLines: 2,

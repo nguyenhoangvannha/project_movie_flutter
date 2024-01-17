@@ -13,11 +13,11 @@ class ThemeItem extends StatelessWidget {
   Widget build(BuildContext context) {
     //final appTheme = appThemeData[theme];
     return Card(
-      color: themeData!.backgroundColor,
+      color: themeData!.colorScheme.background,
       elevation: 4,
       child: ListTile(
         leading: CircleAvatar(
-          backgroundColor: themeData!.accentColor,
+          backgroundColor: themeData!.colorScheme.secondary,
           child: Text(
             theme
                 .toString()
