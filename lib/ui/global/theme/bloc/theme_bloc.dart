@@ -9,43 +9,37 @@ import '../app_themes.dart';
 class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
   static const String DARK_THEME = "ThemeBloc_DARK_THEME";
 
-  static ThemeBloc _instance;
+  static ThemeBloc? _instance;
 
-  SharedPreferences prefs;
+  SharedPreferences? prefs;
 
-  ThemeBloc._() {
+  ThemeBloc._(ThemeState initState) : super(initState) {
+    on<ThemeChanged>(_onThemeChanged);
     _loadSettings();
   }
 
-  static ThemeBloc get instance {
-    if (_instance == null) {
-      _instance = ThemeBloc._();
-    }
+  static ThemeBloc? get instance {
+    _instance ??=
+        ThemeBloc._(ThemeState(themeData: appThemeData[AppTheme.Light]));
     return _instance;
   }
 
-  @override
-  ThemeState get initialState =>
-      ThemeState(themeData: appThemeData[AppTheme.Light]);
-
-  @override
-  Stream<ThemeState> mapEventToState(ThemeEvent event,) async* {
-    if (event is ThemeChanged) {
-      bool darkTheme = event.theme == AppTheme.Dark;
-      await _saveSettings(darkTheme);
-      yield ThemeState(themeData: appThemeData[event.theme]);
-    }
-  }
-
   _loadSettings() async {
-    if (prefs == null) prefs = await SharedPreferences.getInstance();
-    bool _darkTheme = prefs.getBool(DARK_THEME) ?? false;
-    dispatch(ThemeChanged(theme: _darkTheme ? AppTheme.Dark : AppTheme.Light));
-    return _darkTheme;
+    prefs ??= await SharedPreferences.getInstance();
+    bool darkTheme = prefs!.getBool(DARK_THEME) ?? false;
+    add(ThemeChanged(theme: darkTheme ? AppTheme.Dark : AppTheme.Light));
+    return darkTheme;
   }
 
   _saveSettings(bool darkTheme) async {
-    if (prefs == null) prefs = await SharedPreferences.getInstance();
-    await prefs.setBool(DARK_THEME, darkTheme);
+    prefs ??= await SharedPreferences.getInstance();
+    await prefs!.setBool(DARK_THEME, darkTheme);
+  }
+
+  FutureOr<void> _onThemeChanged(
+      ThemeChanged event, Emitter<ThemeState> emit) async {
+    bool darkTheme = event.theme == AppTheme.Dark;
+    await _saveSettings(darkTheme);
+    emit(ThemeState(themeData: appThemeData[event.theme]));
   }
 }

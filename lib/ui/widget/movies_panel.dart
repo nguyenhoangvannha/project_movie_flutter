@@ -11,10 +11,10 @@ import 'movie_grid.dart';
 import 'movie_list_ver.dart';
 
 class MoviesPanel extends StatefulWidget {
-  final List<Movie> movies;
-  final Future<List<Movie>> Function(BuildContext context, int page) loadMore;
+  final List<Movie>? movies;
+  final Future<List<Movie>?> Function(BuildContext context, int page)? loadMore;
 
-  MoviesPanel(this.movies, {this.loadMore});
+  const MoviesPanel(this.movies, {Key? key, this.loadMore}) : super(key: key);
 
   @override
   _MoviesPanelState createState() => _MoviesPanelState();
@@ -22,7 +22,7 @@ class MoviesPanel extends StatefulWidget {
 
 class _MoviesPanelState extends State<MoviesPanel> {
   bool _isGrid = false;
-  SortType _sortType;
+  SortType? _sortType;
   int currentPage = 1;
   bool noMore = false;
   bool loading = false;
@@ -42,30 +42,30 @@ class _MoviesPanelState extends State<MoviesPanel> {
 
   @override
   Widget build(BuildContext context) {
-    return widget.movies.length < 1
-        ? Guide()
+    return widget.movies!.isEmpty
+        ? const Guide()
         : _buildContent(context, widget.movies);
   }
 
-  Widget _buildContent(BuildContext context, List<Movie> movies) {
-    final translator = AppLocalizations.of(context);
+  Widget _buildContent(BuildContext context, List<Movie>? movies) {
+    final translator = AppLocalizations.of(context)!;
     return Column(
       children: <Widget>[
-        OutlineButton(
+        OutlinedButton(
           onPressed: null,
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               InkWell(
-                onTap: () => AppNavigator.instance.showBottomSheetShortMovies(
+                onTap: () => AppNavigator.instance!.showBottomSheetShortMovies(
                     context,
                     _sortType,
-                    (newSortType) => _changeSortType(newSortType)),
+                    (newSortType) => _changeSortType(newSortType!)),
                 child: Row(
                   children: <Widget>[
-                    Text(translator.translate('title_sort')),
-                    Icon(Icons.keyboard_arrow_down)
+                    Text(translator.translate('title_sort')!),
+                    const Icon(Icons.keyboard_arrow_down)
                   ],
                 ),
               ),
@@ -87,25 +87,25 @@ class _MoviesPanelState extends State<MoviesPanel> {
                   onEndList: _onEndList,
                 ),
         ),
-        if (loading) LinearProgressIndicator()
+        if (loading) const LinearProgressIndicator()
       ],
     );
   }
 
-  final _lock = new Lock();
+  final _lock = Lock();
 
   _onEndList() async {
-    if (widget.loadMore != null)
+    if (widget.loadMore != null) {
       await _lock.synchronized(() async {
         if (!noMore) {
           setState(() {
             loading = true;
           });
-          final res = await widget.loadMore(context, currentPage + 1);
+          final res = (await widget.loadMore!(context, currentPage + 1))!;
           if (res.isNotEmpty) {
             currentPage++;
             setState(() {
-              widget.movies.addAll(res);
+              widget.movies!.addAll(res);
             });
           } else {
             noMore = true;
@@ -115,5 +115,6 @@ class _MoviesPanelState extends State<MoviesPanel> {
           });
         }
       });
+    }
   }
 }

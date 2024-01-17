@@ -4,11 +4,11 @@ import 'package:project_movie_flutter/ui/widget/common/text.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class BottomSheetVideoTrailer extends StatefulWidget {
-  final String title;
-  final String videoKey;
+  final String? title;
+  final String? videoKey;
 
-  BottomSheetVideoTrailer(
-      {Key key, @required this.videoKey, @required this.title})
+  const BottomSheetVideoTrailer(
+      {Key? key, required this.videoKey, required this.title})
       : super(key: key);
 
   @override
@@ -17,28 +17,26 @@ class BottomSheetVideoTrailer extends StatefulWidget {
 }
 
 class _BottomSheetVideoTrailerState extends State<BottomSheetVideoTrailer> {
-  YoutubePlayerController _controller = YoutubePlayerController();
+  late YoutubePlayerController _controller;
   double _volume = 50;
   bool _muted = false;
 
-  String _videoId;
+  String? _videoId;
 
   @override
   void initState() {
     super.initState();
     _videoId = widget.videoKey;
-  }
-
-  void listener() {
-//    if (_controller.value.playerState == PlayerState.ENDED) {
-//      _showThankYouDialog();
-//    }
-//    if (mounted) {
-//      setState(() {
-//        _playerStatus = _controller.value.playerState.toString();
-//        _errorCode = _controller.value.errorCode.toString();
-//      });
-//    }
+    _controller = YoutubePlayerController(
+      initialVideoId: _videoId!,
+      flags: const YoutubePlayerFlags(
+        mute: false,
+        autoPlay: false,
+        // forceHideAnnotation: true,
+        // showVideoProgressIndicator: true,
+        disableDragSeek: false,
+      ),
+    );
   }
 
   @override
@@ -50,19 +48,10 @@ class _BottomSheetVideoTrailerState extends State<BottomSheetVideoTrailer> {
 
   _buildVideoPlayer() {
     return YoutubePlayer(
-      context: context,
-      videoId: _videoId,
-      flags: YoutubePlayerFlags(
-        mute: false,
-        autoPlay: false,
-        forceHideAnnotation: true,
-        showVideoProgressIndicator: true,
-        disableDragSeek: false,
-      ),
-      videoProgressIndicatorColor: Color(0xFFFF0000),
-      actions: <Widget>[
+      progressIndicatorColor: const Color(0xFFFF0000),
+      bottomActions: <Widget>[
         IconButton(
-          icon: Icon(
+          icon: const Icon(
             Icons.info_outline,
             size: 20.0,
             color: Colors.white,
@@ -74,21 +63,18 @@ class _BottomSheetVideoTrailerState extends State<BottomSheetVideoTrailer> {
             "${widget.title}",
             overflow: TextOverflow.ellipsis,
             maxLines: 1,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 16.0,
               color: Colors.white,
             ),
           ),
         ),
       ],
-      progressColors: ProgressColors(
+      progressColors: const ProgressBarColors(
         playedColor: Color(0xFFFF0000),
         handleColor: Color(0xFFFF4433),
       ),
-      onPlayerInitialized: (controller) {
-        _controller = controller;
-        _controller.addListener(listener);
-      },
+      controller: _controller,
     );
   }
 
@@ -117,8 +103,8 @@ class _BottomSheetVideoTrailerState extends State<BottomSheetVideoTrailer> {
           },
         ),
         IconButton(
-          icon: Icon(Icons.fullscreen),
-          onPressed: () => _controller.enterFullScreen(),
+          icon: const Icon(Icons.fullscreen),
+          onPressed: () => _controller.toggleFullScreenMode(),
         ),
       ],
     );
@@ -128,8 +114,8 @@ class _BottomSheetVideoTrailerState extends State<BottomSheetVideoTrailer> {
     return Row(
       children: <Widget>[
         Text(
-          AppLocalizations.of(context).translate('label_volume'),
-          style: TextStyle(fontWeight: FontWeight.w300),
+          AppLocalizations.of(context)!.translate('label_volume')!,
+          style: const TextStyle(fontWeight: FontWeight.w300),
         ),
         Expanded(
           child: Slider(
@@ -161,25 +147,25 @@ class _BottomSheetVideoTrailerState extends State<BottomSheetVideoTrailer> {
 
   _buildPortrait() {
     return Container(
-      padding: EdgeInsets.all(16),
+      padding: const EdgeInsets.all(16),
       child: SingleChildScrollView(
         child: Column(
           children: <Widget>[
             TextTitle(widget.title),
-            SizedBox(
+            const SizedBox(
               height: 12,
             ),
             _buildVideoPlayer(),
-            SizedBox(
+            const SizedBox(
               height: 10.0,
             ),
             Padding(
-              padding: EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(8.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
                   _buildController(),
-                  SizedBox(
+                  const SizedBox(
                     height: 10.0,
                   ),
                   _buildVolumeController(),
@@ -194,7 +180,7 @@ class _BottomSheetVideoTrailerState extends State<BottomSheetVideoTrailer> {
 
   _buildLandscape() {
     return Container(
-      padding: EdgeInsets.all(16),
+      padding: const EdgeInsets.all(16),
       child: Row(
         children: <Widget>[
           Flexible(
@@ -204,11 +190,16 @@ class _BottomSheetVideoTrailerState extends State<BottomSheetVideoTrailer> {
           Flexible(
             flex: 3,
             child: Container(
-              padding: EdgeInsets.only(left: 16),
+              padding: const EdgeInsets.only(left: 16),
               child: Column(
                 children: <Widget>[
                   Flexible(
-                    flex: 2, child: TextTitle(widget.title, maxLines: 2,),),
+                    flex: 2,
+                    child: TextTitle(
+                      widget.title,
+                      maxLines: 2,
+                    ),
+                  ),
                   Flexible(
                     flex: 3,
                     fit: FlexFit.tight,

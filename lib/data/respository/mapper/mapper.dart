@@ -25,7 +25,7 @@ class Mapper {
         voteAverage: movie.voteAverage ?? 0.0,
         overview: movie.overview ?? "0",
         releaseDate:
-        movie.releaseDate.isEmpty ? "0000-00-00" : movie.releaseDate,
+            movie.releaseDate.isEmpty ? "0000-00-00" : movie.releaseDate,
         originalLanguage: movie.originalLanguage ?? "",
         popularity: movie.popularity ?? 0,
         voteCount: movie.voteCount ?? 0,
@@ -85,12 +85,12 @@ class Mapper {
   db.Movie mapMovieEntityToLocalMovie(Movie m) {
     return db.Movie(
         popularity: m.popularity,
-        posterPath: m.posterPath,
-        id: m.id,
-        title: m.title,
-        voteAverage: m.voteAverage,
-        overview: m.overview,
-        releaseDate: m.releaseDate,
+        posterPath: m.posterPath ?? '',
+        id: m.id ?? 0,
+        title: m.title ?? '',
+        voteAverage: m.voteAverage ?? 0.0,
+        overview: m.overview ?? '',
+        releaseDate: m.releaseDate ?? '',
         adult: m.adult,
         voteCount: m.voteCount,
         video: m.video,

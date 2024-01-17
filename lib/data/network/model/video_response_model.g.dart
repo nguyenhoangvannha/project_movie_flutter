@@ -17,42 +17,49 @@ class _$VideoResponseModelSerializer
   final String wireName = 'VideoResponseModel';
 
   @override
-  Iterable<Object> serialize(Serializers serializers, VideoResponseModel object,
+  Iterable<Object?> serialize(
+      Serializers serializers, VideoResponseModel object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object>[];
-    if (object.id != null) {
-      result..add('id')..add(serializers.serialize(object.id,
-          specifiedType: const FullType(int)));
+    final result = <Object?>[];
+    Object? value;
+    value = object.id;
+    if (value != null) {
+      result
+        ..add('id')
+        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
     }
-    if (object.videos != null) {
-      result..add('results')..add(serializers.serialize(object.videos,
-          specifiedType:
-          const FullType(BuiltList, const [const FullType(VideoModel)])));
+    value = object.videos;
+    if (value != null) {
+      result
+        ..add('results')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(VideoModel)])));
     }
     return result;
   }
 
   @override
   VideoResponseModel deserialize(
-      Serializers serializers, Iterable<Object> serialized,
+      Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result = new VideoResponseModelBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
-      final key = iterator.current as String;
+      final key = iterator.current! as String;
       iterator.moveNext();
-      final dynamic value = iterator.current;
+      final Object? value = iterator.current;
       switch (key) {
         case 'id':
           result.id = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int;
+              specifiedType: const FullType(int)) as int?;
           break;
         case 'results':
           result.videos.replace(serializers.deserialize(value,
                   specifiedType: const FullType(
-                      BuiltList, const [const FullType(VideoModel)]))
-              as BuiltList<dynamic>);
+                      BuiltList, const [const FullType(VideoModel)]))!
+              as BuiltList<Object?>);
           break;
       }
     }
@@ -63,13 +70,13 @@ class _$VideoResponseModelSerializer
 
 class _$VideoResponseModel extends VideoResponseModel {
   @override
-  final int id;
+  final int? id;
   @override
-  final BuiltList<VideoModel> videos;
+  final BuiltList<VideoModel>? videos;
 
   factory _$VideoResponseModel(
-          [void Function(VideoResponseModelBuilder) updates]) =>
-      (new VideoResponseModelBuilder()..update(updates)).build();
+          [void Function(VideoResponseModelBuilder)? updates]) =>
+      (new VideoResponseModelBuilder()..update(updates))._build();
 
   _$VideoResponseModel._({this.id, this.videos}) : super._();
 
@@ -92,12 +99,16 @@ class _$VideoResponseModel extends VideoResponseModel {
 
   @override
   int get hashCode {
-    return $jf($jc($jc(0, id.hashCode), videos.hashCode));
+    var _$hash = 0;
+    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, videos.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
   }
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('VideoResponseModel')
+    return (newBuiltValueToStringHelper(r'VideoResponseModel')
           ..add('id', id)
           ..add('videos', videos))
         .toString();
@@ -106,23 +117,24 @@ class _$VideoResponseModel extends VideoResponseModel {
 
 class VideoResponseModelBuilder
     implements Builder<VideoResponseModel, VideoResponseModelBuilder> {
-  _$VideoResponseModel _$v;
+  _$VideoResponseModel? _$v;
 
-  int _id;
-  int get id => _$this._id;
-  set id(int id) => _$this._id = id;
+  int? _id;
+  int? get id => _$this._id;
+  set id(int? id) => _$this._id = id;
 
-  ListBuilder<VideoModel> _videos;
+  ListBuilder<VideoModel>? _videos;
   ListBuilder<VideoModel> get videos =>
       _$this._videos ??= new ListBuilder<VideoModel>();
-  set videos(ListBuilder<VideoModel> videos) => _$this._videos = videos;
+  set videos(ListBuilder<VideoModel>? videos) => _$this._videos = videos;
 
   VideoResponseModelBuilder();
 
   VideoResponseModelBuilder get _$this {
-    if (_$v != null) {
-      _id = _$v.id;
-      _videos = _$v.videos?.toBuilder();
+    final $v = _$v;
+    if ($v != null) {
+      _id = $v.id;
+      _videos = $v.videos?.toBuilder();
       _$v = null;
     }
     return this;
@@ -130,31 +142,31 @@ class VideoResponseModelBuilder
 
   @override
   void replace(VideoResponseModel other) {
-    if (other == null) {
-      throw new ArgumentError.notNull('other');
-    }
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$VideoResponseModel;
   }
 
   @override
-  void update(void Function(VideoResponseModelBuilder) updates) {
+  void update(void Function(VideoResponseModelBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  _$VideoResponseModel build() {
+  VideoResponseModel build() => _build();
+
+  _$VideoResponseModel _build() {
     _$VideoResponseModel _$result;
     try {
       _$result =
           _$v ?? new _$VideoResponseModel._(id: id, videos: _videos?.build());
     } catch (_) {
-      String _$failedField;
+      late String _$failedField;
       try {
         _$failedField = 'videos';
         _videos?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            'VideoResponseModel', _$failedField, e.toString());
+            r'VideoResponseModel', _$failedField, e.toString());
       }
       rethrow;
     }
@@ -163,4 +175,4 @@ class VideoResponseModelBuilder
   }
 }
 
-// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,lines_longer_than_80_chars,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new
+// ignore_for_file: deprecated_member_use_from_same_package,type=lint

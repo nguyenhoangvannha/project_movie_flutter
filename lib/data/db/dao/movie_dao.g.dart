@@ -7,5 +7,5 @@ part of 'movie_dao.dart';
 // **************************************************************************
 
 mixin _$MovieDaoMixin on DatabaseAccessor<AppDatabase> {
-  $MoviesTable get movies => db.movies;
+  $MoviesTable get movies => attachedDatabase.movies;
 }

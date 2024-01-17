@@ -12,75 +12,76 @@ import 'package:project_movie_flutter/util/exception_handler.dart';
 import '../../widget/trending_movie.dart';
 
 class HomePage extends StatelessWidget {
+  const HomePage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final translator = AppLocalizations.of(context);
 
-    BlocProvider.of<FavouriteMovieBloc>(context).dispatch(LoadFavorite());
+    BlocProvider.of<FavouriteMovieBloc>(context).add(LoadFavorite());
 
     return BlocBuilder<FavouriteMovieBloc, FavouriteMovieState>(
-        condition: (pre, next) {
-          return next is LoadingFavorite ||
-              next is NoFavorite ||
-              next is HasFavorite ||
-              next is FavoriteError;
-        }, builder: (context, state) {
+        buildWhen: (pre, next) {
+      return next is LoadingFavorite ||
+          next is NoFavorite ||
+          next is HasFavorite ||
+          next is FavoriteError;
+    }, builder: (context, state) {
       if (state is NoFavorite) {
-        return _buildScaffold(context, TrendingMovies(), null, translator);
+        return _buildScaffold(
+            context, const TrendingMovies(), null, translator!);
       }
 
       if (state is HasFavorite) {
-        return _buildTabView(context, state.watching,
-            state.finished, translator);
+        return _buildTabView(
+            context, state.watching, state.finished, translator!);
       }
 
       if (state is FavoriteError) {
-        String message = ExceptionHandler.handle(context, state.exception);
-        AppNavigator.instance.showAlertDialog(context, content: Text(message));
+        String message = ExceptionHandler.handle(context, state.exception)!;
+        AppNavigator.instance!.showAlertDialog(context, content: Text(message));
         return _buildScaffold(
             context,
             MessageView(
               message: message,
             ),
             null,
-            translator);
+            translator!);
       }
       return _buildScaffold(
-          context, LoadingListPlaceHolder(), null, translator);
+          context, const LoadingListPlaceHolder(), null, translator!);
     });
   }
 
   Widget _buildAppBar(BuildContext context, AppLocalizations translator) {
     return AppBar(
       leading: IconButton(
-        icon: Icon(Icons.account_circle),
-        onPressed: () => AppNavigator.instance.navToSetting(context),
+        icon: const Icon(Icons.account_circle),
+        onPressed: () => AppNavigator.instance!.navToSetting(context),
       ),
       title: Center(
           child: Text(
-            translator.translate('app_name'),
-          )),
+        translator.translate('app_name')!,
+      )),
       actions: <Widget>[
         IconButton(
-            icon: Icon(Icons.search),
-            onPressed: () => AppNavigator.instance.navToSearch(context))
+            icon: const Icon(Icons.search),
+            onPressed: () => AppNavigator.instance!.navToSearch(context))
       ],
     );
   }
 
   Widget _buildScaffold(BuildContext context, Widget body,
-      Widget bottomNavigationBar, AppLocalizations translator) {
+      Widget? bottomNavigationBar, AppLocalizations translator) {
     return Scaffold(
-      appBar: _buildAppBar(context, translator),
+      appBar: _buildAppBar(context, translator) as PreferredSizeWidget?,
       body: body,
       bottomNavigationBar: bottomNavigationBar,
     );
   }
 
-  Widget _buildTabView(BuildContext context,
-      List<Movie> watchingList,
-      List<Movie> finishedList,
-      AppLocalizations translator) {
+  Widget _buildTabView(BuildContext context, List<Movie> watchingList,
+      List<Movie> finishedList, AppLocalizations translator) {
     return DefaultTabController(
         initialIndex: 0,
         length: 2,
@@ -96,12 +97,12 @@ class HomePage extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Icon(Icons.remove_red_eye),
-                      SizedBox(
+                      const Icon(Icons.remove_red_eye),
+                      const SizedBox(
                         width: 8,
                       ),
                       Text(
-                        translator.translate('title_watching'),
+                        translator.translate('title_watching')!,
                       )
                     ],
                   ),
@@ -110,11 +111,11 @@ class HomePage extends StatelessWidget {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                      Icon(Icons.done_outline),
-                      SizedBox(
+                      const Icon(Icons.done_outline),
+                      const SizedBox(
                         width: 8,
                       ),
-                      Text(translator.translate('title_finished'))
+                      Text(translator.translate('title_finished')!)
                     ],
                   ),
                 ),

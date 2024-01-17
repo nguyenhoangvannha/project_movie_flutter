@@ -1,5 +1,5 @@
 class MovieParams {
-  int movieId;
+  int? movieId;
   String query;
   int page;
 

@@ -13,23 +13,21 @@ abstract class VideoResponseModel
     implements Built<VideoResponseModel, VideoResponseModelBuilder> {
   VideoResponseModel._();
 
-  factory VideoResponseModel([updates(VideoResponseModelBuilder b)]) =
+  factory VideoResponseModel([Function(VideoResponseModelBuilder b) updates]) =
       _$VideoResponseModel;
 
-  @nullable
   @BuiltValueField(wireName: 'id')
-  int get id;
+  int? get id;
 
-  @nullable
   @BuiltValueField(wireName: 'results')
-  BuiltList<VideoModel> get videos;
+  BuiltList<VideoModel>? get videos;
 
   String toJson() {
     return json
         .encode(serializers.serializeWith(VideoResponseModel.serializer, this));
   }
 
-  static VideoResponseModel fromJson(String jsonString) {
+  static VideoResponseModel? fromJson(String jsonString) {
     return serializers.deserializeWith(
         VideoResponseModel.serializer, json.decode(jsonString));
   }

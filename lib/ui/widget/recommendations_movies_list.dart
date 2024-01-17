@@ -10,23 +10,25 @@ import 'common/message_view.dart';
 import 'movie_list_hor.dart';
 
 class RecommendationsMoviesList extends StatelessWidget {
-  final int _movieId;
-  final RecommendationMovieBloc recommendationMovieBloc;
+  final int? _movieId;
+  final RecommendationMovieBloc? recommendationMovieBloc;
 
-  RecommendationsMoviesList(this._movieId, {this.recommendationMovieBloc});
+  const RecommendationsMoviesList(this._movieId,
+      {Key? key, this.recommendationMovieBloc})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final bloc = this.recommendationMovieBloc ??
+    final bloc = recommendationMovieBloc ??
         RecommendationMovieBloc(
             getRecommendationMovie:
-            RepositoryProvider.of<GetRecommendationsMovies>(context))
-          ..dispatch(Fetch(movieId: _movieId));
+                RepositoryProvider.of<GetRecommendationsMovies>(context))
+      ..add(Fetch(movieId: _movieId));
     return BlocBuilder<RecommendationMovieBloc, RecommendationMovieState>(
       bloc: bloc,
       builder: (bCtx, state) {
         if (state is Loading) {
-          return LoadingIndicator();
+          return const LoadingIndicator();
         }
         if (state is Error) {
           return Center(
@@ -35,17 +37,17 @@ class RecommendationsMoviesList extends StatelessWidget {
           );
         }
         if (state is Result) {
-          if (state.movies.isEmpty) {
+          if (state.movies!.isEmpty) {
             return MessageView(
               icon: Icons.info_outline,
-              message: AppLocalizations.of(context).translate(
-                  'msg_no_movies'),);
+              message: AppLocalizations.of(context)!.translate('msg_no_movies'),
+            );
           }
           return MoviesListHor(
             movies: state.movies,
           );
         }
-        return Center(
+        return const Center(
           child: MessageView(),
         );
       },

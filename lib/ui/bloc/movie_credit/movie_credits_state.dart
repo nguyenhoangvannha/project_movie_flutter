@@ -4,19 +4,28 @@ import 'package:project_movie_flutter/domain/entity/cast.dart';
 
 @immutable
 abstract class MovieCreditsState extends Equatable {
-  MovieCreditsState([List props = const []]) : super(props);
+  const MovieCreditsState() : super();
 }
 
-class Loading extends MovieCreditsState {}
+class Loading extends MovieCreditsState {
+  @override
+  List<Object> get props => [];
+}
 
 class Error extends MovieCreditsState {
-  final Exception exception;
+  final Object? exception;
 
-  Error(this.exception) : super([exception.runtimeType]);
+  const Error(this.exception) : super();
+
+  @override
+  List<Object> get props => [exception.runtimeType];
 }
 
 class Loaded extends MovieCreditsState {
-  final List<Cast> casts;
+  final List<Cast>? casts;
 
-  Loaded({this.casts}) : super([]);
+  const Loaded({this.casts}) : super();
+
+  @override
+  List<Object> get props => [];
 }

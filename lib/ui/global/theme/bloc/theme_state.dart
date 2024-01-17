@@ -1,10 +1,12 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
-import 'package:meta/meta.dart';
 
 @immutable
 class ThemeState extends Equatable {
-  final ThemeData themeData;
+  final ThemeData? themeData;
 
-  ThemeState({@required this.themeData}) : super([themeData]);
+  const ThemeState({required this.themeData}) : super();
+
+  @override
+  List<Object?> get props => [themeData];
 }

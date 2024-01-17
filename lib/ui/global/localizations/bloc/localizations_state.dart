@@ -5,8 +5,10 @@ import 'package:meta/meta.dart';
 
 @immutable
 class LocalizationsState extends Equatable {
-  final Locale locale;
+  final Locale? locale;
 
-  LocalizationsState({@required this.locale})
-      : super([locale.countryCode, locale.languageCode]);
+  const LocalizationsState({required this.locale}) : super();
+
+  @override
+  List<Object?> get props => [locale!.countryCode, locale!.languageCode];
 }

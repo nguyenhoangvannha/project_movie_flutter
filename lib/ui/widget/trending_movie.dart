@@ -14,28 +14,31 @@ import 'common/loading_list_placeholder.dart';
 import 'common/message_view.dart';
 
 class TrendingMovies extends StatelessWidget {
+  const TrendingMovies({Key? key}) : super(key: key);
+
+  @override
   Widget build(BuildContext context) {
     final bloc = BlocProvider.of<TrendingMovieBloc>(context)
-      ..dispatch(Fetch());
-    AppLocalizations translator = AppLocalizations.of(context);
+      ..add(const Fetch());
+    AppLocalizations? translator = AppLocalizations.of(context);
 
     return BlocBuilder<TrendingMovieBloc, TrendingMovieState>(
       builder: (bbCtx, state) {
         if (state is Error) {
-          String message = ExceptionHandler.handle(context, state.exception);
-          AppNavigator.instance.showAlertDialog(context,
-              title: Text('Error'), content: Text(message));
-          return _buildError(context, bloc, state.exception, translator);
+          String message = ExceptionHandler.handle(context, state.exception)!;
+          AppNavigator.instance!.showAlertDialog(context,
+              title: const Text('Error'), content: Text(message));
+          return _buildError(context, bloc, state.exception, translator!);
         }
         if (state is Loaded) {
-          if (state.movies.isEmpty) {
+          if (state.movies!.isEmpty) {
             return Center(
-              child: Text(translator.translate('msg_no_movies')),
+              child: Text(translator!.translate('msg_no_movies')!),
             );
           }
-          return _buildResult(context, state.movies, translator);
+          return _buildResult(context, state.movies!, translator);
         }
-        return Center(
+        return const Center(
           child: LoadingListPlaceHolder(),
         );
       },
@@ -54,53 +57,43 @@ class TrendingMovies extends StatelessWidget {
     return heightPercent * height;
   }
 
-  Widget _buildResult(BuildContext context, List<Movie> movies,
-      AppLocalizations translator) {
-    Color bgColor = Theme
-        .of(context)
-        .canvasColor;
+  Widget _buildResult(
+      BuildContext context, List<Movie> movies, AppLocalizations? translator) {
+    Color bgColor = Theme.of(context).canvasColor;
     return CustomScrollView(
       slivers: <Widget>[
         SliverAppBar(
           backgroundColor: bgColor,
           pinned: false,
           expandedHeight: 200.0,
-          flexibleSpace: FlexibleSpaceBar(
+          flexibleSpace: const FlexibleSpaceBar(
             background: Guide(),
           ),
         ),
         SliverList(
           delegate:
-          SliverChildBuilderDelegate((BuildContext context, int index) {
+              SliverChildBuilderDelegate((BuildContext context, int index) {
             final movie = movies.elementAt(index);
             return Container(
                 height: _calculateListItemHeight(
-                    MediaQuery
-                        .of(context)
-                        .orientation == Orientation.portrait,
-                    MediaQuery
-                        .of(context)
-                        .size
-                        .height),
-                margin: EdgeInsets.only(left: 8, right: 8),
+                    MediaQuery.of(context).orientation == Orientation.portrait,
+                    MediaQuery.of(context).size.height),
+                margin: const EdgeInsets.only(left: 8, right: 8),
                 child: MovieListVerItem(
                   movie,
-                  onTap: () =>
-                      AppNavigator.instance
-                          .showBottomSheetMovieDetails(context, movie),
-                  onLongPress: () =>
-                      AppNavigator.instance
-                          .showBottomSheetEditMovie(context, movie),
+                  onTap: () => AppNavigator.instance!
+                      .showBottomSheetMovieDetails(context, movie),
+                  onLongPress: () => AppNavigator.instance!
+                      .showBottomSheetEditMovie(context, movie),
                 ));
           }, childCount: movies.length),
         )
       ],
     );
-
   }
 
   Widget _buildError(BuildContext context, TrendingMovieBloc bloc,
-      Exception exception, AppLocalizations translator) {
+      Object? exception, AppLocalizations translator) {
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -108,16 +101,16 @@ class TrendingMovies extends StatelessWidget {
           MessageView(
             message: '${ExceptionHandler.handle(context, exception)}',
           ),
-          RaisedButton(
+          ElevatedButton(
               onPressed: () {
-                bloc.dispatch(Fetch());
+                bloc.add(const Fetch());
               },
-              child: Text(translator.translate('act_retry'))),
-          RaisedButton(
+              child: Text(translator.translate('act_retry')!)),
+          ElevatedButton(
               onPressed: () {
                 SystemNavigator.pop();
               },
-              child: Text(translator.translate('act_exit'))),
+              child: Text(translator.translate('act_exit')!)),
         ],
       ),
     );

@@ -1,15 +1,16 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
 class LoadingListPlaceHolder extends StatelessWidget {
+  const LoadingListPlaceHolder({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(left: 12, right: 12, bottom: 12, top: 8),
+      padding: const EdgeInsets.only(left: 12, right: 12, bottom: 12, top: 8),
       child: Shimmer.fromColors(
-        baseColor: Colors.grey[300],
-        highlightColor: Colors.grey[100],
+        baseColor: Colors.grey[300]!,
+        highlightColor: Colors.grey[100]!,
         enabled: true,
         child: _buildChild(context),
       ),
@@ -32,8 +33,8 @@ class LoadingListPlaceHolder extends StatelessWidget {
                       height: 48.0,
                       color: Colors.white,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                    const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 8.0),
                     ),
                     Expanded(
                       child: Column(
@@ -44,16 +45,16 @@ class LoadingListPlaceHolder extends StatelessWidget {
                             height: 8.0,
                             color: Colors.white,
                           ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 2.0),
+                          const Padding(
+                            padding: EdgeInsets.symmetric(vertical: 2.0),
                           ),
                           Container(
                             width: double.infinity,
                             height: 8.0,
                             color: Colors.white,
                           ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(vertical: 2.0),
+                          const Padding(
+                            padding: EdgeInsets.symmetric(vertical: 2.0),
                           ),
                           Container(
                             width: 40.0,

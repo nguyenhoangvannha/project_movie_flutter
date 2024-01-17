@@ -5,13 +5,17 @@ class Guide extends StatelessWidget {
   final String title;
   final String subtitle;
 
-  Guide({this.icon = Icons
-      .search, this.title = 'Search guide', this.subtitle = 'Type to search'});
+  const Guide(
+      {Key? key,
+      this.icon = Icons.search,
+      this.title = 'Search guide',
+      this.subtitle = 'Type to search'})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(16),
+      padding: const EdgeInsets.all(16),
       child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -20,17 +24,17 @@ class Guide extends StatelessWidget {
               icon,
               size: 60,
             ),
-            Text(title, style: Theme
-                .of(context)
-                .textTheme
-                .title,),
-            SizedBox(
+            Text(
+              title,
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
+            const SizedBox(
               height: 4,
             ),
-            Text(subtitle, style: Theme
-                .of(context)
-                .textTheme
-                .subtitle,),
+            Text(
+              subtitle,
+              style: Theme.of(context).textTheme.titleSmall,
+            ),
           ],
         ),
       ),

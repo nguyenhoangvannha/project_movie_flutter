@@ -10,23 +10,24 @@ import 'common/message_view.dart';
 import 'movie_list_hor.dart';
 
 class SimilarMoviesList extends StatelessWidget {
-  final int _movieId;
-  final SimilarMovieBloc similarMovieBloc;
+  final int? _movieId;
+  final SimilarMovieBloc? similarMovieBloc;
 
-  SimilarMoviesList(this._movieId, {this.similarMovieBloc});
+  const SimilarMoviesList(this._movieId, {Key? key, this.similarMovieBloc})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final bloc = this.similarMovieBloc ??
+    final bloc = similarMovieBloc ??
         SimilarMovieBloc(
             getSimilarMovies: RepositoryProvider.of<GetSimilarMovies>(context))
-          ..dispatch(Fetch(movieId: _movieId));
+      ..add(Fetch(movieId: _movieId));
     return BlocBuilder<SimilarMovieBloc, SimilarMovieState>(
       bloc: bloc,
       builder: (bCtx, state) {
         if (state is Loading) {
           print("LOADING SIMILAR");
-          return LoadingIndicator();
+          return const LoadingIndicator();
         }
         if (state is Error) {
           return Center(
@@ -35,17 +36,17 @@ class SimilarMoviesList extends StatelessWidget {
           );
         }
         if (state is Result) {
-          if (state.movies.isEmpty) {
+          if (state.movies!.isEmpty) {
             return MessageView(
               icon: Icons.info_outline,
-              message: AppLocalizations.of(context).translate(
-                  'msg_no_movies'),);
+              message: AppLocalizations.of(context)!.translate('msg_no_movies'),
+            );
           }
           return MoviesListHor(
             movies: state.movies,
           );
         }
-        return Center(
+        return const Center(
           child: MessageView(),
         );
       },

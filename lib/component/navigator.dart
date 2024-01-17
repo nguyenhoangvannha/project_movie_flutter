@@ -12,14 +12,12 @@ import 'package:project_movie_flutter/ui/widget/bottom_sheet_sort.dart';
 import 'package:project_movie_flutter/util/movie_sort_type.dart';
 
 class AppNavigator {
-  static AppNavigator _instance;
+  static AppNavigator? _instance;
 
   AppNavigator._();
 
-  static AppNavigator get instance {
-    if (_instance == null) {
-      _instance = AppNavigator._();
-    }
+  static AppNavigator? get instance {
+    _instance ??= AppNavigator._();
     return _instance;
   }
 
@@ -39,7 +37,7 @@ class AppNavigator {
     Navigator.of(context).pushNamed(Routes.SETTINGS_LANGUAGES);
   }
 
-  void navToDetailsPage(BuildContext context, int movieId,
+  void navToDetailsPage(BuildContext context, int? movieId,
       {bool fromBottomSheet = false}) {
     if (fromBottomSheet) {
       Navigator.of(context).pop();
@@ -49,7 +47,7 @@ class AppNavigator {
 
   void showBottomSheetMovieDetails(BuildContext context, Movie movie) {
     showModalBottomSheet(
-        shape: RoundedRectangleBorder(
+        shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(top: Radius.circular(16))),
         context: context,
         builder: (bCtx) {
@@ -59,7 +57,7 @@ class AppNavigator {
 
   void showBottomSheetMovieVideoTrailer(BuildContext context, Video video) {
     showModalBottomSheet(
-        shape: RoundedRectangleBorder(
+        shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(top: Radius.circular(16))),
         context: context,
         builder: (bCtx) {
@@ -72,7 +70,7 @@ class AppNavigator {
 
   void showBottomSheetEditMovie(BuildContext context, Movie movie) {
     showModalBottomSheet(
-        shape: RoundedRectangleBorder(
+        shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(top: Radius.circular(16))),
         context: context,
         builder: (bCtx) {
@@ -80,11 +78,12 @@ class AppNavigator {
         });
   }
 
-  void showBottomSheetShortMovies(BuildContext context,
-      SortType currentSortType,
-      Function(SortType newSortType) onSortTypeChanged) {
+  void showBottomSheetShortMovies(
+      BuildContext context,
+      SortType? currentSortType,
+      Function(SortType? newSortType) onSortTypeChanged) {
     showModalBottomSheet(
-        shape: RoundedRectangleBorder(
+        shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
         context: context,
         builder: (bCtx) {
@@ -96,12 +95,10 @@ class AppNavigator {
   }
 
   void showAlertDialog(BuildContext context,
-      {@required Widget content,
-        Widget title = const Text("Attention"),
-        List<Widget> actions}) {
-    if (actions == null) {
-      actions = [];
-    }
+      {required Widget content,
+      Widget title = const Text("Attention"),
+      List<Widget>? actions}) {
+    actions ??= [];
     SchedulerBinding.instance.addPostFrameCallback((_) {
       showDialog(
         context: context,
@@ -110,19 +107,21 @@ class AppNavigator {
           return AlertDialog(
             title: title,
             content: content,
-            actions: actions
-              ..add(FlatButton(
+            actions: actions!
+              ..add(TextButton(
                 onPressed: () => Navigator.of(context).pop(),
                 child:
-                Text(AppLocalizations.of(context).translate('act_close')),
+                    Text(AppLocalizations.of(context)!.translate('act_close')!),
               )),
           );
         },
       );
     });
   }
+
   void showSnackBar(BuildContext context, String message) {
-    Scaffold.of(context).removeCurrentSnackBar();
-    Scaffold.of(context).showSnackBar(SnackBar(content: Text(message)));
+    ScaffoldMessenger.of(context).removeCurrentSnackBar();
+    ScaffoldMessenger.of(context)
+        .showSnackBar(SnackBar(content: Text(message)));
   }
 }

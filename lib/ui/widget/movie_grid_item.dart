@@ -6,63 +6,64 @@ import 'common/container.dart';
 
 class MovieGridItem extends StatelessWidget {
   final Movie movie;
-  final Function onTap;
-  final Function onLongPress;
+  final Function? onTap;
+  final Function? onLongPress;
 
-  MovieGridItem(this.movie, {this.onTap, this.onLongPress});
+  const MovieGridItem(this.movie, {Key? key, this.onTap, this.onLongPress})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final caption = Theme.of(context)
         .textTheme
-        .caption
+        .bodySmall!
         .copyWith(fontStyle: FontStyle.normal, fontSize: 10);
     return InkWell(
-      onTap: onTap,
-      onLongPress: onLongPress,
+      onTap: onTap as void Function()?,
+      onLongPress: onLongPress as void Function()?,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Expanded(
             child: CustomCard(
-              margin: EdgeInsets.all(4),
+              margin: const EdgeInsets.all(4),
               child: CachedImage(image: movie.posterPath),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 4,
           ),
           Container(
-            margin: EdgeInsets.only(left: 8),
+            margin: const EdgeInsets.only(left: 8),
             child: Text(
-              movie.title,
-              style: TextStyle(fontStyle: FontStyle.normal, fontSize: 12),
+              movie.title!,
+              style: const TextStyle(fontStyle: FontStyle.normal, fontSize: 12),
               overflow: TextOverflow.ellipsis,
               maxLines: 1,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 4,
           ),
           Row(
             children: <Widget>[
-              SizedBox(
+              const SizedBox(
                 width: 8,
               ),
               Text(movie.voteAverage.toString(), style: caption),
-              SizedBox(
+              const SizedBox(
                 width: 2,
               ),
-              Icon(
+              const Icon(
                 Icons.star,
                 size: 8,
               ),
-              Spacer(),
+              const Spacer(),
               Text(
-                movie.releaseDate,
+                movie.releaseDate!,
                 style: caption,
               ),
-              SizedBox(
+              const SizedBox(
                 width: 16,
               )
             ],

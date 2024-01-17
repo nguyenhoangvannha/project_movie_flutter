@@ -3,11 +3,14 @@ import 'package:meta/meta.dart';
 
 @immutable
 abstract class MovieVideosEvent extends Equatable {
-  MovieVideosEvent([List props = const <dynamic>[]]) : super(props);
+  const MovieVideosEvent() : super();
 }
 
 class Fetch extends MovieVideosEvent {
-  final int movieId;
+  final int? movieId;
 
-  Fetch({@required this.movieId}) : super([movieId]);
+  const Fetch({required this.movieId}) : super();
+
+  @override
+  List<Object?> get props => [movieId];
 }

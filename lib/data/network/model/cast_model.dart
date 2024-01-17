@@ -9,44 +9,37 @@ part 'cast_model.g.dart';
 abstract class CastModel implements Built<CastModel, CastModelBuilder> {
   CastModel._();
 
-  factory CastModel([updates(CastModelBuilder b)]) = _$CastModel;
+  factory CastModel([Function(CastModelBuilder b) updates]) = _$CastModel;
 
-  @nullable
   @BuiltValueField(wireName: 'cast_id')
-  int get castId;
+  int? get castId;
 
-  @nullable
   @BuiltValueField(wireName: 'character')
-  String get character;
+  String? get character;
 
-  @nullable
   @BuiltValueField(wireName: 'credit_id')
-  String get creditId;
+  String? get creditId;
 
-  @nullable
   @BuiltValueField(wireName: 'gender')
-  int get gender;
+  int? get gender;
 
   @BuiltValueField(wireName: 'id')
   int get id;
 
-  @nullable
   @BuiltValueField(wireName: 'name')
-  String get name;
+  String? get name;
 
-  @nullable
   @BuiltValueField(wireName: 'order')
-  int get order;
+  int? get order;
 
-  @nullable
   @BuiltValueField(wireName: 'profile_path')
-  String get profilePath;
+  String? get profilePath;
 
   String toJson() {
     return json.encode(serializers.serializeWith(CastModel.serializer, this));
   }
 
-  static CastModel fromJson(String jsonString) {
+  static CastModel? fromJson(String jsonString) {
     return serializers.deserializeWith(
         CastModel.serializer, json.decode(jsonString));
   }

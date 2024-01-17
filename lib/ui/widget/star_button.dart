@@ -6,34 +6,33 @@ import 'package:project_movie_flutter/ui/bloc/favourite_movie/bloc.dart';
 class StarButton extends StatelessWidget {
   final Movie movie;
 
-  StarButton({@required this.movie});
+  const StarButton({Key? key, required this.movie}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final favBloc = BlocProvider.of<FavouriteMovieBloc>(context);
-    favBloc.dispatch(CheckFavorite(movieId: movie.id));
+    favBloc.add(CheckFavorite(movieId: movie.id));
     return BlocBuilder<FavouriteMovieBloc, FavouriteMovieState>(
-        condition: (pre, cur) {
-          return cur is FavoriteChecked && cur.movieId == movie.id;
-        }, builder: (bCtx, state) {
-      if (state is FavoriteChecked)
+        buildWhen: (pre, cur) {
+      return cur is FavoriteChecked && cur.movieId == movie.id;
+    }, builder: (bCtx, state) {
+      if (state is FavoriteChecked) {
         return IconButton(
           icon: Icon(
-            state.isFavorite
-                ? Icons.star
-                : Icons.star_border,
+            state.isFavorite ? Icons.star : Icons.star_border,
             color: Colors.yellow,
           ),
           onPressed: () {
             if (state.isFavorite) {
-              favBloc.dispatch(RemoveFavorite(movieId: movie.id));
+              favBloc.add(RemoveFavorite(movieId: movie.id));
             } else {
-              favBloc.dispatch(AddFavorite(movie: movie));
+              favBloc.add(AddFavorite(movie: movie));
             }
           },
         );
-      else
-        return Text('');
+      } else {
+        return const Text('');
+      }
     });
   }
 }

@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:meta/meta.dart';
 import 'package:project_movie_flutter/domain/entity/movie.dart';
 import 'package:project_movie_flutter/domain/usecase/movie/movie_params.dart';
 import 'package:project_movie_flutter/domain/usecase/use_case.dart';
@@ -12,54 +11,35 @@ import './bloc.dart';
 class SearchMovieBloc extends Bloc<SearchMovieEvent, SearchMovieState> {
   final UseCase<List<Movie>, MovieParams> searchMovie;
 
-  SearchMovieBloc({@required this.searchMovie});
+  SearchMovieBloc({required this.searchMovie}) : super(Initial()) {
+    on<Search>(_onSearch);
+  }
 
-  @override
-  SearchMovieState get initialState => Initial();
-
-  @override
   Stream<SearchMovieState> mapEventToState(
     SearchMovieEvent event,
   ) async* {
-    if (event is Search) {
-      if (event.query.isEmpty) {
-        yield Initial();
-      } else {
-        yield Searching();
-        var res = await searchMovie
-            .execute(MovieParams(query: event.query, page: event.page));
-        switch (res.type) {
-          case ResourceType.Error:
-            yield Error(res.exception);
-            break;
-          case ResourceType.Success:
-            yield Result(movies: res.data);
-            break;
-        }
-      }
-    }
 //    if (event is LoadMore) {
 //      if (event.query.isEmpty) {
-//        yield LoadMoreResult(movies: []);
+//        emit( LoadMoreResult(movies: []);
 //      } else {
-//        yield LoadMoreProcessing();
+//        emit( LoadMoreProcessing();
 //        var res = await searchMovie
 //            .execute(MovieParams(query: event.query, page: event.page));
 //        switch (res.type) {
 //          case ResourceType.Error:
-//            yield Error(res.exception);
+//            emit( Error(res.exception);
 //            break;
 //          case ResourceType.Success:
-//            yield LoadMoreResult(movies: res.data);
+//            emit( LoadMoreResult(movies: res.data);
 //            break;
 //        }
 //      }
 //    }
   }
 
-  Future<List<Movie>> loadMore(String query, int page) async {
+  Future<List<Movie>?> loadMore(String query, int page) async {
     var res = await searchMovie.execute(MovieParams(query: query, page: page));
-    var data = [];
+    List<dynamic>? data = [];
     switch (res.type) {
       case ResourceType.Error:
         break;
@@ -67,6 +47,24 @@ class SearchMovieBloc extends Bloc<SearchMovieEvent, SearchMovieState> {
         data = res.data;
         break;
     }
-    return data;
+    return data as FutureOr<List<Movie>?>;
+  }
+
+  FutureOr<void> _onSearch(Search event, Emitter<SearchMovieState> emit) async {
+    if (event.query.isEmpty) {
+      emit(Initial());
+    } else {
+      emit(Searching());
+      var res = await searchMovie
+          .execute(MovieParams(query: event.query, page: event.page));
+      switch (res.type) {
+        case ResourceType.Error:
+          emit(Error(res.exception));
+          break;
+        case ResourceType.Success:
+          emit(Result(movies: res.data));
+          break;
+      }
+    }
   }
 }

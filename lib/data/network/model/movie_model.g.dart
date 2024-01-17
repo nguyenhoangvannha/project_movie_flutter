@@ -15,151 +15,182 @@ class _$MovieModelSerializer implements StructuredSerializer<MovieModel> {
   final String wireName = 'MovieModel';
 
   @override
-  Iterable<Object> serialize(Serializers serializers, MovieModel object,
+  Iterable<Object?> serialize(Serializers serializers, MovieModel object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object>[
+    final result = <Object?>[
       'id',
       serializers.serialize(object.id, specifiedType: const FullType(int)),
       'release_date',
       serializers.serialize(object.releaseDate,
           specifiedType: const FullType(String)),
     ];
-    if (object.popularity != null) {
-      result..add('popularity')..add(serializers.serialize(object.popularity,
-          specifiedType: const FullType(double)));
+    Object? value;
+    value = object.popularity;
+    if (value != null) {
+      result
+        ..add('popularity')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(double)));
     }
-    if (object.voteCount != null) {
-      result..add('vote_count')..add(serializers.serialize(object.voteCount,
-          specifiedType: const FullType(int)));
+    value = object.voteCount;
+    if (value != null) {
+      result
+        ..add('vote_count')
+        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
     }
-    if (object.video != null) {
-      result..add('video')..add(serializers.serialize(object.video,
-          specifiedType: const FullType(bool)));
+    value = object.video;
+    if (value != null) {
+      result
+        ..add('video')
+        ..add(
+            serializers.serialize(value, specifiedType: const FullType(bool)));
     }
-    if (object.posterPath != null) {
+    value = object.posterPath;
+    if (value != null) {
       result
         ..add('poster_path')
-        ..add(serializers.serialize(object.posterPath,
+        ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    if (object.adult != null) {
-      result..add('adult')..add(serializers.serialize(object.adult,
-          specifiedType: const FullType(bool)));
+    value = object.adult;
+    if (value != null) {
+      result
+        ..add('adult')
+        ..add(
+            serializers.serialize(value, specifiedType: const FullType(bool)));
     }
-    if (object.backdropPath != null) {
+    value = object.backdropPath;
+    if (value != null) {
       result
         ..add('backdrop_path')
-        ..add(serializers.serialize(object.backdropPath,
+        ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
     }
-    if (object.originalLanguage != null) {
-      result..add('original_language')..add(
-          serializers.serialize(object.originalLanguage,
-              specifiedType: const FullType(String)));
+    value = object.originalLanguage;
+    if (value != null) {
+      result
+        ..add('original_language')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
     }
-    if (object.originalTitle != null) {
-      result..add('original_title')..add(
-          serializers.serialize(object.originalTitle,
-              specifiedType: const FullType(String)));
+    value = object.originalTitle;
+    if (value != null) {
+      result
+        ..add('original_title')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
     }
-    if (object.genreIds != null) {
-      result..add('genre_ids')..add(serializers.serialize(object.genreIds,
-          specifiedType:
-          const FullType(BuiltList, const [const FullType(int)])));
+    value = object.genreIds;
+    if (value != null) {
+      result
+        ..add('genre_ids')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(int)])));
     }
-    if (object.title != null) {
-      result..add('title')..add(serializers.serialize(object.title,
-          specifiedType: const FullType(String)));
+    value = object.title;
+    if (value != null) {
+      result
+        ..add('title')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
     }
-    if (object.voteAverage != null) {
-      result..add('vote_average')..add(serializers.serialize(object.voteAverage,
-          specifiedType: const FullType(double)));
+    value = object.voteAverage;
+    if (value != null) {
+      result
+        ..add('vote_average')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(double)));
     }
-    if (object.overview != null) {
-      result..add('overview')..add(serializers.serialize(object.overview,
-          specifiedType: const FullType(String)));
+    value = object.overview;
+    if (value != null) {
+      result
+        ..add('overview')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(String)));
     }
-    if (object.runTime != null) {
+    value = object.runTime;
+    if (value != null) {
       result
         ..add('runtime')
-        ..add(serializers.serialize(object.runTime,
+        ..add(serializers.serialize(value,
             specifiedType: const FullType(double)));
     }
     return result;
   }
 
   @override
-  MovieModel deserialize(Serializers serializers, Iterable<Object> serialized,
+  MovieModel deserialize(Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result = new MovieModelBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
-      final key = iterator.current as String;
+      final key = iterator.current! as String;
       iterator.moveNext();
-      final dynamic value = iterator.current;
+      final Object? value = iterator.current;
       switch (key) {
         case 'popularity':
           result.popularity = serializers.deserialize(value,
-              specifiedType: const FullType(double)) as double;
+              specifiedType: const FullType(double)) as double?;
           break;
         case 'vote_count':
           result.voteCount = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int;
+              specifiedType: const FullType(int)) as int?;
           break;
         case 'video':
           result.video = serializers.deserialize(value,
-              specifiedType: const FullType(bool)) as bool;
+              specifiedType: const FullType(bool)) as bool?;
           break;
         case 'poster_path':
           result.posterPath = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'id':
           result.id = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int;
+              specifiedType: const FullType(int))! as int;
           break;
         case 'adult':
           result.adult = serializers.deserialize(value,
-              specifiedType: const FullType(bool)) as bool;
+              specifiedType: const FullType(bool)) as bool?;
           break;
         case 'backdrop_path':
           result.backdropPath = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'original_language':
           result.originalLanguage = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'original_title':
           result.originalTitle = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'genre_ids':
           result.genreIds.replace(serializers.deserialize(value,
                   specifiedType:
-                      const FullType(BuiltList, const [const FullType(int)]))
-              as BuiltList<dynamic>);
+                      const FullType(BuiltList, const [const FullType(int)]))!
+              as BuiltList<Object?>);
           break;
         case 'title':
           result.title = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'vote_average':
           result.voteAverage = serializers.deserialize(value,
-              specifiedType: const FullType(double)) as double;
+              specifiedType: const FullType(double)) as double?;
           break;
         case 'overview':
           result.overview = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String)) as String?;
           break;
         case 'release_date':
           result.releaseDate = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String;
+              specifiedType: const FullType(String))! as String;
           break;
         case 'runtime':
           result.runTime = serializers.deserialize(value,
-              specifiedType: const FullType(double)) as double;
+              specifiedType: const FullType(double)) as double?;
           break;
       }
     }
@@ -170,45 +201,45 @@ class _$MovieModelSerializer implements StructuredSerializer<MovieModel> {
 
 class _$MovieModel extends MovieModel {
   @override
-  final double popularity;
+  final double? popularity;
   @override
-  final int voteCount;
+  final int? voteCount;
   @override
-  final bool video;
+  final bool? video;
   @override
-  final String posterPath;
+  final String? posterPath;
   @override
   final int id;
   @override
-  final bool adult;
+  final bool? adult;
   @override
-  final String backdropPath;
+  final String? backdropPath;
   @override
-  final String originalLanguage;
+  final String? originalLanguage;
   @override
-  final String originalTitle;
+  final String? originalTitle;
   @override
-  final BuiltList<int> genreIds;
+  final BuiltList<int>? genreIds;
   @override
-  final String title;
+  final String? title;
   @override
-  final double voteAverage;
+  final double? voteAverage;
   @override
-  final String overview;
+  final String? overview;
   @override
   final String releaseDate;
   @override
-  final double runTime;
+  final double? runTime;
 
-  factory _$MovieModel([void Function(MovieModelBuilder) updates]) =>
-      (new MovieModelBuilder()..update(updates)).build();
+  factory _$MovieModel([void Function(MovieModelBuilder)? updates]) =>
+      (new MovieModelBuilder()..update(updates))._build();
 
   _$MovieModel._(
       {this.popularity,
       this.voteCount,
       this.video,
       this.posterPath,
-      this.id,
+      required this.id,
       this.adult,
       this.backdropPath,
       this.originalLanguage,
@@ -217,15 +248,12 @@ class _$MovieModel extends MovieModel {
       this.title,
       this.voteAverage,
       this.overview,
-      this.releaseDate,
+      required this.releaseDate,
       this.runTime})
       : super._() {
-    if (id == null) {
-      throw new BuiltValueNullFieldError('MovieModel', 'id');
-    }
-    if (releaseDate == null) {
-      throw new BuiltValueNullFieldError('MovieModel', 'releaseDate');
-    }
+    BuiltValueNullFieldError.checkNotNull(id, r'MovieModel', 'id');
+    BuiltValueNullFieldError.checkNotNull(
+        releaseDate, r'MovieModel', 'releaseDate');
   }
 
   @override
@@ -258,43 +286,29 @@ class _$MovieModel extends MovieModel {
 
   @override
   int get hashCode {
-    return $jf($jc(
-        $jc(
-            $jc(
-                $jc(
-                    $jc(
-                        $jc(
-                            $jc(
-                                $jc(
-                                    $jc(
-                                        $jc(
-                                            $jc(
-                                                $jc(
-                                                    $jc(
-                                                        $jc(
-                                                            $jc(
-                                                                0,
-                                                                popularity
-                                                                    .hashCode),
-                                                            voteCount.hashCode),
-                                                        video.hashCode),
-                                                    posterPath.hashCode),
-                                                id.hashCode),
-                                            adult.hashCode),
-                                        backdropPath.hashCode),
-                                    originalLanguage.hashCode),
-                                originalTitle.hashCode),
-                            genreIds.hashCode),
-                        title.hashCode),
-                    voteAverage.hashCode),
-                overview.hashCode),
-            releaseDate.hashCode),
-        runTime.hashCode));
+    var _$hash = 0;
+    _$hash = $jc(_$hash, popularity.hashCode);
+    _$hash = $jc(_$hash, voteCount.hashCode);
+    _$hash = $jc(_$hash, video.hashCode);
+    _$hash = $jc(_$hash, posterPath.hashCode);
+    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, adult.hashCode);
+    _$hash = $jc(_$hash, backdropPath.hashCode);
+    _$hash = $jc(_$hash, originalLanguage.hashCode);
+    _$hash = $jc(_$hash, originalTitle.hashCode);
+    _$hash = $jc(_$hash, genreIds.hashCode);
+    _$hash = $jc(_$hash, title.hashCode);
+    _$hash = $jc(_$hash, voteAverage.hashCode);
+    _$hash = $jc(_$hash, overview.hashCode);
+    _$hash = $jc(_$hash, releaseDate.hashCode);
+    _$hash = $jc(_$hash, runTime.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
   }
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('MovieModel')
+    return (newBuiltValueToStringHelper(r'MovieModel')
           ..add('popularity', popularity)
           ..add('voteCount', voteCount)
           ..add('video', video)
@@ -315,89 +329,90 @@ class _$MovieModel extends MovieModel {
 }
 
 class MovieModelBuilder implements Builder<MovieModel, MovieModelBuilder> {
-  _$MovieModel _$v;
+  _$MovieModel? _$v;
 
-  double _popularity;
-  double get popularity => _$this._popularity;
-  set popularity(double popularity) => _$this._popularity = popularity;
+  double? _popularity;
+  double? get popularity => _$this._popularity;
+  set popularity(double? popularity) => _$this._popularity = popularity;
 
-  int _voteCount;
-  int get voteCount => _$this._voteCount;
-  set voteCount(int voteCount) => _$this._voteCount = voteCount;
+  int? _voteCount;
+  int? get voteCount => _$this._voteCount;
+  set voteCount(int? voteCount) => _$this._voteCount = voteCount;
 
-  bool _video;
-  bool get video => _$this._video;
-  set video(bool video) => _$this._video = video;
+  bool? _video;
+  bool? get video => _$this._video;
+  set video(bool? video) => _$this._video = video;
 
-  String _posterPath;
-  String get posterPath => _$this._posterPath;
-  set posterPath(String posterPath) => _$this._posterPath = posterPath;
+  String? _posterPath;
+  String? get posterPath => _$this._posterPath;
+  set posterPath(String? posterPath) => _$this._posterPath = posterPath;
 
-  int _id;
-  int get id => _$this._id;
-  set id(int id) => _$this._id = id;
+  int? _id;
+  int? get id => _$this._id;
+  set id(int? id) => _$this._id = id;
 
-  bool _adult;
-  bool get adult => _$this._adult;
-  set adult(bool adult) => _$this._adult = adult;
+  bool? _adult;
+  bool? get adult => _$this._adult;
+  set adult(bool? adult) => _$this._adult = adult;
 
-  String _backdropPath;
-  String get backdropPath => _$this._backdropPath;
-  set backdropPath(String backdropPath) => _$this._backdropPath = backdropPath;
+  String? _backdropPath;
+  String? get backdropPath => _$this._backdropPath;
+  set backdropPath(String? backdropPath) => _$this._backdropPath = backdropPath;
 
-  String _originalLanguage;
-  String get originalLanguage => _$this._originalLanguage;
-  set originalLanguage(String originalLanguage) =>
+  String? _originalLanguage;
+  String? get originalLanguage => _$this._originalLanguage;
+  set originalLanguage(String? originalLanguage) =>
       _$this._originalLanguage = originalLanguage;
 
-  String _originalTitle;
-  String get originalTitle => _$this._originalTitle;
-  set originalTitle(String originalTitle) =>
+  String? _originalTitle;
+  String? get originalTitle => _$this._originalTitle;
+  set originalTitle(String? originalTitle) =>
       _$this._originalTitle = originalTitle;
 
-  ListBuilder<int> _genreIds;
+  ListBuilder<int>? _genreIds;
   ListBuilder<int> get genreIds => _$this._genreIds ??= new ListBuilder<int>();
-  set genreIds(ListBuilder<int> genreIds) => _$this._genreIds = genreIds;
+  set genreIds(ListBuilder<int>? genreIds) => _$this._genreIds = genreIds;
 
-  String _title;
-  String get title => _$this._title;
-  set title(String title) => _$this._title = title;
+  String? _title;
+  String? get title => _$this._title;
+  set title(String? title) => _$this._title = title;
 
-  double _voteAverage;
-  double get voteAverage => _$this._voteAverage;
-  set voteAverage(double voteAverage) => _$this._voteAverage = voteAverage;
+  double? _voteAverage;
+  double? get voteAverage => _$this._voteAverage;
+  set voteAverage(double? voteAverage) => _$this._voteAverage = voteAverage;
 
-  String _overview;
-  String get overview => _$this._overview;
-  set overview(String overview) => _$this._overview = overview;
+  String? _overview;
+  String? get overview => _$this._overview;
+  set overview(String? overview) => _$this._overview = overview;
 
-  String _releaseDate;
-  String get releaseDate => _$this._releaseDate;
-  set releaseDate(String releaseDate) => _$this._releaseDate = releaseDate;
+  String? _releaseDate;
+  String? get releaseDate => _$this._releaseDate;
+  set releaseDate(String? releaseDate) => _$this._releaseDate = releaseDate;
 
-  double _runTime;
-  double get runTime => _$this._runTime;
-  set runTime(double runTime) => _$this._runTime = runTime;
+  double? _runTime;
+  double? get runTime => _$this._runTime;
+  set runTime(double? runTime) => _$this._runTime = runTime;
 
   MovieModelBuilder();
 
   MovieModelBuilder get _$this {
-    if (_$v != null) {
-      _popularity = _$v.popularity;
-      _voteCount = _$v.voteCount;
-      _video = _$v.video;
-      _posterPath = _$v.posterPath;
-      _id = _$v.id;
-      _adult = _$v.adult;
-      _backdropPath = _$v.backdropPath;
-      _originalLanguage = _$v.originalLanguage;
-      _originalTitle = _$v.originalTitle;
-      _genreIds = _$v.genreIds?.toBuilder();
-      _title = _$v.title;
-      _voteAverage = _$v.voteAverage;
-      _overview = _$v.overview;
-      _releaseDate = _$v.releaseDate;
-      _runTime = _$v.runTime;
+    final $v = _$v;
+    if ($v != null) {
+      _popularity = $v.popularity;
+      _voteCount = $v.voteCount;
+      _video = $v.video;
+      _posterPath = $v.posterPath;
+      _id = $v.id;
+      _adult = $v.adult;
+      _backdropPath = $v.backdropPath;
+      _originalLanguage = $v.originalLanguage;
+      _originalTitle = $v.originalTitle;
+      _genreIds = $v.genreIds?.toBuilder();
+      _title = $v.title;
+      _voteAverage = $v.voteAverage;
+      _overview = $v.overview;
+      _releaseDate = $v.releaseDate;
+      _runTime = $v.runTime;
       _$v = null;
     }
     return this;
@@ -405,19 +420,19 @@ class MovieModelBuilder implements Builder<MovieModel, MovieModelBuilder> {
 
   @override
   void replace(MovieModel other) {
-    if (other == null) {
-      throw new ArgumentError.notNull('other');
-    }
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$MovieModel;
   }
 
   @override
-  void update(void Function(MovieModelBuilder) updates) {
+  void update(void Function(MovieModelBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  _$MovieModel build() {
+  MovieModel build() => _build();
+
+  _$MovieModel _build() {
     _$MovieModel _$result;
     try {
       _$result = _$v ??
@@ -426,7 +441,8 @@ class MovieModelBuilder implements Builder<MovieModel, MovieModelBuilder> {
               voteCount: voteCount,
               video: video,
               posterPath: posterPath,
-              id: id,
+              id: BuiltValueNullFieldError.checkNotNull(
+                  id, r'MovieModel', 'id'),
               adult: adult,
               backdropPath: backdropPath,
               originalLanguage: originalLanguage,
@@ -435,16 +451,17 @@ class MovieModelBuilder implements Builder<MovieModel, MovieModelBuilder> {
               title: title,
               voteAverage: voteAverage,
               overview: overview,
-              releaseDate: releaseDate,
+              releaseDate: BuiltValueNullFieldError.checkNotNull(
+                  releaseDate, r'MovieModel', 'releaseDate'),
               runTime: runTime);
     } catch (_) {
-      String _$failedField;
+      late String _$failedField;
       try {
         _$failedField = 'genreIds';
         _genreIds?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            'MovieModel', _$failedField, e.toString());
+            r'MovieModel', _$failedField, e.toString());
       }
       rethrow;
     }
@@ -453,4 +470,4 @@ class MovieModelBuilder implements Builder<MovieModel, MovieModelBuilder> {
   }
 }
 
-// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,lines_longer_than_80_chars,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new
+// ignore_for_file: deprecated_member_use_from_same_package,type=lint

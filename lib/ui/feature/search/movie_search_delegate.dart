@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:project_movie_flutter/component/navigator.dart';
 import 'package:project_movie_flutter/domain/entity/movie.dart';
 import 'package:project_movie_flutter/ui/bloc/search_movie/bloc.dart';
@@ -14,24 +13,24 @@ import 'package:project_movie_flutter/util/exception_handler.dart';
 
 class MovieSearchDelegate extends SearchDelegate<List<Movie>> {
   //final Debouncer debouncer = Debouncer(milliseconds: 500);
-  SearchMovieBloc _searchBloc;
+  SearchMovieBloc? _searchBloc;
 
   @override
   List<Widget> buildActions(BuildContext context) {
     return <Widget>[
       IconButton(
-          icon: Icon(Icons.clear),
+          icon: const Icon(Icons.clear),
           tooltip: 'Clear',
           onPressed: () {
             query = "";
-            BlocProvider.of<SearchMovieBloc>(context).dispatch(Search(query));
+            BlocProvider.of<SearchMovieBloc>(context).add(Search(query));
           }),
     ];
   }
 
   @override
   Widget buildLeading(BuildContext context) {
-    return BackButton();
+    return const BackButton();
   }
 
   @override
@@ -41,9 +40,8 @@ class MovieSearchDelegate extends SearchDelegate<List<Movie>> {
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    if (_searchBloc == null)
-      _searchBloc = BlocProvider.of<SearchMovieBloc>(context);
-    _searchBloc.dispatch(Search(query ?? ""));
+    _searchBloc ??= BlocProvider.of<SearchMovieBloc>(context);
+    _searchBloc!.add(Search(query ?? ""));
     return _search(context, Type.Suggestions);
   }
 
@@ -51,10 +49,10 @@ class MovieSearchDelegate extends SearchDelegate<List<Movie>> {
     return BlocBuilder<SearchMovieBloc, SearchMovieState>(
       builder: (bctx, state) {
         if (state is Initial) {
-          return Guide();
+          return const Guide();
         }
         if (state is Searching) {
-          return LoadingListPlaceHolder();
+          return const LoadingListPlaceHolder();
         }
 
         if (state is Error) {
@@ -62,15 +60,18 @@ class MovieSearchDelegate extends SearchDelegate<List<Movie>> {
               message: ExceptionHandler.handle(context, state.exception));
         }
         if (state is Result) {
-          if (state.movies.isEmpty) {
+          if (state.movies!.isEmpty) {
             return MessageView(
-              message: AppLocalizations.of(context).translate('msg_no_movies'),
+              message: AppLocalizations.of(context)!.translate('msg_no_movies'),
             );
           }
-          if (type == Type.Suggestions)
-            return _buildSuggestionsList(state.movies);
-          else {
-            return MoviesPanel(state.movies, loadMore:  loadMore,);
+          if (type == Type.Suggestions) {
+            return _buildSuggestionsList(state.movies!);
+          } else {
+            return MoviesPanel(
+              state.movies,
+              loadMore: loadMore,
+            );
           }
         }
 
@@ -79,16 +80,15 @@ class MovieSearchDelegate extends SearchDelegate<List<Movie>> {
     );
   }
 
-  Future<List<Movie>> loadMore(BuildContext context, int page) async {
-    return await BlocProvider.of<SearchMovieBloc>(context).loadMore(
-        query, page);
+  Future<List<Movie>?> loadMore(BuildContext context, int page) async {
+    return await BlocProvider.of<SearchMovieBloc>(context)
+        .loadMore(query, page);
   }
 
   _buildSuggestionsList(List<Movie> movies) {
-    final SlidableController slidableController = SlidableController();
     return ListView.separated(
         separatorBuilder: (bCtx, index) {
-          return Divider(
+          return const Divider(
             indent: 8,
             endIndent: 8,
             height: 4,
@@ -98,10 +98,9 @@ class MovieSearchDelegate extends SearchDelegate<List<Movie>> {
         itemBuilder: (BuildContext context, int index) {
           return SearchItem(
             movies.elementAt(index),
-            slidableController: slidableController,
-            onTap: () => AppNavigator.instance
+            onTap: () => AppNavigator.instance!
                 .showBottomSheetMovieDetails(context, movies.elementAt(index)),
-            onLongPress: () => AppNavigator.instance
+            onLongPress: () => AppNavigator.instance!
                 .showBottomSheetEditMovie(context, movies.elementAt(index)),
           );
         },

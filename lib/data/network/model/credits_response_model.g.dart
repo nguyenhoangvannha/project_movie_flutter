@@ -20,43 +20,49 @@ class _$CreditsResponseModelSerializer
   final String wireName = 'CreditsResponseModel';
 
   @override
-  Iterable<Object> serialize(
+  Iterable<Object?> serialize(
       Serializers serializers, CreditsResponseModel object,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = <Object>[];
-    if (object.id != null) {
-      result..add('id')..add(serializers.serialize(object.id,
-          specifiedType: const FullType(int)));
+    final result = <Object?>[];
+    Object? value;
+    value = object.id;
+    if (value != null) {
+      result
+        ..add('id')
+        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
     }
-    if (object.casts != null) {
-      result..add('cast')..add(serializers.serialize(object.casts,
-          specifiedType:
-          const FullType(BuiltList, const [const FullType(CastModel)])));
+    value = object.casts;
+    if (value != null) {
+      result
+        ..add('cast')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(BuiltList, const [const FullType(CastModel)])));
     }
     return result;
   }
 
   @override
   CreditsResponseModel deserialize(
-      Serializers serializers, Iterable<Object> serialized,
+      Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result = new CreditsResponseModelBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
-      final key = iterator.current as String;
+      final key = iterator.current! as String;
       iterator.moveNext();
-      final dynamic value = iterator.current;
+      final Object? value = iterator.current;
       switch (key) {
         case 'id':
           result.id = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int;
+              specifiedType: const FullType(int)) as int?;
           break;
         case 'cast':
           result.casts.replace(serializers.deserialize(value,
                   specifiedType: const FullType(
-                      BuiltList, const [const FullType(CastModel)]))
-              as BuiltList<dynamic>);
+                      BuiltList, const [const FullType(CastModel)]))!
+              as BuiltList<Object?>);
           break;
       }
     }
@@ -67,13 +73,13 @@ class _$CreditsResponseModelSerializer
 
 class _$CreditsResponseModel extends CreditsResponseModel {
   @override
-  final int id;
+  final int? id;
   @override
-  final BuiltList<CastModel> casts;
+  final BuiltList<CastModel>? casts;
 
   factory _$CreditsResponseModel(
-          [void Function(CreditsResponseModelBuilder) updates]) =>
-      (new CreditsResponseModelBuilder()..update(updates)).build();
+          [void Function(CreditsResponseModelBuilder)? updates]) =>
+      (new CreditsResponseModelBuilder()..update(updates))._build();
 
   _$CreditsResponseModel._({this.id, this.casts}) : super._();
 
@@ -96,12 +102,16 @@ class _$CreditsResponseModel extends CreditsResponseModel {
 
   @override
   int get hashCode {
-    return $jf($jc($jc(0, id.hashCode), casts.hashCode));
+    var _$hash = 0;
+    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, casts.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
   }
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper('CreditsResponseModel')
+    return (newBuiltValueToStringHelper(r'CreditsResponseModel')
           ..add('id', id)
           ..add('casts', casts))
         .toString();
@@ -110,23 +120,24 @@ class _$CreditsResponseModel extends CreditsResponseModel {
 
 class CreditsResponseModelBuilder
     implements Builder<CreditsResponseModel, CreditsResponseModelBuilder> {
-  _$CreditsResponseModel _$v;
+  _$CreditsResponseModel? _$v;
 
-  int _id;
-  int get id => _$this._id;
-  set id(int id) => _$this._id = id;
+  int? _id;
+  int? get id => _$this._id;
+  set id(int? id) => _$this._id = id;
 
-  ListBuilder<CastModel> _casts;
+  ListBuilder<CastModel>? _casts;
   ListBuilder<CastModel> get casts =>
       _$this._casts ??= new ListBuilder<CastModel>();
-  set casts(ListBuilder<CastModel> casts) => _$this._casts = casts;
+  set casts(ListBuilder<CastModel>? casts) => _$this._casts = casts;
 
   CreditsResponseModelBuilder();
 
   CreditsResponseModelBuilder get _$this {
-    if (_$v != null) {
-      _id = _$v.id;
-      _casts = _$v.casts?.toBuilder();
+    final $v = _$v;
+    if ($v != null) {
+      _id = $v.id;
+      _casts = $v.casts?.toBuilder();
       _$v = null;
     }
     return this;
@@ -134,31 +145,31 @@ class CreditsResponseModelBuilder
 
   @override
   void replace(CreditsResponseModel other) {
-    if (other == null) {
-      throw new ArgumentError.notNull('other');
-    }
+    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$CreditsResponseModel;
   }
 
   @override
-  void update(void Function(CreditsResponseModelBuilder) updates) {
+  void update(void Function(CreditsResponseModelBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  _$CreditsResponseModel build() {
+  CreditsResponseModel build() => _build();
+
+  _$CreditsResponseModel _build() {
     _$CreditsResponseModel _$result;
     try {
       _$result =
           _$v ?? new _$CreditsResponseModel._(id: id, casts: _casts?.build());
     } catch (_) {
-      String _$failedField;
+      late String _$failedField;
       try {
         _$failedField = 'casts';
         _casts?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            'CreditsResponseModel', _$failedField, e.toString());
+            r'CreditsResponseModel', _$failedField, e.toString());
       }
       rethrow;
     }
@@ -167,4 +178,4 @@ class CreditsResponseModelBuilder
   }
 }
 
-// ignore_for_file: always_put_control_body_on_new_line,always_specify_types,annotate_overrides,avoid_annotating_with_dynamic,avoid_as,avoid_catches_without_on_clauses,avoid_returning_this,lines_longer_than_80_chars,omit_local_variable_types,prefer_expression_function_bodies,sort_constructors_first,test_types_in_equals,unnecessary_const,unnecessary_new
+// ignore_for_file: deprecated_member_use_from_same_package,type=lint

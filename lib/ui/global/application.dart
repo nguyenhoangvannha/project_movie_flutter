@@ -9,14 +9,14 @@ import 'localizations/ui/locale_bloc_builder.dart';
 class Application extends StatelessWidget {
   final Widget Function(BuildContext context, InitData initData) builder;
 
-  Application({@required this.builder});
+  const Application({Key? key, required this.builder}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MultiRepositoryProvider(
-      providers: AppBlocDelegate.instance(context).repositoryProviders,
+      providers: AppBlocDelegate.instance(context)!.repositoryProviders!,
       child: MultiBlocProvider(
-        providers: AppBlocDelegate.instance(context).blocProviders,
+        providers: AppBlocDelegate.instance(context)!.blocProviders!,
         child: LocaleBlocBuilder(
           builder: (lBBContext, locale, supportedLocales,
               localizationsDelegates, localeResolutionCallback) {
@@ -39,11 +39,11 @@ class Application extends StatelessWidget {
 }
 
 class InitData {
-  ThemeData themeData;
-  Locale locale;
-  List<Locale> supportedLocales;
-  List<LocalizationsDelegate> localizationsDelegates;
-  Function localeResolutionCallback;
+  ThemeData? themeData;
+  Locale? locale;
+  List<Locale>? supportedLocales;
+  List<LocalizationsDelegate>? localizationsDelegates;
+  Function? localeResolutionCallback;
 
   InitData(this.themeData, this.locale, this.supportedLocales,
       this.localizationsDelegates, this.localeResolutionCallback);

@@ -7,11 +7,13 @@ import '../bloc/bloc.dart';
 import 'theme_item.dart';
 
 class ThemeSettingPage extends StatelessWidget {
+  const ThemeSettingPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(AppLocalizations.of(context).translate('title_themes')),
+        title: Text(AppLocalizations.of(context)!.translate('title_themes')!),
       ),
       body: ListView.builder(
           itemCount: AppTheme.values.length,
@@ -21,7 +23,7 @@ class ThemeSettingPage extends StatelessWidget {
               theme: theme,
               themeData: appThemeData[theme],
               onTap: () => BlocProvider.of<ThemeBloc>(context)
-                  .dispatch(ThemeChanged(theme: theme)),
+                  .add(ThemeChanged(theme: theme)),
             );
           }),
     );

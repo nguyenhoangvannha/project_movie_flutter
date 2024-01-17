@@ -4,7 +4,10 @@ import 'package:project_movie_flutter/domain/entity/movie.dart';
 
 @immutable
 abstract class FavouriteMovieState extends Equatable {
-  FavouriteMovieState([List props = const []]) : super(props);
+  const FavouriteMovieState() : super();
+
+  @override
+  List<Object?> get props => [];
 }
 
 class LoadingFavorite extends FavouriteMovieState {}
@@ -12,25 +15,27 @@ class LoadingFavorite extends FavouriteMovieState {}
 class NoFavorite extends FavouriteMovieState {}
 
 class HasFavorite extends FavouriteMovieState {
-  final List<Movie> movies;
+  final List<Movie>? movies;
   final List<Movie> watching;
   final List<Movie> finished;
 
-  HasFavorite({@required this.movies,
-    @required this.watching,
-    @required this.finished});
+  const HasFavorite(
+      {required this.movies, required this.watching, required this.finished});
 }
 
 class FavoriteError extends FavouriteMovieState {
-  final Exception exception;
+  final Object? exception;
 
-  FavoriteError({@required this.exception});
+  const FavoriteError({required this.exception});
 }
 
 class FavoriteChecked extends FavouriteMovieState {
-  final int movieId;
+  final int? movieId;
   final bool isFavorite;
 
-  FavoriteChecked({@required this.movieId, @required this.isFavorite})
-      : super([movieId, isFavorite]);
+  const FavoriteChecked({required this.movieId, required this.isFavorite})
+      : super();
+
+  @override
+  List<Object?> get props => [movieId, isFavorite];
 }

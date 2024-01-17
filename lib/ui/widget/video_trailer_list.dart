@@ -11,27 +11,28 @@ import 'common/loading_indicator.dart';
 import 'common/message_view.dart';
 
 class VideoTrailerList extends StatelessWidget {
-  final int _movieId;
-  final MovieVideosBloc movieVideosBloc;
+  final int? _movieId;
+  final MovieVideosBloc? movieVideosBloc;
 
-  VideoTrailerList(this._movieId, {this.movieVideosBloc});
+  const VideoTrailerList(this._movieId, {Key? key, this.movieVideosBloc})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final mediaQueryData = MediaQuery.of(context);
     final heightPct =
-    mediaQueryData.orientation == Orientation.portrait ? 0.24 : 0.45;
+        mediaQueryData.orientation == Orientation.portrait ? 0.24 : 0.45;
     final bloc = movieVideosBloc ??
         MovieVideosBloc(
             getMovieVideos: RepositoryProvider.of<GetVideoTrailer>(context))
-          ..dispatch(Fetch(movieId: _movieId));
-    return Container(
+      ..add(Fetch(movieId: _movieId));
+    return SizedBox(
       height: mediaQueryData.size.height * heightPct,
       child: BlocBuilder<MovieVideosBloc, MovieVideosState>(
           bloc: bloc,
           builder: (bCtx, state) {
             if (state is Loading) {
-              return LoadingIndicator();
+              return const LoadingIndicator();
             }
             if (state is Error) {
               return MessageView(
@@ -39,26 +40,26 @@ class VideoTrailerList extends StatelessWidget {
               );
             }
             if (state is Result) {
-              if (state.videos.isEmpty) {
+              if (state.videos!.isEmpty) {
                 return MessageView(
                   icon: Icons.info_outline,
-                  message: AppLocalizations.of(context).translate(
-                      'msg_no_video'),
+                  message:
+                      AppLocalizations.of(context)!.translate('msg_no_video'),
                 );
               }
               return ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  itemCount: state.videos.length,
+                  itemCount: state.videos!.length,
                   itemBuilder: (bCtx, index) {
-                    final video = state.videos.elementAt(index);
+                    final video = state.videos!.elementAt(index);
                     return VideoTrailerItem(
                       video,
-                      onTap: () => AppNavigator.instance
+                      onTap: () => AppNavigator.instance!
                           .showBottomSheetMovieVideoTrailer(context, video),
                     );
                   });
             }
-            return MessageView();
+            return const MessageView();
           }),
     );
   }

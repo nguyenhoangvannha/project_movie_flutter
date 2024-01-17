@@ -7,13 +7,15 @@ import '../localizations_delegates.dart';
 import 'locale_item.dart';
 
 class LocalizationsSettingPage extends StatelessWidget {
+  const LocalizationsSettingPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    final supportedLocales = LocalizationsDelegates.instance.supportedLocales;
+    final supportedLocales = LocalizationsDelegates.instance!.supportedLocales!;
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          AppLocalizations.of(context).translate('title_languages'),
+          AppLocalizations.of(context)!.translate('title_languages')!,
         ),
       ),
       body: ListView.builder(
@@ -23,7 +25,7 @@ class LocalizationsSettingPage extends StatelessWidget {
             return LocaleItem(
                 locale: locale,
                 onTap: () => BlocProvider.of<LocalizationsBloc>(context)
-                    .dispatch(LocaleChanged(locale: locale)));
+                    .add(LocaleChanged(locale: locale)));
           }),
     );
   }

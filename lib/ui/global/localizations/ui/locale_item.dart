@@ -4,14 +4,15 @@ import '../app_localizations.dart';
 
 class LocaleItem extends StatelessWidget {
   final Locale locale;
-  final Function onTap;
+  final Function? onTap;
 
-  LocaleItem({@required this.locale, this.onTap});
+  const LocaleItem({Key? key, required this.locale, this.onTap})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final languageString =
-        AppLocalizations.of(context).translate(locale.toString());
+        AppLocalizations.of(context)!.translate(locale.toString())!;
     return Card(
       elevation: 4,
       child: ListTile(
@@ -19,7 +20,7 @@ class LocaleItem extends StatelessWidget {
           child: Text(locale.languageCode),
         ),
         title: Text(languageString),
-        onTap: onTap,
+        onTap: onTap as void Function()?,
       ),
     );
   }

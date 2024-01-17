@@ -1,7 +1,7 @@
 import 'package:chopper/chopper.dart';
-import 'package:meta/meta.dart';
+import 'package:chopper_built_value/chopper_built_value.dart';
 import 'package:project_movie_flutter/component/api_config.dart';
-import 'package:project_movie_flutter/data/network/service/built_value_converter.dart';
+import 'package:project_movie_flutter/data/network/model/serializers.dart';
 
 import '../interceptor/network_interceptor.dart';
 import '../model/credits_response_model.dart';
@@ -17,56 +17,55 @@ abstract class MovieApiService extends ChopperService {
   Future<Response<MovieResponseModel>> getTrendingMovies({
     @Query('api_key') String apiKey = ApiConfig.API_KEY,
     @Query('sort_by') String sortBy = 'popularity.desc',
-    @Query('page') int page = 1,
+    @Query('page') int? page = 1,
   });
 
   @Get(path: '/movie/now_playing')
-  Future<Response<MovieResponseModel>> getNowPlaying({
-    @Query('api_key') String apiKey = ApiConfig.API_KEY,
-    @Query('page') int page = 1,
-  });
+  Future<Response<MovieResponseModel>> getNowPlaying(
+      {@Query('api_key') String apiKey = ApiConfig.API_KEY,
+      @Query('page') int? page = 1});
 
   @Get(path: '/search/movie')
   Future<Response<MovieResponseModel>> searchMovies(
       @Query("query") String query,
       {@Query('api_key') String apiKey = ApiConfig.API_KEY,
-        @Query('page') int page = 1});
+      @Query('page') int? page = 1});
 
   @Get(path: '/movie/{movieId}/videos')
   Future<Response<VideoResponseModel>> getVideoTrailer(
-      {@Path("movieId") @required int movieId,
-        @Query('api_key') String apiKey = ApiConfig.API_KEY});
+      {@Path("movieId") required int? movieId,
+      @Query('api_key') String apiKey = ApiConfig.API_KEY});
 
   @Get(path: '/movie/{movieId}') //&append_to_response=videos
   Future<Response<MovieModel>> getMovieDetail(
-      {@Path("movieId") @required int movieId,
-        @Query('api_key') String apiKey = ApiConfig.API_KEY});
+      {@Path("movieId") required int? movieId,
+      @Query('api_key') String apiKey = ApiConfig.API_KEY});
 
   @Get(path: '/movie/{movieId}/credits')
   Future<Response<CreditsResponseModel>> getMovieCredits(
-      {@Path("movieId") @required int movieId,
-        @Query('api_key') String apiKey = ApiConfig.API_KEY});
+      {@Path("movieId") required int? movieId,
+      @Query('api_key') String apiKey = ApiConfig.API_KEY});
 
   @Get(path: '/movie/{movieId}/recommendations')
   Future<Response<MovieResponseModel>> recommendationsMovies(
-      {@Path("movieId") @required int movieId,
-        @Query('api_key') String apiKey = ApiConfig.API_KEY,
-        @Query('page') int page = 1});
+      {@Path("movieId") required int? movieId,
+      @Query('api_key') String apiKey = ApiConfig.API_KEY,
+      @Query('page') int? page = 1});
 
   @Get(path: '/movie/{movieId}/similar')
   Future<Response<MovieResponseModel>> similarMovies(
-      {@Path("movieId") @required int movieId,
-        @Query('api_key') String apiKey = ApiConfig.API_KEY,
-        @Query('page') int page = 1});
+      {@Path("movieId") required int? movieId,
+      @Query('api_key') String apiKey = ApiConfig.API_KEY,
+      @Query('page') int? page = 1});
 
-  static MovieApiService create() {
+  static MovieApiService create([ChopperClient? client]) {
     final client = ChopperClient(
-        baseUrl: '${ApiConfig.BASE_API_URL}',
+        baseUrl: Uri.tryParse(ApiConfig.BASE_API_URL),
         services: [
           _$MovieApiService(),
         ],
-        converter: BuiltValueConverter(),
-        errorConverter: JsonConverter(),
+        converter: BuiltValueConverter(serializers),
+        errorConverter: const JsonConverter(),
         interceptors: [
           HttpLoggingInterceptor(),
           NetworkInterceptor(),

@@ -13,10 +13,10 @@ class Routes {
   static const String SETTINGS_LANGUAGES = '/settings/languages';
 
   static var routes = {
-    MAIN: (ctx) => HomePage(),
-    MOVIE_DETAILS: (ctx) => DetailPage(),
-    SETTINGS: (ctx) => SettingsPage(),
-    SETTINGS_THEMES: (ctx) => ThemeSettingPage(),
-    SETTINGS_LANGUAGES: (ctx) => LocalizationsSettingPage(),
+    MAIN: (ctx) => const HomePage(),
+    MOVIE_DETAILS: (ctx) => const DetailPage(),
+    SETTINGS: (ctx) => const SettingsPage(),
+    SETTINGS_THEMES: (ctx) => const ThemeSettingPage(),
+    SETTINGS_LANGUAGES: (ctx) => const LocalizationsSettingPage(),
   };
 }

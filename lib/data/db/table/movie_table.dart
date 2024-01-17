@@ -1,37 +1,39 @@
-import 'package:moor_flutter/moor_flutter.dart';
+import 'package:drift/drift.dart';
 
 class Movies extends Table {
-  RealColumn get popularity => real().nullable()();
+  RealColumn? get popularity => real().nullable()();
 
-  IntColumn get voteCount => integer().nullable()();
+  IntColumn? get voteCount => integer().nullable()();
 
-  BoolColumn get video => boolean().nullable().withDefault(Constant(false))();
+  BoolColumn? get video =>
+      boolean().nullable().withDefault(const Constant(false))();
 
-  TextColumn get posterPath => text()();
+  TextColumn? get posterPath => text()();
 
-  IntColumn get id => integer()();
+  IntColumn? get id => integer()();
 
-  BoolColumn get adult => boolean().nullable().withDefault(Constant(false))();
+  BoolColumn? get adult =>
+      boolean().nullable().withDefault(const Constant(false))();
 
-  TextColumn get backdropPath => text().nullable()();
+  TextColumn? get backdropPath => text().nullable()();
 
-  TextColumn get originalLanguage => text().nullable()();
+  TextColumn? get originalLanguage => text().nullable()();
 
-  TextColumn get originalTitle => text().nullable()();
+  TextColumn? get originalTitle => text().nullable()();
 
-  TextColumn get title => text()();
+  TextColumn? get title => text()();
 
-  RealColumn get voteAverage => real()();
+  RealColumn? get voteAverage => real()();
 
-  TextColumn get overview => text()();
+  TextColumn? get overview => text()();
 
-  TextColumn get releaseDate => text()();
+  TextColumn? get releaseDate => text()();
 
-  RealColumn get runTime => real().nullable()();
+  RealColumn? get runTime => real().nullable()();
 
-  BoolColumn get finished =>
-      boolean().nullable().withDefault(Constant(false))();
+  BoolColumn? get finished =>
+      boolean().nullable().withDefault(const Constant(false))();
 
   @override
-  Set<Column> get primaryKey => {id};
+  Set<Column> get primaryKey => {id!};
 }
