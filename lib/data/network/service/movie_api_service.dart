@@ -15,48 +15,41 @@ part 'movie_api_service.chopper.dart';
 abstract class MovieApiService extends ChopperService {
   @Get(path: '/discover/movie')
   Future<Response<MovieResponseModel>> getTrendingMovies({
-    @Query('api_key') String apiKey = ApiConfig.API_KEY,
     @Query('sort_by') String sortBy = 'popularity.desc',
     @Query('page') int? page = 1,
   });
 
   @Get(path: '/movie/now_playing')
   Future<Response<MovieResponseModel>> getNowPlaying(
-      {@Query('api_key') String apiKey = ApiConfig.API_KEY,
-      @Query('page') int? page = 1});
+      {@Query('page') int? page = 1});
 
   @Get(path: '/search/movie')
   Future<Response<MovieResponseModel>> searchMovies(
       @Query("query") String query,
-      {@Query('api_key') String apiKey = ApiConfig.API_KEY,
-      @Query('page') int? page = 1});
+      {@Query('page') int? page = 1});
 
   @Get(path: '/movie/{movieId}/videos')
-  Future<Response<VideoResponseModel>> getVideoTrailer(
-      {@Path("movieId") required int? movieId,
-      @Query('api_key') String apiKey = ApiConfig.API_KEY});
+  Future<Response<VideoResponseModel>> getVideoTrailer({
+    @Path("movieId") required int? movieId,
+  });
 
   @Get(path: '/movie/{movieId}') //&append_to_response=videos
-  Future<Response<MovieModel>> getMovieDetail(
-      {@Path("movieId") required int? movieId,
-      @Query('api_key') String apiKey = ApiConfig.API_KEY});
+  Future<Response<MovieModel>> getMovieDetail({
+    @Path("movieId") required int? movieId,
+  });
 
   @Get(path: '/movie/{movieId}/credits')
-  Future<Response<CreditsResponseModel>> getMovieCredits(
-      {@Path("movieId") required int? movieId,
-      @Query('api_key') String apiKey = ApiConfig.API_KEY});
+  Future<Response<CreditsResponseModel>> getMovieCredits({
+    @Path("movieId") required int? movieId,
+  });
 
   @Get(path: '/movie/{movieId}/recommendations')
   Future<Response<MovieResponseModel>> recommendationsMovies(
-      {@Path("movieId") required int? movieId,
-      @Query('api_key') String apiKey = ApiConfig.API_KEY,
-      @Query('page') int? page = 1});
+      {@Path("movieId") required int? movieId, @Query('page') int? page = 1});
 
   @Get(path: '/movie/{movieId}/similar')
   Future<Response<MovieResponseModel>> similarMovies(
-      {@Path("movieId") required int? movieId,
-      @Query('api_key') String apiKey = ApiConfig.API_KEY,
-      @Query('page') int? page = 1});
+      {@Path("movieId") required int? movieId, @Query('page') int? page = 1});
 
   static MovieApiService create([ChopperClient? client]) {
     final client = ChopperClient(

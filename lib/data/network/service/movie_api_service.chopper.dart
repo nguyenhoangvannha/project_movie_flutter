@@ -19,13 +19,11 @@ final class _$MovieApiService extends MovieApiService {
 
   @override
   Future<Response<MovieResponseModel>> getTrendingMovies({
-    String apiKey = ApiConfig.API_KEY,
     String sortBy = 'popularity.desc',
     int? page = 1,
   }) {
     final Uri $url = Uri.parse('/discover/movie');
     final Map<String, dynamic> $params = <String, dynamic>{
-      'api_key': apiKey,
       'sort_by': sortBy,
       'page': page,
     };
@@ -39,15 +37,9 @@ final class _$MovieApiService extends MovieApiService {
   }
 
   @override
-  Future<Response<MovieResponseModel>> getNowPlaying({
-    String apiKey = ApiConfig.API_KEY,
-    int? page = 1,
-  }) {
+  Future<Response<MovieResponseModel>> getNowPlaying({int? page = 1}) {
     final Uri $url = Uri.parse('/movie/now_playing');
-    final Map<String, dynamic> $params = <String, dynamic>{
-      'api_key': apiKey,
-      'page': page,
-    };
+    final Map<String, dynamic> $params = <String, dynamic>{'page': page};
     final Request $request = Request(
       'GET',
       $url,
@@ -60,13 +52,11 @@ final class _$MovieApiService extends MovieApiService {
   @override
   Future<Response<MovieResponseModel>> searchMovies(
     String query, {
-    String apiKey = ApiConfig.API_KEY,
     int? page = 1,
   }) {
     final Uri $url = Uri.parse('/search/movie');
     final Map<String, dynamic> $params = <String, dynamic>{
       'query': query,
-      'api_key': apiKey,
       'page': page,
     };
     final Request $request = Request(
@@ -79,49 +69,36 @@ final class _$MovieApiService extends MovieApiService {
   }
 
   @override
-  Future<Response<VideoResponseModel>> getVideoTrailer({
-    required int? movieId,
-    String apiKey = ApiConfig.API_KEY,
-  }) {
+  Future<Response<VideoResponseModel>> getVideoTrailer(
+      {required int? movieId}) {
     final Uri $url = Uri.parse('/movie/${movieId}/videos');
-    final Map<String, dynamic> $params = <String, dynamic>{'api_key': apiKey};
     final Request $request = Request(
       'GET',
       $url,
       client.baseUrl,
-      parameters: $params,
     );
     return client.send<VideoResponseModel, VideoResponseModel>($request);
   }
 
   @override
-  Future<Response<MovieModel>> getMovieDetail({
-    required int? movieId,
-    String apiKey = ApiConfig.API_KEY,
-  }) {
+  Future<Response<MovieModel>> getMovieDetail({required int? movieId}) {
     final Uri $url = Uri.parse('/movie/${movieId}');
-    final Map<String, dynamic> $params = <String, dynamic>{'api_key': apiKey};
     final Request $request = Request(
       'GET',
       $url,
       client.baseUrl,
-      parameters: $params,
     );
     return client.send<MovieModel, MovieModel>($request);
   }
 
   @override
-  Future<Response<CreditsResponseModel>> getMovieCredits({
-    required int? movieId,
-    String apiKey = ApiConfig.API_KEY,
-  }) {
+  Future<Response<CreditsResponseModel>> getMovieCredits(
+      {required int? movieId}) {
     final Uri $url = Uri.parse('/movie/${movieId}/credits');
-    final Map<String, dynamic> $params = <String, dynamic>{'api_key': apiKey};
     final Request $request = Request(
       'GET',
       $url,
       client.baseUrl,
-      parameters: $params,
     );
     return client.send<CreditsResponseModel, CreditsResponseModel>($request);
   }
@@ -129,14 +106,10 @@ final class _$MovieApiService extends MovieApiService {
   @override
   Future<Response<MovieResponseModel>> recommendationsMovies({
     required int? movieId,
-    String apiKey = ApiConfig.API_KEY,
     int? page = 1,
   }) {
     final Uri $url = Uri.parse('/movie/${movieId}/recommendations');
-    final Map<String, dynamic> $params = <String, dynamic>{
-      'api_key': apiKey,
-      'page': page,
-    };
+    final Map<String, dynamic> $params = <String, dynamic>{'page': page};
     final Request $request = Request(
       'GET',
       $url,
@@ -149,14 +122,10 @@ final class _$MovieApiService extends MovieApiService {
   @override
   Future<Response<MovieResponseModel>> similarMovies({
     required int? movieId,
-    String apiKey = ApiConfig.API_KEY,
     int? page = 1,
   }) {
     final Uri $url = Uri.parse('/movie/${movieId}/similar');
-    final Map<String, dynamic> $params = <String, dynamic>{
-      'api_key': apiKey,
-      'page': page,
-    };
+    final Map<String, dynamic> $params = <String, dynamic>{'page': page};
     final Request $request = Request(
       'GET',
       $url,
