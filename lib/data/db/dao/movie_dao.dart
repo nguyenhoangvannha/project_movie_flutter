@@ -10,12 +10,12 @@ class MovieDao extends DatabaseAccessor<AppDatabase> with _$MovieDaoMixin {
 
   MovieDao(this.db) : super(db);
 
-  Future<List<Movie>> getAllMovies() => select(movies).get();
+  Future<List<Movy>> getAllMovies() => select(movies).get();
 
-  Future<int> insertMovie(Insertable<Movie> movie) =>
+  Future<int> insertMovie(Insertable<Movy> movie) =>
       into(movies).insert(movie);
 
-  Future<bool> updateMovie(Insertable<Movie> movie) =>
+  Future<bool> updateMovie(Insertable<Movy> movie) =>
       update(movies).replace(movie);
 
   Future<int> deleteMovie(int movieId) =>

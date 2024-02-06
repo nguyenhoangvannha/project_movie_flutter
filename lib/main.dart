@@ -1,8 +1,11 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:logging/logging.dart';
 import 'package:project_movie_flutter/component/app_injector.dart';
+import 'package:sqflite_common_ffi/sqflite_ffi.dart';
+import 'package:sqflite_common_ffi_web/sqflite_ffi_web.dart';
 
 import './ui/feature/home/home_page.dart';
 import 'component/routes.dart';
@@ -16,6 +19,17 @@ void main() {
 }
 
 void initApp() {
+  // if ([TargetPlatform.windows, TargetPlatform.macOS, TargetPlatform.linux]
+  //     .contains(defaultTargetPlatform)) {
+  //   sqfliteFfiInit();
+  //   databaseFactory = databaseFactoryFfi;
+  // }
+  //
+  // if (kIsWeb) {
+  //   // Change default factory on the web
+  //   databaseFactory = databaseFactoryFfiWeb;
+  // }
+
   setupLogging();
 
   AppInjector.init();

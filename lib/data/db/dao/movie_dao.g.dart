@@ -2,10 +2,7 @@
 
 part of 'movie_dao.dart';
 
-// **************************************************************************
-// DaoGenerator
-// **************************************************************************
-
+// ignore_for_file: type=lint
 mixin _$MovieDaoMixin on DatabaseAccessor<AppDatabase> {
   $MoviesTable get movies => attachedDatabase.movies;
 }

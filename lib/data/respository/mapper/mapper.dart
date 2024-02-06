@@ -57,13 +57,13 @@ class Mapper {
     }).toList();
   }
 
-  List<Movie> mapLocalMoviesToEntities(List<db.Movie> movies) {
+  List<Movie> mapLocalMoviesToEntities(List<db.Movy> movies) {
     return movies.map((movie) {
       return mapLocalMovieToMovieEntity(movie);
     }).toList();
   }
 
-  Movie mapLocalMovieToMovieEntity(db.Movie m) {
+  Movie mapLocalMovieToMovieEntity(db.Movy m) {
     return Movie(
         popularity: m.popularity,
         posterPath: m.posterPath,
@@ -82,8 +82,8 @@ class Mapper {
         finished: m.finished);
   }
 
-  db.Movie mapMovieEntityToLocalMovie(Movie m) {
-    return db.Movie(
+  db.Movy mapMovieEntityToLocalMovie(Movie m) {
+    return db.Movy(
         popularity: m.popularity,
         posterPath: m.posterPath ?? '',
         id: m.id ?? 0,
